@@ -2,5 +2,5 @@
 
 CREATE TABLE prj_volume.artery_tcl(
 	arterycode bigint,
-	geo_id bigint,
+	centreline_id bigint,
 	direction text);
