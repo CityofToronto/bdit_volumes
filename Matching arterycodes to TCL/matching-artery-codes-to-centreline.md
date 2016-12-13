@@ -97,11 +97,12 @@ Case|Actual Geometry Type|Geometry type by matching nodes|Method|Script|Matched|
 ----|--------------------|-------------------------------|------|------|-----|-------
 1|Line|Line|Match fnode,tnode|**match-segment-arterycodes.sql**|17841|N/A
 2|Line|Line|Calculating Hausdorff distance|**match-segment-arterycodes.sql**|2419|N/A
-3|Line|Point|Find closest line and check segment direction|**match-segments-w-missing-point.sql**|408|5
-4|Line|Null|Match street name and number|**match.py**|34|N/A
-5|Point|Point|Match fnode_id or tnode_id on all centreline segments|**match-tmc-arterycodes.sql**|4688|N/A
-6|Point|Point**|Create buffer around intersection and create records for all possible combinations of side and direction|**match-tmc-arterycodes.sql**|196|80
-7|Point|Null|@_@??|**match.py**|0|15
+3|Line|Point|Match to centreline intersection and check azimuth/approach|**match-segments-w-missing-point.sql**|???|?
+4|Line|Point|Find closest line and check segment direction|**match-segments-w-missing-point.sql**|408|5
+5|Line|Null|Match street name and number|**match.py**|34|N/A
+6|Point|Point|Match fnode_id or tnode_id on all centreline segments|**match-tmc-arterycodes.sql**|4688|N/A
+7|Point|Point**|Create buffer around intersection and create records for all possible combinations of side and direction|**match-tmc-arterycodes.sql**|196|80
+8|Point|Null|@_@??|**match.py**|0|15
 
 **123 records obtained geometry from google geocoding API and 153 obtained geometry from **Table centreline**. Failed matches result from misalignment between the projections. matched ones need to be checked carefully.
  
