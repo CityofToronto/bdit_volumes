@@ -30,14 +30,14 @@ Script:**create-table-arteries.sql**
 Result: **Table aharpal.arteries**   
 
 ### Step 2:   
-Geocode case 3&5 according to location names in **match.py**
+Geocode case 3&5 according to location names in **match.py**  
 
-#|Case|Number Records|Number Matched|Number Failed
--|----|--------------|:--------------:|:-------------:
-3|Line segments no nodes matched|73|34**|5
+Num|Case|Number Records|Number Matched|Number Failed
+---|----|--------------|:--------------:|:-------------:
+3|Line segments no nodes matched|73|34|5
 5|Intersection not matched|138|123|15
 
-** Line segments are matched to point locations. There are 34 others that are matched directly to centreline_id by street name and number which clears the need to geocode. 
+Line segments are matched to point locations. There are 34 others that are matched directly to centreline_id by street name and number which clears the need to geocode. 
 
 ### Step 3:   
 Make POSTGIS geometry objects based on (updated) coordinates: **update-table-arteries.sql**
@@ -54,10 +54,10 @@ tx,ty|double|x,y coordinates of tnode_id in MTM projection (2019)
 ty|double|y coordinate of tnode_id in MTM projection (2019)
 loc|Geometry|ST_Point or ST_Linestring
 
-Record Breakdown:
+**Record Breakdown:**
 
-#|Case|#Records(before geocoding)|#Records(after geocoding)
--|----|:--------------:|:---------------:
+Num|Case|#Records(before geocoding)|#Records(after geocoding)
+---|----|:--------------:|:---------------:
 1|Line segments both nodes matched|20260|20294
 2|Line segments only one node matched|413|447
 3|Line segments no nodes matched|73|5
