@@ -2,6 +2,7 @@
 The scripts map arterycodes referenced in FLOW database to Toronto centreline segments for further volume analysis. The table structures and relevant fields are shown below.
 
 **Table arterydata**
+
 Field Name|Type|Description|Example  
 ----------|----|-----------|-------  
 arterycode|bigint|primary key, unique identifier|5123  
@@ -13,6 +14,7 @@ linkid|text|8digits@8digits, 8 digits being the start and end node_ids, only 8 d
 *Note:* There are two types of geometry that arterycodes could refer to: line segment and intersection. Single intersection arterycodes are used for recording turning movement counts only. All other counts are recorded on line segments. There is no explicit indication of the geometry that each arterycode refers to. This information is extracted from the format of the linkids.
 
 **Table centreline**
+
 Field Name|Type|Description|Example  
 ----------|----|-----------|-------  
 centreline_id|bigint|primary key, unique identifier|1000215  
@@ -29,6 +31,7 @@ Result: **Table aharpal.arteries**
 
 ### Step 2:   
 Geocode case 3&5 according to location names in **match.py**
+
 #|Case|Number Records|Number Matched|Number Failed
 -|----|--------------|:--------------:|:-------------:
 3|Line segments no nodes matched|73|34**|5
@@ -40,6 +43,7 @@ Geocode case 3&5 according to location names in **match.py**
 Make POSTGIS geometry objects based on (updated) coordinates: **update-table-arteries.sql**
 
 **Table aharpal.arteries**
+
 Field Name|Type|Description
 ----------|----|-----------
 arterycode|bigint|from Table arterydata
@@ -51,6 +55,7 @@ ty|double|y coordinate of tnode_id in MTM projection (2019)
 loc|Geometry|ST_Point or ST_Linestring
 
 Record Breakdown:
+
 #|Case|#Records(before geocoding)|#Records(after geocoding)
 -|----|:--------------:|:---------------:
 1|Line segments both nodes matched|20260|20294
@@ -64,6 +69,7 @@ Record Breakdown:
 Result Table: prj_volume.artery_tcl **(create-table-artery_tcl.sql)**   
 **CONSTRAINT primary key (arterycode,direction,sideofint)   
 **Table prj_volume.artery_tcl**
+
 Field Name|Type|Description
 ----------|----|-----------
 arterycode|bigint|from arterydata
