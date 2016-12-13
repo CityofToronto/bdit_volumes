@@ -2,24 +2,24 @@
 The scripts map arterycodes referenced in FLOW database to Toronto centreline segments for further volume analysis. The table structures and relevant fields are shown below.
 
 **Table arterydata**
-Field Name|Type|Description|Example
-----------|----|-----------|-------
-arterycode|bigint|primary key, unique identifier|5123
-apprdir|text|direction of this segment|Northbound
-sideofint|text|side of intersection|E
-location|text|text description of the segment/intersection|Yonge St N/B N of Adelaide St
-linkid|text|8digits@8digits, 8 digits being the start and end node_ids, only 8 digits if it refers to an intersection only|
+Field Name|Type|Description|Example  
+----------|----|-----------|-------  
+arterycode|bigint|primary key, unique identifier|5123  
+apprdir|text|direction of this segment|Northbound  
+sideofint|text|side of intersection|E  
+location|text|text description of the segment/intersection|Yonge St N/B N of Adelaide St  
+linkid|text|8digits@8digits, 8 digits being the start and end node_ids, only 8 digits if it refers to an intersection only|  
 
 *Note:* There are two types of geometry that arterycodes could refer to: line segment and intersection. Single intersection arterycodes are used for recording turning movement counts only. All other counts are recorded on line segments. There is no explicit indication of the geometry that each arterycode refers to. This information is extracted from the format of the linkids.
 
 **Table centreline**
-Field Name|Type|Description|Example
-----------|----|-----------|-------
-centreline_id|bigint|primary key, unique identifier|1000215
-linear_name_full|text|full name of the street that the segment lies on|Don Mills Rd
-from_intersection_id|bigint|intersection id at from node|
-to_intersection_id|bigint|intersection id at to node|
-(low/high)_num_(odd/even)|int|low/high numbers of the even/odd sides of the street|35
+Field Name|Type|Description|Example  
+----------|----|-----------|-------  
+centreline_id|bigint|primary key, unique identifier|1000215  
+linear_name_full|text|full name of the street that the segment lies on|Don Mills Rd  
+from_intersection_id|bigint|intersection id at from node|  
+to_intersection_id|bigint|intersection id at to node|  
+(low/high)_num_(odd/even)|int|low/high numbers of the even/odd sides of the street|35  
 
 ## 1. Create geometry for arterycodes based on end nodes
 ### Step 1:   
