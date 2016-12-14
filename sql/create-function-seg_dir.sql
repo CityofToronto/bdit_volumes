@@ -1,4 +1,4 @@
-﻿CREATE OR REPLACE FUNCTION seg_dir(oneway_code double precision, dir text, seg geom)
+﻿CREATE OR REPLACE FUNCTION seg_dir(oneway_code double precision, dir text, seg geometry)
 	RETURNS TEXT AS $$
 DECLARE
 	result refcursor;
@@ -10,15 +10,15 @@ BEGIN
 		IF (dir = 'EB' OR dir = 'WB') THEN
 			IF (ST_X(ST_StartPoint(seg)) > ST_X(ST_EndPoint(seg))) THEN
 				IF (oneway_code = 1) THEN
-					result := 'EB';
-				ELSE
 					result := 'WB';
+				ELSE
+					result := 'EB';
 				END IF;
 			ELSE
 				IF (oneway_code = 1) THEN
-					result := 'WB';
-				ELSE
 					result := 'EB';
+				ELSE
+					result := 'WB';
 				END IF;
 			END IF;
 		ELSE
