@@ -112,31 +112,40 @@ SET start_id = i.centreline_id
 FROM prj_volume.centreline i
 INNER JOIN ( 	SELECT linear_name_id, min(st_x(st_centroid(shape))) as min_x
 		FROM prj_volume.centreline
+		WHERE seg_dir(oneway_dir_code, 'EB', shape) IN ('BOTH','EB')
 		GROUP BY linear_name_id) as sub ON sub.min_x = st_x(st_centroid(i.shape))
-WHERE cd.dir = 'EB' AND cd.linear_name_id = i.linear_name_id;
+WHERE cd.dir = 'EB' AND cd.linear_name_id = i.linear_name_id AND cd.linear_name_id = sub.linear_name_id;
 
 UPDATE prj_volume.corr_dir cd
 SET start_id = i.centreline_id
 FROM prj_volume.centreline i
 INNER JOIN ( 	SELECT linear_name_id, min(st_y(st_centroid(shape))) as min_y
 		FROM prj_volume.centreline
+		WHERE seg_dir(oneway_dir_code, 'NB', shape) IN ('BOTH','NB')
 		GROUP BY linear_name_id) as sub ON sub.min_y = st_y(st_centroid(i.shape))
-WHERE cd.dir = 'NB' AND cd.linear_name_id = i.linear_name_id;
+WHERE cd.dir = 'NB' AND cd.linear_name_id = i.linear_name_id AND cd.linear_name_id = sub.linear_name_id;
 
 UPDATE prj_volume.corr_dir cd
 SET start_id = i.centreline_id
 FROM prj_volume.centreline i
-INNER JOIN ( 	SELECT linear_name_id, min(st_x(st_centroid(shape))) as max_x
+INNER JOIN ( 	SELECT linear_name_id, max(st_x(st_centroid(shape))) as max_x
 		FROM prj_volume.centreline
+		WHERE seg_dir(oneway_dir_code, 'WB', shape) IN ('BOTH','WB')
 		GROUP BY linear_name_id) as sub ON sub.max_x = st_x(st_centroid(i.shape))
-WHERE cd.dir = 'WB' AND cd.linear_name_id = i.linear_name_id;
+WHERE cd.dir = 'WB' AND cd.linear_name_id = i.linear_name_id AND cd.linear_name_id = sub.linear_name_id;
 
 UPDATE prj_volume.corr_dir cd
 SET start_id = i.centreline_id
 FROM prj_volume.centreline i
 INNER JOIN ( 	SELECT linear_name_id, max(st_y(st_centroid(shape))) as max_y
 		FROM prj_volume.centreline
+		WHERE seg_dir(oneway_dir_code, 'SB', shape) IN ('BOTH','SB')
 		GROUP BY linear_name_id) as sub ON sub.max_y = st_y(st_centroid(i.shape))
-WHERE cd.dir = 'SB' AND cd.linear_name_id = i.linear_name_id;
+WHERE cd.dir = 'SB' AND cd.linear_name_id = i.linear_name_id AND cd.linear_name_id = sub.linear_name_id;
+
+-- Renforth Dr - Correct start_id for NB
+UPDATE prj_volume.corr_dir
+SET start_id = 11048510
+WHERE linear_name_id = 2353 AND dir = 'NB';
 
 
