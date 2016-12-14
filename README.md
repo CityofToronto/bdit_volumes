@@ -5,7 +5,7 @@ Develop a methodology for estimating traffic volumes on road segments in the Cit
 
 ## 2. Introduction
 
-- Availabiliy of volume data in City
+- Availability of volume data in City
 - Need for volume profiles
 - Toronto Centreline geometry
 
@@ -27,8 +27,10 @@ The City of Toronto's traffic volume collection efforts can be broken into three
 <li><b>Definition of Corridors:</b> Develop reproducible process for aggregating relevant centreline segments into corridors</li>
 <li><b>Literature Review:</b> Explore methods employed in other jurisdictions for interpolating or extrapolating traffic volumes both spatially and temporally, with a specific focus on cases where sparse counts exist. Produce summary of methods that may have value for this project for further exploration.</li>
 <li><b>Exploration of Methods:</b> Implement and compare methods deemed potentially feasible in *C.* to interpolating volumes on a subset of selected corridors.</li>
-<li><b>Exploration of Methods:</b> Implement and compare methods deemed potentially feasible in *C.* to interpolating volumes on a subset of selected corridors.</li>
 <li><b>Data Harmonization (if necessary):</b></li>
+<li><b>Model Development:</b></li>
+<li><b>Model Validation:</b></li>
+<li><b>Model Deployment:</b></li>
 </ol>
 
 ## 5. Related Tasks
