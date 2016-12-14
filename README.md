@@ -7,6 +7,7 @@ Develop a methodology for estimating traffic volumes on road segments in the Cit
 
 - Availabiliy of volume data in City
 - Need for volume profiles
+- Toronto Centreline geometry
 
 The City of Toronto's traffic volume collection efforts can be broken into three (3) buckets:
 
@@ -18,10 +19,15 @@ The City of Toronto's traffic volume collection efforts can be broken into three
 
 ### Scope
 
+- 
 
 ### Project Tasks
 
+- Map Artery Codes to Centreline
+- Definitoin of corridors
+- Literature Review
+- Exploration of methodologies
 
 ### Related Tasks
-1. Explore secondary sources of volume data to be investigated for value and potentially used.
+1. Explore the availability and value of alternative sources of volume data.
 2. 
