@@ -1,9 +1,9 @@
-## Traffic Volumes Modelling Project
+# Traffic Volumes Modelling Project
 
-### Purpose
+## 1. Purpose
 Develop a methodology for estimating traffic volumes on road segments in the City of Toronto.
 
-### Introduction
+## 2. Introduction
 
 - Availabiliy of volume data in City
 - Need for volume profiles
@@ -17,17 +17,20 @@ The City of Toronto's traffic volume collection efforts can be broken into three
 
 **3. Turning Movement Counts (TMCs):** Volumes can be inferred using manual turning movement counts, although these typically do not cover a full 24-hour period and may have significant gaps given the manual nature of these counts.
 
-### Scope
+## 3. Scope
 
 - 
 
-### Project Tasks
+## 4. Project Tasks
+<ol type="A">
+<li><b>Map Artery Codes to Centreline:</b> Linking Artery Codes from the existing FLOW system to the City's Centreline shapefile, with additional descriptive fields (e.g. directionality) as necessary.</li>
+<li><b>Definition of Corridors:</b> Develop reproducible process for aggregating relevant centreline segments into corridors</li>
+<li><b>Literature Review:</b> Explore methods employed in other jurisdictions for interpolating or extrapolating traffic volumes both spatially and temporally, with a specific focus on cases where sparse counts exist. Produce summary of methods that may have value for this project for further exploration.</li>
+<li><b>Exploration of Methods:</b> Implement and compare methods deemed potentially feasible in *C.* to interpolating volumes on a subset of selected corridors.</li>
+<li><b>Exploration of Methods:</b> Implement and compare methods deemed potentially feasible in *C.* to interpolating volumes on a subset of selected corridors.</li>
+<li><b>Data Harmonization (if necessary):</b></li>
+</ol>
 
-- Map Artery Codes to Centreline
-- Definition of corridors
-- Literature Review
-- Exploration of methodologies
-
-### Related Tasks
+## 5. Related Tasks
 1. Explore the availability and value of alternative sources of volume data.
-2. 
+2. Develop process for identifying priority segments as candidates for the implementation of permanent and/or short period traffic count stations.
