@@ -10,6 +10,7 @@ The core mission of the City of Toronto's Big Data Innovation Team is to leverag
 
 - **Traffic Volumes:** used as weights that feed into aggregate metrics.
 
+### 2.1 Data Availability
 The Team has access to third party GPS probe data that provides speed data across the City of Toronto in 1- or 5-minute bins. The availability of volume data, however, is limited to sparse counts across the network. The sparsity of these counts result in two inherent issues:
 
 - **Spatial Relativity:** An inability to compare traffic volumes amongst segments as counts are taken over different time periods.
@@ -24,13 +25,10 @@ The City of Toronto's traffic volume collection efforts can be broken into three
 
 3. **Turning Movement Counts (TMCs):** Volumes can be inferred using manual turning movement counts, although these typically do not cover a full 24-hour period and may have significant gaps given the manual nature of these counts.
 
-The purpose of this project is to leverage existing count data to develop a model that can produce volume estimates at specific locations at specific times, and is sensitive to time-of-day, day-of-week and seasonality effects, as well as long-term trends. These estimates will facilitate the development of volume-weighted congestion performance metrics, as well as allow the Team to produce detailed volume profiles that can feed into congestion reporting tools and AADT summaries.
+### 2.2 Scope
+The purpose of this project is to leverage existing count data to develop a model that can produce volume estimates at specific locations in the City of Toronto at specific times, and is sensitive to time-of-day, day-of-week and seasonality effects, as well as long-term trends. These estimates will facilitate the development of volume-weighted congestion performance metrics, as well as allow the Team to produce detailed volume profiles that can feed into congestion reporting tools and AADT summaries.
 
-## 3. Scope
-
-- 
-
-## 4. Project Tasks
+## 3. Project Tasks
 **1. Map Source Geometries to Toronto Centreline:** Link Artery Codes used in the City's FLOW database to the City's Centreline shapefile, with additional descriptive fields (e.g. directionality) as necessary.
 
 **2. Definition of Corridors:** Develop reproducible process for aggregating relevant centreline segments into corridors
@@ -47,6 +45,6 @@ The purpose of this project is to leverage existing count data to develop a mode
 
 **8. Tool Deployment:**
 
-## 5. Related Tasks
+## 4. Related Tasks
 1. Explore the availability and value of alternative sources of volume data.
 2. Develop process for identifying priority segments as candidates for the implementation of permanent and/or short period traffic count stations.
