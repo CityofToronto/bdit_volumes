@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS excluded_geoids;
+DROP TABLE IF EXISTS excluded_geoids;
 CREATE TEMPORARY TABLE excluded_geoids(centreline_id bigint);
 
 -- excludes geoids from centreline table where either: another segment shares identical fnode/tnode
@@ -18,20 +18,9 @@ SELECT centreline_id
 FROM prj_volume.centreline
 WHERE feature_code_desc IN ('Geostatistical line', 'Hydro Line','Creek/Tributary','Major Railway','Major Shoreline','Minor Shoreline (Land locked)','Busway','River','Walkway','Ferry Route','Trail');
 
--- truncate link table
-/*TRUNCATE prj_volume.artery_tcl;
-
--- create records
-INSERT INTO prj_volume.artery_tcl(arterycode, direction, sideofint)
-SELECT ad.arterycode, ad.apprdir, ad.sideofint
-FROM traffic.arterydata ad
-ORDER BY ad.arterycode;
-*/
 -- STEP 1: INSERT centreline_ids based on fnode, tnode links
---UPDATE prj_volume.artery_tcl AS atc
---SET centreline_id = COALESCE(sub.cl_id1, sub.cl_id2)
 INSERT INTO prj_volume.artery_tcl
-SELECT arterycode, COALESCE(sub.cl_id1, sub.cl_id2) as centreline_id, direction, sideofint
+SELECT arterycode, COALESCE(sub.cl_id1, sub.cl_id2) as centreline_id, direction, sideofint, 1 as match_on_case
 FROM (
 	SELECT ad.arterycode, sc1.centreline_id as cl_id1, sc2.centreline_id as cl_id2, apprdir AS direction, sideofint
 	FROM traffic.arterydata ad
@@ -40,9 +29,9 @@ FROM (
 	ORDER BY arterycode
 	) AS sub
 
-WHERE (sub.cl_id1 IS NOT NULL OR sub.cl_id2 IS NOT NULL)-- AND sub.arterycode = atc.arterycode;
+WHERE (sub.cl_id1 IS NOT NULL OR sub.cl_id2 IS NOT NULL)
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
-UPDATE SET centreline_id = EXCLUDED.centreline_id;
+UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
 
 -- STEP 2: INSERT centreline_ids based on spatial match to closest segment
 DROP TABLE IF EXISTS unmatched_linestrings;
@@ -51,13 +40,11 @@ CREATE TABLE unmatched_linestrings(arterycode bigint, loc geometry, direction ch
 
 INSERT INTO unmatched_linestrings
 SELECT arterycode, loc, apprdir AS direction, arterydata.sideofint
-FROM aharpal.arteries LEFT JOIN prj_volume.artery_tcl USING (arterycode) JOIN traffic.arterydata USING (arterycode)
+FROM prj_volume.arteries LEFT JOIN prj_volume.artery_tcl USING (arterycode) JOIN traffic.arterydata USING (arterycode)
 WHERE centreline_id IS NULL and ST_GeometryType(loc) = 'ST_LineString';
 
---UPDATE prj_volume.artery_tcl AS atc
---SET centreline_id = sub.centreline_id
 INSERT INTO prj_volume.artery_tcl
-SELECT arterycode,centreline_id, direction, sideofint
+SELECT arterycode,centreline_id, direction, sideofint, 2 as match_onc_ase
 FROM (
 	SELECT DISTINCT ON (ar.arterycode) ar.arterycode, cl.centreline_id, ar.direction, ar.sideofint
 	FROM unmatched_linestrings ar CROSS JOIN prj_volume.centreline cl
@@ -65,8 +52,4 @@ FROM (
 	ORDER BY ar.arterycode, ST_HausdorffDistance(loc,shape)
 	) AS sub
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
-UPDATE SET centreline_id = EXCLUDED.centreline_id
---WHERE sub.arterycode = atc.arterycode;
-
-
--- STEP 3: text-based match
+UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;

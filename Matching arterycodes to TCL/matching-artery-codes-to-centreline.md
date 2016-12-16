@@ -84,7 +84,7 @@ Step 1: Geocode/String matching for features with no geometry information **(mat
 	
 Step 2: Node/Spatial match for segments with complete geometry **(match-segment-arterycodes.sql)**
 1. match fnode,tnode of arterycode and centreline segment
-2. calculating Hausdorff distance between artercode segment and centreline segment and match to the closest one
+2. calculating Hausdorff distance<sup>1</sup> between artercode segment and centreline segment and match to the closest one
 
 Step 3: spatial+direction match for segments with only one node **(match-segments-w-missing-point.sql)**
 1. Find closest line to the point and check segment direction and side of street and assign centreline_id
@@ -93,16 +93,18 @@ Step 4: Node+Spatial match for turning movement count locations **(artery-tmc.sq
 1. match fnode/tnode with centreline
 2. for unmatched nodes, create a buffer around the point(intersection) and find the intersecting centreline segment and assign direction to them
 	
-Case|Actual Geometry Type|Geometry type by matching nodes|Method|Script|Matched|Failed
+Case|Actual Geometry Type|Geometry type in database|Method|Script|Matched|Failed
 ----|--------------------|-------------------------------|------|------|-----|-------
-1|Line|Line|Match fnode,tnode|**match-segment-arterycodes.sql**|17841|N/A
-2|Line|Line|Calculating Hausdorff distance|**match-segment-arterycodes.sql**|2419|N/A
-3|Line|Point|Match to centreline intersection and check azimuth/approach|**match-segments-w-missing-point.sql**|???|?
-4|Line|Point|Find closest line and check segment direction|**match-segments-w-missing-point.sql**|408|5
-5|Line|Null|Match street name and number|**match.py**|34|N/A
-6|Point|Point|Match fnode_id or tnode_id on all centreline segments|**match-tmc-arterycodes.sql**|4688|N/A
-7|Point|Point**|Create buffer around intersection and create records for all possible combinations of side and direction|**match-tmc-arterycodes.sql**|196|80
-8|Point|Null|@_@??|**match.py**|0|15
-
-**123 records obtained geometry from google geocoding API and 153 obtained geometry from **Table centreline**. Failed matches result from misalignment between the projections. matched ones need to be checked carefully.
+1|Line|Line|Match fnode,tnode|**match-segment-arterycodes.sql**|17842|pass on to 2
+2|Line|Line|Calculating Hausdorff distance|**match-segment-arterycodes.sql**|2418|0
+3|Line|Point|Match to centreline intersection and check azimuth/approach|**match-segments-w-missing-point.sql**|298|pass on to 4
+4|Line|Point|Find closest line and check segment direction|**match-segments-w-missing-point.sql**|96|19
+5|Line|Null|Match street name and number|**match.py**|48|N/A
+6|Point(intersection)|Point|Match fnode_id or tnode_id on centreline segments|**match-tmc-arterycodes.sql**|4688|N/A
+7|Point(intersection)|Point|Snap to the closest intersection within 30m in centreline|**match-tmc-arterycodes.sql**|129|N/A
+8|Point(not intersection)|Point|Create 15m buffer around point and create records for all possible combinations of side and direction|**match-tmc-arterycodes.sql**|100|25
+9|Point/Line|Null|Fail to have geometry||0|23 (5lines+18points)
+10|||Manual Correction
+11|||Don't Care/ Doesn't exist in tcl
  
+1. Definition of Hausdorff distance: maximum distance of a set to the nearest point in the other set.

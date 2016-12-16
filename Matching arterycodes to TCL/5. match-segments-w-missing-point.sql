@@ -1,4 +1,4 @@
-﻿--0. excludes geoids from centreline table where either:  segment type is not a road segment
+--0. excludes geoids from centreline table where either:  segment type is not a road segment
 DROP TABLE IF EXISTS excluded_geoids;
 CREATE TEMPORARY TABLE excluded_geoids(centreline_id bigint);
 
@@ -14,19 +14,34 @@ CREATE TEMPORARY TABLE mismatched(arterycode bigint, loc geometry, fnode_id bigi
 
 INSERT INTO mismatched 
 SELECT arterycode, loc, fnode_id, tnode_id, fx, fy, tx, ty, sideofint, apprdir, location
-from aharpal.arteries JOIN traffic.arterydata using (arterycode)
-where tnode_id is not null and fnode_id is not null and (fx is null or tx is null) and not(fx is null and tx is null); 
+FROM prj_volume.arteries JOIN traffic.arterydata using (arterycode)
+WHERE tnode_id is not null and fnode_id is not null and (fx is null or tx is null) and not(fx is null and tx is null); 
+
+DROP TABLE IF EXISTS temp_match;
+CREATE TEMPORARY TABLE temp_match(arterycode bigint primary key, centreline_id bigint, direction character varying, sideofint character varying, stringmatch boolean, match_on_case smallint);
+
+INSERT INTO temp_match(arterycode, centreline_id, direction, sideofint, match_on_case)
+SELECT arterycode, centreline_id, apprdir as direction, sideofint, 3 as match_on_case
+FROM mismatched CROSS JOIN (SELECT shape, centreline_id, from_intersection_id, to_intersection_id, linear_name_full FROM prj_volume.centreline WHERE centreline_id NOT IN (SELECT centreline_id FROM excluded_geoids)) sc 
+WHERE (fnode_id = from_intersection_id OR fnode_id = to_intersection_id OR tnode_id = from_intersection_id OR tnode_id = to_intersection_id)
+	AND ((sideofint = 'E' and calc_side_ew(loc,shape) = 'E' and calc_dirc(shape) = 'EW') 
+			OR (sideofint = 'W' and calc_side_ew(loc,shape) = 'W' and calc_dirc(shape) = 'EW') 
+			OR (sideofint = 'N' and calc_side_ns(loc,shape) = 'N' and calc_dirc(shape) = 'NS')
+			OR (sideofint = 'S' and calc_side_ns(loc,shape) = 'S' and calc_dirc(shape) = 'NS'))
+	AND UPPER(SPLIT_PART(location, ' ', 1)) = UPPER(SPLIT_PART(linear_name_full, ' ', 1))
+ON CONFLICT DO NOTHING;
 
 --2. find the segments that the points lie on in the centreline file and tag the arterycode to the centreline segment
-DROP TABLE IF EXISTS temp_match;
-CREATE TEMPORARY TABLE temp_match(arterycode bigint PRIMARY KEY, centreline_id bigint, direction character varying, sideofint character varying, stringmatch boolean);
+
+DELETE FROM mismatched
+WHERE mismatched.arterycode IN (SELECT arterycode FROM temp_match);
 
 INSERT INTO temp_match
-SELECT DISTINCT ON (arterycode) arterycode, centreline_id, apprdir as direction, sideofint,
+SELECT DISTINCT ON (arterycode) arterycode, centreline_id, apprdir as direction, sideofint, 
 	(CASE 
 		WHEN location LIKE '%LN %' or location LIKE '%LANEWAY%' or location LIKE '%LNWY %' or location LIKE '%LANE %' THEN NULL 
 		ELSE UPPER(SPLIT_PART(location, ' ', 1)) = UPPER(SPLIT_PART(linear_name_full, ' ', 1)) 
-	END) AS stringmatch
+	END) AS stringmatch, 4 AS match_on_case
 FROM mismatched CROSS JOIN (SELECT shape, centreline_id, linear_name_full FROM prj_volume.centreline WHERE centreline_id NOT IN (SELECT centreline_id FROM excluded_geoids)) sc 
 WHERE ST_Dwithin(loc, shape, 15) AND ((sideofint = 'E' and calc_side_ew(loc,shape) = 'E') 
 				OR (sideofint = 'W' and calc_side_ew(loc,shape) = 'W') 
@@ -37,17 +52,17 @@ WHERE ST_Dwithin(loc, shape, 15) AND ((sideofint = 'E' and calc_side_ew(loc,shap
 ORDER BY arterycode, stringmatch DESC;
 
 INSERT INTO prj_volume.artery_tcl 
-SELECT arterycode, centreline_id, direction, sideofint
-FROM (SELECT arterycode, centreline_id, direction, sideofint
-	FROM temp_match) AS sub;
---WHERE sub.arterycode = atc.arterycode;
+SELECT arterycode, centreline_id, direction, sideofint, match_on_case
+FROM temp_match
+ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
+UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
 
 --3. insert into table in prj_volume that stores unmatched arterycodes (directional info does not match description)
-INSERT INTO prj_volume.not_matched
-SELECT arterycode, location, 'Segment' as type
+INSERT INTO prj_volume.artery_tcl(arterycode, sideofint, direction, match_on_case)
+SELECT arterycode, sideofint, apprdir as direction, 9 as match_on_case
 FROM mismatched
-WHERE mismatched.arterycode NOT IN (SELECT arterycode FROM temp_match);
+WHERE mismatched.arterycode NOT IN (SELECT arterycode FROM temp_match)
+ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
+UPDATE SET match_on_case = EXCLUDED.match_on_case;
 
---4. processs arterycodes that have both fonde_id and tnode_id and no coordinate info by string matching outside of sql
---   see match.py
 
