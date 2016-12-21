@@ -148,4 +148,59 @@ UPDATE prj_volume.corr_dir
 SET start_id = 11048510
 WHERE linear_name_id = 2353 AND dir = 'NB';
 
+-- Kingston Road - SET start_id for WB
+UPDATE prj_volume.corr_dir
+SET start_id = 2216248
+WHERE linear_name_id = 3786 AND dir = 'WB';
+
+-- Lawrence Road E - SET start_id for EB
+UPDATE prj_volume.corr_dir
+SET start_id = 443572
+WHERE linear_name_id = 3828 AND dir = 'EB';
+
+-- Finch Ave E - Correct start_id for WB
+UPDATE prj_volume.corr_dir
+SET start_id = 30064524
+WHERE linear_name_id = 5589 AND dir = 'WB';
+
+-- McCowan - Correct start_id for NB
+UPDATE prj_volume.corr_dir
+SET start_id = 9035601
+WHERE linear_name_id = 8454 AND dir = 'NB';
+
+-- Eglinton East - Correct start_id for WB
+UPDATE prj_volume.corr_dir
+SET start_id = 110384
+WHERE linear_name_id = 125 AND dir = 'WB';
+
+-- Leslie St - SET start_id for NB
+UPDATE prj_volume.corr_dir
+SET start_id = 30004014
+WHERE linear_name_id = 225 AND dir = 'NB';
+
+-- Pape St - SET start_id for NB
+UPDATE prj_volume.corr_dir
+SET start_id = 14024881
+WHERE linear_name_id = 280 AND dir = 'NB';
+
+-- St Clair E - SET start_id for EB
+UPDATE prj_volume.corr_dir
+SET start_id = 683
+WHERE linear_name_id = 339 AND dir = 'EB';
+
+-- Dufferin - SET start_id for SB
+UPDATE prj_volume.corr_dir
+SET start_id = 6275626
+WHERE linear_name_id = 557 AND dir = 'SB';
+
+-- Keele - SET start_id for NB
+UPDATE prj_volume.corr_dir
+SET start_id = 8292719
+WHERE linear_name_id = 703 AND dir = 'NB';
+
+DELETE FROM prj_volume.corr_dir WHERE start_id IS NULL;
+DELETE FROM prj_volume.corr_dir WHERE linear_name_id = 1801 AND dir = 'NB';
+DELETE FROM prj_volume.corr_dir WHERE linear_name_id = 105 AND dir = 'SB';
+DELETE FROM prj_volume.corr_dir WHERE linear_name_id = 106 AND dir = 'NB';
+
 
