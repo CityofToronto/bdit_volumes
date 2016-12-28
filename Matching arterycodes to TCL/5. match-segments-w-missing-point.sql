@@ -20,15 +20,30 @@ WHERE tnode_id is not null and fnode_id is not null and (fx is null or tx is nul
 DROP TABLE IF EXISTS temp_match;
 CREATE TEMPORARY TABLE temp_match(arterycode bigint primary key, centreline_id bigint, direction character varying, sideofint character varying, stringmatch boolean, match_on_case smallint);
 
+--match segments except for midblock tcs
 INSERT INTO temp_match(arterycode, centreline_id, direction, sideofint, match_on_case)
 SELECT arterycode, centreline_id, apprdir as direction, sideofint, 3 as match_on_case
 FROM mismatched CROSS JOIN (SELECT shape, centreline_id, from_intersection_id, to_intersection_id, linear_name_full FROM prj_volume.centreline WHERE centreline_id NOT IN (SELECT centreline_id FROM excluded_geoids)) sc 
 WHERE (fnode_id = from_intersection_id OR fnode_id = to_intersection_id OR tnode_id = from_intersection_id OR tnode_id = to_intersection_id)
-	AND ((sideofint = 'E' and calc_side_ew(loc,shape) = 'E' and calc_dirc(shape) = 'EW') 
-			OR (sideofint = 'W' and calc_side_ew(loc,shape) = 'W' and calc_dirc(shape) = 'EW') 
-			OR (sideofint = 'N' and calc_side_ns(loc,shape) = 'N' and calc_dirc(shape) = 'NS')
-			OR (sideofint = 'S' and calc_side_ns(loc,shape) = 'S' and calc_dirc(shape) = 'NS'))
+	AND ((sideofint = 'E' and calc_side_ew(loc,shape) = 'E' and calc_dirc(shape,0.1) = 'EW') 
+			OR (sideofint = 'W' and calc_side_ew(loc,shape) = 'W' and calc_dirc(shape,0.1) = 'EW') 
+			OR (sideofint = 'N' and calc_side_ns(loc,shape) = 'N' and calc_dirc(shape,0.1) = 'NS')
+			OR (sideofint = 'S' and calc_side_ns(loc,shape) = 'S' and calc_dirc(shape,0.1) = 'NS'))
 	AND UPPER(SPLIT_PART(location, ' ', 1)) = UPPER(SPLIT_PART(linear_name_full, ' ', 1))
+	AND location not like '%TCS%'
+ON CONFLICT DO NOTHING;
+
+-- do midblock tcs separately
+INSERT INTO temp_match(arterycode, centreline_id, direction, sideofint, match_on_case)
+SELECT arterycode, centreline_id, apprdir as direction, sideofint, 3 as match_on_case
+FROM mismatched CROSS JOIN (SELECT shape, centreline_id, from_intersection_id, to_intersection_id, linear_name_full FROM prj_volume.centreline WHERE centreline_id NOT IN (SELECT centreline_id FROM excluded_geoids)) sc 
+WHERE (fnode_id = from_intersection_id OR fnode_id = to_intersection_id OR tnode_id = from_intersection_id OR tnode_id = to_intersection_id)
+	AND ((sideofint = 'E' and calc_side_ew(loc,shape) = 'W' and calc_dirc(shape,0.1) = 'EW') 
+			OR (sideofint = 'W' and calc_side_ew(loc,shape) = 'E' and calc_dirc(shape,0.1) = 'EW') 
+			OR (sideofint = 'N' and calc_side_ns(loc,shape) = 'S' and calc_dirc(shape,0.1) = 'NS')
+			OR (sideofint = 'S' and calc_side_ns(loc,shape) = 'N' and calc_dirc(shape,0.1) = 'NS'))
+	AND UPPER(SPLIT_PART(location, ' ', 1)) = UPPER(SPLIT_PART(linear_name_full, ' ', 1))
+	AND location like '%TCS%'
 ON CONFLICT DO NOTHING;
 
 --2. find the segments that the points lie on in the centreline file and tag the arterycode to the centreline segment
@@ -47,8 +62,8 @@ WHERE ST_Dwithin(loc, shape, 15) AND ((sideofint = 'E' and calc_side_ew(loc,shap
 				OR (sideofint = 'W' and calc_side_ew(loc,shape) = 'W') 
 				OR (sideofint = 'N' and calc_side_ns(loc,shape) = 'N')
 				OR (sideofint = 'S' and calc_side_ns(loc,shape) = 'S')
-				OR (location ~ '.*[0-9]+.*' and apprdir in ('Eastbound', 'Westbound') AND calc_dirc(shape) = 'EW')
-				OR (location ~ '.*[0-9]+.*' and apprdir in ('Southbound', 'Northbound') AND calc_dirc(shape) = 'NS'))
+				OR (location ~ '.*[0-9]+.*' and apprdir in ('Eastbound', 'Westbound') AND calc_dirc(shape,0.1) = 'EW')
+				OR (location ~ '.*[0-9]+.*' and apprdir in ('Southbound', 'Northbound') AND calc_dirc(shape,0.1) = 'NS'))
 ORDER BY arterycode, stringmatch DESC;
 
 INSERT INTO prj_volume.artery_tcl 

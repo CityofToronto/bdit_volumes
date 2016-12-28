@@ -1,9 +1,9 @@
-DROP FUNCTION IF EXISTS calc_dirc(a geometry);
-CREATE FUNCTION calc_dirc(a geometry)
+DROP FUNCTION IF EXISTS calc_dirc(a geometry, r numeric);
+CREATE FUNCTION calc_dirc(a geometry, r numeric)
 RETURNS text
 AS 
 $$
-	SELECT (CASE WHEN ((ST_Azimuth(ST_StartPoint(a), ST_LineInterpolatePoint(a, 0.1)) + 0.292) BETWEEN pi()/4 and 3*pi()/4) OR ((ST_Azimuth(ST_StartPoint(a), ST_LineInterpolatePoint(a,0.2)) + 0.292)  BETWEEN 5*pi()/4 and 7*pi()/4)
+	SELECT (CASE WHEN ((ST_Azimuth(ST_StartPoint(a), ST_LineInterpolatePoint(a,r)) + 0.292) BETWEEN pi()/4 and 3*pi()/4) OR ((ST_Azimuth(ST_StartPoint(a), ST_LineInterpolatePoint(a,r)) + 0.292)  BETWEEN 5*pi()/4 and 7*pi()/4)
 			THEN 'EW'
 			ELSE 'NS'
 		END);
