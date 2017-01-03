@@ -62,7 +62,7 @@ WHERE centreline_id IS NULL and ST_GeometryType(loc) = 'ST_LineString';
 INSERT INTO prj_volume.artery_tcl
 SELECT arterycode, null as centreline_id, direction, unmatched_linestrings.sideofint, 11 as match_on_case
 FROM unmatched_linestrings JOIN traffic.arterydata USING (arterycode)
-WHERE location LIKE '%N OF STEELES%' or loc LIKE '%W OF ETOBICOKE CREEK'
+WHERE location LIKE '%N OF STEELES%' or loc LIKE '%W OF ETOBICOKE CREEK%'
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
 UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
 
