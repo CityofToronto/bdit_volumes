@@ -77,27 +77,27 @@ direction|text|from arterydata (field apprdir)
 sideofint|text|from arterydata
 centreline_id|bigint|from centreline
 
-Step 1: Geocode/String matching for features with no geometry information **(match.py)** *case 5*
+Step 1: Geocode/String matching for features with no geometry information **(match.py)** *(case 5)*
 1. extract street names and number(if exists) match centreline segments based on street number and name
 2. for laneways: fuzzy string match names
 3. Geocode line segments and point locations that have no geometry information and are not matched in 1&2
 	
 Step 2: Node/Spatial match for segments with complete geometry **(match-segment-arterycodes.sql)**
-1. match fnode,tnode of arterycode and centreline segment *case 1*
-2. match (fnode or tnode) and direction, take the longest qualifying segment *case 2*
-3. calculating Hausdorff distance<sup>1</sup> between artercode segment and centreline segment and match to the closest one *case 12*
+1. match fnode,tnode of arterycode and centreline segment *(case 1)*
+2. match (fnode or tnode) and direction, take the longest qualifying segment *(case 2)*
+3. calculating Hausdorff distance<sup>1</sup> between artercode segment and centreline segment and match to the closest one *(case 12)*
 
 Step 3: spatial+direction match for segments with only one node **(match-segments-w-missing-point.sql)**
-1. if the point coincides with a centreline node, find the correct segment attached to the node based on direction *case 3*
-2. find closest line to the point and check segment direction and side of street and assign centreline_id *case 4*
+1. if the point coincides with a centreline node, find the correct segment attached to the node based on direction *(case 3)*
+2. find closest line to the point and check segment direction and side of street and assign centreline_id *(case 4)*
 		
 Step 4: Node+Spatial match for turning movement count locations **(artery-tmc.sql)**
 1. match fnode/tnode with centreline
 2. for unmatched nodes, create a buffer around the point(intersection) and find the intersecting centreline segment and assign direction to them
 	
 Case|Actual Geometry Type|Geometry type in database|Method|Script|Number
-----|--------------------|-------------------------------|------|------|
-1|Line|Line|Match fnode,tnode|**match-segment-arterycodes.sql**|17842|
+----|--------------------|-------------------------|------|------|------
+1|Line|Line|Match fnode,tnode|**match-segment-arterycodes.sql**|17842
 2|Line|Line|Match (fnode *OR* tnode) *AND* direction, choose the longest qualifying segment|**match-segment-arterycodes.sql**|1968|
 3|Line|Point|Match to centreline intersection and check azimuth/approach|**match-segments-w-missing-point.sql**|296|
 4|Line|Point|Find closest line and check segment direction|**match-segments-w-missing-point.sql**|98|
@@ -107,7 +107,7 @@ Case|Actual Geometry Type|Geometry type in database|Method|Script|Number
 8|Point(not intersection)|Point|Create 15m buffer around point and create records for all possible combinations of side and direction|**match-tmc-arterycodes.sql**|97|
 9|Point/Line|Null|Fail to have geometry/match||
 10|||Manual Correction
-11|||Don't Care/ Doesn't exist in tcl
+11|||Outside of Toronto boundary/ Doesn't exist in tcl
 12|Line|Line|[taking records failed to match from case 2] Calculating Hausdorff distance|**match-segment-arterycodes.sql**|442|
  
 1. Definition of Hausdorff distance: maximum distance of a set to the nearest point in the other set.
