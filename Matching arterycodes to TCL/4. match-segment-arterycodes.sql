@@ -32,7 +32,7 @@ ORDER BY arterycode;
 	
 -- links that match multiple centrelines
 INSERT INTO prj_volume.artery_tcl
-SELECT DISTINCT ON (arterycode) arterycode, (CASE WHEN dist1>dist2 THEN cl_id2 ELSE cl_id1 END) AS centreline_id, direction, sideofint, 1 as match_on_case
+SELECT DISTINCT ON (arterycode) arterycode, (CASE WHEN dist1>dist2 THEN cl_id2 ELSE cl_id1 END) AS centreline_id, direction, sideofint, 1 as match_on_case, 1 as artery_type
 FROM temp_match as sub
 WHERE (sub.cl_id1 IS NOT NULL AND sub.cl_id2 IS NOT NULL)
 ORDER BY arterycode, LEAST(dist1, dist2)
@@ -41,7 +41,7 @@ UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.matc
 
 -- links that only match one centreline
 INSERT INTO prj_volume.artery_tcl
-SELECT arterycode, COALESCE(sub.cl_id1, sub.cl_id2) as centreline_id, direction, sideofint, 1 as match_on_case
+SELECT arterycode, COALESCE(sub.cl_id1, sub.cl_id2) as centreline_id, direction, sideofint, 1 as match_on_case, 1 as artery_type
 FROM temp_match as sub
 WHERE (sub.cl_id1 IS NOT NULL OR sub.cl_id2 IS NOT NULL) and (sub.cl_id1 IS NULL OR sub.cl_id2 IS NULL)
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
@@ -60,7 +60,7 @@ WHERE centreline_id IS NULL and ST_GeometryType(loc) = 'ST_LineString';
 
 -- take out segments that are obviously outside of tcl boundary
 INSERT INTO prj_volume.artery_tcl
-SELECT arterycode, null as centreline_id, direction, unmatched_linestrings.sideofint, 11 as match_on_case
+SELECT arterycode, null as centreline_id, direction, unmatched_linestrings.sideofint, 11 as match_on_case, 1 as artery_type
 FROM unmatched_linestrings JOIN traffic.arterydata USING (arterycode)
 WHERE location LIKE '%N OF STEELES%' or loc LIKE '%W OF ETOBICOKE CREEK%'
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
@@ -84,7 +84,7 @@ ORDER BY arterycode;
 --choose the longer segment in case >1 segment overlaps with arterycode
 
 INSERT INTO prj_volume.artery_tcl 
-SELECT DISTINCT ON (arterycode) arterycode, centreline_id, direction, sideofint, match_on_case
+SELECT DISTINCT ON (arterycode) arterycode, centreline_id, direction, sideofint, match_on_case, 1 as artery_type
 FROM temp_match
 ORDER BY arterycode, ST_Length(shape) DESC
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
@@ -95,7 +95,7 @@ WHERE unmatched_linestrings.arterycode IN (SELECT arterycode FROM temp_match);
 
 -- 2-2: no node coincides with centreline nodes -> spatial match
 INSERT INTO prj_volume.artery_tcl
-SELECT arterycode,centreline_id, direction, sideofint, 12 as match_on_case
+SELECT arterycode,centreline_id, direction, sideofint, 12 as match_on_case, 1 as artery_type
 FROM (
 	SELECT DISTINCT ON (ar.arterycode) ar.arterycode, cl.centreline_id, ar.direction, ar.sideofint
 	FROM unmatched_linestrings ar CROSS JOIN (SELECT * FROM prj_volume.centreline WHERE centreline_id NOT IN (SELECT centreline_id FROM excluded_geoids WHERE reason=1)) cl
@@ -110,3 +110,15 @@ FROM (
 	) AS sub
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
 UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
+
+--3. insert unmatched arterycodes
+
+DELETE FROM unmatched_linestrings 
+WHERE unmatched_linestrings.arterycode IN (SELECT arterycode FROM prj_volume.artery_tcl);
+
+INSERT INTO prj_volume.artery_tcl(arterycode, sideofint, direction, match_on_case, artery_type)
+SELECT arterycode, sideofint, direction, 9 as match_on_case, 1 as artery_type
+FROM unmatched_linestrings
+WHERE unmatched_linestrings.arterycode NOT IN (SELECT arterycode FROM prj_volume.artery_tcl)
+ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
+UPDATE SET match_on_case = EXCLUDED.match_on_case;
