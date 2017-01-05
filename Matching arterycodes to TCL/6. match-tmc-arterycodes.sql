@@ -50,9 +50,13 @@ WHERE tc.arterycode = sub.arterycode;
 
 --1. match fnode and tnode
 INSERT INTO prj_volume.artery_tcl
-SELECT DISTINCT ON (arterycode, direction, sideofint)
-	arterycode, centreline_id, direction, 
-	(CASE direction 
+SELECT DISTINCT ON (arterycode, dir, sideofint)
+	arterycode, centreline_id, 
+	(CASE dir	
+		WHEN 'NS' THEN 'Northbound'
+		WHEN 'EW' THEN 'Eastbound'
+	END) AS direction,
+	(CASE dir 
 		WHEN 'NS' THEN calc_side_ns(loc,shape)
 		WHEN 'EW' THEN calc_side_ew(loc,shape)
 	END) AS sideofint, 
@@ -65,7 +69,7 @@ FROM (SELECT arterycode, centreline_id,
 	(CASE 
 		WHEN node_id = from_intersection_id THEN calc_dirc(shape,0.1)
 		ELSE calc_dirc(ST_Reverse(shape),0.1)
-	END) as direction, loc, 
+	END) as dir, loc, 
 	(CASE 
 		WHEN node_id = from_intersection_id THEN shape
 		ELSE ST_Reverse(shape)
@@ -73,20 +77,24 @@ FROM (SELECT arterycode, centreline_id,
 	FROM tmc_codes CROSS JOIN 
 	     (SELECT shape, centreline_id, from_intersection_id, to_intersection_id FROM prj_volume.centreline WHERE centreline_id NOT IN (SELECT centreline_id FROM excluded_geoids)) sc
 	WHERE node_id = from_intersection_id or node_id = to_intersection_id) AS sub
-ORDER BY arterycode, direction, sideofint, abs((ST_Azimuth(ST_StartPoint(shape), ST_LineInterpolatePoint(shape, 0.1)) + 0.292)-round((ST_Azimuth(ST_StartPoint(shape), ST_LineInterpolatePoint(shape, 0.1)) + 0.292)/(pi()/2))*(pi()/2))
+ORDER BY arterycode, dir, sideofint, abs((ST_Azimuth(ST_StartPoint(shape), ST_LineInterpolatePoint(shape, 0.1)) + 0.292)-round((ST_Azimuth(ST_StartPoint(shape), ST_LineInterpolatePoint(shape, 0.1)) + 0.292)/(pi()/2))*(pi()/2))
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
 UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
 
 --2. match spatially (not an intersection)
 INSERT INTO prj_volume.artery_tcl as atc
-SELECT DISTINCT ON (arterycode, direction, sideofint)
-	arterycode, centreline_id, direction,
-	(CASE direction 
+SELECT DISTINCT ON (arterycode, dir, sideofint)
+	arterycode, centreline_id, 
+	(CASE dir	
+		WHEN 'NS' THEN 'Northbound'
+		WHEN 'EW' THEN 'Eastbound'
+	END) AS direction,
+	(CASE dir 
 		WHEN 'NS' THEN calc_side_ns(loc,shape)
 		WHEN 'EW' THEN calc_side_ew(loc,shape)
 	END) AS sideofint, 8 as match_on_case, 2 as artery_type
 FROM (
-	SELECT arterycode, calc_dirc(shape,0.1) as direction, centreline_id, loc, shape
+	SELECT arterycode, calc_dirc(shape,0.1) as dir, centreline_id, loc, shape
 	FROM (SELECT loc, arterycode FROM prj_volume.arteries WHERE tnode_id is NULL and arterycode NOT IN (SELECT DISTINCT arterycode FROM prj_volume.artery_tcl)) ar
 		CROSS JOIN 
 	     (SELECT shape, centreline_id FROM prj_volume.centreline WHERE centreline_id NOT IN (SELECT centreline_id FROM excluded_geoids)) sc 
@@ -103,3 +111,13 @@ FROM prj_volume.arteries JOIN traffic.arterydata USING (arterycode)
 WHERE arterycode NOT IN (SELECT DISTINCT arterycode FROM prj_volume.artery_tcl)
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
 UPDATE SET match_on_case = EXCLUDED.match_on_case;
+
+--4. insert the other direction (south and west)
+INSERT INTO prj_volume.artery_tcl
+SELECT arterycode, centreline_id, sideofint, 
+		(CASE direction 
+			WHEN 'Northbound' THEN 'Southbound'
+			WHEN 'Eastbound' THEN 'Westbound'
+		END) as direction, match_on_case, artery_type
+FROM prj_volume.artery_tcl
+WHERE match_on_case in (6,7,8)
