@@ -90,7 +90,7 @@ for (ac,loc,dirc,side,s1,s2) in zip(nogeomL['arterycode'],nogeomL['location'],no
                 maxmatch = mc
                 clid000 = clid
         if maxmatch > 80:
-            db.upsert('prj_volume.artery_tcl', {'arterycode':ac, 'centreline_id':clid000, 'direction':dirc, 'sideofint':side, 'match_on_case':5, 'artery_type':1})
+            db.upsert('prj_volume.artery_tcl', {'arterycode':ac, 'centreline_id':clid000, 'direction':dirc, 'sideofint':side, 'match_on_case':5})
             f = True
             matched = matched + 1
     # Treat as regular intersection and Geocode
@@ -112,13 +112,13 @@ for (ac,loc,dirc,side,s1,s2) in zip(nogeomL['arterycode'],nogeomL['location'],no
             if mc > 95:
                 if MatchStreetNumber(number, b1,e1,b2,e2):
                     f = True
-                    db.upsert('prj_volume.artery_tcl', {'arterycode':ac, 'centreline_id':clid, 'direction':dirc, 'sideofint':side, 'match_on_case': 5, 'artery_type':1})
+                    db.upsert('prj_volume.artery_tcl', {'arterycode':ac, 'centreline_id':clid, 'direction':dirc, 'sideofint':side, 'match_on_case': 5})
                     matched = matched + 1
                     break
             elif mc > 85 and mp > 95:
                 if MatchStreetNumber(number, b1,e1,b2,e2):
                     f = True
-                    db.upsert('prj_volume.artery_tcl', {'arterycode':ac, 'centreline_id':clid, 'direction':dirc, 'sideofint':side, 'match_on_case':5, 'artery_type':1})
+                    db.upsert('prj_volume.artery_tcl', {'arterycode':ac, 'centreline_id':clid, 'direction':dirc, 'sideofint':side, 'match_on_case':5})
                     matched = matched + 1
                     break
         # try geocoding if cannot find street and number
@@ -129,7 +129,7 @@ for (ac,loc,dirc,side,s1,s2) in zip(nogeomL['arterycode'],nogeomL['location'],no
 
     # no luck after trying everything
     if not f:
-        db.upsert('prj_volume.artery_tcl',{'arterycode':ac,'direction':dirc,'sideofint':side,'match_on_case':9, 'artery_type':1})
+        db.upsert('prj_volume.artery_tcl',{'arterycode':ac,'direction':dirc,'sideofint':side,'match_on_case':9})
 
 nogeomP = db.query('SELECT arterycode, location, street1, street2 FROM prj_volume.arteries JOIN traffic.arterydata USING (arterycode) WHERE tnode_id is NULL and fx is NULL').getresult()
 nogeomP = pd.DataFrame.from_records(nogeomP, columns = ['arterycode', 'location', 'street1', 'street2'])
@@ -145,7 +145,7 @@ for (ac, loc, s1, s2) in zip(nogeomP['arterycode'],nogeomP['location'],nogeomP['
     else:
         f = Geocode(s1,s2)
     if not f:
-        db.upsert('prj_volume.artery_tcl',{'arterycode':ac,'direction':'','sideofint':'', 'match_on_case':9, 'artery_type':2})
+        db.upsert('prj_volume.artery_tcl',{'arterycode':ac,'direction':'','sideofint':'', 'match_on_case':9})
     else:
         geocoded = geocoded + 1
 db.close()
