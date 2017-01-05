@@ -67,14 +67,14 @@ WHERE ST_Dwithin(loc, shape, 15) AND ((sideofint = 'E' and calc_side_ew(loc,shap
 ORDER BY arterycode, stringmatch DESC;
 
 INSERT INTO prj_volume.artery_tcl 
-SELECT arterycode, centreline_id, direction, sideofint, match_on_case
+SELECT arterycode, centreline_id, direction, sideofint, match_on_case, 1 as artery_type
 FROM temp_match
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
 UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
 
---3. insert into table in prj_volume that stores unmatched arterycodes (directional info does not match description)
-INSERT INTO prj_volume.artery_tcl(arterycode, sideofint, direction, match_on_case)
-SELECT arterycode, sideofint, apprdir as direction, 9 as match_on_case
+--3. insert unmatched arterycodes (directional info does not match description)
+INSERT INTO prj_volume.artery_tcl(arterycode, sideofint, direction, match_on_case, artery_type)
+SELECT arterycode, sideofint, apprdir as direction, 9 as match_on_case, 1 as artery_type
 FROM mismatched
 WHERE mismatched.arterycode NOT IN (SELECT arterycode FROM temp_match)
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO

@@ -59,7 +59,8 @@ SELECT DISTINCT ON (arterycode, direction, sideofint)
 	(CASE found_in_tcl 
 		WHEN TRUE THEN 6
 		ELSE 7
-	END) AS match_on_case
+	END) AS match_on_case,
+	2 as artery_type
 FROM (SELECT arterycode, centreline_id, 
 	(CASE 
 		WHEN node_id = from_intersection_id THEN calc_dirc(shape,0.1)
@@ -83,7 +84,7 @@ SELECT DISTINCT ON (arterycode, direction, sideofint)
 	(CASE direction 
 		WHEN 'NS' THEN calc_side_ns(loc,shape)
 		WHEN 'EW' THEN calc_side_ew(loc,shape)
-	END) AS sideofint, 8 as match_on_case
+	END) AS sideofint, 8 as match_on_case, 2 as artery_type
 FROM (
 	SELECT arterycode, calc_dirc(shape,0.1) as direction, centreline_id, loc, shape
 	FROM (SELECT loc, arterycode FROM prj_volume.arteries WHERE tnode_id is NULL and arterycode NOT IN (SELECT DISTINCT arterycode FROM prj_volume.artery_tcl)) ar
@@ -96,8 +97,8 @@ ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
 UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
 
 --3. insert all failed instances (not within 30m to any intersection and not within 15m to any segment) (or segments not within 200m of anything else)
-INSERT INTO prj_volume.artery_tcl(arterycode, sideofint, direction, match_on_case)
-SELECT arterycode, sideofint, apprdir as direction, 9 as match_on_case
+INSERT INTO prj_volume.artery_tcl(arterycode, sideofint, direction, match_on_case, artery_type)
+SELECT arterycode, sideofint, apprdir as direction, 9 as match_on_case, 2 as artery_type
 FROM prj_volume.arteries JOIN traffic.arterydata USING (arterycode)
 WHERE arterycode NOT IN (SELECT DISTINCT arterycode FROM prj_volume.artery_tcl)
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
