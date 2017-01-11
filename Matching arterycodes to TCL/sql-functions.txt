@@ -16,15 +16,20 @@ RETURNS text
 AS
 $$
 	SELECT (CASE FLOOR((ST_Azimuth(a, ST_LineInterpolatePoint(b, 0.1)) + 0.292)  / (pi()/6)) 
+			WHEN 0 THEN 'E'
 			WHEN 1 THEN 'E'
 			WHEN 2 THEN 'E'
 			WHEN 3 THEN 'E'
 			WHEN 4 THEN 'E'
+			WHEN 5 THEN 'E'
+			WHEN 6 THEN 'W'
 			WHEN 7 THEN 'W'
 			WHEN 8 THEN 'W'
 			WHEN 9 THEN 'W'
 			WHEN 10 THEN 'W'
-			ELSE 'Wrong'
+			WHEN 11 THEN 'W'
+			WHEN 12 THEN 'W'
+
 		END);
 $$
 LANGUAGE SQL IMMUTABLE STRICT;
@@ -35,16 +40,19 @@ RETURNS text
 AS
 $$
 	SELECT (CASE FLOOR((ST_Azimuth(a, ST_LineInterpolatePoint(b,0.1)) + 0.292)  / (pi()/6)) 
+			WHEN 9 THEN 'N'
 			WHEN 10 THEN 'N'
 			WHEN 11 THEN 'N'
 			WHEN 12 THEN 'N'
 			WHEN 0 THEN 'N'
 			WHEN 1 THEN 'N'
+			WHEN 2 THEN 'N'
+			WHEN 3 THEN 'S'
 			WHEN 4 THEN 'S'
 			WHEN 5 THEN 'S'
 			WHEN 6 THEN 'S'
 			WHEN 7 THEN 'S'
-			ELSE 'Wrong'
+			WHEN 8 THEN 'S'
 		END);
 $$ 
 LANGUAGE SQL IMMUTABLE STRICT;
