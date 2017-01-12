@@ -1,3 +1,5 @@
+DELETE FROM prj_volume.artery_tcl WHERE match_on_case in (6,7,8);
+
 --0.1 excludes geoids from centreline table where either:  segment type is not a road segment
 DROP TABLE IF EXISTS excluded_geoids;
 CREATE TEMPORARY TABLE excluded_geoids(centreline_id bigint);
@@ -49,6 +51,63 @@ FROM
 WHERE tc.arterycode = sub.arterycode;
 
 --1. match fnode and tnode
+
+--1.1 find all tcl segments attached to intersection and assign direction if it's a major corridor
+DROP TABLE IF EXISTS temp_match CASCADE;
+CREATE TEMPORARY TABLE temp_match(arterycode bigint, centreline_id bigint, loc geometry, dir text, shape geometry, found_in_tcl boolean, linear_name_label text);
+
+INSERT INTO temp_match
+SELECT arterycode, centreline_id, loc, 
+	NULL as dir,
+	(CASE 
+		WHEN node_id = from_intersection_id THEN shape
+		ELSE ST_Reverse(shape)
+	END) as shape, found_in_tcl, linear_name_label
+FROM tmc_codes CROSS JOIN 
+	     (SELECT shape, centreline_id, from_intersection_id, to_intersection_id, linear_name_label FROM prj_volume.centreline WHERE centreline_id NOT IN (SELECT centreline_id FROM excluded_geoids)) sc
+WHERE node_id = from_intersection_id or node_id = to_intersection_id;
+
+UPDATE temp_match 
+SET dir = 
+	(CASE 
+		WHEN (left(linear_name_label, -1) in (SELECT left(linear_name_label, -1) FROM prj_volume.corr_dir WHERE dir in ('NB','SB'))) and not (((ST_Azimuth(ST_StartPoint(shape), ST_LineInterpolatePoint(shape, 0.1)) + 0.292) BETWEEN pi()*0.4 and 0.6*pi()) OR ((ST_Azimuth(ST_StartPoint(shape), ST_LineInterpolatePoint(shape, 0.1)) + 0.292)  BETWEEN 1.4*pi() and 1.6*pi())) THEN 'NS'
+		WHEN (left(linear_name_label, -1) in (SELECT left(linear_name_label, -1) FROM prj_volume.corr_dir WHERE dir in ('EB','WB'))) and not (((ST_Azimuth(ST_StartPoint(shape), ST_LineInterpolatePoint(shape, 0.1)) + 0.292) <0.1*pi()) OR ((ST_Azimuth(ST_StartPoint(shape), ST_LineInterpolatePoint(shape, 0.1)) + 0.292)  BETWEEN 0.9*pi() and 1.1*pi()) OR ((ST_Azimuth(ST_StartPoint(shape), ST_LineInterpolatePoint(shape, 0.1)) + 0.292) > 1.9*pi())) THEN 'EW'
+		ELSE NULL
+	END);
+
+CREATE VIEW ns_corr AS
+SELECT arterycode, count(*) AS num
+FROM temp_match
+WHERE dir = 'NS'
+GROUP BY arterycode;
+
+CREATE VIEW ew_corr AS
+SELECT arterycode, count(*) AS num
+FROM temp_match
+WHERE dir  = 'EW'
+GROUP BY arterycode;
+
+--1.2 assign direction to arterycode containing major corridors
+UPDATE temp_match 
+SET dir = 'NS'
+WHERE dir is null and (SELECT num FROM ew_corr WHERE temp_match.arterycode = ew_corr.arterycode) = 2;
+
+UPDATE temp_match 
+SET dir = 'EW'
+WHERE dir is null and (SELECT num FROM ns_corr WHERE temp_match.arterycode = ns_corr.arterycode) = 2;
+
+-- reset direction if two major corridors of the same direction meet
+UPDATE temp_match
+SET dir = NULL
+WHERE arterycode in ((SELECT arterycode FROM ew_corr WHERE num > 2) UNION (SELECT arterycode FROM ns_corr WHERE num > 2));
+
+--1.3 assign direction to arterycode not containing major corridors
+UPDATE temp_match
+SET dir = calc_dirc(shape,0.1)
+WHERE dir is NULL; --(arterycode not in (SELECT arterycode FROM ns_corr) and arterycode not in (SELECT arterycode FROM ew_corr));
+
+--1.4 assign sideofint and insert
+
 INSERT INTO prj_volume.artery_tcl
 SELECT DISTINCT ON (arterycode, dir, sideofint)
 	arterycode, centreline_id, 
@@ -65,21 +124,11 @@ SELECT DISTINCT ON (arterycode, dir, sideofint)
 		ELSE 7
 	END) AS match_on_case,
 	2 as artery_type
-FROM (SELECT arterycode, centreline_id, 
-	(CASE 
-		WHEN node_id = from_intersection_id THEN calc_dirc(shape,0.1)
-		ELSE calc_dirc(ST_Reverse(shape),0.1)
-	END) as dir, loc, 
-	(CASE 
-		WHEN node_id = from_intersection_id THEN shape
-		ELSE ST_Reverse(shape)
-	END) as shape, found_in_tcl
-	FROM tmc_codes CROSS JOIN 
-	     (SELECT shape, centreline_id, from_intersection_id, to_intersection_id FROM prj_volume.centreline WHERE centreline_id NOT IN (SELECT centreline_id FROM excluded_geoids)) sc
-	WHERE node_id = from_intersection_id or node_id = to_intersection_id) AS sub
+FROM temp_match
 ORDER BY arterycode, dir, sideofint, abs((ST_Azimuth(ST_StartPoint(shape), ST_LineInterpolatePoint(shape, 0.1)) + 0.292)-round((ST_Azimuth(ST_StartPoint(shape), ST_LineInterpolatePoint(shape, 0.1)) + 0.292)/(pi()/2))*(pi()/2))
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
 UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
+
 
 --2. match spatially (not an intersection)
 INSERT INTO prj_volume.artery_tcl as atc
@@ -114,10 +163,12 @@ UPDATE SET match_on_case = EXCLUDED.match_on_case;
 
 --4. insert the other direction (south and west)
 INSERT INTO prj_volume.artery_tcl
-SELECT arterycode, centreline_id, sideofint, 
+SELECT arterycode, centreline_id, 
 		(CASE direction 
 			WHEN 'Northbound' THEN 'Southbound'
 			WHEN 'Eastbound' THEN 'Westbound'
-		END) as direction, match_on_case, artery_type
+		END) as direction, sideofint, match_on_case, artery_type
 FROM prj_volume.artery_tcl
 WHERE match_on_case in (6,7,8)
+ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
+UPDATE SET centreline_id = EXCLUDED.centreline_id;
