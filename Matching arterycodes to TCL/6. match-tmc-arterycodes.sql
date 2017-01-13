@@ -30,13 +30,13 @@ CREATE TEMPORARY TABLE tmc_codes(node_id bigint, loc geometry, arterycode bigint
 
 INSERT INTO tmc_codes 
 SELECT fnode_id as node_id, loc, arterycode, TRUE as found_in_tcl
-FROM prj_volume.arteries 
-WHERE tnode_id IS NULL and arterycode NOT IN (SELECT DISTINCT arterycode FROM prj_volume.artery_tcl) and EXISTS(SELECT 1 FROM prj_volume.centreline WHERE fnode_id = from_intersection_id or fnode_id = to_intersection_id);
+FROM prj_volume.arteries JOIN traffic.arterydata USING (arterycode)
+WHERE count_type IN ('R','P') and arterycode NOT IN (SELECT DISTINCT arterycode FROM prj_volume.artery_tcl) and EXISTS(SELECT 1 FROM prj_volume.centreline WHERE fnode_id = from_intersection_id or fnode_id = to_intersection_id);
 
 INSERT INTO tmc_codes 
 SELECT fnode_id as node_id, loc, arterycode, FALSE as found_in_tcl
-FROM prj_volume.arteries 
-WHERE tnode_id IS NULL and arterycode NOT IN (SELECT DISTINCT arterycode FROM prj_volume.artery_tcl) and NOT EXISTS(SELECT 1 FROM prj_volume.centreline WHERE fnode_id = from_intersection_id or fnode_id = to_intersection_id);
+FROM prj_volume.arteries JOIN traffic.arterydata USING (arterycode)
+WHERE count_type IN ('R','P') and arterycode NOT IN (SELECT DISTINCT arterycode FROM prj_volume.artery_tcl) and NOT EXISTS(SELECT 1 FROM prj_volume.centreline WHERE fnode_id = from_intersection_id or fnode_id = to_intersection_id);
 
 --0.4 snap node onto centreline nodes if node_id does not exist in centreline
 UPDATE tmc_codes AS tc
