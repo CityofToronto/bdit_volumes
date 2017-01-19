@@ -9,11 +9,7 @@ SELECT arterycode,
 	(CASE a.centreline_id
 	WHEN 0 THEN NULL
 	ELSE a.centreline_id
-	END) AS centreline_id, a.direction, a.sideofint, a.match_on_case, 
-	(CASE 
-	WHEN d.count_type IN ('R','P') THEN 2
-	ELSE 1
-	END) AS artery_type
+	END) AS centreline_id, a.direction, a.sideofint, a.match_on_case, artery_type
 FROM prj_volume.artery_tcl_manual_corr a JOIN traffic.arterydata d USING (arterycode);
 
 --2. update geometry and node_ids in prj_volume.arteries
