@@ -57,8 +57,53 @@ INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tc
 VALUES (4079, 'w_cars_l', 20149167, 14065128,'EB','NB');
 
 -- ARTERY CODE 4161: LAKESHORE AND LOWER SPADINA
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4161, 'n_cars_r', 1146976, 12334937,'SB','WB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4161, 'n_cars_t', 1146976, 7929920,'SB','SB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4161, 'n_cars_l', 1146976, 1147026,'SB','EB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4161, 'n_other', 1146976, 12334937,'SB','WB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4161, 's_cars_r', 7929920, 1147026,'NB','EB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4161, 's_cars_t', 7929920, 1146976,'NB','NB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4161, 'e_cars_r', 12334940, 1146976,'WB','NB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4161, 'w_cars_r', 30082883, 7929920,'EB','SB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4161, 'w_cars_t', 30082883, 1147026,'EB','EB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4161, 'w_cars_l', 30082974, 1146976,'EB','NB');
 
 -- ARTERY CODE 4240: LAKESHORE AND LOWER JARVIS
+-- Can't differentiate W-leg exit (1146303, 12341012 or 12341011), W-leg enter (20110785 or 30073994) or E-leg exit (12341013 or 8351267)
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4240, 'n_cars_r', 1146215, NULL,'SB','WB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4240, 'n_cars_t', 1146215, 8351261,'SB','SB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4240, 'n_cars_l', 1146215, NULL,'SB','EB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4240, 's_cars_r', 8351261, NULL,'NB','EB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4240, 's_cars_t', 8351261, 1146215,'NB','NB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4240, 's_cars_l', 8351261, NULL,'NB','WB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4240, 'e_cars_r', 1146214, 1146215,'WB','NB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4240, 'e_cars_t', 1146214, NULL,'WB','WB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4240, 'e_cars_l', 1146214, 8351261,'WB','SB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4240, 'w_cars_r', NULL, 8351261,'EB','SB');
+--INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+--VALUES (4240, 'w_cars_t', , ,'EB','EB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (4240, 'w_cars_l', NULL, 1146215,'EB','NB');
 
 -- ARTERY CODE 4418: CLAREMORE AND CLIFFSIDE
 INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
@@ -139,6 +184,31 @@ INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tc
 VALUES (4739, 'w_cars_l', 437228, 10906429,'EB','NB');
 
 -- ARTERY CODE 5187: LAKESHORE AND LOWER SHERBOURNE
+-- unable to isolate E leg between Lakeshore (20102845) and Gardiner Ramp (20102841)
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 'n_cars_r', 1146052, 30087988,'SB','WB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 'n_cars_t', 1146052, 30087997,'SB','SB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 'n_cars_l', 1146052, 1146085,'SB','EB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 's_cars_r', 30087997, 1146085,'NB','EB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 's_cars_t', 30087997, 1146052,'NB','NB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 's_cars_l', 30087997, 30087988,'NB','WB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 'e_cars_r', NULL, 1146052,'WB','NB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 'e_cars_t', NULL, 30087988,'WB','WB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 'e_cars_l', NULL, 30087997,'WB','SB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 'w_cars_r', 1146181, 30087997,'EB','SB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 'w_cars_t', 1146181, 1146085,'EB','EB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (5187, 'w_cars_l', 1146181, 1146052,'EB','NB');
 
 -- ARTERY CODE 5206: GOVERNMENT AND THE KINGSWAY
 INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
@@ -478,9 +548,15 @@ VALUES (22644, 'w_cars_t', 10636395, 912187,'EB','EB');
 INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
 VALUES (22644, 'w_cars_l', 10636395, 912189,'EB','NB');
 
--- ARTERY CODE 26436:
+-- ARTERY CODE 26436: ALLEN NB
+-- appears to be missing a turn movement
 
--- ARTERY CODE 26437:
+-- ARTERY CODE 26437: ALLEN SB TO 401
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (26437, 'n_cars_r', 443403, 443740,'SB','WB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (26437, 'n_cars_l', 443403, 443558,'SB','SB');
+
 
 -- ARTERY CODE 32474: ALYWARD AND BEECHBOROUGH
 INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
@@ -506,30 +582,28 @@ VALUES (32474, 'e_cars_other', 7742, 7865,'WB','SB');
 INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
 VALUES (32474, 'w_cars_other', 7753, 7865,'EB','SB');
 
--- ARTERY CODE 33929:
+-- ARTERY CODE 33929: ALLEN SB AND LAWRENCE
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (33929, 'n_cars_r', 444987, 445300,'SB','WB');
+INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
+VALUES (33929, 'n_cars_t', 444987, 445326,'SB','SB');
 
 -- ARTERY CODE 35068: LORD SEATON AND 401
+-- didn't include S leg-related turns due to missing TCL link
 INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 'n_cars_r', , ,'SB','WB');
+VALUES (35068, 'e_cars_r', 440858, 440859,'WB','NB');
 INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 'n_cars_t', , ,'SB','SB');
+VALUES (35068, 'e_cars_t', 440858, 440869,'WB','WB');
 INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 'n_cars_l', , ,'SB','EB');
+VALUES (35068, 'w_cars_t', 440954, 440929,'EB','EB');
 INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 's_cars_r', , ,'NB','EB');
-INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 's_cars_t', , ,'NB','NB');
-INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 's_cars_l', , ,'NB','WB');
-INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 'e_cars_r', , ,'WB','NB');
-INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 'e_cars_t', , ,'WB','WB');
-INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 'e_cars_l', , ,'WB','SB');
-INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 'w_cars_r', , ,'EB','SB');
-INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 'w_cars_t', , ,'EB','EB');
-INSERT INTO prj_volume.tmc_turns_corr(arterycode, movement, tcl_from_segment, tcl_to_segment, from_dir, to_dir)
-VALUES (35068, 'w_cars_l', , ,'EB','NB');
+VALUES (35068, 'w_cars_l', 440954, 440930,'EB','NB');
+
+
+-- REMOVE ENTRIES FROM tmc_turns
+DELETE FROM prj_volume.tmc_turns
+WHERE arterycode IN (SELECT DISTINCT arterycode FROM prj_volume.tmc_turns_corr);
+
+--UPDATE tmc_turns
+INSERT INTO prj_volume.tmc_turns
+SELECT * FROM prj_volume.tmc_turns_corr
