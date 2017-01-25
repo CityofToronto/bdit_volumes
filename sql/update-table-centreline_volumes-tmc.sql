@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS tmc_det_norm;
+DROP TABLE IF EXISTS tmc_det_norm;
 
 CREATE TEMPORARY TABLE tmc_det_norm(
 	count_info_id bigint,
@@ -23,9 +23,9 @@ SELECT	B.centreline_id,
 	SUM(D.volume) AS volume,
 	2 AS count_type
 FROM prj_volume.tmc_turns A
-INNER JOIN prj_volume.centreline B ON A.tcl_from_segment = B.centreline_id
-INNER JOIN traffic.countinfomics C USING (arterycode)
-INNER JOIN tmc_det_norm D USING (count_info_id, movement)
+	INNER JOIN prj_volume.centreline B ON A.tcl_from_segment = B.centreline_id
+	INNER JOIN traffic.countinfomics C USING (arterycode)
+	INNER JOIN tmc_det_norm D USING (count_info_id, movement)
 GROUP BY B.centreline_id,dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.from_dir),pg_catalog.date(C.count_date)+pg_catalog.time(count_time);
 
 INSERT INTO prj_volume.centreline_volumes(centreline_id, dir_bin, count_bin, volume, count_type)

@@ -1,4 +1,4 @@
-﻿CREATE OR REPLACE FUNCTION dir_binary_rel(angle_a double precision, angle_b double precision)
+CREATE OR REPLACE FUNCTION dir_binary_rel(angle_a double precision, angle_b double precision)
 	RETURNS INTEGER AS $$
 DECLARE
 	result integer;

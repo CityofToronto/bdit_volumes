@@ -1,4 +1,4 @@
-﻿CREATE OR REPLACE FUNCTION dir_binary(angle double precision)
+CREATE OR REPLACE FUNCTION dir_binary(angle double precision)
 	RETURNS INTEGER AS $$
 DECLARE
 	result refcursor;

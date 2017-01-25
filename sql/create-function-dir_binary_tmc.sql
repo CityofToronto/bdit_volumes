@@ -1,4 +1,4 @@
-﻿CREATE OR REPLACE FUNCTION dir_binary_tmc(angle double precision, dir text)
+CREATE OR REPLACE FUNCTION dir_binary_tmc(angle double precision, dir text)
 	RETURNS INTEGER AS $$
 DECLARE
 	result smallint;

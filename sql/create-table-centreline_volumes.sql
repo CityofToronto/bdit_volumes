@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS prj_volume.centreline_volumes;
+DROP TABLE IF EXISTS prj_volume.centreline_volumes;
 
 CREATE TABLE prj_volume.centreline_volumes (
 	volume_id serial NOT NULL,
