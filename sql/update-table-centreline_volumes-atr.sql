@@ -8,14 +8,16 @@ CREATE TEMPORARY TABLE artery_tcl_directions (
 INSERT INTO artery_tcl_directions
 SELECT	A.centreline_id,
 	A.arterycode,
-	(CASE ST_GeometryType(F.loc)
-	WHEN 'ST_LineString' THEN dir_binary_rel((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),(ST_Azimuth(ST_StartPoint(F.loc), ST_EndPoint(F.loc))+0.292)*180/pi())
-	ELSE dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(), gis.twochar_direction(E.apprdir))
+	(CASE 
+	WHEN F.fnode_id = F.tnode_id THEN 1
+	WHEN ST_GeometryType(F.loc) = 'ST_Point' THEN dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(), gis.twochar_direction(E.apprdir))
+	WHEN ST_GeometryType(F.loc) = 'ST_LineString' THEN dir_binary_rel((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),(ST_Azimuth(ST_StartPoint(F.loc), ST_EndPoint(F.loc))+0.292)*180/pi())
+	-- if no condition is met, exception needs to be raised about added special situation
 	END) AS dir_bin
 FROM prj_volume.artery_tcl A
-INNER JOIN prj_volume.centreline B USING (centreline_id)
-INNER JOIN traffic.arterydata E USING (arterycode)
-INNER JOIN prj_volume.arteries F USING (arterycode)
+	INNER JOIN prj_volume.centreline B USING (centreline_id)
+	INNER JOIN traffic.arterydata E USING (arterycode)
+	INNER JOIN prj_volume.arteries F USING (arterycode)
 WHERE A.artery_type = 1  
 ORDER BY A.centreline_id, A.arterycode;
 
@@ -34,7 +36,7 @@ or (centreline_id = 20089656 and arterycode = 36191) or (centreline_id = 3000242
 or (centreline_id = 30039432 and arterycode = 35538) or (centreline_id = 30065648 and arterycode = 35347) or (centreline_id = 30073636 and arterycode = 34009)
 or (centreline_id = 30074130 and arterycode = 33024);
 
-TRUNCATE prj_volume.centreline_volumes;
+DELETE FROM prj_volume.centreline_volumes WHERE count_type = 1;
 
 INSERT INTO prj_volume.centreline_volumes(centreline_id, dir_bin, count_bin, volume, count_type)
 SELECT	A.centreline_id,

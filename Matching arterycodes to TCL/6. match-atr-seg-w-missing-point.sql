@@ -15,7 +15,7 @@ CREATE TEMPORARY TABLE mismatched(arterycode bigint, loc geometry, fnode_id bigi
 INSERT INTO mismatched 
 SELECT arterycode, loc, fnode_id, tnode_id, fx, fy, tx, ty, sideofint, apprdir, location
 FROM prj_volume.arteries JOIN traffic.arterydata using (arterycode) 
-WHERE count_type NOT IN ('R','P') and NOT ST_GeometryType(loc) = 'ST_LineString'; 
+WHERE count_type NOT IN ('R','P') and NOT ST_GeometryType(loc) = 'ST_LineString' AND arterycode NOT IN (SELECT distinct arterycode FROM prj_volume.artery_tcl); 
 
 DROP TABLE IF EXISTS temp_match;
 CREATE TEMPORARY TABLE temp_match(arterycode bigint primary key, centreline_id bigint, direction character varying, sideofint character varying, stringmatch boolean, match_on_case smallint);

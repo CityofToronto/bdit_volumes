@@ -4,6 +4,7 @@ Created on Mon Dec  5 09:55:31 2016
 
 @author: qwang2
 """
+
 from fuzzywuzzy import fuzz
 import pandas as pd
 import re
@@ -38,13 +39,18 @@ def Geocode(s1,s2):
     db.upsert('prj_volume.arteries',artery)
     return True
 
-
 CONFIG = configparser.ConfigParser()
 CONFIG.read('db.cfg')
 dbset = CONFIG['DBSETTINGS']
 
 db = DB(dbname=dbset['database'],host=dbset['host'],user=dbset['user'],passwd=dbset['password'])
 proxies = {'http':'http://137.15.73.132:8080'}
+
+roads = re.compile('\s(AVE|RD|ROAD|PKWY|ST|CRES|PL|BLVD|DR|GT|CRT|GDNS|TER|WAY|LANE|TRL|CIR|CRCL|PARK|TCS|HTS|GROVE|SQ|GATE)\s([EWNS])?');
+tcl = db.query('SELECT centreline_id, linear_name_full, linear_name, low_num_odd, high_num_odd, low_num_even, high_num_even FROM prj_volume.centreline').getresult()
+tcl = pd.DataFrame.from_records(tcl, columns = ['centreline_id', 'linear_name_full', 'linear_name', 'low_num_odd', 'high_num_odd', 'low_num_even', 'high_num_even'])
+tcl['first_letter'] = tcl.linear_name_full.str[0]
+tcl_fl = tcl.groupby('first_letter')
 
 matched = 0
 geocoded = 0
@@ -54,12 +60,6 @@ db.truncate('prj_volume.artery_tcl')
 nogeomL = db.query('SELECT arterycode, sideofint, apprdir, location, street1, street2 FROM prj_volume.arteries JOIN traffic.arterydata USING (arterycode) WHERE tnode_id IS NOT NULL AND fnode_id IS NOT NULL AND fx IS NULL AND tx IS NULL').getresult()
 nogeomL = pd.DataFrame.from_records(nogeomL,columns=['arterycode','sideofint','direction','location','street1','street2'])
 
-tcl = db.query('SELECT centreline_id, linear_name_full, low_num_odd, high_num_odd, low_num_even, high_num_even FROM prj_volume.centreline').getresult()
-tcl = pd.DataFrame.from_records(tcl, columns = ['centreline_id', 'linear_name_full', 'low_num_odd', 'high_num_odd', 'low_num_even', 'high_num_even'])
-tcl['first_letter'] = tcl.linear_name_full.str[0]
-tcl_fl = tcl.groupby('first_letter')
-
-roads = re.compile('\s(AVE|RD|ROAD|PKWY|ST|CRES|PL|BLVD|DR|GT|CRT|GDNS|TER|WAY|LANE|TRL|CIR|CRCL|PARK|TCS|HTS|GROVE|SQ|GATE)\s([EWNS])?');
 
 for (ac,loc,dirc,side,s1,s2) in zip(nogeomL['arterycode'],nogeomL['location'],nogeomL['direction'],nogeomL['sideofint'],nogeomL['street1'], nogeomL['street2']):
     f = False
@@ -148,6 +148,63 @@ for (ac, loc, s1, s2) in zip(nogeomP['arterycode'],nogeomP['location'],nogeomP['
         db.upsert('prj_volume.artery_tcl',{'arterycode':ac,'direction':'','sideofint':'', 'match_on_case':9, 'artery_type':2})
     else:
         geocoded = geocoded + 1
+
+matchNameNumber = db.query("SELECT arterycode, apprdir, sideofint, location, street1, street2 FROM traffic.arterydata JOIN prj_volume.arteries USING (arterycode) \
+WHERE location SIMILAR TO '%\d%' AND location NOT SIMILAR TO '%PX\s*\d+%' AND count_type NOT IN ('R', 'P') AND location NOT LIKE '%HIGHWAY%' AND location NOT LIKE '% LN %' AND location NOT SIMILAR TO '\ALN %' AND location NOT LIKE '%RAMP%'\
+AND (position(street1 in street2)>0 or position(street2 in street1)>0) AND street1 IS NOT NULL AND street2 IS NOT NULL").getresult()
+matchNameNumber = pd.DataFrame.from_records(matchNameNumber,columns=['arterycode','direction','sideofint','location','street1','street2'])
+matchedNN = 0
+
+for (ac,loc,dirc,side,s1,s2) in zip(matchNameNumber['arterycode'],matchNameNumber['location'],matchNameNumber['direction'],matchNameNumber['sideofint'],matchNameNumber['street1'], matchNameNumber['street2']):
+    s1 = s1 + ' '
+    s2 = s2 + ' '
+    # Get street numbers
+    m = re.search('[0-9]+', loc)
+    number = int(loc[m.start():m.end()].strip())
+
+    m = re.search('[0-9]+', s1)
+    if m is not None or s2 == ' ':
+        n = roads.search(s1)
+        if m is None:
+            street = s1
+        elif n is None:
+            street = s1[m.end()+1:].strip().lower()
+        else:
+            street = s1[m.end()+1:n.end()].strip().lower()
+    else:
+        m = re.search('[0-9]+', s2)
+        n = roads.search(s2)
+        if m is None:
+            street = s2
+        elif n is None:
+            street = s2[m.end()+1:].strip().lower()
+        else:
+            street = s2[m.end()+1:n.end()].strip().lower()
+    street = street.replace(' road', ' rd')
+    
+    try:
+        icl = tcl_fl.get_group(street[0].upper())
+    except:
+        continue
+
+    for (clid,cfull,cpart,b1,e1,b2,e2) in zip(icl['centreline_id'],icl['linear_name_full'],icl['linear_name'],icl['low_num_odd'],icl['high_num_odd'],icl['low_num_even'],icl['high_num_even']):
+        cfull = cfull.lower()       
+        cpart = cpart.lower()
+        if n is None:
+            mc = fuzz.ratio(street, cpart)
+            mp = fuzz.partial_ratio(street, cpart)
+        else:
+            mc = fuzz.ratio(street, cfull)
+            mp = fuzz.partial_ratio(street, cfull)
+        if mc > 95:
+            if MatchStreetNumber(number, b1,e1,b2,e2):
+                db.upsert('prj_volume.artery_tcl', {'arterycode':ac, 'centreline_id':clid, 'direction':dirc, 'sideofint':side, 'match_on_case': 5, 'artery_type':1})
+                matchedNN = matchedNN + 1
+                break
+        elif mc > 85 and mp == 100:
+            if MatchStreetNumber(number, b1,e1,b2,e2):
+                db.upsert('prj_volume.artery_tcl', {'arterycode':ac, 'centreline_id':clid, 'direction':dirc, 'sideofint':side, 'match_on_case':5, 'artery_type':1})
+                matchedNN = matchedNN + 1
+                break
+
 db.close()
-
-

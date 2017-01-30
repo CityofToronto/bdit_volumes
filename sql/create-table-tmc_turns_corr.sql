@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS prj_volume.tmc_turns_corr;
+DROP TABLE IF EXISTS prj_volume.tmc_turns_corr;
 
 CREATE TABLE prj_volume.tmc_turns_corr (
 	turn_id serial NOT NULL,
