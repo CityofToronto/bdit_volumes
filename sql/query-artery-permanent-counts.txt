@@ -1,0 +1,4 @@
+SELECT *
+FROM prj_volume.count_summary AS A
+INNER JOIN (SELECT arterycode, COUNT(*) FROM prj_volume.count_summary GROUP BY arterycode HAVING COUNT(*) > 50) AS B USING (arterycode)
+ORDER BY A.arterycode, A.count_date
