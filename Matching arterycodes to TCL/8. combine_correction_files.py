@@ -24,13 +24,15 @@ for a,b,c in zip(e['arterycode'], e['centreline_id'], e['sideofint']):
     if not np.isnan(a):
         m = db.query('select match_on_case,artery_type from prj_volume.artery_tcl where arterycode = '+str(int(a))).getresult()[0]
         if m[0] == 10:
-            m[0] = db.query('select match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]
-        if c == 'N' or c == 'S':
-            d.append([int(a),'Northbound',c,int(b),m[1],10,m[0]])
-            d.append([int(a),'Southbound',c,int(b),m[1],10,m[0]])
+            case = db.query('select match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]
         else:
-            d.append([int(a),'Eastbound',c,int(b),m[1],10,m[0]])
-            d.append([int(a),'Westbound',c,int(b),m[1],10,m[0]])
+            case = m[0]
+        if c == 'N' or c == 'S':
+            d.append([int(a),'Northbound',c,int(b),m[1],10,case])
+            d.append([int(a),'Southbound',c,int(b),m[1],10,case])
+        else:
+            d.append([int(a),'Eastbound',c,int(b),m[1],10,case])
+            d.append([int(a),'Westbound',c,int(b),m[1],10,case])
 df1 = pd.DataFrame(d, columns = ['arterycode','direction','sideofint','centreline_id','artery_type','match_on_case','was_match_on_case'])
 df1.to_csv('ready_tmc_qc_25m.csv', index = False)
 
@@ -40,8 +42,9 @@ e = pd.read_csv('manual_corr_full_tmc.csv')
 for a,b,c,d in zip(e['arterycode'], e['direction'], e['sideofint'],e['centreline_id']):
     m = db.query('select match_on_case,artery_type from prj_volume.artery_tcl where arterycode = '+str(int(a))).getresult()[0]
     if m[0] == 10:
-        m[0] = db.query('select match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]
-    f.append([int(a),b,c,int(d),m[1],10,m[0]])
+        f.append([int(a),b,c,int(d),m[1],m[0],db.query('select match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]])
+    else:
+        f.append([int(a),b,c,int(d),m[1],10,m[0]])
 
 df2 = pd.DataFrame(f, columns = ['arterycode','direction','sideofint','centreline_id','artery_type','match_on_case','was_match_on_case'])
 df2.to_csv('ready_manual_corr_tmc_full.csv', index = False)
@@ -66,17 +69,19 @@ for a,b in zip(e['arterycode'],e['comment']):
     if a not in list(df3['arterycode']):
         m = db.query('select match_on_case, direction, sideofint,artery_type from prj_volume.artery_tcl JOIN prj_volume.arteries USING (arterycode) where arterycode = '+str(int(a))).getresult()[0]
         if m[0] == 10:
-            m[0] = db.query('select match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]     
+            case = db.query('select match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]     
+        else:
+            case = m[0]
         if b.find('remove')<0:
             d = num.search(b)
             try:
                 c = int(b[d.start():d.end()])
             except:
                 print('ERROR')
-            f.append([int(a),m[1],m[2],c,m[3],10,m[0]])
+            f.append([int(a),m[1],m[2],c,m[3],10,case])
         else:
             c = 0
-            f.append([int(a),m[1],m[2],c,m[3],11,m[0]])
+            f.append([int(a),m[1],m[2],c,m[3],11,case])
     
 df4 = pd.DataFrame(f, columns = ['arterycode','direction','sideofint','centreline_id','artery_type','match_on_case','was_match_on_case'])
 

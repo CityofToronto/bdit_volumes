@@ -1,17 +1,19 @@
-DROP TABLE IF EXISTS excluded_geoids;
+﻿DROP TABLE IF EXISTS excluded_geoids;
 CREATE TEMPORARY TABLE excluded_geoids(centreline_id bigint,reason int);
 
 -- excludes geoids from centreline table where either: another segment shares identical fnode/tnode
 INSERT INTO excluded_geoids
 SELECT centreline_id, 0 as reason
 FROM
-(SELECT from_intersection_id, to_intersection_id, count(*)
+(SELECT MAX(from_intersection_id) as from_intersection_id, MIN(to_intersection_id) as to_intersection_id
 FROM prj_volume.centreline cl
 WHERE feature_code_desc NOT IN ('Geostatistical line', 'Hydro Line','Creek/Tributary','Major Railway','Major Shoreline','Minor Shoreline (Land locked)','Busway','River','Walkway','Ferry Route','Trail')
-GROUP BY from_intersection_id, to_intersection_id
+GROUP BY (CASE WHEN from_intersection_id < to_intersection_id THEN (from_intersection_id, to_intersection_id)
+			ELSE (to_intersection_id,from_intersection_id) END)
 HAVING COUNT(*) > 1) as f
-INNER JOIN prj_volume.centreline cl ON cl.from_intersection_id = f.from_intersection_id AND cl.to_intersection_id = f.to_intersection_id;
-
+INNER JOIN prj_volume.centreline cl ON ((cl.from_intersection_id = f.from_intersection_id AND cl.to_intersection_id = f.to_intersection_id)
+										OR (cl.from_intersection_id = f.to_intersection_id AND cl.to_intersection_id = f.from_intersection_id));
+/*
 -- excludes geoids from centreline table where either:  segment type is not a road segment
 INSERT INTO excluded_geoids
 SELECT centreline_id, 1 as reason
@@ -30,21 +32,25 @@ LEFT JOIN (SELECT * FROM prj_volume.centreline WHERE centreline_id NOT IN (SELEC
 JOIN prj_volume.arteries USING (arterycode)
 ORDER BY arterycode;
 	
--- links that match multiple centrelines
-INSERT INTO prj_volume.artery_tcl
-SELECT DISTINCT ON (arterycode) arterycode, (CASE WHEN dist1>dist2 THEN cl_id2 ELSE cl_id1 END) AS centreline_id, direction, sideofint, 1 as match_on_case, 1 as artery_type
-FROM temp_match as sub
-WHERE (sub.cl_id1 IS NOT NULL AND sub.cl_id2 IS NOT NULL)
-ORDER BY arterycode, LEAST(dist1, dist2)
-ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
-UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
-
--- links that only match one centreline
 INSERT INTO prj_volume.artery_tcl
 SELECT arterycode, COALESCE(sub.cl_id1, sub.cl_id2) as centreline_id, direction, sideofint, 1 as match_on_case, 1 as artery_type
 FROM temp_match as sub
 WHERE (sub.cl_id1 IS NOT NULL OR sub.cl_id2 IS NOT NULL) and (sub.cl_id1 IS NULL OR sub.cl_id2 IS NULL)
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
 UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
-
-
+*/
+-- STEP 1.1: Segments with the same fnode, tnode combination
+INSERT INTO prj_volume.artery_tcl
+SELECT DISTINCT ON (arterycode) arterycode, centreline_id, apprdir as direction, sideofint, 1 as match_on_case, 1 as artery_type
+FROM (SELECT arterycode, levenshtein(UPPER(linear_name_full), CONCAT(street1,' ',street1type)) AS strscore, centreline_id,street1, linear_name_full, apprdir, sideofint
+		FROM prj_volume.centreline JOIN (SELECT centreline_id FROM excluded_geoids WHERE reason = 0) ex USING (centreline_id) 
+			JOIN prj_volume.arteries ON ((from_intersection_id = fnode_id AND to_intersection_id = tnode_id) OR (from_intersection_id = tnode_id AND to_intersection_id = fnode_id))
+			JOIN traffic.arterydata USING (arterycode)) AS A
+WHERE strscore = (SELECT MIN(levenshtein(UPPER(linear_name_full), CONCAT(street1,' ',street1type)))
+					FROM prj_volume.centreline JOIN (SELECT centreline_id FROM excluded_geoids WHERE reason = 0) ex USING (centreline_id) 
+							JOIN prj_volume.arteries ON ((from_intersection_id = fnode_id AND to_intersection_id = tnode_id) OR (from_intersection_id = tnode_id AND to_intersection_id = fnode_id))
+							JOIN traffic.arterydata USING (arterycode)
+					GROUP BY arterycode
+					HAVING arterycode = A.arterycode)
+ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
+UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
