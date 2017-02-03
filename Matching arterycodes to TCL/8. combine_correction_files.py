@@ -24,7 +24,7 @@ for a,b,c in zip(e['arterycode'], e['centreline_id'], e['sideofint']):
     if not np.isnan(a):
         m = db.query('select match_on_case,artery_type from prj_volume.artery_tcl where arterycode = '+str(int(a))).getresult()[0]
         if m[0] == 10:
-            case = db.query('select match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]
+            case = db.query('select was_match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]
         else:
             case = m[0]
         if c == 'N' or c == 'S':
@@ -42,9 +42,16 @@ e = pd.read_csv('manual_corr_full_tmc.csv')
 for a,b,c,d in zip(e['arterycode'], e['direction'], e['sideofint'],e['centreline_id']):
     m = db.query('select match_on_case,artery_type from prj_volume.artery_tcl where arterycode = '+str(int(a))).getresult()[0]
     if m[0] == 10:
-        f.append([int(a),b,c,int(d),m[1],m[0],db.query('select match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]])
+        f.append([int(a),b,c,int(d),m[1],m[0],db.query('select was_match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]])
     else:
         f.append([int(a),b,c,int(d),m[1],10,m[0]])
+# only one tmc to delete so far
+f.append([28112,'Eastbound','W',0,2,11,6])
+f.append([28112,'Westbound','W',0,2,11,6])
+f.append([28112,'Northbound','N',0,2,11,6])
+f.append([28112,'Southbound','N',0,2,11,6])
+f.append([28112,'Eastbound','E',0,2,11,6])
+f.append([28112,'Westbound','E',0,2,11,6])
 
 df2 = pd.DataFrame(f, columns = ['arterycode','direction','sideofint','centreline_id','artery_type','match_on_case','was_match_on_case'])
 df2.to_csv('ready_manual_corr_tmc_full.csv', index = False)
@@ -54,11 +61,17 @@ e = pd.read_csv('ready_manual_corrections_atr.csv')
 bb = []
 f = []
 for a,b,c,d,g,h in zip(e['arterycode'], e['direction'], e['sideofint'],e['centreline_id'],e['match_on_case'],e['was_match_on_case']):
+    if np.isnan(h):
+        case = db.query('select match_on_case from prj_volume.artery_tcl where arterycode = '+str(int(a))).getresult()[0][0]
+        if case == 10:
+            case = db.query('select was_match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]     
+    else:
+        case = h
     if np.isnan(d):
         m = db.query('select apprdir, sideofint from traffic.arterydata where arterycode= ' + str(int(a))).getresult()[0]
-        f.append([int(a),m[0],m[1],0,1,g,h])
+        f.append([int(a),m[0],m[1],0,1,g,case])
     else:
-        f.append([int(a),b,c,int(d),1,g,h])
+        f.append([int(a),b,c,int(d),1,g,case])
 df3 = pd.DataFrame(f, columns = ['arterycode','direction','sideofint','centreline_id','artery_type','match_on_case','was_match_on_case'])
 
 # File 4: randomly spotted errors
@@ -69,7 +82,7 @@ for a,b in zip(e['arterycode'],e['comment']):
     if a not in list(df3['arterycode']):
         m = db.query('select match_on_case, direction, sideofint,artery_type from prj_volume.artery_tcl JOIN prj_volume.arteries USING (arterycode) where arterycode = '+str(int(a))).getresult()[0]
         if m[0] == 10:
-            case = db.query('select match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]     
+            case = db.query('select was_match_on_case from prj_volume.artery_tcl_manual_corr where arterycode = '+str(int(a))).getresult()[0][0]     
         else:
             case = m[0]
         if b.find('remove')<0:
@@ -104,6 +117,7 @@ df5 = pd.DataFrame(f, columns = ['arterycode','direction','sideofint','centrelin
 df = pd.concat([df1,df2,df3,df4,df5])
 df.drop_duplicates(subset = ['arterycode', 'direction', 'sideofint'], keep = 'first', inplace = True)
 df.to_csv('ready_corr_import.csv',index = False)
+df['was_match_on_case'] = df['was_match_on_case'].astype(int)
 
 db.truncate('prj_volume.artery_tcl_manual_corr')
 db.inserttable('prj_volume.artery_tcl_manual_corr',df.values.tolist())

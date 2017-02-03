@@ -1,4 +1,7 @@
-﻿DROP TABLE IF EXISTS excluded_geoids;
+--*****BE CAREFUL, RUNNING THIS SCRIPT RESTARTS THE MATCHING PROCESS*******
+TRUNCATE prj_volume.artery_tcl;
+
+DROP TABLE IF EXISTS excluded_geoids;
 CREATE TEMPORARY TABLE excluded_geoids(centreline_id bigint,reason int);
 
 -- excludes geoids from centreline table where either: another segment shares identical fnode/tnode
@@ -13,7 +16,7 @@ GROUP BY (CASE WHEN from_intersection_id < to_intersection_id THEN (from_interse
 HAVING COUNT(*) > 1) as f
 INNER JOIN prj_volume.centreline cl ON ((cl.from_intersection_id = f.from_intersection_id AND cl.to_intersection_id = f.to_intersection_id)
 										OR (cl.from_intersection_id = f.to_intersection_id AND cl.to_intersection_id = f.from_intersection_id));
-/*
+
 -- excludes geoids from centreline table where either:  segment type is not a road segment
 INSERT INTO excluded_geoids
 SELECT centreline_id, 1 as reason
@@ -38,8 +41,8 @@ FROM temp_match as sub
 WHERE (sub.cl_id1 IS NOT NULL OR sub.cl_id2 IS NOT NULL) and (sub.cl_id1 IS NULL OR sub.cl_id2 IS NULL)
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
 UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
-*/
--- STEP 1.1: Segments with the same fnode, tnode combination
+
+-- STEP 1.1: Segments with the same fnode, tnode combination (ramps are not well-matched, need to be picked out and corrected by hand)
 INSERT INTO prj_volume.artery_tcl
 SELECT DISTINCT ON (arterycode) arterycode, centreline_id, apprdir as direction, sideofint, 1 as match_on_case, 1 as artery_type
 FROM (SELECT arterycode, levenshtein(UPPER(linear_name_full), CONCAT(street1,' ',street1type)) AS strscore, centreline_id,street1, linear_name_full, apprdir, sideofint
