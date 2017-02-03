@@ -7,7 +7,7 @@ Color Schema:
  - White: Intermediate tables  
  - Green: Final table  
 
-[!process](img\process.png)
+[!process](process.png)
 
 ## Table content: centreline_volumes
 Field Name|Type|Description
