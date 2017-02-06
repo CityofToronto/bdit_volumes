@@ -9,12 +9,19 @@ Color Schema:
 
 !['process'](process.png)
 
-## Table content: centreline_volumes
+## Grid Angle Correction
+The City of Toronto's road network approximates a traditional grid system, with most major streets generally being classified as either east-west or north-south. The orientation of this grid, however, deviates from "true north" by approximately 16.7 degrees. As a result, the processes and/or fields related to the direction of counts or segments are first re-oriented by +16.7 degrees prior to processing.
+
+As centrelines are reflective of non-directional segments (as opposed to vehicle counts which are directional), mapping count data to centrelines only is insufficient; the addition of a second field (`dir_bin`) indicating direction of travel is imperative to future mapping and modelling exercises.
+
+## Data Dictionary
+
+### centreline_volumes
 Field Name|Type|Description
 :----------:|:----:|-----------
-volume_id|integer sequence|serial assigned to each volume count record
-centreline_id|integer|FK to Table Centreline
-dir_bin|integer|-1 if angle between start and end point of a segment (after correcting for 16.7 degrees) is between 135 and 315 degrees; +1 otherwise
+volume_id|serial|autoincrementing integer assigned to each unique count record
+centreline_id|integer|foreign key to `centreline`
+dir_bin|integer|quasi-binary value (-1 or 1) indicating direction of count (see #Grid-Angle-Correction)
 count_bin|timestamp|date and time of the count
 volume|integer|volume 
 count_type|integer|1 for ATR counts, 2 for TMC counts
