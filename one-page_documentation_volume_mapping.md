@@ -7,7 +7,12 @@ This document provides an overview of the methodology for mapping raw turning mo
 - [An overview of the Traffic Vehicle Count Project](https://github.com/CityofToronto/bdit_volumes)
 
 ## Process
-The following diagram outlines the process for transforming raw TMC and ATR data mapped to the City's current node and segment geographic system, FLOW, to a single table consisting of all count data mapped to the City's centreline system.
+The following diagram outlines the process for transforming raw TMC and ATR data mapped to the City's current node and segment geographic system, FLOW, to a single table consisting of all count data mapped to the City's centreline system. The final dataset housing all ATR and TMC data fully mapped to the City's centreline system is stored in `centreline_volumes`.
+
+Mapping ATR counts involves linking FLOW segments to centreline segments on a one-to-one basis. Artery codes are linked to centreline segments via an intermediate table, `artery_tcl`, which is then used to process and insert raw count data into `centreline_volumes`.
+
+TMCs, on the other hand, consist of volumes across multiple links at a specific intersection. This necessitates the creation of an additional intermediate table, `tmc_turns`, to identify the centreline segments which correspond to all the various legs (typically 8) of a specific intersection and their relative location (i.e. N, S, E, or W) and direction (NB, SB, EB, or WB).
+
 Color Schema:  
  - **Orange**: Original tables from FLOW, consisting of raw count and geometry data.
  - **White**: Intermediate tables used for processing and transforming the data.
@@ -15,7 +20,7 @@ Color Schema:
 
 !['process'](process.png)
 
-While mapping ATR counts involves linking FLOW segments to centreline segments on a one-to-one basis, TMCs consist of volumes across multiple links at a specific intersection. This necessitates the creation of an additional intermediate table, `tmc_turns` to identify the centreline segments which correspond to all the various legs (typically 8) of a specific intersection and their relative location (i.e. N, S, E, or W) and direction (NB, SB, EB, or WB).
+
 
 ## Grid Angle Correction
 The City of Toronto's road network approximates a traditional grid system, with most major streets generally being classified as either east-west or north-south. The orientation of this grid, however, deviates from "true north" by approximately 16.7 degrees. As a result, the processes and/or fields related to the direction of counts or segments are first re-oriented by +16.7 degrees prior to processing.
