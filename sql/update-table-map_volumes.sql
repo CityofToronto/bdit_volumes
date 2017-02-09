@@ -1,5 +1,5 @@
 ﻿TRUNCATE prj_volume.map_volumes;
-TRUNCATE prj_volume.map_volumes_tmc;
+--TRUNCATE prj_volume.map_volumes_tmc;
 
 INSERT INTO prj_volume.map_volumes
 SELECT A.centreline_id, A.dir_bin, 
@@ -13,10 +13,10 @@ SELECT A.centreline_id, A.dir_bin,
 FROM prj_volume.centreline_volumes A
 INNER JOIN prj_volume.centreline B USING (centreline_id)
 WHERE A.count_bin >= '2010-01-01' AND A.count_bin < '2017-01-01' AND A.count_type = 1
-GROUP BY A.centreline_id, A.dir_bin,  A.dir_bin * dir_binary((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi()), A.count_type
+GROUP BY A.centreline_id, A.dir_bin,  A.dir_bin * dir_binary((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi()), A.count_type, B.oneway_dir_code 
 ORDER BY A.centreline_id, A.dir_bin;
 
-
+/*
 INSERT INTO prj_volume.map_volumes_tmc
 SELECT A.centreline_id, A.dir_bin, 
 	(CASE B.oneway_dir_code 
@@ -29,5 +29,5 @@ SELECT A.centreline_id, A.dir_bin,
 FROM (SELECT centreline_id, dir_bin, count_bin, count_type, volume FROM prj_volume.centreline_volumes WHERE count_type = 2) A
 INNER JOIN prj_volume.centreline B USING (centreline_id)
 WHERE A.count_bin >= '2010-01-01' AND A.count_bin < '2017-01-01'
-GROUP BY A.centreline_id, A.dir_bin, A.dir_bin * dir_binary((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi()), A.count_type
-ORDER BY A.centreline_id, A.dir_bin;
+GROUP BY A.centreline_id, A.dir_bin, A.dir_bin * dir_binary((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi()), A.count_type, B.oneway_dir_code 
+ORDER BY A.centreline_id, A.dir_bin;*/
