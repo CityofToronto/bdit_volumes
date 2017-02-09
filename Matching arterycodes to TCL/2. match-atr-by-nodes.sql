@@ -38,7 +38,7 @@ ORDER BY arterycode;
 INSERT INTO prj_volume.artery_tcl
 SELECT arterycode, COALESCE(sub.cl_id1, sub.cl_id2) as centreline_id, direction, sideofint, 1 as match_on_case, 1 as artery_type
 FROM temp_match as sub
-WHERE (sub.cl_id1 IS NOT NULL OR sub.cl_id2 IS NOT NULL) and (sub.cl_id1 IS NULL OR sub.cl_id2 IS NULL)
+WHERE sub.cl_id1 IS NOT NULL OR sub.cl_id2 IS NOT NULL
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
 UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
 

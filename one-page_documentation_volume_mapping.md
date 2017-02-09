@@ -37,3 +37,7 @@ dir_bin|integer|quasi-binary value (-1 or 1) indicating direction of count (see 
 count_bin|timestamp|start date and time of bin for vehicle count (typically 15 minutes)
 volume|integer|total vehicle throughout on segment during time bin
 count_type|integer|1 for ATR, 2 for TMC
+
+## Spatial Count Availability 2010-2016
+!['ATR2010-2016'](ATR2010-2016.png)
+!['TMC2010-2016'](TMC2010-2016.png)
