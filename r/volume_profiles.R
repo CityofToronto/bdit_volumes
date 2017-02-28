@@ -19,7 +19,7 @@ data$yr <- as.numeric(format(data$count_date, "%Y"))
 data_hr <- summarise(group_by(data, arterycode, yr, hour), vol_weight = sum(vol_weight))
 
 data_hr_wide <- spread(data_hr, key = hour, value = vol_weight)
-data_clusters <- kmeans(data_hr_wide[,3:26], 6, nstart = 20)
+data_clusters <- kmeans(data_hr_wide[,3:26], 6, nstart = 50)
 data_hr_wide <- bind_cols(as.data.frame(data_hr_wide), as.data.frame(data_clusters$cluster))
 names(data_hr_wide)[27] <- "cluster"
 
@@ -29,6 +29,13 @@ data_hr_avg <- summarise(group_by(data_hr, cluster, hour), vol_weight = mean(vol
 
 ggplot(data_hr, aes(x = hour, y = vol_weight, group = arterycode, color = yr)) +
   geom_line(alpha = 0.3, size = 0.05) +
-  geom_line(data = data_hr_avg, alpha = 1, group = 1, color = "black") +
+  geom_line(data = data_hr_avg, color = "black", group = 1) +
   scale_x_continuous(breaks = c(0,4,8,12,16,20)) +
   facet_wrap(~ cluster)
+
+
+cluster_table <- data_hr_wide[,c(1,27)]
+cluster_table$centreline_id <- 0
+cluster_table$dir_bin <- 0
+
+dbWriteTable(con, c("prj_volume","clusters"), value=cluster_table,overwrite=TRUE,row.names=FALSE)
