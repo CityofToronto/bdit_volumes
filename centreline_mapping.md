@@ -35,7 +35,7 @@ volume_id|serial|autoincrementing integer assigned to each unique count record
 centreline_id|integer|foreign key to `centreline`
 dir_bin|integer|quasi-binary value (-1 or 1) indicating direction of count (see #Grid-Angle-Correction)
 count_bin|timestamp|start date and time of bin for vehicle count (typically 15 minutes)
-volume|integer|total vehicle throughout on segment during time bin
+volume|integer|total vehicle throughput on segment during time bin
 count_type|integer|1 for ATR, 2 for TMC
 
 ## Spatial Count Availability 2010-2016
