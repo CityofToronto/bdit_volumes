@@ -49,3 +49,15 @@ connect/connect.R
 *.Rhistory
 r/connect/connect.R
 ~$tmc_qc.xlsx
+Count Station Summary/heatmap.png
+Count Station Summary/heatmap.svg
+Count Station Summary/permanent_station_analysis.xlsx
+Count Station Summary/hist02.svg
+count_anomalies.xlsx
+directionality_assignment.xlsx
+clusters_map.qgs
+clusters_map.qgs~
+Count Station Summary/hist03.svg
+Count Station Summary/hist01.svg
+ac_samples.xlsx
+ac_samples.xlsx
