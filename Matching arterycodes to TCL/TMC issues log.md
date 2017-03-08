@@ -54,12 +54,3 @@ Some count locations do not match its description and there are cases where exac
 6. Bloor street West are separated into two directions at dundas street west.
 7. O Connor Drive does not always go EW. even when it's not intersecting with a major EW corridor. so is Albion, Sheppard, Renforth
 8. Transition from King st E to King st w is not recorded in corr definition/
-
-
-# Proposed Algorithm Improvements
-
-1. define corridors and assign directions accordingly.
-
-# Questions
-1. What to do if road segment seems misaligned, there is counts for the leg, but the comments does not say anything?
-!['4805'](img/4805.PNG)
