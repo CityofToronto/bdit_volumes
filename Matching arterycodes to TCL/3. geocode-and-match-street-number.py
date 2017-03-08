@@ -55,8 +55,6 @@ tcl_fl = tcl.groupby('first_letter')
 matched = 0
 geocoded = 0
 
-db.truncate('prj_volume.artery_tcl')
-
 nogeomL = db.query('SELECT arterycode, sideofint, apprdir, location, street1, street2 FROM prj_volume.arteries JOIN traffic.arterydata USING (arterycode) WHERE tnode_id IS NOT NULL AND fnode_id IS NOT NULL AND fx IS NULL AND tx IS NULL').getresult()
 nogeomL = pd.DataFrame.from_records(nogeomL,columns=['arterycode','sideofint','direction','location','street1','street2'])
 
