@@ -2,6 +2,7 @@ library(RPostgreSQL)
 library(tidyr)
 library(dplyr)
 library(ggplot2)
+library(ggthemes)
 
 
 ################################
@@ -27,12 +28,13 @@ data_hr <- gather(data_hr_wide, hour, vol_weight, 3:26)
 data_hr$hour <- as.numeric(data_hr$hour)
 data_hr_avg <- summarise(group_by(data_hr, cluster, hour), vol_weight = mean(vol_weight))
 
-ggplot(data_hr, aes(x = hour, y = vol_weight, group = arterycode, color = yr)) +
-  geom_line(alpha = 0.3, size = 0.05) +
+clstr_plot <- ggplot(data_hr, aes(x = hour, y = vol_weight, group = arterycode)) +
+  geom_line(alpha = 0.3, size = 0.05, color = "dodgerblue3") +
   geom_line(data = data_hr_avg, color = "black", group = 1) +
   scale_x_continuous(breaks = c(0,4,8,12,16,20)) +
-  facet_wrap(~ cluster)
-
+  facet_wrap(~ cluster, ncol = 3) +
+  theme_few()
+ggsave(clstr_plot, file = "cluster.svg", width = 10, height = 10)
 
 cluster_table <- data_hr_wide[,c(1,27)]
 cluster_table$centreline_id <- 0
