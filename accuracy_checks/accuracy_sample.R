@@ -1,5 +1,5 @@
 set.seed(50)
-arterydata <- read.csv("arterydata.csv")
+arterydata <- read.csv("csv/arterydata.csv")
 rm(samples)
 
 cases <- unique(arterydata[c("artery_type","match_on_case")])
