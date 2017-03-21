@@ -6,7 +6,8 @@ CREATE TABLE prj_volume.centreline_volumes (
 	dir_bin smallint NOT NULL, -- 1 for "NE", -1 for "SW"
 	count_bin timestamp without time zone,
 	volume smallint,
-	count_type smallint
+	count_type smallint,
+	speed_class small int
 	);
 
 

@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS artery_tcl_directions;
+﻿DROP TABLE IF EXISTS artery_tcl_directions;
 
 CREATE TEMPORARY TABLE artery_tcl_directions (
 	centreline_id integer,
@@ -38,12 +38,13 @@ or (centreline_id = 30074130 and arterycode = 33024);
 
 DELETE FROM prj_volume.centreline_volumes WHERE count_type = 1;
 
-INSERT INTO prj_volume.centreline_volumes(centreline_id, dir_bin, count_bin, volume, count_type)
+INSERT INTO prj_volume.centreline_volumes(centreline_id, dir_bin, count_bin, volume, count_type, speed_class)
 SELECT	A.centreline_id,
 	A.dir_bin,
 	(C.timecount::time + B.count_date) AS count_bin,
 	C.count as volume,
-	1 as count_type
+	1 as count_type,
+	C.speed_class
 FROM artery_tcl_directions A
 INNER JOIN traffic.countinfo B USING (arterycode)
 INNER JOIN traffic.cnt_det C USING (count_info_id)
