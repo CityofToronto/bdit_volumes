@@ -58,8 +58,7 @@ FROM
 FROM atr_summary A
 INNER JOIN traffic.category B USING (category_id)
 WHERE	((category_id IN (1,2,6,7) AND num_records <> 96)
-  OR	(category_id = 4 AND num_records <> 1344)
-  OR	(category_id = 3 AND num_records <> 1248)
+  OR	(category_id IN (3,4) AND num_records NOT IN (1248,1344))
   OR	category_id NOT IN (1,2,3,4,6,7))
   AND	arterycode NOT IN (SELECT arterycode FROM perm_stations)
 ORDER BY num_records)

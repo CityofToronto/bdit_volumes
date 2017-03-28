@@ -26,7 +26,7 @@ BEGIN
 		
 		SELECT NOT EXISTS(SELECT centreline_id
 				FROM prj_volume.centreline
-				WHERE (from_intersection_id = common_node OR to_intersection_id = common_node) AND (fc >= feature_code OR feature_code < 201401) AND (centreline_id not in (c1,c2))) INTO result;
+				WHERE (from_intersection_id = common_node OR to_intersection_id = common_node) AND (feature_code < 201401) AND (centreline_id not in (c1,c2))) INTO result;
 	ELSE
 		result := False;
 	END IF;

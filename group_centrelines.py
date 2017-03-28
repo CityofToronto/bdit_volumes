@@ -16,7 +16,7 @@ dbset = CONFIG['DBSETTINGS']
 
 db = DB(dbname=dbset['database'],host=dbset['host'],user=dbset['user'],passwd=dbset['password'])
 
-pairs = pd.read_csv('pairs.csv', names = ['c1','c2','same'])
+pairs = pd.read_csv('pairs2.csv', names = ['c1','c2','same'])
 pairs = pairs[pairs['same']=='t']
 
 root = list(set(list(pd.DataFrame(pairs['c1']).drop_duplicates()['c1'])+list(pd.DataFrame(pairs['c2']).drop_duplicates()['c2'])))
@@ -40,17 +40,21 @@ while root:
     chains.append(chain)
 
 groups = {}
-count = 0
+count = 1
 table = []
 for group in chains:
     for tcl in group:
         table.append([tcl,count])
     count = count + 1
-   
+
+db.truncate('prj_volume.centreline_groups')
+db.inserttable('prj_volume.centreline_groups',table)
+
 tcl_no_merge = [x for t in db.query('SELECT centreline_id FROM prj_volume.centreline_groups RIGHT JOIN prj_volume.centreline USING (centreline_id) WHERE group_number is null and feature_code < 202000').getresult() for x in t]
 for tcl in tcl_no_merge:
     table.append([tcl,count])
     count = count + 1
-    
+
 db.truncate('prj_volume.centreline_groups')
 db.inserttable('prj_volume.centreline_groups',table)
+db.close()
