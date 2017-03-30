@@ -111,8 +111,9 @@ Step 6: Quality Control and Corrections **(8. combine_correction_files.py, 9. up
 3. update table artery_tcl with table artery_tcl_manual_corr
 4. to fix the [misalignment of roads](https://github.com/CityofToronto/bdit_volumes/blob/master/Matching%20arterycodes%20to%20TCL/TMC%20issues%20log.md), segments shorter than 25m and not intercepted by a planning boundary are checked with the raw count table to see if there are counts in all directions, if so, these segments are included and directions reassigned.
 
+
 Case|Actual Geometry Type|Geometry type in database|Method|Script|Number|Number(after correction)|
-----|--------------------|-------------------------|------|------|------|
+----|--------------------|-------------------------|------|------|------|------------------------
 1|Line|Line|Match fnode,tnode|**match-segment-arterycodes.sql**|17910|17906
 2|Line|Line|Match (fnode *OR* tnode) *AND* direction, choose the longest qualifying segment|**match-segment-arterycodes.sql**|1961|1934
 3|Line|Point|Match to centreline intersection and check azimuth/approach|**match-segments-w-missing-point.sql**|257|244
