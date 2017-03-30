@@ -37,9 +37,10 @@ dir_bin|integer|quasi-binary value (-1 or 1) indicating direction of count (see 
 count_bin|timestamp|start date and time of bin for vehicle count (typically 15 minutes)
 volume|integer|total vehicle throughput on segment during time bin
 count_type|integer|1 for ATR, 2 for TMC
+speed_class|integer|(optional) speed bin number the count falls into (1-14), if this is not a speed count, the field will be NULL/0.  
 
 ## Spatial Count Availability 2010-2016
-####ATR
+### ATR
 !['ATR2010-2016'](ATR2010-2016.png)
-####TMC
+### TMC
 !['TMC2010-2016'](TMC2010-2016.png)
