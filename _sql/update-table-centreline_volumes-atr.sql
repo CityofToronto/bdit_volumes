@@ -38,16 +38,17 @@ or (centreline_id = 30074130 and arterycode = 33024);
 
 DELETE FROM prj_volume.centreline_volumes WHERE count_type = 1;
 
-INSERT INTO prj_volume.centreline_volumes(centreline_id, dir_bin, count_bin, volume, count_type, speed_class)
+INSERT INTO prj_volume.centreline_volumes(centreline_id, dir_bin, count_bin, volume, count_type, speed_class, vehicle_class)
 SELECT	A.centreline_id,
 	A.dir_bin,
 	(C.timecount::time + B.count_date) AS count_bin,
 	C.count as volume,
 	1 as count_type,
-	C.speed_class
+	(CASE WHEN C.category_id = 4 THEN C.speed_class ELSE NULL END) AS speed_class,
+	(CASE WHEN C.category_id = 3 THEN C.speed_class ELSE NULL END) AS vehicle_class
 FROM artery_tcl_directions A
 INNER JOIN traffic.countinfo B USING (arterycode)
-INNER JOIN traffic.cnt_det C USING (count_info_id)
+INNER JOIN prj_volume.cnt_det_clean C USING (count_info_id)
 WHERE A.dir_bin IN (1,-1)
 ORDER BY A.centreline_id, A.arterycode;
 
