@@ -7,6 +7,10 @@ INSERT INTO prj_volume.cnt_det_clean
 SELECT *
 FROM traffic.cnt_det;
 
+-- Delete NULL values (time bin exists but count is NULL)
+-- Query returned successfully: 15352 rows affected
+DELETE FROM prj_volume.cnt_det_clean
+WHERE count IS NULL;
 
 -- Fix shifted time bins
 -- Query returned successfully: 41030103 rows affected, 01:07:3604 hours execution time.

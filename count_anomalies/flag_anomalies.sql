@@ -12,11 +12,11 @@ WHERE count_info_id IN
 		HAVING COUNT(count)>1))
 		
 -- Flag records that have <8h data
--- 1833 rows affected
+-- 5262 rows affected
 UPDATE prj_volume.cnt_det_clean
 SET flag = 1
 WHERE count_info_id IN
-	(SELECT arterycode, count_date
+	(SELECT count_info_id
 	FROM prj_volume.cnt_det_clean JOIN traffic.countinfo USING (count_info_id)
 	GROUP BY count_info_id, speed_class
 	HAVING COUNT(*) < 32)
@@ -30,7 +30,7 @@ WHERE count_info_id IN
 	FROM prj_volume.cnt_det_clean A JOIN traffic.countinfo B USING (count_info_id) 
 	WHERE category_id NOT IN (3,4) 
 	GROUP BY arterycode, count_date, count_info_id
-	HAVING (SUM(CASE WHEN count = 0 THEN 1 ELSE 0 END)/SUM(CASE WHEN count = 0 THEN 0 ELSE 1 END))::int = 3 AND 
+	HAVING (SUM(CASE WHEN count <> 0 THEN 0 ELSE 1 END)/SUM(CASE WHEN count <> 0 THEN 1 ELSE 0 END))::int = 3 AND 
 		(SELECT COUNT(distinct EXTRACT(hour from timecount)) FROM prj_volume.cnt_det_clean JOIN traffic.countinfo USING (count_info_id) WHERE arterycode = B.arterycode AND count_date = B.count_date AND count <> 0) =  SUM(CASE WHEN count = 0 THEN 0 ELSE 1 END))
 		
 -- Flag daily volumes (exceeds specified cap for the road class)
@@ -52,7 +52,8 @@ WHERE count_info_id IN
 			END) AS cap
 		FROM prj_volume.cnt_det_clean JOIN traffic.countinfo USING (count_info_id) JOIN prj_volume.artery_tcl USING (arterycode) JOIN prj_volume.centreline USING (centreline_id)
 		WHERE flag IS NULL
-		GROUP BY count_info_id, feature_code, feature_code_desc, linear_name_full, centreline_id) A 
+		GROUP BY count_info_id, feature_code, feature_code_desc, linear_name_full, centreline_id
+		HAVING MOD(COUNT(count),96) = 0) A 
 	WHERE sum > cap) 
 	
 -- Flag abnormal daily volumes (+/- 2 stdevs from median)
@@ -64,7 +65,8 @@ WHERE count_info_id IN
 	FROM (SELECT arterycode, count_info_id, SUM(count)
 		FROM prj_volume.cnt_det_clean JOIN traffic.countinfo USING (count_info_id) 
 		WHERE flag IS NULL
-		GROUP BY count_info_id, arterycode) A 
+		GROUP BY count_info_id, arterycode
+		HAVING MOD(COUNT(count),96) = 0) A 
 		
 		JOIN
 
