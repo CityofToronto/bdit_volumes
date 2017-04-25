@@ -1,14 +1,15 @@
 # Matching arterycodes to centreline
 The scripts map arterycodes referenced in FLOW database to Toronto centreline segments for further volume analysis. The table structures and relevant fields are shown below.
 
-**Table node**
+**Table node**  
+
 Field Name|Type|Description|Example  
 ----------|----|-----------|-------  
-node_id|text|identifier|N000005333
-link_id|bigint|8 digits corresponding to the ones in linkid of table arterydata and the intersection ids in centreline|14015169
-x_coord|double precision|x coordinate of the node|
-y_coord|double precision|y coordinate of the node|
-  
+node_id|text|identifier|N000005333  
+link_id|bigint|8 digits corresponding to the ones in linkid of table arterydata and the intersection ids in centreline|14015169  
+x_coord|double precision|x coordinate of the node|  
+y_coord|double precision|y coordinate of the node|  
+
 **Table arterydata**
 
 Field Name|Type|Description|Example  
