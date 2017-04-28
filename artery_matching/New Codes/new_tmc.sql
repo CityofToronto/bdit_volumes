@@ -136,7 +136,12 @@ WHERE arterycode in (38082,38083,38084,38085);
 INSERT INTO prj_volume.artery_tcl(arterycode, centreline_id, direction, sideofint, match_on_case, artery_type) VALUES
 (38082,30079400,'Westbound','W',10,2),(38083,30054171,'Eastbound','E',10,2),(38084,12334089,'Southbound','S',10,2), (38085, 12334091, 'Westbound','W',10,2);
 
--- Checkpoint: check if there's any RAMP TMC and if anything is not matched.
-SELECT *
+-- Checkpoint: double check RAMP TMC and anything that is not matched.
+
+(SELECT *
 FROM prj_volume.new_arterydata
-WHERE count_type in ('R','P') AND NOT EXISTS (SELECT 1 FROM prj_volume.artery_tcl WHERE new_arterydata.arterycode=artery_tcl.arterycode);
+WHERE count_type in ('R','P') AND NOT EXISTS (SELECT 1 FROM prj_volume.artery_tcl WHERE new_arterydata.arterycode=artery_tcl.arterycode))
+UNION
+(SELECT *
+FROM prj_volume.new_arterydata 
+WHERE location LIKE '%RAMP%' AND arterycode NOT IN (38082,38083,38084,38085) AND count_type in ('R','P'))
