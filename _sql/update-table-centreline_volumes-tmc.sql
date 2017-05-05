@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS tmc_det_norm;
+﻿DROP TABLE IF EXISTS tmc_det_norm;
 
 CREATE TEMPORARY TABLE tmc_det_norm(
 	count_info_id bigint,
@@ -17,25 +17,33 @@ FROM traffic.det;
 DELETE FROM prj_volume.centreline_volumes WHERE count_type = 2;
 
 INSERT INTO prj_volume.centreline_volumes(centreline_id, dir_bin, count_bin, volume, count_type)
-SELECT	B.centreline_id,
-	dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.from_dir) AS dir_bin,
-	pg_catalog.date(C.count_date)+pg_catalog.time(D.count_time) AS count_bin,
-	SUM(D.volume) AS volume,
-	2 AS count_type
-FROM prj_volume.tmc_turns A
-	INNER JOIN prj_volume.centreline B ON A.tcl_from_segment = B.centreline_id
-	INNER JOIN traffic.countinfomics C USING (arterycode)
-	INNER JOIN tmc_det_norm D USING (count_info_id, movement)
-GROUP BY B.centreline_id,dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.from_dir),pg_catalog.date(C.count_date)+pg_catalog.time(count_time);
+WITH E AS (SELECT	C.count_info_id, B.centreline_id,
+		dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.from_dir) AS dir_bin,
+		pg_catalog.date(C.count_date)+pg_catalog.time(D.count_time) AS count_bin,
+		SUM(D.volume) AS volume,
+		2 AS count_type
+	FROM prj_volume.tmc_turns A
+		INNER JOIN prj_volume.centreline B ON A.tcl_from_segment = B.centreline_id
+		INNER JOIN traffic.countinfomics C USING (arterycode)
+		INNER JOIN tmc_det_norm D USING (count_info_id, movement)
+	GROUP BY C.count_info_id, B.centreline_id,dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.from_dir),pg_catalog.date(C.count_date)+pg_catalog.time(count_time))
+(SELECT centreline_id, dir_bin, count_bin, AVG(volume) AS volume, count_type
+FROM  E
+WHERE count_info_id NOT IN (SELECT count_info_id FROM E GROUP BY count_info_id, centreline_id, dir_bin, count_bin::date HAVING SUM(volume) = 0)
+GROUP BY centreline_id, dir_bin, count_bin, count_type);
 
 INSERT INTO prj_volume.centreline_volumes(centreline_id, dir_bin, count_bin, volume, count_type)
-SELECT	B.centreline_id,
-	dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.to_dir) AS dir_bin,
-	pg_catalog.date(C.count_date)+pg_catalog.time(D.count_time) AS count_bin,
-	SUM(D.volume) AS volume,
-	2 AS count_type
-FROM prj_volume.tmc_turns A
-INNER JOIN prj_volume.centreline B ON A.tcl_to_segment = B.centreline_id
-INNER JOIN traffic.countinfomics C USING (arterycode)
-INNER JOIN tmc_det_norm D USING (count_info_id, movement)
-GROUP BY B.centreline_id,dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.to_dir),pg_catalog.date(C.count_date)+pg_catalog.time(count_time);         
+WITH E AS (SELECT	C.count_info_id, B.centreline_id,
+		dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.to_dir) AS dir_bin,
+		pg_catalog.date(C.count_date)+pg_catalog.time(D.count_time) AS count_bin,
+		SUM(D.volume) AS volume,
+		2 AS count_type
+	FROM prj_volume.tmc_turns A
+	INNER JOIN prj_volume.centreline B ON A.tcl_to_segment = B.centreline_id
+	INNER JOIN traffic.countinfomics C USING (arterycode)
+	INNER JOIN tmc_det_norm D USING (count_info_id, movement)
+	GROUP BY C.count_info_id, B.centreline_id,dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.to_dir),pg_catalog.date(C.count_date)+pg_catalog.time(count_time))
+SELECT centreline_id, dir_bin, count_bin, AVG(volume) AS volume, count_type
+FROM  E
+WHERE count_info_id NOT IN (SELECT count_info_id FROM E GROUP BY count_info_id, centreline_id, dir_bin, count_bin::date HAVING SUM(volume) = 0)
+GROUP BY centreline_id, dir_bin, count_bin, count_type;        
