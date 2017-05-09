@@ -48,7 +48,7 @@ clgrdircl_com = cl_fcn.plot_mode_cl_consolidate(data,('group_number','dir_bin'))
 percentile = cl_fcn.get_percentiles(data,[25,75])
 cl_fcn.plot_profile(clgrdircl_com, profile, percentile)
 cl_fcn.plot_profile(tcldircl_com, profile, percentile)
-'''
+
 datatmc = cl_fcn.get_data_tmc(db, ('2010-01-01','2011-01-01'))
 classify_tmcdata = cl_fcn.remove_clustered_cl(datatmc, tcldircl_com)
 
@@ -86,6 +86,6 @@ for l in distmtx:
     plt.imshow([l,l],cmap='hot')
     break
 plt.show()
-'''
+
 pickle.dump(profile,open("ClusterCentres.p","wb"))
 pickle.dump(tcldircl,open("ClusterResults.p","wb"))

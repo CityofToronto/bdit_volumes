@@ -27,7 +27,8 @@ def fill_missing_values(profiles, new, clusterinfo):
     Output:
         a dictionary with complete day profile filled in. key: (centreline_id, dir_bin, count_date); value: list of volumes of each 15min bin.
     '''
-    
+    if new.empty:
+        return None
     filled = {}
     for (count_date, tcl, dirc), newdata in new.groupby(['count_date','centreline_id','dir_bin']):
         profile = profiles[int(clusterinfo[(clusterinfo['centreline_id']==tcl) & (clusterinfo['dir_bin'] == dirc)].loc[:,'cluster'])]  
@@ -54,12 +55,13 @@ def fill_missing_values(profiles, new, clusterinfo):
                 j = j + 1
             else:
                 complete_profile.append(total_vol*profile[i])
-        if count_date in (806,858,1126495,1119867,561468,1429401):     
+        if tcl in ([7636691,112888,181,8570852]):     
             plt.figure()
             plt.plot(profile*total_vol)
             plt.plot(complete_profile,'g*')
             plt.plot(incomplete_time15, incomplete_profile,'r+')
         filled[(count_date, tcl, dirc)] = complete_profile
+        
     return filled
     
 def fit_incomplete(centres, new):
@@ -73,7 +75,8 @@ def fit_incomplete(centres, new):
     Output:
         a dataframe with columns: centreline_id, dir_bin, cluster
     '''
-    
+    if new.empty:
+        return None, None
     cls = []
     distmtx = []
     for (count_date, tcl, dirc), newdata in new.groupby(['count_date','centreline_id','dir_bin']):
