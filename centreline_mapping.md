@@ -13,13 +13,14 @@ Mapping ATR counts involves linking FLOW segments to centreline segments on a on
 
 TMCs, on the other hand, consist of volumes across multiple links at a specific intersection. This necessitates the creation of an additional intermediate table, `tmc_turns`, to identify the centreline segments which correspond to all the various legs (typically 8) of a specific intersection and their relative location (i.e. N, S, E, or W) and direction (NB, SB, EB, or WB).
 
+Detailed description of Step 1 (geometry matching) can be found in [artery_matching](artery_matching/) and scripts to create tables that link the movements can be found in the [sql](_sql/) folder.
+
 Color Schema:  
  - **Orange**: Original tables from FLOW, consisting of raw count and geometry data.
  - **White**: Intermediate tables used for processing and transforming the data.
  - **Green**: The final table, consisting of processed count data mapped to the City's centreline system.
 
 !['process'](process.png)
-
 
 
 ## Grid Angle Correction
