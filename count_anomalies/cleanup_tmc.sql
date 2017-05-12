@@ -164,7 +164,6 @@ WHERE (COALESCE(n_cars_r,0) + COALESCE(n_cars_t,0) + COALESCE(n_cars_l,0) + COAL
 	HAVING count(*) > 1 and sum(total) = MAX(total))
 	
 -- Take sum of irregular timestamps and respective regular 15min bin
--- Flag 2	
 DROP TABLE IF EXISTS temptable;
 CREATE TEMPORARY TABLE temptable (LIKE prj_volume.det_clean);
 
@@ -186,18 +185,9 @@ SELECT MAX(id), count_info_id, MAKE_TIMESTAMP(1899,1,1,time15/4::int, time15%4*1
 	SUM(COALESCE(s_truck_t,0)),SUM(COALESCE(s_truck_l,0)),SUM(COALESCE(e_truck_r,0)),SUM(COALESCE(e_truck_t,0)),SUM(COALESCE(e_truck_l,0)),SUM(COALESCE(w_truck_r,0)),SUM(COALESCE(w_truck_t,0)),SUM(COALESCE(w_truck_l,0)),
 	SUM(COALESCE(n_bus_r,0)),SUM(COALESCE(n_bus_t,0)),SUM(COALESCE(n_bus_l,0)),SUM(COALESCE(s_bus_r,0)),SUM(COALESCE(s_bus_t,0)),SUM(COALESCE(s_bus_l,0)),SUM(COALESCE(e_bus_r,0)),SUM(COALESCE(e_bus_t,0)),SUM(COALESCE(e_bus_l,0)),
 	SUM(COALESCE(w_bus_r,0)),SUM(COALESCE(w_bus_t,0)),SUM(COALESCE(w_bus_l,0)),SUM(COALESCE(n_peds,0)),SUM(COALESCE(s_peds,0)),SUM(COALESCE(e_peds,0)),SUM(COALESCE(w_peds,0)),SUM(COALESCE(n_bike,0)),SUM(COALESCE(s_bike,0)),
-	SUM(COALESCE(e_bike,0)),SUM(COALESCE(w_bike,0)),SUM(COALESCE(n_other,0)),SUM(COALESCE(s_other,0)),SUM(COALESCE(e_other,0)),SUM(COALESCE(w_other,0)), 2 AS flag, time15
+	SUM(COALESCE(e_bike,0)),SUM(COALESCE(w_bike,0)),SUM(COALESCE(n_other,0)),SUM(COALESCE(s_other,0)),SUM(COALESCE(e_other,0)),SUM(COALESCE(w_other,0)), NULL AS flag, time15
 FROM temptable
 GROUP BY count_info_id, time15;
-
-UPDATE prj_volume.det_clean
-SET flag = 2
-WHERE EXTRACT(MINUTE FROM count_time)::int%15 != 0 AND flag IS NULL AND count_info_id IN
-	(SELECT count_info_id
-	FROM prj_volume.det_clean
-	WHERE EXTRACT(MINUTE FROM count_time)::int%15!=0 AND flag IS NULL
-	GROUP BY count_info_id
-	HAVING count(*)<60);
 	
 -- Aggregate records in 5min bins to 15min bins
 DROP TABLE IF EXISTS temptable;

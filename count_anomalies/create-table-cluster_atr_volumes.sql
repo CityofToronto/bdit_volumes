@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS artery_tcl_directions;
+﻿DROP TABLE IF EXISTS artery_tcl_directions;
 
 CREATE TEMPORARY TABLE artery_tcl_directions (
 	centreline_id integer,
@@ -37,45 +37,42 @@ or (centreline_id = 20089656 and arterycode = 36191) or (centreline_id = 3000242
 or (centreline_id = 30039432 and arterycode = 35538) or (centreline_id = 30065648 and arterycode = 35347) or (centreline_id = 30073636 and arterycode = 34009)
 or (centreline_id = 30074130 and arterycode = 33024);
 
-DROP TABLE IF EXISTS prj_volume.atr_volumes;
+DROP TABLE IF EXISTS prj_volume.cluster_atr_volumes;
 
-CREATE TABLE prj_volume.atr_volumes AS (
-	SELECT count_info_id, arterycode, count_date, timecount::time, SUM(count) AS vol, dir_bin, centreline_id
-	FROM prj_volume.cnt_det_clean JOIN traffic.countinfo USING (count_info_id) JOIN artery_tcl_directions USING (arterycode)
-	WHERE flag IS NULL and EXTRACT(dow from count_date) NOT IN (0,6) 
-	GROUP BY count_info_id, arterycode, count_date, timecount::time, dir_bin, centreline_id);
+CREATE TABLE prj_volume.cluster_atr_volumes AS (
+	SELECT count_date, timecount, dir_bin, centreline_id, 
+		(CASE WHEN COUNT(vol) > 1 THEN AVG(vol) ELSE SUM(vol) END) AS vol
+	FROM (SELECT count_info_id, arterycode, count_date, timecount::time, SUM(count) AS vol, dir_bin, centreline_id
+		FROM prj_volume.cnt_det_clean JOIN traffic.countinfo USING (count_info_id) JOIN artery_tcl_directions USING (arterycode)
+		WHERE flag IS NULL and EXTRACT(dow from count_date) NOT IN (0,6) 
+		GROUP BY count_info_id, arterycode, count_date, timecount::time, dir_bin, centreline_id) A
+	GROUP BY centreline_id, count_date, dir_bin, timecount);
 		
-ALTER TABLE prj_volume.atr_volumes ADD COLUMN vol_weight double precision;
-ALTER TABLE prj_volume.atr_volumes ADD COLUMN complete_day boolean;
+ALTER TABLE prj_volume.cluster_atr_volumes ADD COLUMN vol_weight double precision;
+ALTER TABLE prj_volume.cluster_atr_volumes ADD COLUMN complete_day boolean;
 
 DROP TABLE IF EXISTS sum_vol;
 
 CREATE TEMPORARY TABLE sum_vol AS (	
-	(SELECT count_info_id, SUM(vol) AS sumvol, (COUNT(*)=96) AS complete_day
-	FROM prj_volume.atr_volumes
-	GROUP BY count_info_id));
+	(SELECT centreline_id, dir_bin, count_date, SUM(vol) AS sumvol, (COUNT(*)=96) AS complete_day
+	FROM prj_volume.cluster_atr_volumes
+	GROUP BY centreline_id, dir_bin, count_date));
 	
 DROP TABLE IF EXISTS temp;
 
 CREATE TEMPORARY TABLE temp AS (
-	SELECT count_info_id, arterycode, count_date, timecount, vol, dir_bin, centreline_id, 
+	SELECT count_date, timecount, vol, dir_bin, centreline_id, 
 		(CASE sum_vol.complete_day
 		WHEN TRUE THEN vol/sumvol 
 		ELSE NULL 
 		END) AS vol_weight, sum_vol.complete_day
-	FROM prj_volume.atr_volumes JOIN sum_vol USING (count_info_id));
+	FROM prj_volume.cluster_atr_volumes JOIN sum_vol USING (centreline_id, dir_bin, count_date));
 
-TRUNCATE TABLE prj_volume.atr_volumes;
+TRUNCATE TABLE prj_volume.cluster_atr_volumes;
 
-INSERT INTO prj_volume.atr_volumes
-SELECT *
+INSERT INTO prj_volume.cluster_atr_volumes(count_date, timecount, vol, dir_bin, centreline_id, vol_weight, complete_day)
+SELECT count_date, timecount, vol, dir_bin, centreline_id, vol_weight, complete_day
 FROM temp;
 
 DROP TABLE temp;
 DROP TABLE artery_tcl_directions;
-
-CREATE INDEX atr_volumes_count_info_id_idx
-  ON prj_volume.atr_volumes
-  USING btree
-  (count_info_id);
-  

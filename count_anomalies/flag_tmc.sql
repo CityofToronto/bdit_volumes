@@ -1,14 +1,10 @@
--- Flag 1: flag irregular timestamps where a regular 15min bin does not exist for the interval
+﻿-- Flag 1: flag irregular timestamps where a regular 15min bin does not exist for the interval
 UPDATE prj_volume.det_clean
 SET flag = 1
 WHERE id in (
 	SELECT id
 	FROM prj_volume.det_clean A
-	WHERE (EXTRACT(second FROM count_time) != 0 or EXTRACT(minute FROM count_time)::int % 5 != 0) AND 
-		time15 NOT IN 
-			(SELECT time15
-			FROM prj_volume.det_clean 
-			WHERE A.count_info_id = B.count_info_id AND EXTRACT(second FROM count_time) = 0 AND EXTRACT(minute FROM count_time)::int % 15 = 0))
+	WHERE (EXTRACT(second FROM count_time) != 0 or EXTRACT(minute FROM count_time)::int % 15 != 0));
 
 -- Flag 3: flag duplicate time bins - some should be avg some should be sum. flag for now.			
 UPDATE prj_volume.det_clean
@@ -22,10 +18,11 @@ WHERE (count_info_id, count_time::time) IN (
 -- Flag 4: flag count times with volume that are break times and the count volume is 2 stddev away from median
 UPDATE prj_volume.det_clean
 SET flag = 4
-WHERE id IN (WITH temp AS(SELECT id, (COALESCE(n_cars_r,0) + COALESCE(n_cars_t,0) + COALESCE(n_cars_l,0) + COALESCE(s_cars_r,0) + COALESCE(s_cars_t,0) + COALESCE(s_cars_l,0) + COALESCE(e_cars_r,0) + COALESCE(e_cars_t,0) + 
-			COALESCE(e_cars_l,0) + COALESCE(w_cars_r,0) + COALESCE(w_cars_t,0) + COALESCE(w_cars_l,0)) AS total, 
-		count_time::time, count_info_id, time15
-		FROM prj_volume.det_clean)
+WHERE id IN 
+	(WITH temp AS
+		(SELECT id, (COALESCE(n_cars_r,0) + COALESCE(n_cars_t,0) + COALESCE(n_cars_l,0) + COALESCE(s_cars_r,0) + COALESCE(s_cars_t,0) + COALESCE(s_cars_l,0) + COALESCE(e_cars_r,0) + COALESCE(e_cars_t,0) + COALESCE(e_cars_l,0) + COALESCE(w_cars_r,0) + COALESCE(w_cars_t,0) + COALESCE(w_cars_l,0)) AS total, count_time::time, count_info_id, time15
+		FROM prj_volume.det_clean
+		WHERE flag is NULL)
 	(SELECT id
 	FROM (SELECT count_info_id, STDDEV(total) , median(total)
 		FROM temp
@@ -37,17 +34,16 @@ WHERE id IN (WITH temp AS(SELECT id, (COALESCE(n_cars_r,0) + COALESCE(n_cars_t,0
 UPDATE prj_volume.det_clean
 SET flag = 5
 WHERE count_info_id IN(
-	WITH temp AS(SELECT id, (COALESCE(n_cars_r,0) + COALESCE(n_cars_t,0) + COALESCE(n_cars_l,0) + COALESCE(s_cars_r,0) + COALESCE(s_cars_t,0) + COALESCE(s_cars_l,0) + COALESCE(e_cars_r,0) + COALESCE(e_cars_t,0) + 
-			COALESCE(e_cars_l,0) + COALESCE(w_cars_r,0) + COALESCE(w_cars_t,0) + COALESCE(w_cars_l,0)) AS total, 
-		count_time::time, count_info_id, time15
+	WITH temp AS
+		(SELECT id, (COALESCE(n_cars_r,0) + COALESCE(n_cars_t,0) + COALESCE(n_cars_l,0) + COALESCE(s_cars_r,0) + COALESCE(s_cars_t,0) + COALESCE(s_cars_l,0) + COALESCE(e_cars_r,0) + COALESCE(e_cars_t,0) + COALESCE(e_cars_l,0) + COALESCE(w_cars_r,0) + COALESCE(w_cars_t,0) + COALESCE(w_cars_l,0)) AS total, count_time::time, count_info_id, time15
 		FROM prj_volume.det_clean
 		WHERE flag IS NULL)
 	(SELECT count_info_id
 	FROM temp A
 	GROUP BY count_info_id
 	HAVING (SUM(CASE WHEN total <> 0 THEN 0 ELSE 1 END)/SUM(CASE WHEN total <> 0 THEN 1 ELSE 0 END))::int = 3 AND 
-	(SELECT COUNT(distinct EXTRACT(hour from B.count_time)) FROM temp B WHERE B.count_info_id = A.count_info_id AND B.total <> 0) = SUM(CASE WHEN total = 0 THEN 0 ELSE 1 END)))
-	
+	(SELECT COUNT(distinct EXTRACT(hour from B.count_time)) FROM temp B WHERE B.count_info_id = A.count_info_id AND B.total <> 0) = SUM(CASE WHEN total = 0 THEN 0 ELSE 1 END)));
+/*	
 --(Not used) Flag 6: flag count times that are 2/3 stddev less than median depending on the relationship between median and stddev
 UPDATE prj_volume.det_clean
 SET flag = 6
@@ -62,7 +58,7 @@ WHERE id IN (
 		FROM temp
 		GROUP BY count_info_id) A JOIN temp USING (count_info_id)
 	WHERE (median < stddev*4 AND total < median - 2*stddev) OR (median>stddev*4 AND total < median-3*stddev) OR (total < 3 AND median > 15)));
-
+*/
 -- Flag 6: Find random breaks and anomalies based on 1st derivative
 UPDATE prj_volume.det_clean
 SET flag = 6

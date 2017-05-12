@@ -1,7 +1,9 @@
+# cnt_det_clean (FLOW ATR DATA)
+
 ## MODIFIED IN cnt_det_clean
 **[cleanup_anomalies.sql](cleanup_anomalies.sql)**  
 
-1. Shift time bins
+1. Shift time bins so that all timestamps represent the start of the count period
 2. Set speed_class to NULL for non-speed counts (so that in future queries, speed_class will not be grouped by)
 
 ## DELETED IN cnt_det_clean
@@ -81,3 +83,33 @@ ORDER BY stddev(count) DESC
  - a lot of counts with a few very weird days [20549,04:15]
  - appears to be just high variance segment?? 
  - full day of count but very ridiculous daily total [2055,20141009]
+
+# det_clean (FLOW TMC DATA)
+**[cleanup_tmc.sql](cleanup_tmc.sql)**  
+
+## MODIFIED IN det_clean
+
+1. Shift time bins so that all timestamps represent the start of the count period
+2. Combine rows that complement each other. (Multiple rows belong to the same count bin, but only one non-zero volume for each column)
+3. Sum rows that belong to the same 15min bin but volumes are recorded at multiple irregular timestamps (Flag 2)
+4. Aggregate 5min binned volume to 15min bins
+
+
+## DELETED IN det_clean
+
+5. Delete records so that count_info_id and (arterycode, count_date) have one-to-one relationship
+6. Delete identical duplicates 
+7. Delete days with <5h count
+8. Delete records where all-day car volume = 0
+9. Delete records that belong to designated break time and volume = 0 (9:30-10:00, 12:00-13:00, 15:00-16:00)
+10. Delete duplicate count bins and one or more have no volume (Multiple rows belong to the same count bin, but one entire row is zero)
+
+## FLAGGED IN det_clean 
+**[flag_tmc.sql](flag_tmc.sql)** 
+ 
+* Smaller number takes precedence
+11. Volume recorded at a irregular timestamp but a regular 15min bin is nonexistent (Flag 1)
+12. Duplicate time bins (Flag 3)
+13. Count bin in break time and count is 2 stddev from median/stddev (Flag 4)
+14. Hourly records instead of 15min records (Flag 5)
+15. Random drops due to human error (based on 1st and 2nd derivatives) (Flag 6)
