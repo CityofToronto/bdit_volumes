@@ -58,6 +58,28 @@ def testing(db, profiles):
     # (8) diff date, share volume with tcl 181, fill in TMC
     print(get_volume(db, profiles, 118, 1,'2011-04-27',16)) # ~22
     
+def testing_entire_TO(db, profiles):
+    centrelines = [x[0] for x in db.query('SELECT centreline_id FROM prj_volume.centreline WHERE feature_code IN (201200,201300)').getresult()]
+    volumes =  {}
+    non = 0
+    i = 0
+    for tcl in centrelines:
+        print(i, ' ', tcl, '+1', end = ' ')
+        v1 = get_volume(db, profiles, tcl, 1,'2015-05-13',9)
+        print(i, ' ', tcl, '-1', end = ' ')
+        v2 = get_volume(db, profiles, tcl, 1,'2015-05-13',9)
+        if v1 is not None:
+            volumes[(tcl,1)] = v1
+        else:
+            non = non + 1
+        if v2 is not None:
+            volumes[(tcl,-1)] = v2
+        else:
+            non = non + 1
+        i = i + 1
+        
+    return volumes, non
+    
 def calc_date_factors(date, dates, centreline_id, dir_bin):
     
     '''
@@ -72,24 +94,36 @@ def calc_date_factors(date, dates, centreline_id, dir_bin):
     '''
     
     monthly_factors = pickle.load(open("monthly_factors.p", "rb"))
-    if type(date) == str:
-        date = datetime.strptime(date,'%Y-%m-%d')
-    year = date.year
-    month = date.month
+    
+    # if date is a year, then target month is 13 - weight = 1
+    try:
+        year = int(date)
+        month = 13
+    except:
+        if type(date) == str:
+            date = datetime.strptime(date,'%Y-%m-%d')
+        year = date.year
+        month = date.month
+        
     if (int(centreline_id), int(dir_bin), year) in monthly_factors.index:
         mfactors = [float(i) for i in monthly_factors.loc[(int(centreline_id), int(dir_bin), year)]['weights']]
     else:
         mfactors = monthly_factors.loc['average']['weights']
-        
+    mfactors.append(1/12)
+    
     dates = pd.DataFrame(pd.to_datetime(dates), columns=['count_date'])
     dates['diff_y'] = abs(dates['count_date'].dt.year - year)
     maxdiff = max(dates['diff_y'])
     dates['factor_month'] = [mfactors[month-1]/ mfactors[m-1] for m in dates['count_date'].dt.month]
-    dates['weight_year'] = (dates['diff_y'] > 5)*(1-0.5*(dates['diff_y']-5)/(maxdiff-5)) + (dates['diff_y'] < 5)
+    if maxdiff <= 5:
+        dates['weight_year'] = 1
+    else:
+        dates['weight_year'] = (dates['diff_y'] > 5)*(1-0.5*(dates['diff_y']-5)/(maxdiff-5)) + (dates['diff_y'] <= 5)
     dates['count_date'] = dates['count_date'].dt.date
+    
     return dates
         
-def fill_in(profiles, records, hour):
+def fill_in(profiles, records, hour=None):
     
     '''
     This function fills in missing data based on cluster centres.
@@ -97,9 +131,9 @@ def fill_in(profiles, records, hour):
     Input:
         profiles: a list of TOD profiles that is returned by KMeans clustering
         records: a dataframe of incomplete data to be filled in (can have multiple days/segments) with columns: centreline_id, dir_bin, count_date, time_15, volume
-        hour: the requested hour
+        hour: the requested hour (optional)
     Output:
-        a dataframe containing the requested hour of counts for each day/segment passed in       
+        a dataframe containing the hour (if requested, otherwise whole day) of counts for each day/segment passed in       
     '''
     
     tcldircl = pickle.load(open("../12 Volume Clustering/ClusterResults.p", "rb"))
@@ -108,14 +142,14 @@ def fill_in(profiles, records, hour):
     to_classify = records.merge(tcldircl, on=['centreline_id','dir_bin'], how='left')
     to_classify.fillna(100, inplace=True)
     classified, _ = cl_fcn.fit_incomplete(profiles, to_classify[to_classify['cluster'] == 100])
-    # Remove duplicates if multiple days of the same location is passed in 
-    classified = classified.groupby(['centreline_id','dir_bin'], group_keys=False).apply(lambda x: x.ix[x.cluster.idxmax()]) 
     if not to_classify[to_classify['cluster']!= 100].empty:
         if classified is None:
             classified = to_classify[to_classify['cluster']!= 100][['centreline_id','dir_bin','cluster']].drop_duplicates()
         else:
-            classified.append(to_classify[to_classify['cluster']!= 100][['centreline_id','dir_bin','cluster']].drop_duplicates())
-
+            classified = classified.append(to_classify[to_classify['cluster']!= 100][['centreline_id','dir_bin','cluster']].drop_duplicates())
+            
+    # Remove duplicates if multiple days of the same location is passed in
+    classified = classified.groupby(['centreline_id','dir_bin'], group_keys=False).apply(lambda x: x.ix[x.cluster.idxmax()]) 
     data = cl_fcn.fill_missing_values(profiles, records, classified)
 
     df = []
@@ -123,8 +157,11 @@ def fill_in(profiles, records, hour):
         for i,a in zip(range(96),v):
             df.append([j for j in k]+[i, a])
     df = pd.DataFrame(df, columns = ['count_date','centreline_id','dir_bin','time_15','volume'])     
-
-    return df[df['time_15']//4==int(hour)]
+    
+    if hour is None:
+        return df
+    else:
+        return df[df['time_15']//4==int(hour)]
     
 def get_group_members(db, centreline_id):
     
@@ -133,7 +170,7 @@ def get_group_members(db, centreline_id):
     
     return members
     
-def get_relavant_counts(db, centreline_id, dir_bin):
+def get_relevant_counts(db, centreline_id, dir_bin):
 
     '''
     This function gets all relevant counts to the request. (any counts that share the same centreline group and direction.)
@@ -155,31 +192,66 @@ def get_relavant_counts(db, centreline_id, dir_bin):
     
     return tmc, atr
     
-def get_volume(db, profiles, centreline_id, dir_bin, date, hour):
-    
-    if pd.to_datetime(date).weekday() in (5,6):
-        print('Weekdays Only Please. For now.')
+def get_volume(db, profiles, centreline_id, dir_bin, date, hour=None, profile=False):
+     
+    tmc, atr = get_relevant_counts(db, centreline_id, dir_bin)
+    if tmc.empty and atr.empty:
+        print('No relevant counts to interpolate. For now.')
         return None
         
-    tmc, atr = get_relavant_counts(db, centreline_id, dir_bin)
-    '''
-    ################################# TESTING SECTION#################################
-    slicetmc, sliceatr = slice_data(tmc, atr, centreline_id=int(centreline_id), hour=int(hour))
+    try:
+        date = int(date)
+    except:    
+        if pd.to_datetime(date).weekday() in (5,6):
+            print('Weekdays Only Please. For now.')
+            return None
+        if type(date) == str:
+            date = datetime.strptime(date,'%Y-%m-%d').date()
+        if hour is not None:    
+            return get_volume_hour(db, tmc, atr, profiles, centreline_id, dir_bin, date, hour)
+        else:
+            p = get_volume_day(db, tmc, atr, profiles, centreline_id, dir_bin, date)
+            if profile:
+                return p
+            else:
+                return sum(p)
+                
+    return get_volume_annualavg(db, tmc, atr, profiles, centreline_id, dir_bin, date)
+    
+def get_volume_annualavg(db, tmc, atr, profiles, centreline_id, dir_bin, year):
+    
+    # No grouping while taking weighted average
+    agglvl = 'dir_bin'
 
-    return calc_date_factors(date, slicetmc['count_date'].append(sliceatr['count_date']).unique(), centreline_id, dir_bin)
+    if tmc[tmc['count_date'].astype(str).str.contains(str(year),na=False)].empty and atr[atr['count_date'].astype(str).str.contains(str(year),na=False)].empty:            
+        data = fill_in(profiles, pd.concat([tmc,atr]))    
+    elif not atr[atr['count_date'].astype(str).str.contains(str(year),na=False)].empty:
+        atr = atr[atr['count_date'].astype(str).str.contains(str(year),na=False)]
+        data = fill_in(profiles, atr)
+    else:
+        tmc = tmc[tmc['count_date'].astype(str).str.contains(str(year),na=False)]
+        data = fill_in(profiles, tmc)
     
-    ##################################################################################
-    '''
+    data = data.groupby(['centreline_id','dir_bin','count_date'], as_index=False).sum()
+    #print(data)
+    factors = calc_date_factors(year, data['count_date'], centreline_id, dir_bin)
+    #print(factors)
+    return take_weighted_average(data, None, agglvl, factors)
+        
+def get_volume_day(db, tmc, atr, profiles, centreline_id, dir_bin, date):
     
-    if type(date) == str:
-        date = datetime.strptime(date,'%Y-%m-%d').date()
+    pass
+
+def get_volume_hour(db, tmc, atr, profiles, centreline_id, dir_bin, date, hour):
+    
+    agglvl = 'time_15'
     
     # 1. Same Day, Same centreline, Full Hour ATR OR TMC
     # Report Directly
     slicetmc, sliceatr = slice_data(tmc, atr, centreline_id=int(centreline_id), count_date=date, hour=int(hour))
     if len(slicetmc) == 4 or len(sliceatr) == 4:
         print('Same Day, Same centreline, Full Hour ATR OR TMC, Report Directly')
-        return take_weighted_average(slicetmc, sliceatr)
+        return take_weighted_average(slicetmc, sliceatr, agglvl)
 
     # 2. Same Day, Same centreline, Partial Data
     # Fill in and report
@@ -188,26 +260,26 @@ def get_volume(db, profiles, centreline_id, dir_bin, date, hour):
         if len(sliceatr) > len(slicetmc):
             sliceatr_1 =  fill_in(profiles, sliceatr_1, hour)
             print('Same Day, Same centreline, Fill in ATR')
-            return take_weighted_average(None, sliceatr_1)
+            return take_weighted_average(None, sliceatr_1, agglvl)
         else:
             slicetmc_1 = fill_in(profiles, slicetmc_1, hour)
             print('Same Day, Same centreline, Fill in TMC')
-            return take_weighted_average(slicetmc_1, None)
+            return take_weighted_average(slicetmc_1, None, agglvl)
     elif len(sliceatr_1) > 48:
         sliceatr_1 = fill_in(profiles, sliceatr_1, hour)
         print('Same Day, Same centreline, Fill in ATR')
-        return take_weighted_average(None, sliceatr_1, hour)
+        return take_weighted_average(None, sliceatr_1, hour, agglvl)
     elif len(slicetmc_1) > 24:
         slicetmc_1 = fill_in(profiles, slicetmc_1, hour)
         print('Same Day, Same centreline, Fill in TMC')
-        return take_weighted_average(slicetmc_1, None)
+        return take_weighted_average(slicetmc_1, None, agglvl)
 
     # 3. Same Day, Same centreline group, Full Hour ATR OR TMC
     # Report Directly
     slicetmc, sliceatr = slice_data(tmc, atr, count_date=date, hour=int(hour))
     if len(slicetmc) == 4 or len(sliceatr) == 4:
         print('Same Day, Same centreline group, Full Hour ATR OR TMC - Report Directly')
-        return take_weighted_average(slicetmc, sliceatr)
+        return take_weighted_average(slicetmc, sliceatr, agglvl)
         
     # 4. Same Day, Same centreline group, Partial Data
     # Fill in and Report
@@ -217,19 +289,19 @@ def get_volume(db, profiles, centreline_id, dir_bin, date, hour):
         if len(sliceatr) > len(slicetmc):
             sliceatr_1 = fill_in(profiles, sliceatr_1, hour)
             print('Same Day, Same centreline group, Fill in ATR')
-            return take_weighted_average(None, sliceatr_1)
+            return take_weighted_average(None, sliceatr_1, agglvl)
         else:
             slicetmc_1 = fill_in(profiles, slicetmc_1, hour)
             print('Same Day, Same centreline group, Fill in TMC')
-            return take_weighted_average(slicetmc_1, None)
+            return take_weighted_average(slicetmc_1, None, agglvl)
     elif len(sliceatr_1) > 48:
         sliceatr_1 = fill_in(profiles, sliceatr_1, hour)
         print('Same Day, Same centreline group, Fill in ATR')
-        return take_weighted_average(None, sliceatr_1)
+        return take_weighted_average(None, sliceatr_1, agglvl)
     elif len(slicetmc_1) > 24:
         slicetmc_1 = fill_in(profiles, slicetmc_1, hour)  
         print('Same Day, Same centreline group, Fill in TMC')
-        return take_weighted_average(slicetmc_1, None)
+        return take_weighted_average(slicetmc_1, None, agglvl)
         
     # 5. Different Day, Same centreline, Full Hour
     # Apply Year-to-Year/Seasonality Factors/Weights and Report
@@ -238,7 +310,7 @@ def get_volume(db, profiles, centreline_id, dir_bin, date, hour):
     if slicetmc['time_15'].nunique() == 4 or sliceatr['time_15'].nunique() == 4:
         factors_date = calc_date_factors(date, slicetmc['count_date'].append( sliceatr['count_date']).unique(), centreline_id, dir_bin)
         print('Different Day, Same centreline, Full Hour')
-        return take_weighted_average(slicetmc, sliceatr, factors_date=factors_date)
+        return take_weighted_average(slicetmc, sliceatr, agglvl, factors_date=factors_date)
         
     # 6. Different Day, Same centreline, Partial Data
     # Fill in, Apply Year-to-Year/Seasonality Factors/Weights and Report
@@ -249,26 +321,26 @@ def get_volume(db, profiles, centreline_id, dir_bin, date, hour):
         if sliceatr['time_15'].nunique() > slicetmc['time_15'].nunique():
             sliceatr_1 = fill_in(profiles, sliceatr_1, hour)
             print('Different Day, Same centreline, Fill in ATR')
-            return take_weighted_average(None, sliceatr_1, factors_date=factors_date)
+            return take_weighted_average(None, sliceatr_1, agglvl, factors_date=factors_date)
         else:
             slicetmc_1 = fill_in(profiles, slicetmc_1, hour) 
             print('Different Day, Same centreline, Fill in TMC')
-            return take_weighted_average(slicetmc_1, None, factors_date=factors_date)
+            return take_weighted_average(slicetmc_1, None, agglvl, factors_date=factors_date)
     elif sliceatr_1['time_15'].nunique() > 48:
         sliceatr_1 = fill_in(profiles, sliceatr_1, hour)
         print('Different Day, Same centreline, Fill in ATR')
-        return take_weighted_average(None, sliceatr_1, factors_date=factors_date)
+        return take_weighted_average(None, sliceatr_1, agglvl, factors_date=factors_date)
     elif slicetmc_1['time_15'].nunique() > 24:
         slicetmc_1 = fill_in(profiles, slicetmc_1, hour)    
         print('Different Day, Same centreline, Fill in TMC')
-        return take_weighted_average(slicetmc_1, None, factors_date=factors_date) 
+        return take_weighted_average(slicetmc_1, None, agglvl, factors_date=factors_date) 
         
     # 7. Different Day, Same centreline group, Full Hour
     slicetmc, sliceatr = slice_data(tmc, atr, hour=int(hour))
     if slicetmc['time_15'].nunique() == 4 or sliceatr['time_15'].nunique() == 4:
         factors_date = calc_date_factors(date, slicetmc['count_date'].append( sliceatr['count_date']).unique(), centreline_id, dir_bin)
         print('Different Day, Same centreline group, Full Hour')
-        return take_weighted_average(slicetmc, sliceatr, factors_date=factors_date)
+        return take_weighted_average(slicetmc, sliceatr, agglvl, factors_date=factors_date)
         
     # 8. Different Day, Same centreline group, Partial Data
     slicetmc_1, sliceatr_1 = tmc, atr
@@ -277,19 +349,19 @@ def get_volume(db, profiles, centreline_id, dir_bin, date, hour):
         if sliceatr['time_15'].nunique() > slicetmc['time_15'].nunique():
             sliceatr_1 = fill_in(profiles, sliceatr_1, hour)
             print('Different Day, Same centreline group, Fill in ATR')
-            return take_weighted_average(None, sliceatr_1, factors_date=factors_date)
+            return take_weighted_average(None, sliceatr_1, agglvl, factors_date=factors_date)
         else:
             slicetmc_1 = fill_in(profiles, slicetmc_1, hour)  
             print('Different Day, Same centreline group, Fill in TMC')
-            return take_weighted_average(slicetmc_1, None, factors_date=factors_date)
+            return take_weighted_average(slicetmc_1, None, agglvl, factors_date=factors_date)
     elif sliceatr_1['time_15'].nunique() > 48:
         sliceatr_1 = fill_in(profiles, sliceatr_1, hour)
         print('Different Day, Same centreline group, Fill in ATR')
-        return take_weighted_average(None, sliceatr_1, factors_date=factors_date)
+        return take_weighted_average(None, sliceatr_1, agglvl, factors_date=factors_date)
     elif slicetmc_1['time_15'].nunique() > 24:
         slicetmc_1 = fill_in(profiles, slicetmc_1, hour)  
         print('Different Day, Same centreline group, Fill in TMC')
-        return take_weighted_average(slicetmc_1, None, factors_date=factors_date)
+        return take_weighted_average(slicetmc_1, None, agglvl, factors_date=factors_date)
     
     return None
     
@@ -310,7 +382,7 @@ def slice_data(df1, df2, centreline_id=None, count_date=None, hour=None):
     
     return slice1, slice2
     
-def take_weighted_average(tmc, atr, factors_date=None):
+def take_weighted_average(tmc, atr, agglvl, factors_date=None):
     '''
     ** all data will be added up do not pass in redundant rows
     This function calculates a factored&weighted average volume for estimation.
@@ -324,7 +396,7 @@ def take_weighted_average(tmc, atr, factors_date=None):
     '''
 
     if factors_date is None:
-        df = pd.concat([tmc,atr]).groupby(['centreline_id','dir_bin','time_15'],as_index=False).mean().groupby(['centreline_id','dir_bin']).sum()
+        df = pd.concat([tmc,atr]).groupby(['centreline_id','dir_bin',agglvl],as_index=False).mean().groupby(['centreline_id','dir_bin']).sum()
 
         return df['volume'][0]
     else:
@@ -333,8 +405,7 @@ def take_weighted_average(tmc, atr, factors_date=None):
             raise ValueError('No value passed to take average.')
         df['volume'] = df['volume']*df['factor_month']
         total = 0
-        print(df)
-        for (time_15), group in df.groupby('time_15'):        
+        for (time_15), group in df.groupby(agglvl):        
             volume = 0 
             weights_sum = sum(group['weight_year'])
             for v,w in zip(group['volume'], group['weight_year']):
@@ -344,25 +415,27 @@ def take_weighted_average(tmc, atr, factors_date=None):
         return total
        
 if __name__ == "__main__":
-    
+    '''
     # CONNECTION SET UP
     CONFIG = configparser.ConfigParser()
     CONFIG.read('db.cfg')
     dbset = CONFIG['DBSETTINGS']
     db = DB(dbname=dbset['database'],host=dbset['host'],user=dbset['user'],passwd=dbset['password'])
-    '''
+    
     centreline_id = input("Centreline_id?")
     dir_bin = input("direction(+1/-1)?")
     date = input("date(yyyy-mm-dd)?")
     hour = input("Hour?")
     '''
-    centreline_id = '1153'
-    dir_bin = '-1'
-    date = '2006-08-04'
+    centreline_id = '117'
+    dir_bin = '1'
+    date = '2012'
     hour = '9'
-    
+    #tmc,atr = get_relevant_counts(db,117,1)
     profiles = pickle.load(open("../12 Volume Clustering/ClusterCentres.p", "rb"))
-
-    testing(db, profiles)
+    monthly_factors = pickle.load(open("monthly_factors.p", "rb"))
+    #testing(db, profiles)
     
-    db.close()
+    #volumes, non = testing_entire_TO(db, profiles)
+    #print(get_volume(db, profiles, centreline_id, dir_bin, date, profile=False))
+    #db.close()
