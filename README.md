@@ -53,3 +53,6 @@ The purpose of this project is to leverage existing count data to develop a mode
 ## 4. Related Tasks
 1. Explore the availability and value of alternative sources of volume data.
 2. Develop process for identifying priority segments as candidates for the implementation of permanent and/or short period traffic count stations.
+
+## 5. Schema Overview and Breakdown
+For a detailed description on the tables residing in the schema prj_volume, see [prj_volume.md](prj_volume.md)
