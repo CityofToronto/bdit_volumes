@@ -10,7 +10,7 @@ This table tags all legs of an intersection to centreline segments.
 ### **Table scoot.scoot_detectors**
 This table stores information on SCOOT detectors in the city. The px and scn numbers in the table indicate the intersection that the detector is physically located (which can be different from the intersection that the detector's data is contributing towards). The intersection and approach that the detector is counting towards is indicated by the detector id (det).
 ### **Table scoot.detector_tcl**
-This table contains the mapping of each SCOOT detector to the centreline segment it is located at. Exact mapping process can be found [below] (# Mapping Process).
+This table contains the mapping of each SCOOT detector to the centreline segment it is located at. Exact mapping process can be found [below](# Mapping Process).
 ### **Tables scoot.raw_yyyymm**
 Monthly data exported from the scoot system in 15min bins.
 
@@ -29,5 +29,5 @@ Monthly data exported from the scoot system in 15min bins.
 1. Each leg of each intersection is mapped to a centreline segment based on its physical location and stored in the temporary table **px_tcl**.  
 2. **px_tcl** is joined with **scoot_detectors** based on px number and side of intersection (sideofint) to map each detector to a centreline segment.
 
-!['SCOOT Mapping Process'](SCOOT Mapping Process.png)
+!['SCOOT Mapping Process'](SCOOT_Mapping_Process.png)
 
