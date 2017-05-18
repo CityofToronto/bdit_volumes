@@ -4,7 +4,7 @@ Data collected from the city's signalized intersection detection system.
 ## Data Elements
 This section gives an overview of tables stored in the database under schema SCOOT. Fields of the process tables can be found in the process diagram below.
 ### **Table scoot.px**
-Obtained directly from the City of Toronto's [open data catalogue] (http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=965b868b5535b210VgnVCM1000003dd60f89RCRD&vgnextchannel=7807e03bb8d1e310VgnVCM10000071d60f89RCRD), this table stores information on every signalized intersection in the city. 
+Obtained directly from the City of Toronto's [open data catalogue](http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=965b868b5535b210VgnVCM1000003dd60f89RCRD&vgnextchannel=7807e03bb8d1e310VgnVCM10000071d60f89RCRD), this table stores information on every signalized intersection in the city. 
 ### **Table scoot.px_tcl**
 This table tags all legs of an intersection to centreline segments. 
 ### **Table scoot.scoot_detectors**
@@ -29,5 +29,5 @@ Monthly data exported from the scoot system in 15min bins.
 1. Each leg of each intersection is mapped to a centreline segment based on its physical location and stored in the temporary table **px_tcl**.  
 2. **px_tcl** is joined with **scoot_detectors** based on px number and side of intersection (sideofint) to map each detector to a centreline segment.
 
-!['SCOOT Mapping Process'] (SCOOT Mapping Process.png)
+!['SCOOT Mapping Process'](SCOOT Mapping Process.png)
 
