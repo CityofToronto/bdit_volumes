@@ -36,7 +36,7 @@ Cluster 2 (relatively consistent volume throughout the day) are generally lesser
 Same goes for cluster 5, which also represents no particular up/down trend during the day.
 
 ### Distance distribution by road class
-![distribution_by_roadclass](img/distribution_by_roadclass.png)
+![distribution_by_roadclass](img/distribution_by_roadclass.PNG)
 
 As expected, reliability of the clustering process decreases as total volume decreases because of
 1. lack of pattern on roads with less volume
