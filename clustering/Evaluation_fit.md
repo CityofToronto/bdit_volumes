@@ -6,6 +6,8 @@ Take minimum of distance to average profile normalized by number of points. (dis
 ## Results
 ### Distribution
 ![histogram](img/histogram.png)
+Zooming in on the highest three columns:
+![histogram_zoom](img/histogram_zoom.png)
 The distribution is concentrated at the lower end but the tail is long.
 
 ### Visual Validation
@@ -33,12 +35,21 @@ The cutoff for a good fit should be drawn somewhere on the order of -5. However,
 Cluster 2 (relatively consistent volume throughout the day) are generally lesser fit. Same is demonstrated in the profiles above, the lesser fit ones mostly belong to this cluster. 
 Same goes for cluster 5, which also represents no particular up/down trend during the day.
 
+### Distance distribution by road class
+![distribution_by_roadclass](img/distribution_by_roadclass.png)
+
+As expected, reliability of the clustering process decreases as total volume decreases because of
+1. lack of pattern on roads with less volume
+2. counts are more susceptible to random errors. 
+
 ### Percent Difference between Min and Second Min
 ![diff-min-sec-min](img/diff-min-sec-min.PNG)
 
-Ideally, the percent difference should be close to 1. However, this plot suggests that at least two of our cluster centres should quite similar. 
+Below are examples in the first bin, middle bin, and last bin, respectively.  
+![diff-mins-1](img/diff-mins-1.png)
+![diff-mins-2](img/diff-mins-2.png)
+![diff-mins-3](img/diff-mins-3.png)
 
-### Percent Difference between Min and Average without Min
-![diff-wo-min](img/diff-wo-min.PNG)
-
-The result here shows that the min distance is generally very different compared to the rest of clusters.
+Ideally, the percent difference should be close to 1. However, the plots suggest that
+1. at least two of our cluster centres should quite similar
+2. some of the data is messy.
