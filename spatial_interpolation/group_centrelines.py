@@ -16,8 +16,19 @@ dbset = CONFIG['DBSETTINGS']
 
 db = DB(dbname=dbset['database'],host=dbset['host'],user=dbset['user'],passwd=dbset['password'])
 
-pairs = pd.read_csv('pairs2.csv', names = ['c1','c2','same'])
+# pairs.csv - merge segments where intersecting segment(s) is of equal or lower class or intersecting segment(s) is lower than Collector 
+# pairs2.csv - merge segments where intersecting segment(s) is lower than Collector  
+# that is, locals intersecting locals will be separate in pairs.csv but merged in pairs2.csv
+# pairs_directional.csv - directional segments
+
+pairs = pd.read_csv('pairs_directional.csv', names = ['c1','c2','dirc','same'])
 pairs = pairs[pairs['same']=='t']
+pairs['c1'] = pairs['c1'].astype(int)
+pairs['c2'] = pairs['c2'].astype(int)
+pairs['dirc'] = pairs['dirc'].astype(int)
+
+pairs['c1'] = pairs['c1']*pairs['dirc']
+pairs['c2'] = pairs['c2']*pairs['dirc']
 
 root = list(set(list(pd.DataFrame(pairs['c1']).drop_duplicates()['c1'])+list(pd.DataFrame(pairs['c2']).drop_duplicates()['c2'])))
 to_visit = []
@@ -44,15 +55,15 @@ count = 1
 table = []
 for group in chains:
     for tcl in group:
-        table.append([tcl,count])
+        table.append([abs(tcl),int(tcl/abs(tcl)),count])
     count = count + 1
 
 db.truncate('prj_volume.centreline_groups')
 db.inserttable('prj_volume.centreline_groups',table)
 
-tcl_no_merge = [x for t in db.query('SELECT centreline_id FROM prj_volume.centreline_groups RIGHT JOIN prj_volume.centreline USING (centreline_id) WHERE group_number is null and feature_code < 202000').getresult() for x in t]
+tcl_no_merge = [x for t in db.query('SELECT centreline_id*dir_bin FROM prj_volume.centreline_groups RIGHT JOIN (SELECT centreline_id, (CASE oneway_dir_code WHEN 0 THEN UNNEST(ARRAY[1,-1]) ELSE oneway_dir_code * dir_binary((ST_Azimuth(ST_StartPoint(shape), ST_EndPoint(shape))+0.292)*180/pi()) END) AS dir_bin, feature_code FROM prj_volume.centreline) A USING (centreline_id, dir_bin) WHERE group_number is null and feature_code < 202000').getresult() for x in t]
 for tcl in tcl_no_merge:
-    table.append([tcl,count])
+    table.append([abs(int(tcl)),int(tcl/abs(tcl)),count])
     count = count + 1
 
 db.truncate('prj_volume.centreline_groups')

@@ -16,7 +16,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def fill_missing_values(profiles, new, clusterinfo):
+def fill_missing_values(profiles, new, clusterinfo, plot=None):
     
     ''' This function takes in a list of volume profiles and a dataframe of new, incomplete days of data as well as their clustering information and fill the missing time bins.
     
@@ -27,10 +27,14 @@ def fill_missing_values(profiles, new, clusterinfo):
     Output:
         a dictionary with complete day profile filled in. key: (centreline_id, dir_bin, count_date); value: list of volumes of each 15min bin.
     '''
+    
     if new.empty:
         return None
     filled = {}
     for (count_date, tcl, dirc), newdata in new.groupby(['count_date','centreline_id','dir_bin']):
+        if len(newdata) == 96:
+            filled[(count_date, tcl, dirc)] = newdata['volume']
+            continue
         profile = profiles[int(clusterinfo[(clusterinfo['centreline_id']==tcl) & (clusterinfo['dir_bin'] == dirc)].loc[:,'cluster'])]  
         
         sum_vol = float(sum(newdata['volume']))
@@ -55,16 +59,17 @@ def fill_missing_values(profiles, new, clusterinfo):
                 j = j + 1
             else:
                 complete_profile.append(total_vol*profile[i])
-        if tcl in ([7636691,112888,181,8570852]):     
-            plt.figure()
-            plt.plot(profile*total_vol)
-            plt.plot(complete_profile,'g*')
-            plt.plot(incomplete_time15, incomplete_profile,'r+')
+        if plot is not None:
+            if [tcl,dirc,count_date] in plot:     
+                plt.figure()
+                plt.plot(profile*total_vol)
+                plt.plot(complete_profile,'g*')
+                plt.plot(incomplete_time15, incomplete_profile,'r+')
         filled[(count_date, tcl, dirc)] = complete_profile
         
     return filled
     
-def fit_incomplete(centres, new):
+def fit_incomplete(centres, new, plot=None):
     
     '''
     This function takes a list of volume profile cluster centres and incomplete days of data and fits the data to one of the profiles.
@@ -75,12 +80,14 @@ def fit_incomplete(centres, new):
     Output:
         a dataframe with columns: centreline_id, dir_bin, cluster
     '''
+    
     if new.empty:
         return None, None
     cls = []
     distmtx = []
     for (count_date, tcl, dirc), newdata in new.groupby(['count_date','centreline_id','dir_bin']):
         mindist = 100
+        total_vol = 100
         cl = -1
         i = 0
         svol = sum(newdata['volume'])
@@ -98,12 +105,28 @@ def fit_incomplete(centres, new):
             if dist<mindist:
                 mindist = dist
                 cl = i
-            row.append(dist)
+                total_vol = svol/s
+                
+            row.append(dist/len(newdatacp))
             i = i + 1
+        row.append(len(newdatacp))
         distmtx.append(row)
-        cls.append([tcl,dirc,cl])
-        
-    return pd.DataFrame(cls,columns=['centreline_id','dir_bin','cluster']), distmtx
+        cls.append([count_date,tcl,dirc,cl])
+        if plot is not None:
+            if [tcl,dirc,count_date] in plot:     
+                plt.figure()
+                plt.plot(centres[cl]*total_vol, label = 'fitted profile')
+                plt.plot(newdata['time_15'], newdata['volume'],'r*',label = 'data')
+                print(str(tcl) + ' ' + str(dirc) + ' ' + str(count_date))
+                (x1,x2) = plt.xlim()
+                (y1,y2) = plt.ylim()
+                plt.annotate('order = ' + str(np.floor(np.log10(mindist/len(newdatacp)))), xy=((x2-x1)*0.04+x1, y2*0.80), fontsize = 14)
+                plt.annotate('dist = ' + str(mindist/len(newdatacp)), xy=((x2-x1)*0.04+x1, y2*0.90), fontsize = 14)
+                plt.xlabel('index of 15min bins')
+                plt.ylabel('Volume (veh)')
+                plt.legend(bbox_to_anchor=(1.45, 1.05))
+                plt.show()
+    return pd.DataFrame(cls,columns=['count_date','centreline_id','dir_bin','cluster']), distmtx
     
 def get_data_aggregated(db):
     
@@ -164,7 +187,7 @@ def get_incompleteday_data(db):
         Each row is one 15min observation.
     '''
     
-    data = pd.DataFrame(db.query('SELECT count_date, timecount, vol, centreline_id, dir_bin FROM prj_volume.cluster_atr_volumes WHERE complete_day = False').getresult(),columns=['timecount','volume','centreline_id','dir_bin'])
+    data = pd.DataFrame(db.query('SELECT count_date, timecount, vol, centreline_id, dir_bin FROM prj_volume.cluster_atr_volumes WHERE complete_day = False').getresult(),columns=['count_date','timecount','volume','centreline_id','dir_bin'])
     data['volume'] = data['volume'].astype(int)
     data['time_15'] = data.timecount.apply(lambda x: x.hour*4+x.minute//15)
     data = data.sort_values(by=['centreline_id','count_date','dir_bin','time_15'])
@@ -224,7 +247,7 @@ def KMeans_cluster(nClusters, x, metric=False, avgWithinSS=[], ch=[], sc=[], ve=
         sc.append(metrics.silhouette_score(np.array(x), np.array(labels), metric='euclidean'))
         ve.append(100*(sum(pdist(x)**2)/np.array(x).shape[0]-sum(dist**2))/(sum(pdist(x)**2)/np.array(x).shape[0]))
     return kmeans
-    
+
 def plot_metrics_find_k(data, m):
 
     '''
@@ -313,7 +336,7 @@ def plot_profile(cluster, profile, percentile = {}):
     nClusters = len(profile)
     df = pd.DataFrame(cluster,columns=['cluster','group_number','dir_bin','identifier'])['cluster'].value_counts()
     for (i,prof) in zip(range(nClusters), profile):
-        fig, ax = plt.subplots(figsize=[7,5])
+        fig, ax = plt.subplots(figsize=[3.5,2.5])
         ax.plot([x/4 for x in range(96)],prof,color=colors[i])
         
         if percentile:
@@ -327,7 +350,7 @@ def plot_profile(cluster, profile, percentile = {}):
     
         ax.set_xlabel('Hour')
         ax.set_ylabel('% of Daily Volume')
-        
+
 def remove_clustered_cl(incomdata, tcldircl):
     
     '''

@@ -40,8 +40,8 @@ data['cluster'] = kmeans.predict(list(data['vol_weight']))
 tcldircl_com = cl_fcn.plot_mode_cl_consolidate(data, ('centreline_id','dir_bin'))
 
 # Assign one profile to each centreline group
-tcl_group = pd.DataFrame(db.query('SELECT * FROM prj_volume.centreline_groups').getresult(), columns = ['centreline_id','group_number'])
-data = data.merge(tcl_group, on='centreline_id')
+tcl_group = pd.DataFrame(db.query('SELECT * FROM prj_volume.centreline_groups').getresult(), columns = ['centreline_id','dir_bin','group_number'])
+data = data.merge(tcl_group, on=['centreline_id','dir_bin'])
 clgrdircl_com = cl_fcn.plot_mode_cl_consolidate(data,('group_number','dir_bin'))
 
 # Plot TOD profile for each cluster center
@@ -49,7 +49,7 @@ percentile = cl_fcn.get_percentiles(data,[25,75])
 cl_fcn.plot_profile(clgrdircl_com, profile, percentile)
 cl_fcn.plot_profile(tcldircl_com, profile, percentile)
 
-datatmc = cl_fcn.get_data_tmc(db, ('2010-01-01','2011-01-01'))
+datatmc = cl_fcn.get_data_tmc(db, ('2010-01-01','2017-01-01'))
 classify_tmcdata = cl_fcn.remove_clustered_cl(datatmc, tcldircl_com)
 
 [classified_tmcdata,distmtx] = cl_fcn.fit_incomplete(profile, classify_tmcdata)
@@ -61,14 +61,15 @@ incomdata = cl_fcn.get_incompleteday_data(db)
 classify_incomdata = cl_fcn.remove_clustered_cl(incomdata, tcldircl_com)
 
 # Classify Incomplete Data and Deal with duplicates
-clusters_incom = cl_fcn.fit_incomplete(profile, classify_incomdata)
+[clusters_incom, distmtx] = cl_fcn.fit_incomplete(profile, classify_incomdata)
 
-clusters_incom = clusters_incom.merge(tcl_group, on='centreline_id')
+clusters_incom = clusters_incom.merge(tcl_group, on=['centreline_id','dir_bin'])
 tcldircl_incom = cl_fcn.plot_mode_cl_consolidate(clusters_incom, ('centreline_id','dir_bin'))
 clgrdircl_incom = cl_fcn.plot_mode_cl_consolidate(clusters_incom, ('group_number','dir_bin'))
 
 tcldircl = tcldircl_com + tcldircl_incom
 clgrdircl = clgrdircl_com + clgrdircl_incom
+
 df_tcldircl = pd.DataFrame(tcldircl, columns = ['cluster','centreline_id','dir_bin','identifier'])
 
 # Interpolate Incomplete Data
@@ -81,11 +82,6 @@ db.truncate('prj_volume.clusters_group')
 db.inserttable('prj_volume.clusters_group', clgrdircl)
 db.close()
 
-
-for l in distmtx:
-    plt.imshow([l,l],cmap='hot')
-    break
-plt.show()
 
 pickle.dump(profile,open("ClusterCentres.p","wb"))
 pickle.dump(tcldircl,open("ClusterResults.p","wb"))
