@@ -7,8 +7,10 @@ CREATE FOREIGN TABLE o_countinfomics
   count_date timestamp without time zone,
   day_no bigint,
   comment_ character varying(250),
-  file_name character varying(100)
-  -- load_date timestamp without time zone,
-  -- transfer_rec smallint,
-  -- category_id bigint
+  file_name character varying(100),
+  source1 character varying(50),
+  source2 character varying(50),
+  load_date timestamp without time zone,
+  transfer_rec smallint,
+  category_id bigint
   ) SERVER oradb OPTIONS (table 'COUNTINFOMICS');
