@@ -12,13 +12,14 @@ SELECT	A.centreline_id,
 	WHEN F.fnode_id = F.tnode_id THEN 1
 	WHEN ST_GeometryType(F.loc) = 'ST_Point' THEN dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(), gis.twochar_direction(E.apprdir))
 	WHEN ST_GeometryType(F.loc) = 'ST_LineString' THEN dir_binary_rel((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),(ST_Azimuth(ST_StartPoint(F.loc), ST_EndPoint(F.loc))+0.292)*180/pi())
-	-- if no condition is met, exception needs to be raised about added special situation
+	WHEN A.direction in ('Eastbound','Northbound') THEN 1
+	WHEN A.direction in ('Westbound','Southbound') THEN -1
 	END) AS dir_bin
 FROM prj_volume.artery_tcl A
 	INNER JOIN prj_volume.centreline B USING (centreline_id)
 	INNER JOIN traffic.arterydata E USING (arterycode)
 	INNER JOIN prj_volume.arteries F USING (arterycode)
-WHERE A.artery_type = 1 AND B.feature_code <= 201500
+WHERE A.artery_type = 1 
 ORDER BY A.centreline_id, A.arterycode;
 
 UPDATE artery_tcl_directions
@@ -36,21 +37,42 @@ or (centreline_id = 20089656 and arterycode = 36191) or (centreline_id = 3000242
 or (centreline_id = 30039432 and arterycode = 35538) or (centreline_id = 30065648 and arterycode = 35347) or (centreline_id = 30073636 and arterycode = 34009)
 or (centreline_id = 30074130 and arterycode = 33024);
 
-DELETE FROM prj_volume.centreline_volumes WHERE count_type = 1;
+DROP TABLE IF EXISTS prj_volume.cluster_atr_volumes;
 
-INSERT INTO prj_volume.centreline_volumes(centreline_id, dir_bin, count_bin, volume, count_type, speed_class, vehicle_class)
-SELECT	A.centreline_id,
-	A.dir_bin,
-	(C.timecount::time + B.count_date) AS count_bin,
-	C.count as volume,
-	1 as count_type,
-	(CASE WHEN C.category_id = 4 THEN C.speed_class ELSE NULL END) AS speed_class,
-	(CASE WHEN C.category_id = 3 THEN C.speed_class ELSE NULL END) AS vehicle_class
-FROM artery_tcl_directions A
-INNER JOIN traffic.countinfo B USING (arterycode)
-INNER JOIN prj_volume.cnt_det_clean C USING (count_info_id)
-WHERE A.dir_bin IN (1,-1)
-ORDER BY A.centreline_id, A.arterycode;
+CREATE TABLE prj_volume.cluster_atr_volumes AS (
+	SELECT count_date, timecount, dir_bin, centreline_id, 
+		(CASE WHEN COUNT(vol) > 1 THEN AVG(vol) ELSE SUM(vol) END) AS vol
+	FROM (SELECT count_info_id, arterycode, count_date, timecount::time, SUM(count) AS vol, dir_bin, centreline_id
+		FROM prj_volume.cnt_det_clean JOIN traffic.countinfo USING (count_info_id) JOIN artery_tcl_directions USING (arterycode)
+		WHERE flag IS NULL and EXTRACT(dow from count_date) NOT IN (0,6) 
+		GROUP BY count_info_id, arterycode, count_date, timecount::time, dir_bin, centreline_id) A
+	GROUP BY centreline_id, count_date, dir_bin, timecount);
+		
+ALTER TABLE prj_volume.cluster_atr_volumes ADD COLUMN vol_weight double precision;
+ALTER TABLE prj_volume.cluster_atr_volumes ADD COLUMN complete_day boolean;
 
+DROP TABLE IF EXISTS sum_vol;
+
+CREATE TEMPORARY TABLE sum_vol AS (	
+	(SELECT centreline_id, dir_bin, count_date, SUM(vol) AS sumvol, (COUNT(*)=96) AS complete_day
+	FROM prj_volume.cluster_atr_volumes
+	GROUP BY centreline_id, dir_bin, count_date));
+	
+DROP TABLE IF EXISTS temp;
+
+CREATE TEMPORARY TABLE temp AS (
+	SELECT count_date, timecount, vol, dir_bin, centreline_id, 
+		(CASE sum_vol.complete_day
+		WHEN TRUE THEN vol/sumvol 
+		ELSE NULL 
+		END) AS vol_weight, sum_vol.complete_day
+	FROM prj_volume.cluster_atr_volumes JOIN sum_vol USING (centreline_id, dir_bin, count_date));
+
+TRUNCATE TABLE prj_volume.cluster_atr_volumes;
+
+INSERT INTO prj_volume.cluster_atr_volumes(count_date, timecount, vol, dir_bin, centreline_id, vol_weight, complete_day)
+SELECT count_date, timecount, vol, dir_bin, centreline_id, vol_weight, complete_day
+FROM temp;
+
+DROP TABLE temp;
 DROP TABLE artery_tcl_directions;
-

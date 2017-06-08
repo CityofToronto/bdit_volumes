@@ -74,3 +74,4 @@ update_db/tmc_count_locations.pdf
 update_db/tmc_count_locations.png
 update_db/eglinton_counts.R
 *connect.R
+*.cfg
