@@ -11,7 +11,7 @@ INSERT INTO artery_tcl_directions
 SELECT	A.centreline_id,
 	A.arterycode,
 	(CASE 
-	WHEN F.fnode_id = F.tnode_id THEN -1
+	WHEN F.fnode_id = F.tnode_id THEN 1
 	WHEN ST_GeometryType(F.loc) = 'ST_Point' THEN dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(), gis.twochar_direction(E.apprdir))
 	WHEN ST_GeometryType(F.loc) = 'ST_LineString' THEN dir_binary_rel((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),(ST_Azimuth(ST_StartPoint(F.loc), ST_EndPoint(F.loc))+0.292)*180/pi())
 	-- if no condition is met, exception needs to be raised about added special situation
