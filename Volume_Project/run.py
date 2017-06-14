@@ -61,23 +61,24 @@ def populate_volumes_table(db):
     print("Populating ATR counts...")
     utilities.execute_sql(db, "update-table-centreline_volumes-atr.sql")
     print("Populating TMC counts...")
-    utilities.execute_sql(db, "update-table-centreline_volums-tmc.sql")
+    
+    utilities.execute_sql(db, "update-table-centreline_volumes-tmc.sql")
     utilities.execute_sql(db, "create-table-cluster_atr_volumes.sql")
     
 if __name__ == '__main__':
-
+    
     # CONNECTION SET UP
     CONFIG = configparser.ConfigParser()
     CONFIG.read('db.cfg')
     dbset = CONFIG['DBSETTINGS']
     db = DB(dbname=dbset['database'],host=dbset['host'],user=dbset['user'],passwd=dbset['password'])
     
-    new_match = arterycode_matching(db, manual_update = False)
+    #new_match = arterycode_matching(db, manual_update = False)
     
-    cleanup_traffic_counts(db)
+    #cleanup_traffic_counts(db)
     
     populate_volumes_table(db)
-
+    
     print("Clustering...")
     C = cluster(db, cl_fcn.get_data_individual(db, br = [('20100101','20170101')]), nClusters = 6)
 
@@ -93,5 +94,5 @@ if __name__ == '__main__':
     reporting.refresh_monthly_factors(db)
     
     reporting.testing_entire_TO(db, C)
-
+    
     

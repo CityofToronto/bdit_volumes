@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS tmc_det_norm;
+DROP TABLE IF EXISTS tmc_det_norm;
 
 CREATE TEMPORARY TABLE tmc_det_norm(
 	count_info_id bigint,
@@ -26,7 +26,7 @@ WITH E AS (SELECT	C.count_info_id, B.centreline_id,
 		INNER JOIN prj_volume.centreline B ON A.tcl_from_segment = B.centreline_id
 		INNER JOIN traffic.countinfomics C USING (arterycode)
 		INNER JOIN tmc_det_norm D USING (count_info_id, movement)
-	WHERE B.feature_code <= 201500 AND (B.oneway_dir_code * dir_binary((ST_Azimuth(ST_StartPoint(shape), ST_EndPoint(shape))+0.292)*180/pi()) == dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.from_dir) OR B.oneway_dir_code = 0)
+	WHERE B.feature_code <= 201500 --AND (B.oneway_dir_code * dir_binary((ST_Azimuth(ST_StartPoint(shape), ST_EndPoint(shape))+0.292)*180/pi()) == dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.from_dir) OR B.oneway_dir_code = 0)
 	GROUP BY C.count_info_id, B.centreline_id,dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.from_dir),pg_catalog.date(C.count_date)+pg_catalog.time(count_time))
 (SELECT centreline_id, dir_bin, count_bin, AVG(volume) AS volume, count_type
 FROM  E
@@ -43,7 +43,7 @@ WITH E AS (SELECT	C.count_info_id, B.centreline_id,
 	INNER JOIN prj_volume.centreline B ON A.tcl_to_segment = B.centreline_id
 	INNER JOIN traffic.countinfomics C USING (arterycode)
 	INNER JOIN tmc_det_norm D USING (count_info_id, movement)
-	WHERE B.feature_code <= 201500 AND (B.oneway_dir_code * dir_binary((ST_Azimuth(ST_StartPoint(shape), ST_EndPoint(shape))+0.292)*180/pi()) == dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.from_dir) OR B.oneway_dir_code = 0)
+	WHERE B.feature_code <= 201500 --AND (B.oneway_dir_code * dir_binary((ST_Azimuth(ST_StartPoint(shape), ST_EndPoint(shape))+0.292)*180/pi()) == dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.from_dir) OR B.oneway_dir_code = 0)
 	GROUP BY C.count_info_id, B.centreline_id,dir_binary_tmc((ST_Azimuth(ST_StartPoint(B.shape), ST_EndPoint(B.shape))+0.292)*180/pi(),A.to_dir),pg_catalog.date(C.count_date)+pg_catalog.time(count_time))
 SELECT centreline_id, dir_bin, count_bin, AVG(volume) AS volume, count_type
 FROM  E

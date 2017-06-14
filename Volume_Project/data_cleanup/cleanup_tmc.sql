@@ -1,8 +1,8 @@
-﻿-- Create a new table
+-- Create a new table
 TRUNCATE prj_volume.det_clean;
 
 INSERT INTO prj_volume.det_clean
-SELECT *
+SELECT *, NULL AS flag, NULL AS time15
 FROM traffic.det;
 
 -- Deal with the four cases where multiple count_info_ids corresponds to the same arterycode+count_date
@@ -64,7 +64,7 @@ HAVING COUNT(*) > 1 AND
 
 DELETE FROM prj_volume.det_clean
 WHERE (count_info_id, time15) IN 
-	(SELECT count_info_id, time15)
+	(SELECT count_info_id, time15
 	FROM prj_volume.det_clean
 	GROUP BY count_info_id, time15
 	HAVING COUNT(*) > 1 AND 
@@ -161,7 +161,7 @@ WHERE (COALESCE(n_cars_r,0) + COALESCE(n_cars_t,0) + COALESCE(n_cars_l,0) + COAL
 		count_time::time, count_info_id
 		FROM prj_volume.det_clean) A
 	GROUP BY count_info_id, count_time
-	HAVING count(*) > 1 and sum(total) = MAX(total))
+	HAVING count(*) > 1 and sum(total) = MAX(total));
 	
 -- Take sum of irregular timestamps and respective regular 15min bin
 DROP TABLE IF EXISTS temptable;

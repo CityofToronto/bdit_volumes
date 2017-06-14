@@ -1,10 +1,10 @@
-﻿-- Create new instance of table for operations
+-- Create new instance of table for operations
 --Query returned successfully: 111875806 rows affected, 07:34 minutes execution time.
 
 TRUNCATE prj_volume.cnt_det_clean;
 
 INSERT INTO prj_volume.cnt_det_clean
-SELECT *
+SELECT id, count_info_id, count, timecount, speed_class, NULL AS flag
 FROM traffic.cnt_det;
 
 -- Delete NULL values (time bin exists but count is NULL)
@@ -45,7 +45,7 @@ WHERE (count_info_id, timecount::time) IN
 	(SELECT count_info_id, timecount::time
 	FROM prj_volume.cnt_det_clean
 	GROUP BY count_info_id, timecount::time
-	HAVING SUM(speed_class) = 0)
+	HAVING SUM(speed_class) = 0);
 	
 -- Delete entries where there's no volume at all in one count_info_id
 -- 412 count_info_id
@@ -113,4 +113,4 @@ WHERE (count_info_id) IN
 	(SELECT count_info_id
 	FROM traffic.countinfo B INNER JOIN prj_volume.cnt_det_clean C USING (count_info_id)
 	GROUP BY count_info_id
-	HAVING SUM(CASE WHEN EXTRACT(HOUR FROM timecount) >= 8 THEN count ELSE 0 END) = 0 AND (MOD(COUNT(*),96) = 0 OR COUNT(*) < 32))
+	HAVING SUM(CASE WHEN EXTRACT(HOUR FROM timecount) >= 8 THEN count ELSE 0 END) = 0 AND (MOD(COUNT(*),96) = 0 OR COUNT(*) < 32));

@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS artery_tcl_directions;
+DROP TABLE IF EXISTS artery_tcl_directions;
 
 CREATE TEMPORARY TABLE artery_tcl_directions (
 	centreline_id integer,
@@ -22,7 +22,7 @@ FROM prj_volume.artery_tcl A
 	INNER JOIN traffic.arterydata E USING (arterycode)
 	INNER JOIN prj_volume.arteries F USING (arterycode)
 WHERE A.artery_type = 1 AND B.feature_code <= 201500
-ORDER BY A.centreline_id, A.arterycode) A;
+ORDER BY A.centreline_id, A.arterycode;
 
 UPDATE artery_tcl_directions
 SET dir_bin = 1
@@ -38,10 +38,10 @@ WHERE (centreline_id = 14063455 and arterycode = 27468) or (centreline_id = 1430
 or (centreline_id = 20089656 and arterycode = 36191) or (centreline_id = 30002424 and arterycode = 24781) or (centreline_id = 30028880 and arterycode = 27171) 
 or (centreline_id = 30039432 and arterycode = 35538) or (centreline_id = 30065648 and arterycode = 35347) or (centreline_id = 30073636 and arterycode = 34009)
 or (centreline_id = 30074130 and arterycode = 33024);
-
+/*
 DELETE FROM artery_tcl_directions
 WHERE oneway_dir_code != 0 AND oneway_dir_code * dir_binary((ST_Azimuth(ST_StartPoint(shape), ST_EndPoint(shape))+0.292)*180/pi()) != dir_bin;
-
+*/
 DELETE FROM prj_volume.centreline_volumes WHERE count_type = 1;
 
 INSERT INTO prj_volume.centreline_volumes(centreline_id, dir_bin, count_bin, volume, count_type, speed_class, vehicle_class)
@@ -50,8 +50,8 @@ SELECT	A.centreline_id,
 	(C.timecount::time + B.count_date) AS count_bin,
 	C.count as volume,
 	1 as count_type,
-	(CASE WHEN C.category_id = 4 THEN C.speed_class ELSE NULL END) AS speed_class,
-	(CASE WHEN C.category_id = 3 THEN C.speed_class ELSE NULL END) AS vehicle_class
+	(CASE WHEN B.category_id = 4 THEN C.speed_class ELSE NULL END) AS speed_class,
+	(CASE WHEN B.category_id = 3 THEN C.speed_class ELSE NULL END) AS vehicle_class
 FROM artery_tcl_directions A
 INNER JOIN traffic.countinfo B USING (arterycode)
 INNER JOIN prj_volume.cnt_det_clean C USING (count_info_id)

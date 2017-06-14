@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS prj_volume.tmc_turns;
+DROP TABLE IF EXISTS prj_volume.tmc_turns;
 
 CREATE TEMPORARY TABLE tmc_turns_temp (
 	turn_id serial NOT NULL,

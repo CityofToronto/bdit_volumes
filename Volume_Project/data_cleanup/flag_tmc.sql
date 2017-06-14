@@ -1,4 +1,4 @@
-﻿-- Flag 1: flag irregular timestamps where a regular 15min bin does not exist for the interval
+-- Flag 1: flag irregular timestamps where a regular 15min bin does not exist for the interval
 UPDATE prj_volume.det_clean
 SET flag = 1
 WHERE id in (

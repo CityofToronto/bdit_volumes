@@ -1,4 +1,4 @@
-﻿-- Flag timestamps that share multiple counts
+-- Flag timestamps that share multiple counts
 -- 1445051 rows affected, 10:10 minutes execution time.
 UPDATE prj_volume.cnt_det_clean
 SET flag = 2
@@ -9,7 +9,7 @@ WHERE count_info_id IN
 		(SELECT DISTINCT arterycode, count_date
 		FROM traffic.countinfo JOIN prj_volume.cnt_det_clean USING (count_info_id)
 		GROUP BY arterycode, count_date, timecount::time, speed_class
-		HAVING COUNT(count)>1))
+		HAVING COUNT(count)>1));
 		
 -- Flag records that have <8h data
 -- 5262 rows affected
@@ -19,7 +19,7 @@ WHERE count_info_id IN
 	(SELECT count_info_id
 	FROM prj_volume.cnt_det_clean JOIN traffic.countinfo USING (count_info_id)
 	GROUP BY count_info_id, speed_class
-	HAVING COUNT(*) < 32)
+	HAVING COUNT(*) < 32);
 
 -- Flag hourly records (one entry for an hour, 0 volumes in other 15 min bins)
 -- 13248 rows affected
@@ -31,7 +31,7 @@ WHERE count_info_id IN
 	WHERE category_id NOT IN (3,4) 
 	GROUP BY arterycode, count_date, count_info_id
 	HAVING (SUM(CASE WHEN count <> 0 THEN 0 ELSE 1 END)/SUM(CASE WHEN count <> 0 THEN 1 ELSE 0 END))::int = 3 AND 
-		(SELECT COUNT(distinct EXTRACT(hour from timecount)) FROM prj_volume.cnt_det_clean JOIN traffic.countinfo USING (count_info_id) WHERE arterycode = B.arterycode AND count_date = B.count_date AND count <> 0) =  SUM(CASE WHEN count = 0 THEN 0 ELSE 1 END))
+		(SELECT COUNT(distinct EXTRACT(hour from timecount)) FROM prj_volume.cnt_det_clean JOIN traffic.countinfo USING (count_info_id) WHERE arterycode = B.arterycode AND count_date = B.count_date AND count <> 0) =  SUM(CASE WHEN count = 0 THEN 0 ELSE 1 END));
 		
 -- Flag daily volumes (exceeds specified cap for the road class)
 -- 39440 rows affected
@@ -54,7 +54,7 @@ WHERE count_info_id IN
 		WHERE flag IS NULL
 		GROUP BY count_info_id, feature_code, feature_code_desc, linear_name_full, centreline_id
 		HAVING MOD(COUNT(count),96) = 0) A 
-	WHERE sum > cap) 
+	WHERE sum > cap) ;
 	
 -- Flag abnormal daily volumes (+/- 2 stdevs from median)
 -- 3869643 rows affected, 16:53 minutes execution time.
@@ -79,4 +79,4 @@ WHERE count_info_id IN
 		
 		USING (arterycode)
 
-	WHERE sum < (median - 2*stddev) OR sum > (median + 2*stddev))
+	WHERE sum < (median - 2*stddev) OR sum > (median + 2*stddev));

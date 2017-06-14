@@ -1,4 +1,4 @@
-﻿DROP TABLE IF EXISTS artery_tcl_directions;
+DROP TABLE IF EXISTS artery_tcl_directions;
 
 CREATE TEMPORARY TABLE artery_tcl_directions (
 	centreline_id integer,
