@@ -12,6 +12,20 @@ for x in os.walk('.'):
 import pandas as pd
 import pickle
 
+def exec_file(filename):
+    try:
+        f = open(filename)
+        exec(filename)
+    except:
+        for root_f, folders, files in os.walk('.'):
+            if filename in files:
+                f = root_f + '/' + filename
+                break
+        exec(f)
+        
+    if f is None:
+        raise Exception ('File not found!')
+    
 def execute_sql(db, filename):
     f = None
     try:

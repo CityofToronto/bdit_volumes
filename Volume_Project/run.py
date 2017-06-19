@@ -13,6 +13,7 @@ for x in os.walk('.'):
 from pg import DB
 import configparser
 import S03_geocode_and_match_street_number as S03
+import S08_combine_correction_files as S08
 import pandas as pd
 from cluster import cluster
 import cl_fcn
@@ -38,11 +39,12 @@ def arterycode_matching(db, manual_update=False):
     print('Matching turning movement counts')
     utilities.execute_sql(db, "S07_match-tmc-arterycodes.sql")
     if manual_update:
-        exec("S08_combine_correction_files.py")
+        S08.combine_and_upload(db,'./arterycode_mapping/Artery Match Correction Files/')
     print('Updating with manual corrections...')
     utilities.execute_sql(db, "S09_update-match.sql")
     utilities.execute_sql(db, "S10_short-segs-corr.sql")
-
+    utilities.execute_sql(db, "S11_update_wrong_geom")
+    
     return utilities.get_sql_results(db, "query_new_arterycodes_match.sql", ['arterycode','location','shape','centreline_id','direction','sideofint','artery_type','match_on_case'])
 
 def cleanup_traffic_counts(db):
@@ -72,12 +74,12 @@ if __name__ == '__main__':
     CONFIG.read('db.cfg')
     dbset = CONFIG['DBSETTINGS']
     db = DB(dbname=dbset['database'],host=dbset['host'],user=dbset['user'],passwd=dbset['password'])
-    
-    #new_match = arterycode_matching(db, manual_update = False)
+
+    #new_match = arterycode_matching(db, manual_update = True)
     
     #cleanup_traffic_counts(db)
     
-    populate_volumes_table(db)
+    #populate_volumes_table(db)
     
     print("Clustering...")
     C = cluster(db, cl_fcn.get_data_individual(db, br = [('20100101','20170101')]), nClusters = 6)
@@ -89,10 +91,12 @@ if __name__ == '__main__':
         C.refresh_db_export(db)
     else:
         C.refresh_db_export(db)
-
+    
     print("Refreshing Monthly Factors...")
     reporting.refresh_monthly_factors(db)
     
-    reporting.testing_entire_TO(db, C)
-    
+    volumes, non = reporting.testing_entire_TO(db, C)
+    db.truncate("prj_volume.AADT")
+    db.inserttable("prj_volume.AADT", volumes)
+    db.close()
     
