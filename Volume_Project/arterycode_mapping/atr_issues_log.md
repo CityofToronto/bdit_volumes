@@ -105,3 +105,9 @@ arterycode|sideofint|direction|description|comment
 !['34510'](img/34510.PNG)
 
 ## 5. Wrong Geometry Direction
+In FLOW, the from and to relationship of segments are not always correct. There are 3 sources of information, geometry, text, and one-way street information from the centreline file. 
+
+Resolution: 
+1. (text = geometry) != oneway_direction -> discard count
+2. text = oneway_direction OR two_way_street -> reverse geometry
+3. (geometry = oneway_direction) != text -> reverse text 
