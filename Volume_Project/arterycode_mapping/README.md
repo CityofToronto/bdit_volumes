@@ -131,4 +131,4 @@ Case|Actual Geometry Type|Geometry type in database|Method|Script|Number|Number(
 1. Definition of Hausdorff distance: maximum distance of a set to the nearest point in the other set.
 
 ## 3. Issues (Outstanding + Resolved) Log
-Please refer to [ATR Matching Issues](atr%20issues%20log.md) and [TMC Matching Issues](tmc%20issues%20log.md) for more details.
+Please refer to [ATR Matching Issues](atr_issues_log.md) and [TMC Matching Issues](tmc_issues_log.md) for more details.
