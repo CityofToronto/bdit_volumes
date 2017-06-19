@@ -23,9 +23,9 @@ Groups centrelines and directions that share the same volume and assign a unique
 ## 3. Functionality
 Based on the new information, some or all of the functions below should be re-run from the master script [run.py](run.py). Detailed description about each procedure can be found under the linked folders. 
 
-### 3.1 [Arterycode Matching] (arterycode_matching/)
-### 3.2 [Clean up Counts] (data_cleanup/)
-### 3.3 [Populate Volume Tables] (populate_datatables/)
-### 3.4 [Clustering] (clustering/)
-### 3.5 [Estimate Volumes (Temporal Extrapolation)] (estimation_extraction/)
-### 3.6 [Estimate Volumes (Spatial Extrapolation)] (spatial_extrapolation/)
+### 3.1 [Arterycode Matching](arterycode_mapping/)
+### 3.2 [Clean up Counts](data_cleanup/)
+### 3.3 [Populate Volume Tables](populate_datatables/)
+### 3.4 [Clustering](clustering/)
+### 3.5 [Estimate Volumes (Temporal Extrapolation)](estimation_extraction/)
+### 3.6 [Estimate Volumes (Spatial Extrapolation)](spatial_extrapolation/)
