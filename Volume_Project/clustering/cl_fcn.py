@@ -128,62 +128,6 @@ def fit_incomplete(centres, new, plot=None):
                 plt.show()
     return pd.DataFrame(cls,columns=['count_date','centreline_id','dir_bin','cluster']), distmtx  
     
-def get_data_individual(db, br=[]):
-    
-    '''
-    This function takes in a database connection and a list of breakpoints to retrieve COMPLETE (96 obs) individual day counts in a dataframe.
-    
-    Input:
-        db: database connection
-        br: (optional, default to empty) a list of (startdate,enddate) tuples. In case reading in everything is too big.
-            Python will read data in by parts and concatenate.
-    Output:
-        data: dataframe with the columns: count_date, centreline_id, dir_bin, vol_weight(an array of 96, normalized 15min volume)
-                Each row is counts for one day at one location.
-    '''
-    
-    if br == []:
-        data = pd.DataFrame(db.query('SELECT count_date, centreline_id, dir_bin, array_agg(vol_weight ORDER BY timecount) FROM prj_volume.cluster_atr_volumes WHERE complete_day = True GROUP BY count_date, centreline_id, dir_bin').getresult(), columns=['count_date','centreline_id','dir_bin','vol_weight'])
-    else:
-        data = pd.DataFrame()
-        for (b1,b2) in br:            
-            data = data.append(pd.DataFrame(db.query('SELECT count_date, centreline_id, dir_bin, array_agg(vol_weight ORDER BY timecount) FROM prj_volume.cluster_atr_volumes WHERE complete_day = True AND count_date >= \'' + b1 + '\' AND count_date <= \'' + b2 + '\' GROUP BY count_date, centreline_id, dir_bin').getresult(), columns=['count_date','centreline_id','dir_bin','vol_weight']))
-    
-    return data
-    
-def get_data_tmc(db, timeline):
-    
-    ''' 
-    This function takes in a database connection and returns a dataframe with turning movement count data in the specified time frame.
-    
-    Input:
-        timeline: a tuple of start and end dates of the interested period. Ex: ('20090101', '20170101')
-    Output:
-        data: dataframe with the following columns: timecount, volume, centreline_id, dir_bin, time_15
-    '''
-    
-    data = pd.DataFrame(db.query('SELECT count_bin::date as count_date, count_bin::time as timecount, centreline_id, dir_bin, volume FROM prj_volume.centreline_volumes WHERE count_type = 2 AND count_bin >= \'' + timeline[0] + '\' AND count_bin <= \'' + timeline[1] + '\'').getresult(),columns = ['count_date','timecount','centreline_id','dir_bin','volume'])
-    data['volume'] = data['volume'].astype(int)
-    data['time_15'] = data.timecount.apply(lambda x: x.hour*4+x.minute//15)
-    
-    return data
-    
-def get_incompleteday_data(db):
-    
-    '''
-    This function takes in a database connection and returns NOT full-day ATR counts.
-    Output Dataframe:
-        count_date, timecount, volume, centreline_id, dir_bin, time_15
-        Each row is one 15min observation.
-    '''
-    
-    data = pd.DataFrame(db.query('SELECT count_date, timecount, vol, centreline_id, dir_bin FROM prj_volume.cluster_atr_volumes WHERE complete_day = False').getresult(),columns=['count_date','timecount','volume','centreline_id','dir_bin'])
-    data['volume'] = data['volume'].astype(int)
-    data['time_15'] = data.timecount.apply(lambda x: x.hour*4+x.minute//15)
-    data = data.sort_values(by=['centreline_id','count_date','dir_bin','time_15'])
-
-    return data
-    
 def get_percentiles(data, percentiles):
     p = {}
     for (clusternum), group in data.groupby(['cluster']):

@@ -8,64 +8,102 @@ import sys
 import os
 for x in os.walk('.'):
     sys.path.append(x[0]) 
+    
+from pg import DB
+from pg import ProgrammingError
 
+import configparser
 import pandas as pd
 import pickle
 
-def exec_file(filename):
-    try:
-        f = open(filename)
-        exec(filename)
-    except:
-        for root_f, folders, files in os.walk('.'):
-            if filename in files:
-                f = root_f + '/' + filename
-                break
-        exec(f)
-        
-    if f is None:
-        raise Exception ('File not found!')
+class vol_utils(object):
     
-def execute_sql(db, filename):
-    f = None
-    try:
-        f = open(filename)
-    except:
-        for root_f, folders, files in os.walk('.'):
-            if filename in files:
-                f = open(root_f + '/' + filename)
-    if f is None:
-        raise Exception ('File not found!')
-        
-    sql = f.read()
-    db.query(sql)
-
-def get_sql_results(db, filename, columns):
+    def __init__(self):
+        self.db_connect()
     
-    f = None
-    try:
-        f = open(filename)
-    except:
-        for root_f, folders, files in os.walk('.'):
-            if filename in files:
-                f = open(root_f + '/' + filename)
-                
-    if f is None:
-        raise Exception ('File not found!')
-        
-    sql = f.read()
-    return pd.DataFrame(db.query(sql).getresult(), columns = columns)
-
-def load_pkl(filename):
-    f = None
-    try:
-        f = open(filename,"rb")
-    except:
-        for root_f, folders, files in os.walk('.'):
-            if filename in files:
-                f = open(root_f + '/' + filename)
-    if f is None:
-        raise Exception ('File not found!')
-
-    return pickle.load(f)
+    def db_connect(self):
+        CONFIG = configparser.ConfigParser()
+        CONFIG.read('db.cfg')
+        dbset = CONFIG['DBSETTINGS']
+        self.db = DB(dbname=dbset['database'],host=dbset['host'],user=dbset['user'],passwd=dbset['password'])
     
+    def exec_file(self, filename):
+        try:
+            f = open(filename)
+            exec(filename)
+        except:
+            for root_f, folders, files in os.walk('.'):
+                if filename in files:
+                    f = root_f + '/' + filename
+                    break
+            exec(f)
+            
+        if f is None:
+            raise Exception ('File not found!')
+        
+    def execute_sql(self, filename):
+        f = None
+        try:
+            f = open(filename)
+        except:
+            for root_f, folders, files in os.walk('.'):
+                if filename in files:
+                    f = open(root_f + '/' + filename)
+        if f is None:
+            raise Exception ('File not found!')
+            
+        sql = f.read()
+        reconnect = 0
+        while True:
+            try:
+                self.db.query(sql)
+            except ProgrammingError:
+                self.db_connect()
+                reconnect += 1
+            if reconnect > 5:
+                raise Exception ('Check DB connection. Cannot connect')
+        
+    def get_sql_results(self, filename, columns):
+        
+        f = None
+        try:
+            f = open(filename)
+        except:
+            for root_f, folders, files in os.walk('.'):
+                if filename in files:
+                    f = open(root_f + '/' + filename)
+                    
+        if f is None:
+            if f[:6] == 'SELECT': # Also accepts sql queries directly in string form
+                sql = f
+            else:
+                raise Exception ('File not found!')
+        else:    
+            sql = f.read()
+            
+        reconnect = 0
+        while True:
+            try:
+                return pd.DataFrame(self.db.query(sql).getresult(), columns = columns)
+            except ProgrammingError:
+                self.db_connect()
+                reconnect += 1
+            if reconnect > 5:
+                raise Exception ('Check DB connection. Cannot connect')
+            
+    def load_pkl(self,filename):
+        f = None
+        try:
+            f = open(filename,"rb")
+        except:
+            for root_f, folders, files in os.walk('.'):
+                if filename in files:
+                    f = open(root_f + '/' + filename)
+        if f is None:
+            raise Exception ('File not found!')
+    
+        return pickle.load(f) 
+    
+    def __exit__(self):
+        self.db.close()
+        
