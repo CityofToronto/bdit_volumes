@@ -16,14 +16,16 @@ import pandas as pd
 import cl_fcn
 import pickle
 from utilities import vol_utils
+import logging
 
 class temporal_extrapolation(vol_utils):    
     
     def __init__(self, identifier_name):
+        self.logger = logging.getLogger('volume_project.temporal_extrapolation')
         super().__init__()
         self.identifier_name = identifier_name
         self.get_clusterinfo()
-        
+   
     def calc_date_factors(self, date, dates, identifier_value, dir_bin):
         '''
         This function calculates seaonal and annual factors and weights to apply on existing counts to estimate volume on another day.
@@ -37,9 +39,12 @@ class temporal_extrapolation(vol_utils):
         '''
         try:
             monthly_factors = self.load_pkl("monthly_factors_"+self.identifier_name+".p")
+            self.logger.debug('Reading monthly factors from pickle')
         except:
+            self.logger.debug('Refreshing monthly factors from database')
             self.refresh_monthly_factors()
             monthly_factors = self.load_pkl("monthly_factors_"+self.identifier_name+".p")
+            self.logger.debug('Monthly factors saved as pickle file')
             
         # if date is a year, then target month is 13 - weight = 1
         try:
@@ -113,6 +118,7 @@ class temporal_extrapolation(vol_utils):
         elif self.identifier_name == 'group_number':
             self.tcldircl = self.get_sql_results('SELECT cluster, group_id, dir_bin, identifier FROM prj_volume.clusters_group', columns=['cluster', 'group_number', 'dir_bin', 'identifier'])
         else:
+            self.logger.error('Identifier (choose between centreline_id or group_number) wrong')
             raise Exception ('identifier wrong')
 
     def get_relevant_counts(self, identifier_value, dir_bin, year):
@@ -126,6 +132,8 @@ class temporal_extrapolation(vol_utils):
         Output:
             two dataframes (atr and tmc) with columns: centreline_id, dir_bin, group_number, count_date, count_time, volume, time_15
         '''
+        
+        self.logger.debug('Getting Relevant Counts for %s %i %i', self.identifier_name, identifier_value, dir_bin)
         parameters = {'place_holder_identifier_name':self.identifier_name, 'place_holder_dir_bin': str(dir_bin), 'place_holder_year': str(year), 'place_holder_identifier_value': identifier_value}
         
         data = self.get_sql_results("query_relevant_counts.sql", columns=[self.identifier_name, 'dir_bin', 'count_date', 'count_time', 'count_type', 'volume'], parameters=parameters)
@@ -145,24 +153,27 @@ class temporal_extrapolation(vol_utils):
             tmc, atr = self.get_relevant_counts(identifier_value, dir_bin, date)
         except:    
             if pd.to_datetime(date).weekday() in (5, 6):
-                print('Weekdays Only Please. For now.')
+                self.logger.info('Weekdays Only Please. For now.')
                 return None
             if type(date) == str:
                 date = datetime.strptime(date, '%Y-%m-%d').date()
             tmc, atr = self.get_relevant_counts(identifier_value, dir_bin, date.year)
             
         if type(tmc) == int:
-            print('Invalid Database Connection.')
+            self.logger.error('Invalid Database Connection.')
             return None
         elif tmc.empty and atr.empty:
-            print('No relevant counts to interpolate temporally.')
+            self.logger.info('No relevant counts to interpolate temporally.')
             return None
             
         if hour is not None:    
+            self.logger.info('Getting hourly volume')
             return self.get_volume_hour(tmc, atr, identifier_value, dir_bin, date, hour)
         elif type(date) == int:
+            self.logger.info('Getting annual average volume')
             return self.get_volume_annualavg(tmc, atr, identifier_value, dir_bin, date)
         else:
+            self.logger.info('Getting daily volume')
             p = self.get_volume_day(tmc, atr, identifier_value, dir_bin, date)
             if profile:
                 return p
@@ -177,15 +188,19 @@ class temporal_extrapolation(vol_utils):
         if tmc[tmc['count_date'].astype(str).str.contains(str(year),na=False)].empty and atr[atr['count_date'].astype(str).str.contains(str(year),na=False)].empty:   
             # No counts in the requested year, use whatever that's available
             if atr.empty:
+                self.logger.debug('%s %i %i: TMC from other years', self.identifier_name, identifier_value, dir_bin)
                 data = self.fill_in(tmc)
             else:
+                self.logger.debug('%s %i %i: ATR from other years', self.identifier_name, identifier_value, dir_bin)
                 data = self.fill_in(atr)
         elif not atr[atr['count_date'].astype(str).str.contains(str(year), na=False)].empty:
             # ATR exists in the requested year
+            self.logger.debug('%s %i %i: ATR from requested year', self.identifier_name, identifier_value, dir_bin)
             atr = atr[atr['count_date'].astype(str).str.contains(str(year), na=False)]
             data = self.fill_in(atr)
         else:
             # TMC only in the same year
+            self.logger.debug('%s %i %i: TMC from requested year', self.identifier_name, identifier_value, dir_bin)
             tmc = tmc[tmc['count_date'].astype(str).str.contains(str(year), na=False)]
             data = self.fill_in(tmc)
         
@@ -207,7 +222,7 @@ class temporal_extrapolation(vol_utils):
         # Report Directly
         slicetmc, sliceatr = self.slice_data(tmc, atr, {self.identifier_name: identifier_value, 'count_date':date, 'hour':int(hour)})
         if len(slicetmc) == 4 or len(sliceatr) == 4:
-            print('Same Day, Same centreline, Full Hour ATR OR TMC, Report Directly')
+            self.logger.info('Same Day, Same centreline, Full Hour ATR OR TMC, Report Directly')
             return self.take_weighted_average(slicetmc, sliceatr, agglvl)
     
         # 2. Same Day, Same centreline, Partial Data
@@ -216,26 +231,26 @@ class temporal_extrapolation(vol_utils):
         if len(sliceatr) > 0 or len(slicetmc) > 0:
             if len(sliceatr) > len(slicetmc):
                 sliceatr_1 =  self.fill_in(sliceatr_1, hour)
-                print('Same Day, Same centreline, Fill in ATR')
+                self.logger.info('Same Day, Same centreline, Fill in ATR')
                 return self.take_weighted_average(None, sliceatr_1, agglvl)
             else:
                 slicetmc_1 = self.fill_in(slicetmc_1, hour)
-                print('Same Day, Same centreline, Fill in TMC')
+                self.logger.info('Same Day, Same centreline, Fill in TMC')
                 return self.take_weighted_average(slicetmc_1, None, agglvl)
         elif len(sliceatr_1) > 48:
             sliceatr_1 = self.fill_in(sliceatr_1, hour)
-            print('Same Day, Same centreline, Fill in ATR')
+            self.logger.info('Same Day, Same centreline, Fill in ATR')
             return self.take_weighted_average(None, sliceatr_1, hour, agglvl)
         elif len(slicetmc_1) > 24:
             slicetmc_1 = self.fill_in(slicetmc_1, hour)
-            print('Same Day, Same centreline, Fill in TMC')
+            self.logger.info('Same Day, Same centreline, Fill in TMC')
             return self.take_weighted_average(slicetmc_1, None, agglvl)
     
         # 3. Same Day, Same centreline group, Full Hour ATR OR TMC
         # Report Directly
         slicetmc, sliceatr = self.slice_data(tmc, atr, {'count_date':date, 'hour':int(hour)})
         if len(slicetmc) == 4 or len(sliceatr) == 4:
-            print('Same Day, Same centreline group, Full Hour ATR OR TMC - Report Directly')
+            self.logger.info('Same Day, Same centreline group, Full Hour ATR OR TMC - Report Directly')
             return self.take_weighted_average(slicetmc, sliceatr, agglvl)
             
         # 4. Same Day, Same centreline group, Partial Data
@@ -245,19 +260,19 @@ class temporal_extrapolation(vol_utils):
         if len(sliceatr) > 0 or len(slicetmc) > 0:
             if len(sliceatr) > len(slicetmc):
                 sliceatr_1 = self.fill_in(sliceatr_1, hour)
-                print('Same Day, Same centreline group, Fill in ATR')
+                self.logger.info('Same Day, Same centreline group, Fill in ATR')
                 return self.take_weighted_average(None, sliceatr_1, agglvl)
             else:
                 slicetmc_1 = self.fill_in(slicetmc_1, hour)
-                print('Same Day, Same centreline group, Fill in TMC')
+                self.logger.info('Same Day, Same centreline group, Fill in TMC')
                 return self.take_weighted_average(slicetmc_1, None, agglvl)
         elif len(sliceatr_1) > 48:
             sliceatr_1 = self.fill_in(sliceatr_1, hour)
-            print('Same Day, Same centreline group, Fill in ATR')
+            self.logger.info('Same Day, Same centreline group, Fill in ATR')
             return self.take_weighted_average(None, sliceatr_1, agglvl)
         elif len(slicetmc_1) > 24:
             slicetmc_1 = self.fill_in(slicetmc_1, hour)  
-            print('Same Day, Same centreline group, Fill in TMC')
+            self.logger.info('Same Day, Same centreline group, Fill in TMC')
             return self.take_weighted_average(slicetmc_1, None, agglvl)
             
         # 5. Different Day, Same centreline, Full Hour
@@ -266,7 +281,7 @@ class temporal_extrapolation(vol_utils):
         
         if slicetmc['time_15'].nunique() == 4 or sliceatr['time_15'].nunique() == 4:
             factors_date = self.calc_date_factors(date, slicetmc['count_date'].append( sliceatr['count_date']).unique(), identifier_value, dir_bin)
-            print('Different Day, Same centreline, Full Hour')
+            self.logger.info('Different Day, Same centreline, Full Hour')
             return self.take_weighted_average(slicetmc, sliceatr, agglvl, factors_date=factors_date)
             
         # 6. Different Day, Same centreline, Partial Data
@@ -277,26 +292,26 @@ class temporal_extrapolation(vol_utils):
         if sliceatr['time_15'].nunique() > 0 or slicetmc['time_15'].nunique() > 0:
             if sliceatr['time_15'].nunique() > slicetmc['time_15'].nunique():
                 sliceatr_1 = self.fill_in(sliceatr_1, hour)
-                print('Different Day, Same centreline, Fill in ATR')
+                self.logger.info('Different Day, Same centreline, Fill in ATR')
                 return self.take_weighted_average(None, sliceatr_1, agglvl, factors_date=factors_date)
             else:
                 slicetmc_1 = self.fill_in(slicetmc_1, hour) 
-                print('Different Day, Same centreline, Fill in TMC')
+                self.logger.info('Different Day, Same centreline, Fill in TMC')
                 return self.take_weighted_average(slicetmc_1, None, agglvl, factors_date=factors_date)
         elif sliceatr_1['time_15'].nunique() > 48:
             sliceatr_1 = self.fill_in(sliceatr_1, hour)
-            print('Different Day, Same centreline, Fill in ATR')
+            self.logger.info('Different Day, Same centreline, Fill in ATR')
             return self.take_weighted_average(None, sliceatr_1, agglvl, factors_date=factors_date)
         elif slicetmc_1['time_15'].nunique() > 24:
             slicetmc_1 = self.fill_in(slicetmc_1, hour)    
-            print('Different Day, Same centreline, Fill in TMC')
+            self.logger.info('Different Day, Same centreline, Fill in TMC')
             return self.take_weighted_average(slicetmc_1, None, agglvl, factors_date=factors_date) 
             
         # 7. Different Day, Same centreline group, Full Hour
         slicetmc, sliceatr = self.slice_data(tmc, atr, {'hour':int(hour)})
         if slicetmc['time_15'].nunique() == 4 or sliceatr['time_15'].nunique() == 4:
             factors_date = self.calc_date_factors(date, slicetmc['count_date'].append( sliceatr['count_date']).unique(), identifier_value, dir_bin)
-            print('Different Day, Same centreline group, Full Hour')
+            self.logger.info('Different Day, Same centreline group, Full Hour')
             return self.take_weighted_average(slicetmc, sliceatr, agglvl, factors_date=factors_date)
             
         # 8. Different Day, Same centreline group, Partial Data
@@ -305,19 +320,19 @@ class temporal_extrapolation(vol_utils):
         if sliceatr['time_15'].nunique() > 0 or slicetmc['time_15'].nunique() > 0:
             if sliceatr['time_15'].nunique() > slicetmc['time_15'].nunique():
                 sliceatr_1 = self.fill_in(sliceatr_1, hour)
-                print('Different Day, Same centreline group, Fill in ATR')
+                self.logger.info('Different Day, Same centreline group, Fill in ATR')
                 return self.take_weighted_average(None, sliceatr_1, agglvl, factors_date=factors_date)
             else:
                 slicetmc_1 = self.fill_in(slicetmc_1, hour)  
-                print('Different Day, Same centreline group, Fill in TMC')
+                self.logger.info('Different Day, Same centreline group, Fill in TMC')
                 return self.take_weighted_average(slicetmc_1, None, agglvl, factors_date=factors_date)
         elif sliceatr_1['time_15'].nunique() > 48:
             sliceatr_1 = self.fill_in(sliceatr_1, hour)
-            print('Different Day, Same centreline group, Fill in ATR')
+            self.logger.info('Different Day, Same centreline group, Fill in ATR')
             return self.take_weighted_average(None, sliceatr_1, agglvl, factors_date=factors_date)
         elif slicetmc_1['time_15'].nunique() > 24:
             slicetmc_1 = self.fill_in(slicetmc_1, hour)  
-            print('Different Day, Same centreline group, Fill in TMC')
+            self.logger.info('Different Day, Same centreline group, Fill in TMC')
             return self.take_weighted_average(slicetmc_1, None, agglvl, factors_date=factors_date)
         
         return None
@@ -393,40 +408,40 @@ class temporal_extrapolation(vol_utils):
             Weighted AVG taking ALL counts into account (1983-2016)'''
             
         # (1) same date, directly retrieve ATR
-        print(self.get_volume(117, +1, '2010-06-09', 20)) # 42
+        self.logger.info(self.get_volume(117, +1, '2010-06-09', 20)) # 42
         # (1) same date, directly retrieve TMC
-        print(self.get_volume(142, -1, '2002-03-11', 8)) # 39
+        self.logger.info(self.get_volume(142, -1, '2002-03-11', 8)) # 39
         # (1) same date, Average of ATR and TMC
-        print(self.get_volume(1149, +1, '2004-06-24', 14)) # 61.5
+        self.logger.info(self.get_volume(1149, +1, '2004-06-24', 14)) # 61.5
         
         # (2) same date, Fill in ATR
-        print(self.get_volume(890, -1, '2005-08-04', 9)) # ~5000
+        self.logger.info(self.get_volume(890, -1, '2005-08-04', 9)) # ~5000
         # (2) same date, Fill in TMC
-        print(self.get_volume(161, -1, '2005-08-11', 9)) # ~60
+        self.logger.info(self.get_volume(161, -1, '2005-08-11', 9)) # ~60
     
         # (3) same date, share volume with tcl 7636691, directly retrieve ATR
-        print(self.get_volume(14020872, -1, '2010-04-27', 3)) # 47
+        self.logger.info(self.get_volume(14020872, -1, '2010-04-27', 3)) # 47
         
         # (4) same date, share volume with tcl 7636691, fill in TMC
-        print(self.get_volume(14020872, -1, '2009-07-21', 18)) # ~178
+        self.logger.info(self.get_volume(14020872, -1, '2009-07-21', 18)) # ~178
         
         # (5) diff date, weighted avg of ATR
-        print(self.get_volume(117, +1, '2011-06-09', 20)) # ~55
+        self.logger.info(self.get_volume(117, +1, '2011-06-09', 20)) # ~55
         # (5) diff date, weighted avg of ATR and TMC
-        print(self.get_volume(142, -1, '2003-03-11', 8)) # ~40
+        self.logger.info(self.get_volume(142, -1, '2003-03-11', 8)) # ~40
         # (5) diff date, weighted avg of ATR and TMC
-        print(self.get_volume(1149, +1, '2005-06-24', 14)) # ~50   
+        self.logger.info(self.get_volume(1149, +1, '2005-06-24', 14)) # ~50   
         
         # (6) diff date, Fill in ATR
-        print(self.get_volume(8570852, 1, '2006-08-04', 12)) # ~6
+        self.logger.info(self.get_volume(8570852, 1, '2006-08-04', 12)) # ~6
         # (6) diff date, Fill in TMC
-        print(self.get_volume(112888, -1, '2006-08-11', 7)) # ~760
+        self.logger.info(self.get_volume(112888, -1, '2006-08-11', 7)) # ~760
         
         # (7) diff date, share volume with tcl 7636691, full hour
-        print(self.get_volume(14020872, -1, '2011-04-27', 3)) # ~54   
+        self.logger.info(self.get_volume(14020872, -1, '2011-04-27', 3)) # ~54   
         
         # (8) diff date, share volume with tcl 181, fill in TMC
-        print(self.get_volume(118, 1, '2011-04-27', 16)) # ~22
+        self.logger.info(self.get_volume(118, 1, '2011-04-27', 16)) # ~22
         
     def testing_entire_TO(self):
         centrelines = self.get_sql_results('SELECT DISTINCT group_number, dir_bin FROM prj_volume.centreline_groups ORDER BY group_number', columns = ['identifier', 'dir_bin'])
@@ -435,10 +450,11 @@ class temporal_extrapolation(vol_utils):
         non = []
         i = 0
         for identifier, dir_bin in zip(centrelines['identifier'], centrelines['dir_bin']):
-            print(i, ' ', identifier, dir_bin, end = '\n')
+            self.logger.info('#%i - Calculating volume for %i %i', i, identifier, dir_bin)
             try:
                 v = self.get_volume(identifier, dir_bin, '2015')  
             except:
+                self.logger.error('Calculating Procedure Interrupted', exc_info=True)
                 try:
                     self.upload_to_aadt(volumes)    
                 except:
@@ -447,6 +463,7 @@ class temporal_extrapolation(vol_utils):
                     else:
                         volumes = pd.DataFrame(volumes,columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number']) 
                     volumes.to_csv('volumes.csv')
+                    self.logger.info('Saved results to volumes.csv')
                     
                 return volumes, non
                 
@@ -472,3 +489,4 @@ class temporal_extrapolation(vol_utils):
         volumes = volumes.values.tolist()
         self.truncatetable('prj_volume.aadt')
         self.inserttable('prj_volume.aadt', volumes)
+        self.logger.info('Uploaded results to prj_volume.aadt')

@@ -10,7 +10,7 @@ import numpy as np
 import re
 
 
-def combine_and_upload(db,directory):
+def combine_and_upload(db, directory):
     
     # File 1: checking segments <25m
     e = pd.read_csv(directory+'tmc_qc_25m.csv')

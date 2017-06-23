@@ -18,34 +18,38 @@ from utilities import vol_utils
 from cluster import cluster
 from reporting import temporal_extrapolation
 from datetime import datetime
+import logging
 
 class prepare_flow_data(vol_utils):
-    def __init__(self,):
+    def __init__(self):
+        self.logger = logging.getLogger('volume_project.prepare_flow_data')
         super().__init__()
+
     def __enter__(self):
         return self
+        
     def arterycode_matching(self, manual_update=False):
-        print('Identifying new codes...')
+        self.logger.info('Identifying new codes...')
         self.execute_sql("query_new_arterycodes.sql")
-        print('Creating geometry...')
+        self.logger.info('Creating geometry...')
         self.execute_sql("S01_create-table-arteries.sql")
-        print('Matching by node_ids...')
+        self.logger.info('Matching by node_ids...')
         self.execute_sql("S02_match-atr-by-nodes.sql")
-        print('Geocoding and matching by street address...')
+        self.logger.info('Geocoding and matching by street address...')
         S03.geocode_match(self.db)
-        print('Updating geometry...')
+        self.logger.info('Updating geometry...')
         self.execute_sql("S04_update-geometry-arteries.sql")
-        print('Matching spatially...')
+        self.logger.info('Matching spatially...')
         self.execute_sql("S05_match-atr-spatially.sql")
-        print('Matching lines with missing point...')
+        self.logger.info('Matching lines with missing point...')
         self.execute_sql("S06_match-atr-seg-w-missing-point.sql")
-        print('Matching turning movement counts')
+        self.logger.info('Matching turning movement counts')
         self.execute_sql("S07_match-tmc-arterycodes.sql")
         if manual_update:
-            manual_corr = S08.combine_and_upload('./arterycode_mapping/Artery Match Correction Files/')
+            manual_corr = S08.combine_and_upload(self.db, './arterycode_mapping/Artery Match Correction Files/')
             self.truncatetable("prj_volume.artery_tcl_manual_corr")
             self.inserttable("prj_volume.artery_tcl_manual_corr",manual_corr)
-        print('Updating with manual corrections...')
+        self.logger.info('Updating with manual corrections...')
         self.execute_sql("S09_update-match.sql")
         self.execute_sql("S10_short-segs-corr.sql")
         self.execute_sql("S11_update_wrong_geom.sql")
@@ -55,10 +59,10 @@ class prepare_flow_data(vol_utils):
                 
     def cleanup_traffic_counts(self):
 
-        print("Cleaning up counts...")
+        self.logger.info("Cleaning up counts...")
         self.execute_sql("cleanup_anomalies.sql")
         self.execute_sql("cleanup_tmc.sql")
-        print("Flagging counts...")
+        self.logger.info("Flagging counts...")
         self.execute_sql("flag_anomalies.sql")
         self.execute_sql("flag_tmc.sql")
  
@@ -67,31 +71,40 @@ class prepare_flow_data(vol_utils):
        
         self.execute_sql("create-table-tmc_turns.sql")
         self.execute_sql("create-table-tmc_turns_corr.sql")
-        print("Populating ATR counts...")
+        self.logger.info("Populating ATR counts...")
         self.execute_sql("update-table-centreline_volumes-atr.sql")
-        print("Populating TMC counts...")
+        self.logger.info("Populating TMC counts...")
         
         self.execute_sql("update-table-centreline_volumes-tmc.sql")
         self.execute_sql("create-table-cluster_atr_volumes.sql")
-        
+    def logtest(self):
+        self.logger.info('test logging hhh')   
     def __exit__(self):
         self.db.close()
         
 if __name__ == '__main__':
     
-    tStart = datetime.now()
-        
+    logger = logging.getLogger('volume_project')
+    logger.setLevel(logging.INFO)
+    if not logger.handlers:
+        handler = logging.FileHandler('volume_project.log', mode='w')
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+    
     pfd = prepare_flow_data()
+    tStart = datetime.now()        
     newmatch = pfd.arterycode_matching()
-    
-    print(datetime.now()-tStart)   
+    logger.info('Finished Arterycode Matching in ', datetime.now()-tStart)   
     
     tStart = datetime.now()
-    pfd = prepare_flow_data()
     pfd.cleanup_traffic_counts()
+    logger.info('Finished clean up counts in ', datetime.now()-tStart)   
     
     tStart = datetime.now()
     pfd.populate_volumes_table()
+    logger.info('Finished populate volume tables in', datetime.now()-tStart)   
+    del pfd
     
     tStart = datetime.now()
     clst = cluster(nClusters = 6)
@@ -102,10 +115,12 @@ if __name__ == '__main__':
         clst.refresh_db_export()
     else:
         clst.refresh_db_export()
+    del clst
+    logger.info('Finished clustering in ', datetime.now()-tStart) 
     
-    
+    tStart = datetime.now()
     tex = temporal_extrapolation('group_number') 
     tex.testing_entire_TO()
     del tex
+    logger.info('Finished calculating AADT for Toronto in ', datetime.now()-tStart) 
     
-    print(datetime.now()-tStart)

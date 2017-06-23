@@ -15,18 +15,20 @@ from pg import ProgrammingError
 import configparser
 import pandas as pd
 import pickle
+import logging
 
 class vol_utils(object):
     
     def __init__(self):
         self.db_connect()
-
+        
     def db_connect(self):
         CONFIG = configparser.ConfigParser()
         CONFIG.read('db.cfg')
         dbset = CONFIG['DBSETTINGS']
         self.db = DB(dbname=dbset['database'],host=dbset['host'],user=dbset['user'],passwd=dbset['password'])
-    
+        self.logger.info('Database connected.')
+        
     def exec_file(self, filename):
         try:
             f = open(filename)
@@ -36,10 +38,12 @@ class vol_utils(object):
                 if filename in files:
                     f = root_f + '/' + filename
                     break
+            self.logger.info('Running ', f)
             exec(f)
             
         if f is None:
-            raise Exception ('File not found!')
+            self.logger.error('File ', filename, ' not found!')
+            raise Exception ('File ', filename, ' not found!')
         
     def execute_sql(self, filename):
         f = None
@@ -50,6 +54,7 @@ class vol_utils(object):
                 if filename in files:
                     f = open(root_f + '/' + filename)
         if f is None:
+            self.logger.error('File ', filename, ' not found!')
             raise Exception ('File not found!')
             
         sql = f.read()
@@ -79,6 +84,7 @@ class vol_utils(object):
             if filename[:6] == 'SELECT': # Also accepts sql queries directly in string form
                 sql = filename
             else:
+                self.logger.error('File ', filename, ' not found!')
                 raise Exception ('File not found!')
         else:    
             sql = f.read()
@@ -92,10 +98,10 @@ class vol_utils(object):
             try:
                 return pd.DataFrame(self.db.query(sql).getresult(), columns = columns)
             except ProgrammingError as pe:
-                print(pe)
                 self.db_connect()
                 reconnect += 1
             if reconnect > 5:
+                self.logger.error('Error in SQL', exc_info=True)
                 raise Exception ('Check Error Message')
             
     def load_pkl(self,filename):
@@ -107,6 +113,7 @@ class vol_utils(object):
                 if filename in files:
                     f = open(root_f + '/' + filename)
         if f is None:
+            self.logger.error('File ', filename, ' not found!')
             raise Exception ('File not found!')
     
         return pickle.load(f) 
@@ -122,6 +129,7 @@ class vol_utils(object):
                 self.db_connect()
                 reconnect += 1
             if reconnect > 5:
+                self.logger.error('Error in SQL', exc_info=True)
                 raise Exception ('Check Error Message')
                 
     def inserttable(self, tablename, content):
@@ -134,6 +142,7 @@ class vol_utils(object):
                 self.db_connect()
                 reconnect += 1
             if reconnect > 5:
+                self.logger.error('Error in SQL', exc_info=True)
                 raise Exception ('Check Error Message')
                 
     def __exit__(self):

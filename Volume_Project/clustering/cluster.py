@@ -8,10 +8,12 @@ Created on Fri Apr  7 10:09:30 2017
 import pandas as pd
 import cl_fcn
 from utilities import vol_utils
+import logging
 
 class cluster(vol_utils):
     
     def __init__(self, nClusters = 6):
+        self.logger = logging.getLogger('volume_project.clustering')
         super().__init__()
         
         self.nClusters = nClusters
@@ -30,16 +32,21 @@ class cluster(vol_utils):
         self.clgrdircl = clgrdircl_com
         self.percentile = cl_fcn.get_percentiles(data,[25,75])
         
+        self.logger.info('Clustering initialization done.')
+        
     def explore_nClusters(self, data, upper_bound=20):
         cl_fcn.plot_metrics_find_k(list(data['vol_weight']), upper_bound) 
 
     def fit_incomplete_data(self, datatmc, useResults=False):
         if datatmc.empty:
+            self.logger.debug('No data passing in, reading TMC data from 2010 to 2017')
             datatmc = self.get_data_tmc(('20100101','20170101'))
+        self.logger.debug('Classifying incomplete data')
         classify_tmcdata = cl_fcn.remove_clustered_cl(datatmc, self.tcldircl)
         [classified_tmcdata,distmtx] = cl_fcn.fit_incomplete(self.profile, classify_tmcdata)
         
         if useResults:
+            self.logger.debug('Adding incomplete data fit to clustering results.')
             classified_tmcdata = classified_tmcdata.merge(self.tcl_group, on=['centreline_id','dir_bin'])
             if len(classified_tmcdata) > 0:
                 tcldircl_incom = cl_fcn.plot_mode_cl_consolidate(classified_tmcdata, ('centreline_id','dir_bin'))
@@ -107,7 +114,9 @@ class cluster(vol_utils):
         
     def interpolate_data(self, incomdata):
         if incomdata.empty:
+            self.logger.debug('No data passed in. Reading in incomplete ATR data from DB')
             incomdata = self.get_incompleteday_data()
+            
         df_tcldircl = pd.DataFrame(self.tcldircl, columns = ['cluster','centreline_id','dir_bin','identifier'])
         filled = cl_fcn.fill_missing_values(self.profile, incomdata, df_tcldircl)
         
@@ -124,6 +133,7 @@ class cluster(vol_utils):
         self.db.inserttable('prj_volume.clusters_group', self.clgrdircl)
         self.db.truncate('prj_volume.cluster_profiles')
         self.db.inserttable('prj_volume.cluster_profiles', [[c,t+1,y] for x,c in zip(self.profile,range(self.nClusters)) for y,t in zip(x,range(96))])
+        self.logger.info('Exported clustering results to DB')
 
     
         
