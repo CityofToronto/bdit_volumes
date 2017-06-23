@@ -6,8 +6,6 @@ Created on Tue Jan 17 14:44:09 2017
 """
 
 import pandas as pd
-from pg import DB
-import configparser
 import numpy as np
 import re
 
@@ -115,7 +113,7 @@ def combine_and_upload(db,directory):
     df.to_csv(directory+'ready_corr_import.csv',index = False)
     df['was_match_on_case'] = df['was_match_on_case'].astype(int)
     
-    db.truncate('prj_volume.artery_tcl_manual_corr')
-    db.inserttable('prj_volume.artery_tcl_manual_corr',df.values.tolist())
+    return df.values.tolist()
+
     
     

@@ -1,15 +1,16 @@
 -- Create new instance of table for operations
 --Query returned successfully: 111875806 rows affected, 07:34 minutes execution time.
 
-TRUNCATE prj_volume.cnt_det_clean;
+CREATE TEMPORARY TABLE temp_cnt_det (LIKE prj_volume.cnt_det_clean);
 
-INSERT INTO prj_volume.cnt_det_clean
+INSERT INTO temp_cnt_det
 SELECT id, count_info_id, count, timecount, speed_class, NULL AS flag
-FROM traffic.cnt_det;
+FROM traffic.cnt_det
+WHERE count_info_id NOT IN (SELECT DISTINCT count_info_id FROM prj_volume.cnt_det_clean);
 
 -- Delete NULL values (time bin exists but count is NULL)
 -- Query returned successfully: 15352 rows affected
-DELETE FROM prj_volume.cnt_det_clean
+DELETE FROM temp_cnt_det
 WHERE count IS NULL;
 
 -- Fix shifted time bins
@@ -21,17 +22,17 @@ CREATE TEMPORARY TABLE shifted_time(count_info_id bigint);
 
 INSERT INTO shifted_time
 SELECT count_info_id
-FROM prj_volume.cnt_det_clean
+FROM temp_cnt_det
 WHERE EXTRACT(second FROM timecount) = 59 OR EXTRACT(minute FROM timecount) = 59;
 
-UPDATE prj_volume.cnt_det_clean cdc
+UPDATE temp_cnt_det cdc
 SET timecount = sub.timecount
 FROM	(SELECT (CASE 
 		WHEN EXTRACT(SECOND FROM timecount) = 59 THEN timecount - INTERVAL '14 minutes 59 seconds'
 		WHEN EXTRACT(MINUTE FROM timecount) = 59 THEN timecount - INTERVAL '14 minutes'
 		ELSE timecount - INTERVAL '15 minutes'
 		END) AS timecount, id
-	FROM prj_volume.cnt_det_clean
+	FROM temp_cnt_det
 	WHERE count_info_id IN (SELECT count_info_id FROM shifted_time)) AS sub
 WHERE cdc.id = sub.id;
 
@@ -39,11 +40,11 @@ WHERE cdc.id = sub.id;
 -- SET speed_class to NULL when it is not a speed count. (some counts have speed_class 0 that gets picked up by group by later)
 -- Query returned successfully: 14026175 rows affected
 
-UPDATE prj_volume.cnt_det_clean
+UPDATE temp_cnt_det
 SET speed_class = NULL
 WHERE (count_info_id, timecount::time) IN 
 	(SELECT count_info_id, timecount::time
-	FROM prj_volume.cnt_det_clean
+	FROM temp_cnt_det
 	GROUP BY count_info_id, timecount::time
 	HAVING SUM(speed_class) = 0);
 	
@@ -51,9 +52,9 @@ WHERE (count_info_id, timecount::time) IN
 -- 412 count_info_id
 -- Query returned successfully: 338204 rows affected, 06:48 minutes execution time.
 
-DELETE FROM prj_volume.cnt_det_clean
+DELETE FROM temp_cnt_det
 WHERE count_info_id IN (SELECT count_info_id
-			FROM prj_volume.cnt_det_clean
+			FROM temp_cnt_det
 			GROUP BY count_info_id
 			HAVING SUM(count) = 0);
 
@@ -69,21 +70,21 @@ CREATE TEMPORARY TABLE duplicate(id bigint, count_info_id bigint, count bigint, 
 
 INSERT INTO duplicate
 SELECT DISTINCT ON (arterycode, count_date, timecount::time) id, count_info_id, count, timecount, speed_class
-FROM traffic.countinfo JOIN prj_volume.cnt_det_clean USING (count_info_id)
+FROM traffic.countinfo JOIN temp_cnt_det USING (count_info_id)
 WHERE (arterycode, count_date) IN
 	(SELECT arterycode, count_date
 	FROM (SELECT arterycode,count_date,timecount::time
-		 FROM traffic.countinfo JOIN prj_volume.cnt_det_clean USING (count_info_id)
+		 FROM traffic.countinfo JOIN temp_cnt_det USING (count_info_id)
 		 GROUP BY arterycode, count_date, timecount::time
 		 HAVING AVG(count) = MAX(count) AND COUNT(count)>1) AS A
 	GROUP BY arterycode, count_date
-	HAVING count(*) = (SELECT COUNT(DISTINCT timecount::time) FROM prj_volume.cnt_det_clean B JOIN traffic.countinfo C USING (count_info_id) WHERE C.arterycode = A.arterycode AND C.count_date = A.count_date))
+	HAVING count(*) = (SELECT COUNT(DISTINCT timecount::time) FROM temp_cnt_det B JOIN traffic.countinfo C USING (count_info_id) WHERE C.arterycode = A.arterycode AND C.count_date = A.count_date))
 ORDER BY arterycode, count_date, timecount::time, count_info_id;
 
-DELETE FROM prj_volume.cnt_det_clean 
+DELETE FROM temp_cnt_det 
 WHERE (count_info_id) IN (SELECT count_info_id FROM (SELECT arterycode, count_date FROM duplicate JOIN traffic.countinfo USING (count_info_id)) A JOIN traffic.countinfo USING (arterycode, count_date));
 
-INSERT INTO prj_volume.cnt_det_clean
+INSERT INTO temp_cnt_det
 SELECT *
 FROM duplicate;
 
@@ -94,7 +95,7 @@ FROM duplicate;
 -- Find the records
 SELECT MIN(count_info_id), vol, arterycode, count_date
 FROM (SELECT count_info_id, arterycode, count_date, sum(count) AS vol, category_id
-	FROM traffic.countinfo join prj_volume.cnt_det_clean using (count_info_id)
+	FROM traffic.countinfo join temp_cnt_det using (count_info_id)
 	WHERE category_id NOT IN (3,4)
 	GROUP BY count_info_id, arterycode, count_date) A
 GROUP BY arterycode, count_date, vol
@@ -102,15 +103,19 @@ HAVING count(*) > 1;
 
 -- Delete manually because, among the 7, two cases exists: 1. shifted profile, cannot delete a random one 2. identical profile, delete a random one
 -- 672 rows deleted
-DELETE FROM prj_volume.cnt_det_clean
+DELETE FROM temp_cnt_det
 WHERE count_info_id IN (136298, 298873, 179128, 136297, 719350, 719364, 721374);
 
 -- Remove Entries where volume between 8am and 12am is 0
 -- AND (whole day count is present OR less than 8h count)
 -- 41577 rows affected
-DELETE FROM prj_volume.cnt_det_clean
+DELETE FROM temp_cnt_det
 WHERE (count_info_id) IN 
 	(SELECT count_info_id
-	FROM traffic.countinfo B INNER JOIN prj_volume.cnt_det_clean C USING (count_info_id)
+	FROM traffic.countinfo B INNER JOIN temp_cnt_det C USING (count_info_id)
 	GROUP BY count_info_id
 	HAVING SUM(CASE WHEN EXTRACT(HOUR FROM timecount) >= 8 THEN count ELSE 0 END) = 0 AND (MOD(COUNT(*),96) = 0 OR COUNT(*) < 32));
+	
+INSERT INTO prj_volume.cnt_det_clean
+SELECT *
+FROM temp_cnt_det;

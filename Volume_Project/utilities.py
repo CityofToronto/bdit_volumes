@@ -20,7 +20,7 @@ class vol_utils(object):
     
     def __init__(self):
         self.db_connect()
-    
+
     def db_connect(self):
         CONFIG = configparser.ConfigParser()
         CONFIG.read('db.cfg')
@@ -57,13 +57,15 @@ class vol_utils(object):
         while True:
             try:
                 self.db.query(sql)
-            except ProgrammingError:
+                return
+            except ProgrammingError as pe:
+                print(pe)
                 self.db_connect()
                 reconnect += 1
             if reconnect > 5:
                 raise Exception ('Check DB connection. Cannot connect')
         
-    def get_sql_results(self, filename, columns):
+    def get_sql_results(self, filename, columns, parameters=None):
         
         f = None
         try:
@@ -74,22 +76,27 @@ class vol_utils(object):
                     f = open(root_f + '/' + filename)
                     
         if f is None:
-            if f[:6] == 'SELECT': # Also accepts sql queries directly in string form
-                sql = f
+            if filename[:6] == 'SELECT': # Also accepts sql queries directly in string form
+                sql = filename
             else:
                 raise Exception ('File not found!')
         else:    
             sql = f.read()
             
+        if parameters is not None:
+            for key,value in parameters.items():
+                sql = sql.replace(key,str(value))
+
         reconnect = 0
         while True:
             try:
                 return pd.DataFrame(self.db.query(sql).getresult(), columns = columns)
-            except ProgrammingError:
+            except ProgrammingError as pe:
+                print(pe)
                 self.db_connect()
                 reconnect += 1
             if reconnect > 5:
-                raise Exception ('Check DB connection. Cannot connect')
+                raise Exception ('Check Error Message')
             
     def load_pkl(self,filename):
         f = None
@@ -104,6 +111,31 @@ class vol_utils(object):
     
         return pickle.load(f) 
     
+    def truncatetable(self, tablename):
+        reconnect = 0
+        while True:
+            try:
+                self.db.truncate(tablename)
+                return
+            except ProgrammingError as pe:
+                print(pe)
+                self.db_connect()
+                reconnect += 1
+            if reconnect > 5:
+                raise Exception ('Check Error Message')
+                
+    def inserttable(self, tablename, content):
+        reconnect = 0
+        while True:
+            try:
+                self.db.inserttable(tablename,content)
+                break
+            except ProgrammingError:
+                self.db_connect()
+                reconnect += 1
+            if reconnect > 5:
+                raise Exception ('Check Error Message')
+                
     def __exit__(self):
         self.db.close()
         

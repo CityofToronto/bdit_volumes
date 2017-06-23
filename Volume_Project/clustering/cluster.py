@@ -123,7 +123,7 @@ class cluster(vol_utils):
         self.db.truncate('prj_volume.clusters_group')
         self.db.inserttable('prj_volume.clusters_group', self.clgrdircl)
         self.db.truncate('prj_volume.cluster_profiles')
-        self.db.inserttable('prj_volume.cluster_profiles', self.profile)
+        self.db.inserttable('prj_volume.cluster_profiles', [[c,t+1,y] for x,c in zip(self.profile,range(self.nClusters)) for y,t in zip(x,range(96))])
 
     
         

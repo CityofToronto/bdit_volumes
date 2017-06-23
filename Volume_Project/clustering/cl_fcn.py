@@ -16,7 +16,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def fill_missing_values(profiles, new, clusterinfo, plot=None):
+def fill_missing_values(profiles, new, clusterinfo, identifier_name, plot=None):
     
     ''' This function takes in a list of volume profiles and a dataframe of new, incomplete days of data as well as their clustering information and fill the missing time bins.
     
@@ -31,14 +31,14 @@ def fill_missing_values(profiles, new, clusterinfo, plot=None):
     if new.empty:
         return None
     filled = {}
-    for (count_date, tcl, dirc), newdata in new.groupby(['count_date','centreline_id','dir_bin']):
+    for (count_date, tcl, dirc), newdata in new.groupby(['count_date',identifier_name,'dir_bin']):
         if len(newdata) == 96:
             filled[(count_date, tcl, dirc)] = newdata['volume']
             continue
-        profile = profiles[int(clusterinfo[(clusterinfo['centreline_id']==tcl) & (clusterinfo['dir_bin'] == dirc)].loc[:,'cluster'])]  
-        
+        profile = profiles[int(clusterinfo[(clusterinfo[identifier_name]==tcl) & (clusterinfo['dir_bin'] == dirc)].loc[:,'cluster'])]  
+
         sum_vol = float(sum(newdata['volume']))
-        sum_weights = float(sum(profile[newdata['time_15']]))
+        sum_weights = float(sum([profile[i] for i in newdata['time_15']]))
         newdata = newdata.sort_values(by=['time_15'])
         total_vol = sum_vol/sum_weights
         
@@ -69,7 +69,7 @@ def fill_missing_values(profiles, new, clusterinfo, plot=None):
         
     return filled
     
-def fit_incomplete(centres, new, plot=None):
+def fit_incomplete(centres, new, identifier_name, plot=None):
     
     '''
     This function takes a list of volume profile cluster centres and incomplete days of data and fits the data to one of the profiles.
@@ -85,7 +85,7 @@ def fit_incomplete(centres, new, plot=None):
         return None, None
     cls = []
     distmtx = []
-    for (count_date, tcl, dirc), newdata in new.groupby(['count_date','centreline_id','dir_bin']):
+    for (count_date, tcl, dirc), newdata in new.groupby(['count_date',identifier_name,'dir_bin']):
         mindist = 100
         total_vol = 100
         cl = -1
@@ -126,7 +126,7 @@ def fit_incomplete(centres, new, plot=None):
                 plt.ylabel('Volume (veh)')
                 plt.legend(bbox_to_anchor=(1.45, 1.05))
                 plt.show()
-    return pd.DataFrame(cls,columns=['count_date','centreline_id','dir_bin','cluster']), distmtx  
+    return pd.DataFrame(cls,columns=['count_date',identifier_name,'dir_bin','cluster']), distmtx  
     
 def get_percentiles(data, percentiles):
     p = {}
@@ -137,21 +137,6 @@ def get_percentiles(data, percentiles):
             for i in range(96):
                 p[clusternum][percent].append(np.percentile([x[i] for x in group['vol_weight']],percent))
     return p
- 
-def get_tcl_rc_mapping(db):
-    
-    '''
-    This function takes a database connection and returns a dataframe that contains the mapping of centreline_id to its road class.
-    tcl contains the following columns:
-        - centreline_id (index column)
-        - feature_code
-        - feature_code_desc
-    '''
-        
-    tcl = pd.DataFrame(db.query('SELECT DISTINCT centreline_id, feature_code, feature_code_desc FROM prj_volume.centreline WHERE feature_code <= 201500').getresult(), columns=['centreline_id','feature_code','feature_code_desc'])
-    tcl = tcl.set_index(tcl['centreline_id'])
-    
-    return tcl
 
 def KMeans_cluster(nClusters, x, metric=False, avgWithinSS=[], ch=[], sc=[], ve=[]):
     
@@ -289,7 +274,7 @@ def plot_profile(clusterinfo, profile, percentile = {}):
         ax.set_xlabel('Hour')
         ax.set_ylabel('% of Daily Volume')
 
-def remove_clustered_cl(incomdata, tcldircl):
+def remove_clustered_cl(incomdata, tcldircl, identifier_name):
     
     '''
     This function takes in a dataframe of incomplete day atr counts retrieved from get_incompleteday_data and a (centreline_id, dir_bin):cluster# look up dataframe and returns a dataframe with already clustered location removed to be passed to fcn fit_incomplete.
@@ -302,8 +287,8 @@ def remove_clustered_cl(incomdata, tcldircl):
     '''
     
     data = incomdata.copy()
-    tcldircl = pd.DataFrame(tcldircl, columns = ['cluster','centreline_id','dir_bin','identifier'])
-    data = data.merge(tcldircl, on=['centreline_id','dir_bin'], how = 'left')
+    tcldircl = pd.DataFrame(tcldircl, columns = ['cluster',identifier_name,'dir_bin','identifier'])
+    data = data.merge(tcldircl, on=[identifier_name,'dir_bin'], how = 'left')
     data.fillna(100,inplace=True)
     data = data[data['cluster']==100]
     del data['cluster']

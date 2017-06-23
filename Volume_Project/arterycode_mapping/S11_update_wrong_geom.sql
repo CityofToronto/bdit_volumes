@@ -7,7 +7,7 @@ SELECT arterycode
 			FROM prj_volume.arteries JOIN prj_volume.artery_tcl USING (arterycode) JOIN prj_volume.centreline USING (centreline_id)
 			WHERE ST_GeometryType(loc) = 'ST_LineString') A
 		WHERE (ABS((ST_Azimuth(ST_StartPoint(loc), ST_EndPoint(loc))+0.292)*180/pi() - text) BETWEEN 135 AND 225) ) B
-	WHERE tcldirbin = 0 OR tcldirbin = textdirbin)
+	WHERE tcldirbin = 0 OR tcldirbin = textdirbin);
 	
 UPDATE prj_volume.artery_tcl
 SET direction = (CASE direction WHEN 'Eastbound' THEN 'Westbound' WHEN 'Southbound' THEN 'Northbound' WHEN 'Westbound' THEN 'Eastbound' WHEN 'Northbound' THEN 'Southbound' END)
