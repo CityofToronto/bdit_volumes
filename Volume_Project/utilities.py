@@ -15,7 +15,6 @@ from pg import ProgrammingError
 import configparser
 import pandas as pd
 import pickle
-import logging
 
 class vol_utils(object):
     
@@ -42,8 +41,8 @@ class vol_utils(object):
             exec(f)
             
         if f is None:
-            self.logger.error('File ', filename, ' not found!')
-            raise Exception ('File ', filename, ' not found!')
+            self.logger.error('File %s not found!', filename)
+            raise Exception ('File %s not found!', filename)
         
     def execute_sql(self, filename):
         f = None
@@ -54,7 +53,7 @@ class vol_utils(object):
                 if filename in files:
                     f = open(root_f + '/' + filename)
         if f is None:
-            self.logger.error('File ', filename, ' not found!')
+            self.logger.error('File %s not found!', filename)
             raise Exception ('File not found!')
             
         sql = f.read()
@@ -62,6 +61,7 @@ class vol_utils(object):
         while True:
             try:
                 self.db.query(sql)
+                self.db.commit()
                 return
             except ProgrammingError as pe:
                 print(pe)
@@ -70,7 +70,8 @@ class vol_utils(object):
             if reconnect > 5:
                 raise Exception ('Check DB connection. Cannot connect')
         
-    def get_sql_results(self, filename, columns, parameters=None):
+        
+    def get_sql_results(self, filename, columns, replace_columns=None, parameters=None):
         
         f = None
         try:
@@ -84,19 +85,22 @@ class vol_utils(object):
             if filename[:6] == 'SELECT': # Also accepts sql queries directly in string form
                 sql = filename
             else:
-                self.logger.error('File ', filename, ' not found!')
+                self.logger.error('File %s not found!', filename)
                 raise Exception ('File not found!')
         else:    
             sql = f.read()
-            
-        if parameters is not None:
-            for key,value in parameters.items():
+ 
+        if replace_columns is not None:
+            for key,value in replace_columns.items():
                 sql = sql.replace(key,str(value))
 
         reconnect = 0
         while True:
             try:
-                return pd.DataFrame(self.db.query(sql).getresult(), columns = columns)
+                if parameters is not None:
+                    return pd.DataFrame(self.db.query(sql, parameters).getresult(), columns = columns)
+                else:
+                    return pd.DataFrame(self.db.query(sql).getresult(), columns = columns)
             except ProgrammingError as pe:
                 self.db_connect()
                 reconnect += 1
@@ -113,7 +117,7 @@ class vol_utils(object):
                 if filename in files:
                     f = open(root_f + '/' + filename)
         if f is None:
-            self.logger.error('File ', filename, ' not found!')
+            self.logger.error('File %s not found!', filename)
             raise Exception ('File not found!')
     
         return pickle.load(f) 
@@ -123,6 +127,8 @@ class vol_utils(object):
         while True:
             try:
                 self.db.truncate(tablename)
+                self.db.commit()
+                self.logger.info('%s truncated', tablename)
                 return
             except ProgrammingError as pe:
                 print(pe)
@@ -137,6 +143,8 @@ class vol_utils(object):
         while True:
             try:
                 self.db.inserttable(tablename,content)
+                self.db.commit()
+                self.logger.info('Inserted table: %s', tablename)
                 break
             except ProgrammingError:
                 self.db_connect()

@@ -88,17 +88,27 @@ class temporal_extrapolation(vol_utils):
         '''
         
         to_classify = cl_fcn.remove_clustered_cl(records, self.tcldircl, self.identifier_name)
+        self.logger.debug('Removed already clustered segments, %i segment/day(s) to cluster', len(to_classify['count_date'].drop_duplicates()))
+        #print(to_classify)
         classified,_ = cl_fcn.fit_incomplete(self.cluster_profile, to_classify, self.identifier_name)
-    
+        
+        if type(classified) == int:
+            self.logger.error('Error in counts for %i %i')
+            return None
+        else:
+            self.logger.debug('Clustered segments.')
+        
         if classified is None:
             classified = self.tcldircl[[self.identifier_name, 'dir_bin', 'cluster']]
         else:
             classified = classified.append(self.tcldircl[[self.identifier_name, 'dir_bin', 'cluster']].drop_duplicates())
-            
+        self.logger.debug('Combined clustering infomation.')
+        
         # Remove duplicates if multiple days of the same location is passed in
         classified = classified.groupby([self.identifier_name, 'dir_bin'], group_keys=False).apply(lambda x: x.ix[x.cluster.idxmax()]) 
         data = cl_fcn.fill_missing_values(self.cluster_profile, records, classified, self.identifier_name)
-    
+        self.logger.debug('Took the mode cluster if multiple clusters are assigned.')
+        
         df = []
         for k,v in data.items():
             for i,a in zip(range(96),v):
@@ -134,9 +144,9 @@ class temporal_extrapolation(vol_utils):
         '''
         
         self.logger.debug('Getting Relevant Counts for %s %i %i', self.identifier_name, identifier_value, dir_bin)
-        parameters = {'place_holder_identifier_name':self.identifier_name, 'place_holder_dir_bin': str(dir_bin), 'place_holder_year': str(year), 'place_holder_identifier_value': identifier_value}
+        parameters = [dir_bin, year, identifier_value]
         
-        data = self.get_sql_results("query_relevant_counts.sql", columns=[self.identifier_name, 'dir_bin', 'count_date', 'count_time', 'count_type', 'volume'], parameters=parameters)
+        data = self.get_sql_results("query_relevant_counts.sql", columns=[self.identifier_name, 'dir_bin', 'count_date', 'count_time', 'count_type', 'volume'], replace_columns = {'place_holder_identifier_name':self.identifier_name}, parameters=parameters)
         data['volume'] = data['volume'].astype(int)
         
         tmc = data[data['count_type'] == 2][[self.identifier_name, 'dir_bin', 'count_date', 'count_time', 'volume']]
@@ -149,15 +159,17 @@ class temporal_extrapolation(vol_utils):
     def get_volume(self, identifier_value, dir_bin, date, hour=None, profile=False):
      
         try:
+            count_year = int(date)
             date = int(date)
-            tmc, atr = self.get_relevant_counts(identifier_value, dir_bin, date)
         except:    
             if pd.to_datetime(date).weekday() in (5, 6):
                 self.logger.info('Weekdays Only Please. For now.')
                 return None
             if type(date) == str:
                 date = datetime.strptime(date, '%Y-%m-%d').date()
-            tmc, atr = self.get_relevant_counts(identifier_value, dir_bin, date.year)
+            count_year = date.year
+            
+        tmc, atr = self.get_relevant_counts(identifier_value, dir_bin, count_year)
             
         if type(tmc) == int:
             self.logger.error('Invalid Database Connection.')
@@ -203,8 +215,11 @@ class temporal_extrapolation(vol_utils):
             self.logger.debug('%s %i %i: TMC from requested year', self.identifier_name, identifier_value, dir_bin)
             tmc = tmc[tmc['count_date'].astype(str).str.contains(str(year), na=False)]
             data = self.fill_in(tmc)
-        
-        data = data.groupby([self.identifier_name,'dir_bin','count_date'], as_index=False).sum()
+            
+        if data is None: # Error encountered
+            return 0
+        else:
+            data = data.groupby([self.identifier_name,'dir_bin','count_date'], as_index=False).sum()
 
         factors = self.calc_date_factors(year, data['count_date'], identifier_value, dir_bin)
 
@@ -339,8 +354,7 @@ class temporal_extrapolation(vol_utils):
         
     def refresh_monthly_factors(self):
         
-        parameters = {'place_holder_identifier_name':self.identifier_name}
-        factors = self.get_sql_results("query_monthly_factors.sql", columns = ['centreline_id', 'dir_bin','year','weights'], parameters=parameters)
+        factors = self.get_sql_results("query_monthly_factors.sql", columns = ['centreline_id', 'dir_bin','year','weights'], parameters=[self.identifier_name])
     
         factors1 = factors.set_index(['centreline_id', 'dir_bin','year'])
         f_sum = [0] * 12
@@ -389,7 +403,8 @@ class temporal_extrapolation(vol_utils):
 
             return df['volume'][0]
         else:
-            df = pd.concat([tmc, atr]).merge(factors_date, on=['count_date'])
+            
+            df = pd.concat([tmc, atr]).merge(factors_date, on=['count_date'])        
             if df.empty:
                 raise ValueError('No value passed to take average.')
             df['volume'] = df['volume']*df['factor_month']
@@ -444,7 +459,7 @@ class temporal_extrapolation(vol_utils):
         self.logger.info(self.get_volume(118, 1, '2011-04-27', 16)) # ~22
         
     def testing_entire_TO(self):
-        centrelines = self.get_sql_results('SELECT DISTINCT group_number, dir_bin FROM prj_volume.centreline_groups ORDER BY group_number', columns = ['identifier', 'dir_bin'])
+        centrelines = self.get_sql_results('SELECT DISTINCT group_number, dir_bin FROM prj_volume.centreline_groups ORDER BY group_number DESC', columns = ['identifier', 'dir_bin'])
 
         volumes =  []
         non = []
