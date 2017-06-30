@@ -92,7 +92,7 @@ if __name__ == '__main__':
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         logger.addHandler(handler)
-    
+    '''
     pfd = prepare_flow_data()
     
     tStart = datetime.now()        
@@ -125,10 +125,9 @@ if __name__ == '__main__':
     vol, non = tex.testing_entire_TO()
     del tex
     logger.info('Finished calculating AADT for Toronto in %s', str(datetime.now()-tStart))   
-    
+    '''
     spa = spatial_extrapolation()
-    for road_class in [201200]:
-        spa.Linear_Regression_Prox(spa.get_coord_data(road_class), road_class)
+    for road_class in [201200,201300,201400,201500]:
+        #spa.Linear_Regression_Prox(spa.get_coord_data(road_class), road_class)
         spa.Linear_Regression_Directional(road_class)
     del spa
-    #spa.Linear_Regression_Directional(201500)

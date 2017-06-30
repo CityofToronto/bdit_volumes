@@ -76,3 +76,5 @@ update_db/eglinton_counts.R
 *connect.R
 *.cfg
 *.log
+volume_project/volumes.csv
+*.pyc
