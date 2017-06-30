@@ -64,7 +64,7 @@ class vol_utils(object):
                 self.db.commit()
                 return
             except ProgrammingError as pe:
-                print(pe)
+                self.logger.error('Error in SQL', exc_info=True)
                 self.db_connect()
                 reconnect += 1
             if reconnect > 5:
@@ -102,10 +102,10 @@ class vol_utils(object):
                 else:
                     return pd.DataFrame(self.db.query(sql).getresult(), columns = columns)
             except ProgrammingError as pe:
+                self.logger.error('Error in SQL', exc_info=True)
                 self.db_connect()
                 reconnect += 1
             if reconnect > 5:
-                self.logger.error('Error in SQL', exc_info=True)
                 raise Exception ('Check Error Message')
             
     def load_pkl(self,filename):

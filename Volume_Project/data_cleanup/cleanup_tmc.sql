@@ -6,10 +6,18 @@ SELECT *, NULL AS flag, NULL AS time15
 FROM traffic.det
 WHERE count_info_id NOT IN (SELECT DISTINCT count_info_id FROM prj_volume.det_clean);
 
+-- Delete NULL counts
+DELETE FROM temp_det
+WHERE n_cars_r IS NULL OR n_cars_t IS NULL OR n_cars_l IS NULL OR s_cars_r IS NULL OR s_cars_t IS NULL OR s_cars_l IS NULL OR e_cars_r IS NULL OR e_cars_t IS NULL OR e_cars_l IS NULL OR w_cars_r IS NULL OR w_cars_t IS NULL OR w_cars_l IS NULL;
+
 -- Deal with the four cases where multiple count_info_ids corresponds to the same arterycode+count_date
 -- so that count_info_id has one-to-one relationship with (arterycode, count_date)
 DELETE FROM temp_det
 WHERE count_info_id IN (9235,3868,3869);
+
+-- A few manual deletions caught at random
+DELETE FROM temp_det
+WHERE count_info_id IN (4980);
 
 UPDATE temp_det
 SET count_info_id = 8999 

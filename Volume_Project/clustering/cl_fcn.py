@@ -91,6 +91,8 @@ def fit_incomplete(centres, new, identifier_name, plot=None):
         cl = -1
         i = 0
         svol = sum(newdata['volume'])
+        if svol == 0:
+            return -1, -1
         row = []
         for centre in centres:
             newdatacp = newdata.copy()

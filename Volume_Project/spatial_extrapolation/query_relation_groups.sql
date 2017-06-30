@@ -1,13 +1,15 @@
-﻿SELECT g1, array_agg(v ORDER BY parallel, row_number), F.volume::int
+-- Parameters: $1 - feature_code
+
+SELECT g1, array_agg(v ORDER BY parallel, row_number), F.volume::int
 FROM(
-	SELECT g1, g2, parallel, dist, row_number() OVER (PARTITION BY g1, parallel ORDER BY dist,feature_code), E.volume::int as v
+	SELECT g1, g2, parallel, dist, row_number() OVER (PARTITION BY g1, parallel ORDER BY dist, feature_code), E.volume::int as v
 	FROM (
 		SELECT g1, g2, (CASE WHEN diff BETWEEN 45 AND 135 OR diff BETWEEN 225 AND 315 THEN FALSE ELSE TRUE END) AS parallel, dist, feature_code
 		FROM (SELECT t1.group_number AS g1, t2.group_number AS g2, ST_Distance(t1.shape, t2.shape) AS dist, t2.feature_code, 
 				ABS((ST_Azimuth(ST_StartPoint(t1.shape), ST_EndPoint(t1.shape)) - ST_Azimuth(ST_StartPoint(t2.shape), ST_EndPoint(t2.shape))))/pi()*180 AS diff
 			FROM prj_volume.centreline_groups_geom t1 JOIN prj_volume.centreline_groups_geom t2 ON (ST_Dwithin(t1.shape, t2.shape,500)) 
-			WHERE t1.feature_code=201200 AND t1.group_number != t2.group_number AND t2.group_number IN (SELECT DISTINCT group_number FROM prj_volume.aadt)) A
-		WHERE feature_code=201200 OR diff BETWEEN 45 AND 135 OR diff BETWEEN 225 AND 315) B
+			WHERE t1.feature_code=$1 AND t1.group_number != t2.group_number AND t2.group_number IN (SELECT DISTINCT group_number FROM prj_volume.aadt)) A
+		WHERE feature_code=$1 OR diff BETWEEN 45 AND 135 OR diff BETWEEN 225 AND 315) B
 
 	JOIN (SELECT DISTINCT group_number, dir_bin
 		FROM prj_volume.centreline_groups) C

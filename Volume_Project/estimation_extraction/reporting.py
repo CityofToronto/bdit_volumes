@@ -6,8 +6,10 @@ Created on Mon May  1 11:58:02 2017
 """
 
 import sys
-sys.path.append('../12 Volume Clustering/')
-
+import os
+for x in os.walk('.'):
+    sys.path.append(x[0])
+    
 import warnings
 warnings.simplefilter('error', RuntimeWarning)
 
@@ -148,7 +150,7 @@ class temporal_extrapolation(vol_utils):
         
         data = self.get_sql_results("query_relevant_counts.sql", columns=[self.identifier_name, 'dir_bin', 'count_date', 'count_time', 'count_type', 'volume'], replace_columns = {'place_holder_identifier_name':self.identifier_name}, parameters=parameters)
         data['volume'] = data['volume'].astype(int)
-        
+        print(data)
         tmc = data[data['count_type'] == 2][[self.identifier_name, 'dir_bin', 'count_date', 'count_time', 'volume']]
         atr = data[data['count_type'] == 1][[self.identifier_name, 'dir_bin', 'count_date', 'count_time', 'volume']]
         
@@ -465,34 +467,46 @@ class temporal_extrapolation(vol_utils):
         non = []
         i = 0
         for identifier, dir_bin in zip(centrelines['identifier'], centrelines['dir_bin']):
-            self.logger.info('#%i - Calculating volume for %i %i', i, identifier, dir_bin)
-            try:
-                v = self.get_volume(identifier, dir_bin, '2015')  
-            except:
-                self.logger.error('Calculating Procedure Interrupted', exc_info=True)
+            if i >= 16462:
+                self.logger.info('#%i - Calculating volume for %i %i', i, identifier, dir_bin)
                 try:
-                    self.upload_to_aadt(volumes)    
+                    v = self.get_volume(identifier, dir_bin, '2015')  
                 except:
-                    if self.identifier_name == 'centreline_id':
-                        volumes = pd.DataFrame(volumes, columns = ['centreline_id', 'dir_bin', 'year', 'volume'])  
-                    else:
-                        volumes = pd.DataFrame(volumes,columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number']) 
-                    volumes.to_csv('volumes.csv')
-                    self.logger.info('Saved results to volumes.csv')
+                    self.logger.error('Calculating Procedure Interrupted', exc_info=True)
+                    try:
+                        self.upload_to_aadt(volumes)    
+                    except:
+                        self.logger.error(sys.exc_info()[0])
+                        if self.identifier_name == 'centreline_id':
+                            volumes = pd.DataFrame(volumes, columns = ['centreline_id', 'dir_bin', 'year', 'volume'])  
+                        else:
+                            volumes = pd.DataFrame(volumes,columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number']) 
+                        volumes.to_csv('volumes.csv')
+                        self.logger.info('Saved results to volumes.csv')
+                        
+                    return volumes, non
                     
-                return volumes, non
-                
-            if v is not None:
-                if self.identifier_name == 'centreline_id':
-                    volumes.append([identifier, dir_bin, 2015, int(v)])
+                if v is not None:
+                    if self.identifier_name == 'centreline_id':
+                        volumes.append([identifier, dir_bin, 2015, int(v)])
+                    else:
+                        volumes.append([None, dir_bin, 2015, int(v), identifier])
                 else:
-                    volumes.append([None, dir_bin, 2015, int(v), identifier])
-            else:
-                non.append([identifier, dir_bin])
+                    non.append([identifier, dir_bin])
             i = i + 1
+            
 
-        self.upload_to_aadt(volumes)    
-        
+        try:
+            self.upload_to_aadt(volumes)    
+        except:
+            self.logger.error(sys.exc_info()[0])
+            if self.identifier_name == 'centreline_id':
+                volumes = pd.DataFrame(volumes, columns = ['centreline_id', 'dir_bin', 'year', 'volume'])  
+            else:
+                volumes = pd.DataFrame(volumes,columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number']) 
+            volumes.to_csv('volumes.csv')
+            self.logger.info('Saved results to volumes.csv')  
+
         return volumes, non
         
     def upload_to_aadt(self, volumes):
@@ -501,7 +515,7 @@ class temporal_extrapolation(vol_utils):
             volumes = pd.DataFrame(volumes, columns = ['centreline_id','dir_bin','year','volume'])  
             volumes = pd.merge(volumes, groups, how='inner', on=['centreline_id','dir_bin'])
             
-        volumes = volumes.values.tolist()
-        self.truncatetable('prj_volume.aadt')
+            volumes = volumes.values.tolist()
+        #self.truncatetable('prj_volume.aadt')
         self.inserttable('prj_volume.aadt', volumes)
         self.logger.info('Uploaded results to prj_volume.aadt')

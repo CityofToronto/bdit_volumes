@@ -38,10 +38,11 @@ WHERE (centreline_id = 14063455 and arterycode = 27468) or (centreline_id = 1430
 or (centreline_id = 20089656 and arterycode = 36191) or (centreline_id = 30002424 and arterycode = 24781) or (centreline_id = 30028880 and arterycode = 27171) 
 or (centreline_id = 30039432 and arterycode = 35538) or (centreline_id = 30065648 and arterycode = 35347) or (centreline_id = 30073636 and arterycode = 34009)
 or (centreline_id = 30074130 and arterycode = 33024);
-/*
+
+-- Delete counts that do not agree with oneway_dir_code
 DELETE FROM artery_tcl_directions
 WHERE oneway_dir_code != 0 AND oneway_dir_code * dir_binary((ST_Azimuth(ST_StartPoint(shape), ST_EndPoint(shape))+0.292)*180/pi()) != dir_bin;
-*/
+
 DELETE FROM prj_volume.centreline_volumes WHERE count_type = 1;
 
 INSERT INTO prj_volume.centreline_volumes(centreline_id, dir_bin, count_bin, volume, count_type, speed_class, vehicle_class)
@@ -55,7 +56,7 @@ SELECT	A.centreline_id,
 FROM artery_tcl_directions A
 INNER JOIN traffic.countinfo B USING (arterycode)
 INNER JOIN prj_volume.cnt_det_clean C USING (count_info_id)
-WHERE A.dir_bin IN (1,-1)
+WHERE A.dir_bin IN (1,-1) AND flag is NULL
 ORDER BY A.centreline_id, A.arterycode;
 
 DROP TABLE artery_tcl_directions;

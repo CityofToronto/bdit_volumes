@@ -17,6 +17,7 @@ import pandas as pd
 from utilities import vol_utils
 from cluster import cluster
 from reporting import temporal_extrapolation
+from spatial_extrapolation import spatial_extrapolation
 from datetime import datetime
 import logging
 
@@ -65,7 +66,6 @@ class prepare_flow_data(vol_utils):
         self.logger.info("Flagging counts...")
         self.execute_sql("flag_anomalies.sql")
         self.execute_sql("flag_tmc.sql")
- 
         
     def populate_volumes_table(self):
        
@@ -77,15 +77,16 @@ class prepare_flow_data(vol_utils):
         
         self.execute_sql("update-table-centreline_volumes-tmc.sql")
         self.execute_sql("create-table-cluster_atr_volumes.sql")
-    def logtest(self):
-        self.logger.info('test logging hhh')   
+        
     def __exit__(self):
+     
         self.db.close()
         
 if __name__ == '__main__':
     
     logger = logging.getLogger('volume_project')
     logger.setLevel(logging.INFO)
+    
     if not logger.handlers:
         handler = logging.FileHandler('volume_project.log', mode='w')
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -93,17 +94,18 @@ if __name__ == '__main__':
         logger.addHandler(handler)
     
     pfd = prepare_flow_data()
+    
     tStart = datetime.now()        
     newmatch = pfd.arterycode_matching()
-    logger.info('Finished Arterycode Matching in ', datetime.now()-tStart)   
+    logger.info('Finished Arterycode Matching in %s', str(datetime.now()-tStart))
     
     tStart = datetime.now()
     pfd.cleanup_traffic_counts()
-    logger.info('Finished clean up counts in ', datetime.now()-tStart)   
+    logger.info('Finished clean up counts in %s', str(datetime.now()-tStart))   
     
     tStart = datetime.now()
     pfd.populate_volumes_table()
-    logger.info('Finished populate volume tables in', datetime.now()-tStart)   
+    logger.info('Finished populating volume tables in %s', str(datetime.now()-tStart))   
     del pfd
     
     tStart = datetime.now()
@@ -116,11 +118,17 @@ if __name__ == '__main__':
     else:
         clst.refresh_db_export()
     del clst
-    logger.info('Finished clustering in ', datetime.now()-tStart) 
+    logger.info('Finished clustering in %s', str(datetime.now()-tStart))   
     
     tStart = datetime.now()
-    tex = temporal_extrapolation('group_number') 
-    tex.testing_entire_TO()
+    tex = temporal_extrapolation('group_number')
+    vol, non = tex.testing_entire_TO()
     del tex
-    logger.info('Finished calculating AADT for Toronto in ', datetime.now()-tStart) 
+    logger.info('Finished calculating AADT for Toronto in %s', str(datetime.now()-tStart))   
     
+    spa = spatial_extrapolation()
+    for road_class in [201200]:
+        spa.Linear_Regression_Prox(spa.get_coord_data(road_class), road_class)
+        spa.Linear_Regression_Directional(road_class)
+    del spa
+    #spa.Linear_Regression_Directional(201500)
