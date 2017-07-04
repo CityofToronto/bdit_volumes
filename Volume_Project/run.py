@@ -126,8 +126,9 @@ if __name__ == '__main__':
     del tex
     logger.info('Finished calculating AADT for Toronto in %s', str(datetime.now()-tStart))   
     '''
-    spa = spatial_extrapolation()
-    for road_class in [201200,201300,201400,201500]:
+    spa = spatial_extrapolation(30)
+    for road_class in [201300,201400,201500]:
         #spa.Linear_Regression_Prox(spa.get_coord_data(road_class), road_class)
-        spa.Linear_Regression_Directional(road_class)
+        #spa.Linear_Regression_Directional(road_class)
+        spa.Average_Neighbours(road_class)
     del spa

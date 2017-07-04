@@ -25,35 +25,38 @@ Covariance matrix is constructed based on the coordinate information of the segm
 
 ### Major Arterials
 -|Linear Regression (proximity only) | Direction Linear Regression | Average of Nearest Neighbours|
--|-----------------------------------|-----------------------------|------------------------------|
-Scatter plot| ![major_arterials_proximity_regr](img/major_arterials_proximity_regr.png)|![major_arterials_directional_regr](img/major_arterials_directional_regr.png)|
-Root Mean Squared Error|||
-Coef. of Det.|||
+-|:-----------------------------------:|:----------------------------:|:------------------------------:|
+Scatter plot| ![major_arterials_proximity_regr](img/major_arterials_proximity_regr.png)|![major_arterials_directional_regr](img/major_arterials_directional_regr.png)|![major_arterials_neighbour_avg](img/major_arterials_neighbour_avg.png)|
+Root Mean Squared Error|4374|4232|4554|
+Coef. of Det.|0.480|0.542|0.492
 
 ![major_arterials_proximity_regr_scores](img/major_arterials_proximity_regr_scores.png)
 
 ### Minor Arterials
 -|Linear Regression (proximity only) | Direction Linear Regression| Average of Nearest Neighbours|
--|-----------------------------------|----------------------------|------------------------------|
-Scatter plot| ![minor_arterials_proximity_regr](img/minor_arterials_proximity_regr.png)|![minor_arterial_directional_regr](img/minor_arterials_directional_regr.png)|
-Root Mean Squared Error||||
-Coef. of Det.||||
+-|:-----------------------------------:|:----------------------------:|:------------------------------:|
+Scatter plot| ![minor_arterials_proximity_regr](img/minor_arterials_proximity_regr.png)|![minor_arterial_directional_regr](img/minor_arterials_directional_regr.png)|![minor_arterial_neighbour_avg](img/minor_arterials_neighbour_avg.png)|
+Root Mean Squared Error|2285|2143|2067|
+Coef. of Det.|0.345|0.461|0.341|
+
 ![minor_arterials_proximity_regr_scores](img/minor_arterials_proximity_regr_scores.png)
 
 ### Collectors
 -|Linear Regression (proximity only) | Direction Linear Regression| Average of Nearest Neighbours|
--|-----------------------------------|----------------------------|------------------------------|
-Scatter plot| ![collectors_proximity_regr](img/collectors_proximity_regr.png)|![collectors_directional_regr](img/collectors_directional_regr.png)|
-Root Mean Squared Error||||
-Coef. of Det.||||
+-|:-----------------------------------:|:----------------------------:|:------------------------------:|
+Scatter plot| ![collectors_proximity_regr](img/collectors_proximity_regr.png)|![collectors_directional_regr](img/collectors_directional_regr.png)|![collectors_neighbour_avg](img/collectors_neighbour_avg.png)|
+Root Mean Squared Error|1349|1263|1233|
+Coef. of Det.|0.312|0.268|0.364|
+
 ![collectors_proximity_regr_scores](img/collectors_proximity_regr_scores.png)
 
 ### Locals
 -|Linear Regression (proximity only) | Direction Linear Regression| Average of Nearest Neighbours|
--|-----------------------------------|----------------------------|------------------------------|
-Scatter Plot|![locals_proximity_regr](img/locals_proximity_regr.png)|![locals_directional_regr](img/locals_directional_regr.png)|
-Root Mean Squared Error||||
-Coef. of Det.||||
+-|:-----------------------------------:|:----------------------------:|:------------------------------:|
+Scatter Plot|![locals_proximity_regr](img/locals_proximity_regr.png)|![locals_directional_regr](img/locals_directional_regr.png)|![locals_neighbour_avg](img/locals_neighbour_avg.png)|
+Root Mean Squared Error|736|732|718|
+Coef. of Det.|0.230|0.046|0.213|
+
 ![locals_proximity_regr_scores](img/locals_proximity_regr_scores.png)
 
 ## Current Implementation
