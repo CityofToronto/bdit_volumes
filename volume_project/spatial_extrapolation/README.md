@@ -6,13 +6,13 @@ To fill in gaps in the City of Toronto's count program in order to provide a com
 ## Methodology
 Several methods are tested for this purpose and are detailed below.
 
-1. Average of Nearest Neighbours  (confidence code = 3)
-nearest neighbours: 5 (or less) segments of the same road class that are maximum 300m (nearest point to point distance) away from the target segment
+1. Average of Nearest Neighbours  (confidence code = 3)  
+Nearest neighbours: 5 (or less) segments of the same road class that are maximum 300m (nearest point to point distance) away from the target segment
 
-2. Linear Regression (Based on Proximity only)  (confidence code = 4)
+2. Linear Regression (Based on Proximity only)  (confidence code = 4)  
 Take the volumes of the nearest 5 segments of the same road class as dependent variables (ordered by proximity).
 
-3. Linear Regression (Directional)  (confidence code = 2)
+3. Linear Regression (Directional)  (confidence code = 2)  
 Take the volumes of the nearest 2 parallel segments and 2 perpendicular segments as dependent variables.
 
 4. Kriging   
