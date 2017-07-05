@@ -1,7 +1,7 @@
 from datetime import time
 from qgis.core import QgsVectorLayer
 from iteration_mapper import IteratingMapper
-from parsing_utils import *#get_yyyymmdd
+
 
 class VolumeMapper( IteratingMapper ):
     """Holds settings for iterating over multiple congestion maps
@@ -30,14 +30,15 @@ class VolumeMapper( IteratingMapper ):
     IteratingMapper.BACKGROUND_LAYERNAMES = BACKGROUND_LAYERNAMES
     
     
-    def __init__(self, logger, dbsettings, stylepath, templatepath, agg_level, *args, **kwargs):
+    def __init__(self, logger, dbsettings, stylepath, templatepath, sql_string, *args, **kwargs):
         """Initialize CongestionMapper and parent object
         """
-        super(CongestionMapper, self).__init__(logger, dbsettings, stylepath, templatepath, *args, **kwargs)
-        self.agg_level = agg_level
+        super(VolumeMapper, self).__init__(logger, dbsettings, stylepath, templatepath, sql_string,*args, **kwargs)
+        #self.agg_level = agg_level
         self.metric = None
         self.background_layers = self.get_background_layers(self.BACKGROUND_LAYERNAMES)
-    
+        
+        
     def load_agg_layer(self, year, layername=None):
         """Create a QgsVectorLayer from a connection and specified parameters
         Args:
@@ -48,11 +49,7 @@ class VolumeMapper( IteratingMapper ):
         Returns:
             QgsVectorLayer from the specified sql query with provided layername"""
         
-        
-        sql = 'SELECT * FROM dolejarz.congestion_map WHERE year = {year}'
-        sql = sql.format(year=year)
-        self.uri.setDataSource("", sql, "geom", "")
-        self.load_layer(layername, 'postgres')
+        self.load_layer(layername, sql_params)
         return self
         
             
