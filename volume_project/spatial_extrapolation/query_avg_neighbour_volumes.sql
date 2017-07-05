@@ -1,15 +1,12 @@
--- Parameters: $1 - feature_code; $2 - sample size
+-- Parameters: $1 - feature_codes
 
-WITH segments AS (
-	SELECT group_number, AVG(volume) AS volume, shape, feature_code
-	FROM prj_volume.aadt JOIN prj_volume.centreline_groups_geom USING (group_number)
-	GROUP BY group_number, feature_code, shape)
-
-SELECT g1, AVG(neighbourvolume)::int, volume::int
-FROM (SELECT l1.group_number AS g1, l1.volume as volume, l2.volume as neighbourvolume, row_number() OVER (PARTITION BY l1.group_number,l1.volume ORDER BY ST_Distance(l1.shape, l2.shape))
-	FROM segments l1, segments l2
-	WHERE ST_DWithin(l1.shape, l2.shape, 500) AND l1.group_number != l2.group_number AND l1.feature_code=$1 AND l2.feature_code=$1) A 
+SELECT g1, dir_bin, AVG(neighbourvolume)::int
+FROM (SELECT l1.group_number AS g1, l1.dir_bin AS dir_bin, l2.volume as neighbourvolume, row_number() OVER (PARTITION BY l1.group_number ORDER BY ST_Distance(l1.shape, l2.shape))
+	FROM (SELECT group_number, dir_bin, shape
+		FROM prj_volume.centreline_groups_geom JOIN prj_volume.centreline_groups USING (group_number)
+		WHERE group_number NOT IN (SELECT group_number FROM prj_volume.aadt) AND feature_code = $1) l1 
+	      JOIN 
+	     (SELECT group_number, volume, shape FROM prj_volume.centreline_groups_geom JOIN prj_volume.aadt USING (group_number) WHERE aadt.confidence = 1 AND feature_code=$1) l2
+		 ON (ST_DWithin(l1.shape, l2.shape, 500))) A 
 WHERE row_number < 5
-GROUP BY g1, volume
-ORDER BY random()
-LIMIT (SELECT COUNT(*) FROM segments WHERE feature_code=$1)*$2/100
+GROUP BY g1, dir_bin

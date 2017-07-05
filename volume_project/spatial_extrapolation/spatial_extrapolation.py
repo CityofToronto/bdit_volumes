@@ -31,35 +31,107 @@ from utilities import vol_utils
 
 class spatial_extrapolation(vol_utils):    
 
-    def __init__(self, sample_size):
+    def __init__(self):
         self.logger = logging.getLogger('volume_project.spatial_extrapolation')
         super().__init__()
         self.rc_lookup = {201200:'Major Arterials', 201300:'Minor Arterials', 201400:'Collectors', 201500:'Locals'}
-        self.sample_size = sample_size
+           
+    def fill_all(self):
+        self.logger.info('Filling in Locals')
+        self.average_neighbours(201500)
+        self.logger.info('Filling in Collectors')
+        self.average_neighbours(201400)
+        self.logger.info('Filling in Minor Arterials')
+        self.linear_regression_directional(201300)
+        self.average_neighbours(201300)
+        self.logger.info('Filling in Major Arterials')
+        self.linear_regression_directional(201200)
+        self.average_neighbours(201200)
+        
+    def average_neighbours(self, road_class):
+        
+        data = self.get_sql_results("query_avg_neighbour_volumes.sql",columns = ['group_number', 'dir_bin', 'neighbour_vol'], parameters = [road_class])
+        data = [[None, a, 2015, b, c, 3] for a, b, c in zip(data['dir_bin'], data['neighbour_vol'], data['group_number'])]
+        self.db.inserttable('prj_volume.aadt', data)
+        self.logger.info('Uploaded results for road class ' + self.rc_lookup[road_class] +' to prj_volume.aadt. Estimated by averaging neighbour volumes')
+        
+    def average_neighbours_eval(self, road_class, sample_size):
+        if sample_size < 1:
+            sample_size = sample_size*100
+            
+        data = self.get_sql_results("query_avg_neighbour_volumes_eval.sql",columns = ['group_number','neighbour_vol','volume'], parameters = [road_class, sample_size])
+        y_predict = data['neighbour_vol']
+        y_test = data['volume']
+        
+        self.scatterplot(y_predict, y_test, road_class, r2_score(y_test, y_predict), 'neighbour_avg', ' Average of 5 Nearest Neighbours')
+        self.logger.info('Average of Neighbour Volumes Evaluation for road class' + self.rc_lookup[road_class] + 'done.')
         
     def get_coord_data(self, road_class):
-        
         return self.get_sql_results("query_coord_volume.sql",['from_x','from_y','to_x','to_y','volume'], parameters=[road_class])
-     
-    def GP_Kriging(self, data):
-        volume = np.array(data['volume'])
-        coord = np.array(data[['from_x','from_y','to_x','to_y']])
+
+    def get_directional_rel_groups(self, road_class):
+        return self.get_sql_results("query_relation_groups_train.sql",columns = ['group_number','neighbour_vol','volume'], parameters = [road_class])
         
-        coord = preprocessing.normalize(coord, axis=0)
-        x_train, x_test, y_train, y_test = train_test_split(coord, volume, test_size=self.sample_size/100, random_state=0)
-        kernel = RationalQuadratic(length_scale=1.0, length_scale_bounds=(1e-1, 10.0)) * RationalQuadratic(length_scale=1.0, length_scale_bounds=(1e-1, 10.0)) * ExpSineSquared(length_scale=1.0, length_scale_bounds=(1e-1, 10.0)) * ExpSineSquared(length_scale=1.0, length_scale_bounds=(1e-1, 10.0))
-        gp = GaussianProcessRegressor(kernel=kernel)
-        gp.fit(x_train, y_train)
+    def get_directional_rel_groups_test(self, road_class):
+        return self.get_sql_results("query_relation_groups_test.sql",columns = ['group_number','dir_bin', 'neighbour_vol'], parameters = [road_class])
         
-        y_mean = gp.predict(x_test, return_std=False)
-        plt.scatter(y_mean, y_test)
+    def get_neighbour_data(self, road_class, nNeighbours):
+        return self.get_sql_results("query_neighbour_volume.sql", columns = ['group_number','dir_bin','neighbour_vol'], parameters = [road_class, nNeighbours])
         
-        #lims = [np.min([plt.xlim(), plt.ylim()]), np.max([plt.xlim(), plt.ylim()])]
-        #plt.plot(lims, lims,'k-')
-        plt.show()
-    
-    def Linear_Regression_Prox(self, data, road_class):
-    
+    def linear_regression_directional(self, road_class, sample_size = 1):
+        if sample_size > 1:
+            sample_size = sample_size / 100
+            
+        data = self.get_directional_rel_groups(road_class)
+        self.logging.debug('Linear Regression Directional - Got Trainig Data')
+        neighb = list(data[data['neighbour_vol'].map(len) == 4]['neighbour_vol'])
+        orig = list(data[data['neighbour_vol'].map(len) == 4]['volume'])
+        if sample_size != 1:
+            x_train, x_test, y_train, y_test = train_test_split(neighb, orig, test_size=sample_size, random_state=0)
+        else:
+            x_train = neighb
+            y_train = orig
+        
+        regr = linear_model.LinearRegression()
+        regr.fit(x_train, y_train)
+        self.logging.debug('Linear Regression Directional - Trained')
+        if sample_size != 1:
+            y_predict = regr.predict(x_test)
+            self.scatterplot(y_predict, y_test, road_class, regr.score(x_test, y_test), 'directional_regr', ' Directional Linear Regression \n with 2 parallel and 2 perpendicular')
+            self.logger.info('Directional Linear Regression Evaluation for road class' + self.rc_lookup[road_class] + 'done.')
+        else:
+            data = self.get_directional_rel_groups_test(road_class)
+            data = data[data['neighbour_vol'].map(len) == 4]
+            y_predict = regr.predict(list(data['neighbour_vol']))
+            tabl = [[None, b, 2015, int(y), a, 2] for a,b,y in zip(data['group_number'], data['dir_bin'],y_predict)]
+            self.db.inserttable('prj_volume.aadt', tabl)
+            self.logger.info('Uploaded results for road class ' + self.rc_lookup[road_class] +' to prj_volume.aadt. Estimated by directional regression')
+            
+    def linear_regression_prox(self, road_class, nNeighbours):
+        data = self.get_coord_data(road_class)
+        self.logging.debug('Linear Regression Proximity - Got Trainig Data')
+        
+        dist = np.array(data[['from_x','from_y','to_x','to_y']])
+        kdt = KDTree(dist, nNeighbours + 1)
+        orig = np.asarray([data['volume'].iloc[kdt.query(l,k=5)[1]].iloc[0] for l in dist])
+        neighb = []
+        for i in range(nNeighbours):
+            neighb.append([data['volume'].iloc[kdt.query(l,k=11)[1]].iloc[i+1] for l in dist])
+        neighb = np.asarray(neighb).T
+        regr = linear_model.LinearRegression()
+        regr.fit(neighb, orig)
+        self.logging.debug('Linear Regression Proximity - Trained')       
+        
+        data = self.get_neighbour_data(road_class, nNeighbours)
+        y_predict = regr.predict(list(data['neighbour_vol']))
+
+        data = [[None, a, 2015, int(b), c, 4] for a, b, c in zip(data['dir_bin'],y_predict, data['group_number'])]
+
+        self.db.inserttable('prj_volume.aadt', data)
+        self.logger.info('Uploaded results for road class ' + self.rc_lookup[road_class] +' to prj_volume.aadt. Estimated by linear regression(proximity)')
+        
+    def linear_regression_prox_eval(self, road_class, sample_size=0.3):
+        data = self.get_coord_data(road_class)
         dist = np.array(data[['from_x','from_y','to_x','to_y']])
         kdt = KDTree(dist, 12)
         
@@ -68,14 +140,14 @@ class spatial_extrapolation(vol_utils):
         for i in range(10):
             neighb.append([data['volume'].iloc[kdt.query(l,k=11)[1]].iloc[i+1] for l in dist])
         neighb = np.asarray(neighb).T
-        x_train, x_test, y_train, y_test = train_test_split(neighb, orig, test_size=self.sample_size/100, random_state=0)    
+        x_train, x_test, y_train, y_test = train_test_split(neighb, orig, test_size=sample_size, random_state=0)    
         regr = linear_model.LinearRegression()
         score = []
         for i in range(10):
             regr.fit(x_train[:,0:i+1], y_train)
             y_predict = regr.predict(x_test[:,0:i+1])
             if i == 9:
-                self.ScatterPlot(y_predict, y_test, road_class, regr.score(x_test, y_test), 'proximikty_regr',  ' Linear Regression (by proximity) \n with ' + str(i+2) + ' neighbours')
+                self.scatterplot(y_predict, y_test, road_class, regr.score(x_test, y_test), 'proximikty_regr',  ' Linear Regression (by proximity) \n with ' + str(i+2) + ' neighbours')
                 
             score.append(np.sqrt(mean_squared_error(y_test,y_predict)))
             
@@ -85,28 +157,9 @@ class spatial_extrapolation(vol_utils):
         ax.set_xlabel('Number of Neighbour')
         ax.set_ylabel('Root Mean Squared Error (veh)')
         fig.savefig('spatial_extrapolation/img/'+self.rc_lookup[road_class].lower().replace(' ', '_') +'_proximity_regr_scores.png')
-    
-    def Linear_Regression_Directional(self, road_class):
-    
-        data = self.get_sql_results("query_relation_groups.sql",columns = ['group_number','neighbour_vol','volume'], parameters = [road_class])
-        neighb = list(data[data['neighbour_vol'].map(len) == 4]['neighbour_vol'])
-        orig = list(data[data['neighbour_vol'].map(len) == 4]['volume'])
-        x_train, x_test, y_train, y_test = train_test_split(neighb, orig, test_size=self.sample_size, random_state=0)
+
         
-        regr = linear_model.LinearRegression()
-        regr.fit(x_train, y_train)
-        y_predict = regr.predict(x_test)
-        
-        self.ScatterPlot(y_predict, y_test, road_class, regr.score(x_test, y_test), 'directional_regr', ' Directional Linear Regression \n with 2 parallel and 2 perpendicular')
-        
-    def Average_Neighbours(self, road_class):
-        data = self.get_sql_results("query_avg_neighbour_volumes.sql",columns = ['group_number','neighbour_vol','volume'], parameters = [road_class, self.sample_size])
-        y_predict = data['neighbour_vol']
-        y_test = data['volume']
-        
-        self.ScatterPlot(y_predict, y_test, road_class, r2_score(y_test, y_predict), 'neighbour_avg', ' Average of 5 Nearest Neighbours')
-    
-    def ScatterPlot(self, y_predict, y_test, road_class, coef_det, estimation_method, title_notes):
+    def scatterplot(self, y_predict, y_test, road_class, coef_det, estimation_method, title_notes):
         
         fig, ax = plt.subplots(figsize=[8,6])
         
@@ -123,3 +176,24 @@ class spatial_extrapolation(vol_utils):
         ax.annotate('Root Mean Squared Error: ' + "{:.0f}".format(np.sqrt(mean_squared_error(y_test,y_predict))), xy=((x[1]-x[0])*0.06+x[0], x[1]*0.92), fontsize = 11)
         ax.annotate('Coef of Det: ' + "{:.3f}".format(coef_det), xy=((x[1]-x[0])*0.06+x[0], x[1]*0.86), fontsize = 11)
         fig.savefig('spatial_extrapolation/img/'+self.rc_lookup[road_class].lower().replace(' ','_') + '_' + estimation_method + '.png')
+        
+'''
+# Backup functions
+    def GP_Kriging(self, data):
+        volume = np.array(data['volume'])
+        coord = np.array(data[['from_x','from_y','to_x','to_y']])
+        
+        coord = preprocessing.normalize(coord, axis=0)
+        x_train, x_test, y_train, y_test = train_test_split(coord, volume, test_size=sample_size/100, random_state=0)
+        kernel = RationalQuadratic(length_scale=1.0, length_scale_bounds=(1e-1, 10.0)) * RationalQuadratic(length_scale=1.0, length_scale_bounds=(1e-1, 10.0)) * ExpSineSquared(length_scale=1.0, length_scale_bounds=(1e-1, 10.0)) * ExpSineSquared(length_scale=1.0, length_scale_bounds=(1e-1, 10.0))
+        gp = GaussianProcessRegressor(kernel=kernel)
+        gp.fit(x_train, y_train)
+        
+        y_mean = gp.predict(x_test, return_std=False)
+        plt.scatter(y_mean, y_test)
+        
+        #lims = [np.min([plt.xlim(), plt.ylim()]), np.max([plt.xlim(), plt.ylim()])]
+        #plt.plot(lims, lims,'k-')
+        plt.show()
+
+'''       
