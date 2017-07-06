@@ -66,6 +66,10 @@ class spatial_extrapolation(vol_utils):
         self.scatterplot(y_predict, y_test, road_class, r2_score(y_test, y_predict), 'neighbour_avg', ' Average of 5 Nearest Neighbours')
         self.logger.info('Average of Neighbour Volumes Evaluation for road class' + self.rc_lookup[road_class] + 'done.')
         
+    def color_y_axis(self, ax, color):
+        for t in ax.get_yticklabels():
+            t.set_color(color)
+     
     def get_coord_data(self, road_class):
         return self.get_sql_results("query_coord_volume.sql",['from_x','from_y','to_x','to_y','volume'], parameters=[road_class])
 
@@ -159,7 +163,7 @@ class spatial_extrapolation(vol_utils):
         fig.savefig('spatial_extrapolation/img/'+self.rc_lookup[road_class].lower().replace(' ', '_') +'_proximity_regr_scores.png')
 
         
-    def scatterplot(self, y_predict, y_test, road_class, coef_det, estimation_method, title_notes):
+    def scatterplot(self, y_predict, y_test, road_class, coef_det, estimation_method, title_notes=''):
         
         fig, ax = plt.subplots(figsize=[8,6])
         
@@ -176,24 +180,40 @@ class spatial_extrapolation(vol_utils):
         ax.annotate('Root Mean Squared Error: ' + "{:.0f}".format(np.sqrt(mean_squared_error(y_test,y_predict))), xy=((x[1]-x[0])*0.06+x[0], x[1]*0.92), fontsize = 11)
         ax.annotate('Coef of Det: ' + "{:.3f}".format(coef_det), xy=((x[1]-x[0])*0.06+x[0], x[1]*0.86), fontsize = 11)
         fig.savefig('spatial_extrapolation/img/'+self.rc_lookup[road_class].lower().replace(' ','_') + '_' + estimation_method + '.png')
+    
+    def plot_semivariogram(self, road_class):
+        data = self.get_sql_results("query_semi_variogram.sql", columns = ['dist','semivariance','correlation','numobs'], parameters=[road_class])
+        data['dist'] = data['dist']*50/1000
+        fig, ax = plt.subplots(figsize=[8,6])
+        ax1 = ax.twinx()
+        ax2 = ax.twinx()
+        ax.plot(data['dist'], data['semivariance'], color='b', label='semivariance')
+        ax1.plot(data['dist'], data['correlation'], 'r')
+        ax2.plot(data['dist'], data['numobs'], 'c', label='Num Observations')
+        ax.set_xlabel('Distance (km)')
+        h0, l0 = ax.get_legend_handles_labels()
+        h1, l1 = ax1.get_legend_handles_labels()
+        h2, l2 = ax2.get_legend_handles_labels()
+        ax.legend(h0+h1+h2, l0+l1+l2)
+        self.color_y_axis(ax,'b')
+        self.color_y_axis(ax1,'r')
+        self.color_y_axis(ax2,'c')
+        ax.set_title(self.rc_lookup[road_class]+' Semivariogram')
+        fig.savefig('spatial_extrapolation/img/'+self.rc_lookup[road_class].lower().replace(' ', '_') +'_semivariogram.png')
         
-'''
-# Backup functions
-    def GP_Kriging(self, data):
-        volume = np.array(data['volume'])
-        coord = np.array(data[['from_x','from_y','to_x','to_y']])
+    # Back up function
+    def Kriging(self, road_class):    
+        group = self.get_sql_results("query_coord_volume.sql", columns = ['from_x','from_y','to_x','to_y','volume'], parameters=[road_class])
+    
+        volume = np.array(group['volume'])
+        coord = np.array(group[['from_x','from_y','to_x','to_y']])
         
         coord = preprocessing.normalize(coord, axis=0)
-        x_train, x_test, y_train, y_test = train_test_split(coord, volume, test_size=sample_size/100, random_state=0)
-        kernel = RationalQuadratic(length_scale=1.0, length_scale_bounds=(1e-1, 10.0)) * RationalQuadratic(length_scale=1.0, length_scale_bounds=(1e-1, 10.0)) * ExpSineSquared(length_scale=1.0, length_scale_bounds=(1e-1, 10.0)) * ExpSineSquared(length_scale=1.0, length_scale_bounds=(1e-1, 10.0))
+        x_train, x_test, y_train, y_test = train_test_split(coord, volume, test_size=0.3, random_state=0)
+    
+        kernel =  RationalQuadratic()
         gp = GaussianProcessRegressor(kernel=kernel)
         gp.fit(x_train, y_train)
         
-        y_mean = gp.predict(x_test, return_std=False)
-        plt.scatter(y_mean, y_test)
-        
-        #lims = [np.min([plt.xlim(), plt.ylim()]), np.max([plt.xlim(), plt.ylim()])]
-        #plt.plot(lims, lims,'k-')
-        plt.show()
-
-'''       
+        y_predict = gp.predict(x_test, return_std=False)
+        self.scatterplot(y_predict, y_test, road_class, 0, 'Kriging', '')

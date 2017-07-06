@@ -22,8 +22,8 @@ Output: volume
 Covariance matrix is constructed based on the coordinate information of the segments in order to find the spatial correlation of volumes.
 
 ## Methodology Evaluation
-
-### Major Arterials
+### Regression
+#### Major Arterials
 -|Linear Regression (proximity only) | Direction Linear Regression | Average of Nearest Neighbours|
 -|:-----------------------------------:|:----------------------------:|:------------------------------:|
 Scatter plot| ![major_arterials_proximity_regr](img/major_arterials_proximity_regr.png)|![major_arterials_directional_regr](img/major_arterials_directional_regr.png)|![major_arterials_neighbour_avg](img/major_arterials_neighbour_avg.png)|
@@ -32,7 +32,7 @@ Coef. of Det.|0.480|0.542|0.492
 
 ![major_arterials_proximity_regr_scores](img/major_arterials_proximity_regr_scores.png)
 
-### Minor Arterials
+#### Minor Arterials
 -|Linear Regression (proximity only) | Direction Linear Regression| Average of Nearest Neighbours|
 -|:-----------------------------------:|:----------------------------:|:------------------------------:|
 Scatter plot| ![minor_arterials_proximity_regr](img/minor_arterials_proximity_regr.png)|![minor_arterial_directional_regr](img/minor_arterials_directional_regr.png)|![minor_arterial_neighbour_avg](img/minor_arterials_neighbour_avg.png)|
@@ -41,7 +41,7 @@ Coef. of Det.|0.345|0.461|0.341|
 
 ![minor_arterials_proximity_regr_scores](img/minor_arterials_proximity_regr_scores.png)
 
-### Collectors
+#### Collectors
 -|Linear Regression (proximity only) | Direction Linear Regression| Average of Nearest Neighbours|
 -|:-----------------------------------:|:----------------------------:|:------------------------------:|
 Scatter plot| ![collectors_proximity_regr](img/collectors_proximity_regr.png)|![collectors_directional_regr](img/collectors_directional_regr.png)|![collectors_neighbour_avg](img/collectors_neighbour_avg.png)|
@@ -50,7 +50,7 @@ Coef. of Det.|0.312|0.268|0.364|
 
 ![collectors_proximity_regr_scores](img/collectors_proximity_regr_scores.png)
 
-### Locals
+#### Locals
 -|Linear Regression (proximity only) | Direction Linear Regression| Average of Nearest Neighbours|
 -|:-----------------------------------:|:----------------------------:|:------------------------------:|
 Scatter Plot|![locals_proximity_regr](img/locals_proximity_regr.png)|![locals_directional_regr](img/locals_directional_regr.png)|![locals_neighbour_avg](img/locals_neighbour_avg.png)|
@@ -59,9 +59,16 @@ Coef. of Det.|0.230|0.046|0.213|
 
 ![locals_proximity_regr_scores](img/locals_proximity_regr_scores.png)
 
-## Implementation
+### Kriging
+|Road Class|Semivariogram|
+|:----------:|:-------------:|
+|Major Arterial|![major_arterials_semivariogram](img/major_arterials_semivariogram.png)|
+|Minor Arterial|![minor_arterials_semivariogram](img/minor_arterials_semivariogram.png)|
+|Collector|![collectors_semivariogram](img/collectors_semivariogram.png)|
 
-Directional linear regression is noticeably superior than the other two methods
+The relationship between distance and volume relationship is weak. The variance does not fit any model very well. A Gaussian Process Kriging model was fitted to each road class anyway and the results are inferior than regression. Therefore kriging is not used in actual implementation.
+
+## Implementation
 
 |Road Class|Method|
 |----------|------|

@@ -20,6 +20,6 @@ FROM(
 	JOIN (SELECT group_number, AVG(volume) AS volume FROM prj_volume.aadt GROUP BY group_number) E ON (E.group_number = g2)
 	WHERE not parallel OR C.dir_bin = D.dir_bin) G
 
-	JOIN (SELECT group_number, AVG(volume) AS volume FROM prj_volume.aadt GROUP BY group_number) F ON (F.group_number = g1)
+	JOIN (SELECT group_number, AVG(volume) AS volume FROM prj_volume.aadt WHERE confidence = 1 GROUP BY group_number) F ON (F.group_number = g1)
 WHERE row_number < 3 
 GROUP BY g1, volume

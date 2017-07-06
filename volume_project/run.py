@@ -91,7 +91,7 @@ if __name__ == '__main__':
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         logger.addHandler(handler)
-    
+    '''
     pfd = prepare_flow_data()
     
     tStart = datetime.now()        
@@ -124,9 +124,13 @@ if __name__ == '__main__':
     vol, non = tex.testing_entire_TO()
     del tex
     logger.info('Finished calculating AADT for Toronto in %s', str(datetime.now()-tStart))   
-   
+    '''
     tStart = datetime.now()
     spa = spatial_extrapolation()
-    spa.fill_all()
+    spa.plot_semivariogram(201200)
+    spa.plot_semivariogram(201300)
+    spa.plot_semivariogram(201400)
+    
+    #spa.fill_all()
     del spa
-    logger.info('Finished filling in AADT for Toronto in %s', str(datetime.now()-tStart))      
+   # logger.info('Finished filling in AADT for Toronto in %s', str(datetime.now()-tStart))      

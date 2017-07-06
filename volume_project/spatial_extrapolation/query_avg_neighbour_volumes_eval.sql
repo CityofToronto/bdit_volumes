@@ -3,6 +3,7 @@
 WITH segments AS (
 	SELECT group_number, AVG(volume) AS volume, shape, feature_code
 	FROM prj_volume.aadt JOIN prj_volume.centreline_groups_geom USING (group_number)
+	WHERE confidence = 1
 	GROUP BY group_number, feature_code, shape)
 
 SELECT g1, AVG(neighbourvolume)::int, volume::int
