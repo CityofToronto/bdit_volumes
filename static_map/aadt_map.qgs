@@ -3,7 +3,7 @@
   <title></title>
   <layer-tree-group expanded="1" checked="Qt::Checked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="1" checked="Qt::Checked" id="centreline_map20170525101931062" name="centreline_map">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="2015_Test_Layer20170705160618097" name="2015 Test Layer">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="street_centreline20170523105918615" name="street_centreline">
@@ -14,10 +14,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>611167.05381224129814655</xmin>
-      <ymin>4828848.14630798436701298</ymin>
-      <xmax>633928.14189186517614871</xmax>
-      <ymax>4852654.64669845439493656</ymax>
+      <xmin>627678.35468020592816174</xmin>
+      <ymin>4845507.6031456021592021</ymin>
+      <xmax>628389.63868269440717995</xmax>
+      <ymax>4846251.55628280248492956</ymax>
     </extent>
     <rotation>17</rotation>
     <projections>1</projections>
@@ -35,20 +35,30 @@
     </destinationsrs>
     <rendermaptile>0</rendermaptile>
     <layer_coordinate_transform_info>
+      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705160618097"/>
+      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705144857488"/>
+      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705150106179"/>
+      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705155631383"/>
+      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705151052001"/>
+      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705154051317"/>
+      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705150244226"/>
+      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705150650211"/>
+      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705145339136"/>
       <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="street_centreline20170523105918615"/>
+      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705151140067"/>
       <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="centreline_map20170525101931062"/>
     </layer_coordinate_transform_info>
   </mapcanvas>
   <layer-tree-canvas>
     <custom-order enabled="0">
       <item>street_centreline20170523105918615</item>
-      <item>centreline_map20170525101931062</item>
+      <item>2015_Test_Layer20170705160618097</item>
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="centreline_map" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="2015 Test Layer" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="centreline_map20170525101931062" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="2015_Test_Layer20170705160618097" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="street_centreline" showFeatureCount="0">
@@ -57,8 +67,8 @@
       </filegroup>
     </legendlayer>
   </legend>
-  <Composer title="static_map_1" visible="0">
-    <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
+  <Composer title="static_map_1" visible="1">
+    <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="431.8" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="279.4" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
           <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
@@ -126,14 +136,14 @@
           <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="142" page="1" id="" lastValidViewScaleFactor="4.15265" positionMode="0" positionLock="false" x="14" y="142" visibility="1" zValue="3" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="144" outlineWidth="0.3" excludeFromExports="0" uuid="{ce56de93-7ce6-4345-a663-a330acaafb22}" height="45" itemRotation="0" frame="false" pagex="14">
+        <ComposerItem pagey="214.607" page="1" id="" lastValidViewScaleFactor="2.07632" positionMode="0" positionLock="false" x="35.1913" y="214.607" visibility="1" zValue="3" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="144" outlineWidth="0.3" excludeFromExports="0" uuid="{ce56de93-7ce6-4345-a663-a330acaafb22}" height="45" itemRotation="0" frame="false" pagex="35.1913">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
         </ComposerItem>
       </ComposerMap>
       <ComposerMap mapRotation="17" keepLayerSet="false" id="1" previewMode="Cache" drawCanvasItems="true">
-        <Extent ymin="4832377.97425823472440243" xmin="625914.34131439961493015" ymax="4836535.71609809808433056" xmax="631964.34132057055830956"/>
+        <Extent ymin="4832377.97425823472440243" xmin="625914.34131439961493015" ymax="4836629.91182118933647871" xmax="631964.34132057055830956"/>
         <LayerSet/>
         <Grid/>
         <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="0" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{ead9fa33-da1d-44e3-947b-de342adfcae2}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="0" gridFrameSideFlags="15" intervalY="0" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
@@ -184,15 +194,18 @@
           <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="110.809" page="1" id="" lastValidViewScaleFactor="4.15265" positionMode="0" positionLock="false" x="163.476" y="110.809" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="121.136" outlineWidth="0.3" excludeFromExports="0" uuid="{505bf994-4cb5-4454-8a2f-aee20ff5d400}" height="83.2483" itemRotation="0" frame="false" pagex="163.476">
+        <ComposerItem pagey="170.339" page="1" id="" lastValidViewScaleFactor="2.07632" positionMode="0" positionLock="false" x="249.686" y="170.339" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="135.585" outlineWidth="0.3" excludeFromExports="0" uuid="{505bf994-4cb5-4454-8a2f-aee20ff5d400}" height="95.2888" itemRotation="0" frame="false" pagex="249.686">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
         </ComposerItem>
       </ComposerMap>
-      <ComposerMap mapRotation="17.5" keepLayerSet="false" id="0" previewMode="Cache" drawCanvasItems="true">
-        <Extent ymin="4819228.01358667388558388" xmin="610783.86200551828369498" ymax="4855978.01362415868788958" xmax="662758.86205853265710175"/>
-        <LayerSet/>
+      <ComposerMap mapRotation="17.5" keepLayerSet="true" id="0" previewMode="Cache" drawCanvasItems="true">
+        <Extent ymin="4830650.93804213684052229" xmin="609350.57594926760066301" ymax="4855717.69585581868886948" xmax="651900.57599266862962395"/>
+        <LayerSet>
+          <Layer>2015_Test_Layer20170705160618097</Layer>
+          <Layer>street_centreline20170523105918615</Layer>
+        </LayerSet>
         <Grid/>
         <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="0" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{d27f531c-98c7-4483-961e-afa1dd9729b8}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="0" gridFrameSideFlags="15" intervalY="0" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
           <lineStyle>
@@ -242,7 +255,7 @@
           <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="0" page="1" id="" lastValidViewScaleFactor="4.15265" positionMode="0" positionLock="false" x="0" y="0" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="297" outlineWidth="0.3" excludeFromExports="0" uuid="{803d1dbf-d49f-4cee-bdcb-aa6b0b84b4d1}" height="210" itemRotation="0" frame="false" pagex="0">
+        <ComposerItem pagey="0" page="1" id="" lastValidViewScaleFactor="2.07632" positionMode="0" positionLock="false" x="0" y="0" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="370.019" outlineWidth="0.3" excludeFromExports="0" uuid="{803d1dbf-d49f-4cee-bdcb-aa6b0b84b4d1}" height="217.983" itemRotation="0" frame="false" pagex="0">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -252,19 +265,23 @@
     </Composition>
   </Composer>
   <projectlayers>
-    <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+    <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <extent>
         <xmin>293568.68300000001909211</xmin>
         <ymin>4827230.62999999988824129</ymin>
-        <xmax>334235.95400000002700835</xmax>
+        <xmax>335117.875</xmax>
         <ymax>4857106.67499999981373549</ymax>
       </extent>
-      <id>centreline_map20170525101931062</id>
-      <datasource>dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='centreline_id' srid=82181 type=LineString table="dolejarz"."centreline_map" (shape) sql=(feature_code_desc  =  'Major Arterial') OR (feature_code_desc  =  'Minor Arterial')  OR  (feature_code_desc  = 'Expressway') </datasource>
+      <id>2015_Test_Layer20170705160618097</id>
+      <datasource>dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' password='changethis' key='group_number' table="(SELECT *
+        FROM dolejarz.centreline_group_map
+        WHERE year = 2015 
+        AND fcode_desc != 'Local' 
+        )" (geom) sql=</datasource>
       <keywordList>
         <value></value>
       </keywordList>
-      <layername>centreline_map</layername>
+      <layername>2015 Test Layer</layername>
       <srs>
         <spatialrefsys>
           <proj4>+proj=tmerc +lat_0=0 +lon_0=-79.5 +k=0.9999 +x_0=304800 +y_0=0 +datum=NAD27 +units=m +no_defs</proj4>
@@ -278,7 +295,7 @@
         </spatialrefsys>
       </srs>
       <provider encoding="System">postgres</provider>
-      <previewExpression></previewExpression>
+      <previewExpression>COALESCE("lf_name", '&lt;NULL>')</previewExpression>
       <vectorjoins/>
       <layerDependencies/>
       <expressionfields/>
@@ -286,13 +303,16 @@
         <map-layer-style name=""/>
       </map-layer-style-manager>
       <edittypes>
-        <edittype widgetv2type="TextEdit" name="centreline_id">
+        <edittype widgetv2type="TextEdit" name="group_number">
+          <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
+        </edittype>
+        <edittype widgetv2type="TextEdit" name="year">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
         <edittype widgetv2type="TextEdit" name="sum">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
-        <edittype widgetv2type="TextEdit" name="feature_code_desc">
+        <edittype widgetv2type="TextEdit" name="fcode_desc">
           <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
         </edittype>
       </edittypes>
@@ -308,7 +328,7 @@
               <prop k="joinstyle" v="bevel"/>
               <prop k="line_color" v="0,0,0,255"/>
               <prop k="line_style" v="solid"/>
-              <prop k="line_width" v="0.26"/>
+              <prop k="line_width" v="0.2"/>
               <prop k="line_width_unit" v="MM"/>
               <prop k="offset" v="0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
@@ -321,9 +341,23 @@
         <rotation/>
         <sizescale scalemethod="diameter"/>
       </renderer-v2>
-      <labeling type="simple"/>
+      <labeling type="rule-based">
+        <rules>
+          <rule filter="fcode_desc = 'Major Arterial' OR fcode_desc = 'Expressway'">
+            <settings>
+              <text-style fontItalic="0" fontFamily="MS Shell Dlg 2" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="0" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="8.25" fieldName="sum" namedStyle="Normal" fontWordSpacing="0"/>
+              <text-format placeDirectionSymbol="0" multilineAlign="0" rightDirectionSymbol=">" multilineHeight="1" plussign="0" addDirectionSymbol="0" leftDirectionSymbol="&lt;" formatNumbers="0" decimals="3" wrapChar="" reverseDirectionSymbol="0"/>
+              <text-buffer bufferSize="1" bufferSizeMapUnitScale="0,0,0,0,0,0" bufferColor="255,255,255,255" bufferDraw="0" bufferBlendMode="0" bufferTransp="0" bufferSizeInMapUnits="0" bufferNoFill="0" bufferJoinStyle="64"/>
+              <background shapeSizeUnits="1" shapeType="0" shapeSVGFile="" shapeOffsetX="0" shapeOffsetY="0" shapeBlendMode="0" shapeFillColor="255,255,255,255" shapeTransparency="0" shapeSizeMapUnitScale="0,0,0,0,0,0" shapeSizeType="0" shapeJoinStyle="64" shapeDraw="0" shapeBorderWidthUnits="1" shapeSizeX="0" shapeSizeY="0" shapeOffsetMapUnitScale="0,0,0,0,0,0" shapeRadiiX="0" shapeRadiiY="0" shapeOffsetUnits="1" shapeRotation="0" shapeBorderWidth="0" shapeBorderColor="128,128,128,255" shapeRotationType="0" shapeBorderWidthMapUnitScale="0,0,0,0,0,0" shapeRadiiMapUnitScale="0,0,0,0,0,0" shapeRadiiUnits="1"/>
+              <shadow shadowOffsetMapUnitScale="0,0,0,0,0,0" shadowOffsetGlobal="1" shadowRadiusUnits="1" shadowTransparency="30" shadowColor="0,0,0,255" shadowUnder="0" shadowScale="100" shadowOffsetDist="1" shadowDraw="0" shadowOffsetAngle="135" shadowRadius="1.5" shadowRadiusMapUnitScale="0,0,0,0,0,0" shadowBlendMode="6" shadowRadiusAlphaOnly="0" shadowOffsetUnits="1"/>
+              <placement repeatDistanceUnit="1" placement="2" maxCurvedCharAngleIn="20" repeatDistance="0" distInMapUnits="0" labelOffsetInMapUnits="1" xOffset="0" distMapUnitScale="0,0,0,0,0,0" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" preserveRotation="1" repeatDistanceMapUnitScale="0,0,0,0,0,0" centroidWhole="0" priority="5" yOffset="0" offsetType="0" placementFlags="10" centroidInside="0" dist="0" angleOffset="0" maxCurvedCharAngleOut="-20" fitInPolygonOnly="0" quadOffset="4" labelOffsetMapUnitScale="0,0,0,0,0,0"/>
+              <rendering fontMinPixelSize="3" scaleMax="10000000" fontMaxPixelSize="10000" scaleMin="1" upsidedownLabels="0" limitNumLabels="0" obstacle="1" obstacleFactor="1" scaleVisibility="0" fontLimitPixelSize="0" mergeLines="0" obstacleType="0" labelPerPart="0" zIndex="0" maxNumLabels="2000" displayAll="0" minFeatureSize="0"/>
+              <data-defined/>
+            </settings>
+          </rule>
+        </rules>
+      </labeling>
       <customproperties>
-        <property key="labeling" value="pal"/>
         <property key="labeling/addDirectionSymbol" value="false"/>
         <property key="labeling/angleOffset" value="0"/>
         <property key="labeling/blendMode" value="0"/>
@@ -354,10 +388,10 @@
         <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
         <property key="labeling/fontItalic" value="false"/>
         <property key="labeling/fontLetterSpacing" value="0"/>
-        <property key="labeling/fontLimitPixelSize" value="true"/>
-        <property key="labeling/fontMaxPixelSize" value="1000"/>
-        <property key="labeling/fontMinPixelSize" value="1000"/>
-        <property key="labeling/fontSize" value="6"/>
+        <property key="labeling/fontLimitPixelSize" value="false"/>
+        <property key="labeling/fontMaxPixelSize" value="10000"/>
+        <property key="labeling/fontMinPixelSize" value="3"/>
+        <property key="labeling/fontSize" value="8.25"/>
         <property key="labeling/fontSizeInMapUnits" value="false"/>
         <property key="labeling/fontSizeMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/fontStrikeout" value="false"/>
@@ -373,8 +407,8 @@
         <property key="labeling/limitNumLabels" value="false"/>
         <property key="labeling/maxCurvedCharAngleIn" value="20"/>
         <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
-        <property key="labeling/maxNumLabels" value="100"/>
-        <property key="labeling/mergeLines" value="true"/>
+        <property key="labeling/maxNumLabels" value="2000"/>
+        <property key="labeling/mergeLines" value="false"/>
         <property key="labeling/minFeatureSize" value="0"/>
         <property key="labeling/multilineAlign" value="0"/>
         <property key="labeling/multilineHeight" value="1"/>
@@ -397,8 +431,8 @@
         <property key="labeling/repeatDistanceUnit" value="1"/>
         <property key="labeling/reverseDirectionSymbol" value="false"/>
         <property key="labeling/rightDirectionSymbol" value=">"/>
-        <property key="labeling/scaleMax" value="1000"/>
-        <property key="labeling/scaleMin" value="1000"/>
+        <property key="labeling/scaleMax" value="10000000"/>
+        <property key="labeling/scaleMin" value="1"/>
         <property key="labeling/scaleVisibility" value="false"/>
         <property key="labeling/shadowBlendMode" value="6"/>
         <property key="labeling/shadowColorB" value="0"/>
@@ -465,7 +499,7 @@
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerTransparency>0</layerTransparency>
-      <displayfield>centreline_id</displayfield>
+      <displayfield>lf_name</displayfield>
       <label>0</label>
       <labelattributes>
         <label fieldname="" text="Label"/>
@@ -488,7 +522,7 @@
         <selectedonly on=""/>
       </labelattributes>
       <SingleCategoryDiagramRenderer diagramType="Pie">
-        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="-4.65661e-10">
+        <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" sizeType="MM" minScaleDenominator="0">
           <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
           <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
@@ -898,9 +932,30 @@ def my_form_open(dialog, layer, feature):
     </Gui>
     <Digitizing>
       <DefaultSnapToleranceUnit type="int">1</DefaultSnapToleranceUnit>
+      <LayerSnappingList type="QStringList">
+        <value>2015_Test_Layer20170705160618097</value>
+        <value>street_centreline20170523105918615</value>
+      </LayerSnappingList>
+      <LayerSnappingEnabledList type="QStringList">
+        <value>disabled</value>
+        <value>disabled</value>
+      </LayerSnappingEnabledList>
       <SnappingMode type="QString">current_layer</SnappingMode>
+      <AvoidIntersectionsList type="QStringList"/>
+      <LayerSnappingToleranceUnitList type="QStringList">
+        <value>1</value>
+        <value>1</value>
+      </LayerSnappingToleranceUnitList>
+      <LayerSnapToList type="QStringList">
+        <value>to_vertex_and_segment</value>
+        <value>to_vertex_and_segment</value>
+      </LayerSnapToList>
       <DefaultSnapType type="QString">off</DefaultSnapType>
       <DefaultSnapTolerance type="double">10</DefaultSnapTolerance>
+      <LayerSnappingToleranceList type="QStringList">
+        <value>10.000000</value>
+        <value>10.000000</value>
+      </LayerSnappingToleranceList>
     </Digitizing>
     <Identify>
       <disabledLayers type="QStringList"/>
