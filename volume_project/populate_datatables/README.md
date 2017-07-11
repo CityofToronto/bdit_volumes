@@ -40,6 +40,8 @@ volume|integer|total vehicle throughput on segment during time bin
 count_type|integer|1 for ATR, 2 for TMC
 speed_class|integer|(optional) speed bin number the count falls into (1-14), if this is not a speed count, the field will be NULL/0.  
 
+* Weekend counts are not filtered at this step.
+
 ## Spatial Count Availability 2010-2016
 ### ATR
 !['ATR2010-2016'](img/ATR2010-2016.png)

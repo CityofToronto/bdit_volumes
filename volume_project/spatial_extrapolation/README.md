@@ -59,6 +59,16 @@ Coef. of Det.|0.230|0.046|0.213|
 
 ![locals_proximity_regr_scores](img/locals_proximity_regr_scores.png)
 
+#### Directional Regression Coefficients
+|Road Class|Perpendicular Segs Coef|Parallel Segs Coef|
+|:----------:|:-----------------------:|:------------------:| 
+Major Arterials|0.0077 -0.0013|0.4404  0.4340|
+Minor Arterials|-0.0132 0.0429|0.4129  0.2954|
+Collectors|0.0104 0.0249|0.3937  0.1681|
+Locals|0.0037 0.0129|0.1779 0.2441|
+
+The coefficients indicate a strong correlation between upstream and downstream segments and a week if existent relationship between perpendicular segments. As we move from major arterials to locals, the relationship gets messier.
+
 ### Kriging
 |Road Class|Semivariogram|
 |:----------:|:-------------:|

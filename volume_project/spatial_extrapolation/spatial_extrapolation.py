@@ -87,7 +87,7 @@ class spatial_extrapolation(vol_utils):
             sample_size = sample_size / 100
             
         data = self.get_directional_rel_groups(road_class)
-        self.logging.debug('Linear Regression Directional - Got Trainig Data')
+        self.logger.debug('Linear Regression Directional - Got Trainig Data')
         neighb = list(data[data['neighbour_vol'].map(len) == 4]['neighbour_vol'])
         orig = list(data[data['neighbour_vol'].map(len) == 4]['volume'])
         if sample_size != 1:
@@ -98,7 +98,7 @@ class spatial_extrapolation(vol_utils):
         
         regr = linear_model.LinearRegression()
         regr.fit(x_train, y_train)
-        self.logging.debug('Linear Regression Directional - Trained')
+        self.logger.debug('Linear Regression Directional - Trained')
         if sample_size != 1:
             y_predict = regr.predict(x_test)
             self.scatterplot(y_predict, y_test, road_class, regr.score(x_test, y_test), 'directional_regr', ' Directional Linear Regression \n with 2 parallel and 2 perpendicular')
@@ -110,10 +110,11 @@ class spatial_extrapolation(vol_utils):
             tabl = [[None, b, 2015, int(y), a, 2] for a,b,y in zip(data['group_number'], data['dir_bin'],y_predict)]
             self.db.inserttable('prj_volume.aadt', tabl)
             self.logger.info('Uploaded results for road class ' + self.rc_lookup[road_class] +' to prj_volume.aadt. Estimated by directional regression')
-            
+        return regr.coef_
+        
     def linear_regression_prox(self, road_class, nNeighbours):
         data = self.get_coord_data(road_class)
-        self.logging.debug('Linear Regression Proximity - Got Trainig Data')
+        self.logger.debug('Linear Regression Proximity - Got Trainig Data')
         
         dist = np.array(data[['from_x','from_y','to_x','to_y']])
         kdt = KDTree(dist, nNeighbours + 1)
@@ -124,7 +125,7 @@ class spatial_extrapolation(vol_utils):
         neighb = np.asarray(neighb).T
         regr = linear_model.LinearRegression()
         regr.fit(neighb, orig)
-        self.logging.debug('Linear Regression Proximity - Trained')       
+        self.logger.debug('Linear Regression Proximity - Trained')       
         
         data = self.get_neighbour_data(road_class, nNeighbours)
         y_predict = regr.predict(list(data['neighbour_vol']))
@@ -161,9 +162,8 @@ class spatial_extrapolation(vol_utils):
         ax.set_xlabel('Number of Neighbour')
         ax.set_ylabel('Root Mean Squared Error (veh)')
         fig.savefig('spatial_extrapolation/img/'+self.rc_lookup[road_class].lower().replace(' ', '_') +'_proximity_regr_scores.png')
-
         
-    def scatterplot(self, y_predict, y_test, road_class, coef_det, estimation_method, title_notes=''):
+    def scatterplot(self, y_predict, y_test, road_class, coef_det, estimation_method, title_notes = ''):
         
         fig, ax = plt.subplots(figsize=[8,6])
         
