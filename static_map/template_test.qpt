@@ -1,5 +1,5 @@
 <Composer title="static_map_1" visible="1">
- <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="297" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="210" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
+ <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="431.8" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="279.4" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
   <symbol alpha="1" clip_to_extent="1" type="fill" name="">
    <layer pass="0" class="SimpleFill" locked="0">
     <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
@@ -67,14 +67,14 @@
     <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
    </ComposerMapGrid>
    <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-   <ComposerItem pagey="142" page="1" id="" lastValidViewScaleFactor="2.07632" positionMode="0" positionLock="false" x="14" y="142" visibility="1" zValue="3" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="144" outlineWidth="0.3" excludeFromExports="0" uuid="{ce56de93-7ce6-4345-a663-a330acaafb22}" height="45" itemRotation="0" frame="false" pagex="14">
+   <ComposerItem pagey="214.607" page="1" id="" lastValidViewScaleFactor="2.07632" positionMode="0" positionLock="false" x="35.1913" y="214.607" visibility="1" zValue="3" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="144" outlineWidth="0.3" excludeFromExports="0" uuid="{ce56de93-7ce6-4345-a663-a330acaafb22}" height="45" itemRotation="0" frame="false" pagex="35.1913">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
    </ComposerItem>
   </ComposerMap>
   <ComposerMap mapRotation="17" keepLayerSet="false" id="1" previewMode="Cache" drawCanvasItems="true">
-   <Extent ymin="4832377.97425823472440243" xmin="625914.34131439961493015" ymax="4836535.71609809808433056" xmax="631964.34132057055830956"/>
+   <Extent ymin="4832377.97425823472440243" xmin="625914.34131439961493015" ymax="4836629.91182118933647871" xmax="631964.34132057055830956"/>
    <LayerSet/>
    <Grid/>
    <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="0" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{ead9fa33-da1d-44e3-947b-de342adfcae2}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="0" gridFrameSideFlags="15" intervalY="0" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
@@ -125,15 +125,18 @@
     <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
    </ComposerMapGrid>
    <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-   <ComposerItem pagey="110.809" page="1" id="" lastValidViewScaleFactor="2.07632" positionMode="0" positionLock="false" x="163.476" y="110.809" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="121.136" outlineWidth="0.3" excludeFromExports="0" uuid="{505bf994-4cb5-4454-8a2f-aee20ff5d400}" height="83.2483" itemRotation="0" frame="false" pagex="163.476">
+   <ComposerItem pagey="170.339" page="1" id="" lastValidViewScaleFactor="2.07632" positionMode="0" positionLock="false" x="249.686" y="170.339" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="135.585" outlineWidth="0.3" excludeFromExports="0" uuid="{505bf994-4cb5-4454-8a2f-aee20ff5d400}" height="95.2888" itemRotation="0" frame="false" pagex="249.686">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
    </ComposerItem>
   </ComposerMap>
-  <ComposerMap mapRotation="17.5" keepLayerSet="false" id="0" previewMode="Cache" drawCanvasItems="true">
-   <Extent ymin="4819228.01358667388558388" xmin="610783.86200551828369498" ymax="4855978.01362415868788958" xmax="662758.86205853265710175"/>
-   <LayerSet/>
+  <ComposerMap mapRotation="17.5" keepLayerSet="true" id="0" previewMode="Cache" drawCanvasItems="true">
+   <Extent ymin="4830650.93804213684052229" xmin="609350.57594926760066301" ymax="4855717.69585581868886948" xmax="651900.57599266862962395"/>
+   <LayerSet>
+    <Layer>2015_Test_Layer20170705160618097</Layer>
+    <Layer>street_centreline20170523105918615</Layer>
+   </LayerSet>
    <Grid/>
    <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="0" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{d27f531c-98c7-4483-961e-afa1dd9729b8}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="0" gridFrameSideFlags="15" intervalY="0" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
     <lineStyle>
@@ -183,7 +186,7 @@
     <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
    </ComposerMapGrid>
    <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-   <ComposerItem pagey="0" page="1" id="" lastValidViewScaleFactor="2.07632" positionMode="0" positionLock="false" x="0" y="0" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="297" outlineWidth="0.3" excludeFromExports="0" uuid="{803d1dbf-d49f-4cee-bdcb-aa6b0b84b4d1}" height="210" itemRotation="0" frame="false" pagex="0">
+   <ComposerItem pagey="0" page="1" id="" lastValidViewScaleFactor="2.07632" positionMode="0" positionLock="false" x="0" y="0" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="370.019" outlineWidth="0.3" excludeFromExports="0" uuid="{803d1dbf-d49f-4cee-bdcb-aa6b0b84b4d1}" height="217.983" itemRotation="0" frame="false" pagex="0">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
