@@ -39,15 +39,14 @@ class temporal_extrapolation(vol_utils):
         Output:
             dataframe with columns: count_date, factors_month (seasonality factors to be applied to the counts), weight_year (weighting of the count calculated based on recency)
         '''
-        try:
-            monthly_factors = self.load_pkl("monthly_factors_"+self.identifier_name+".p")
-            self.logger.debug('Reading monthly factors from pickle')
-        except:
-            self.logger.debug('Refreshing monthly factors from database')
-            self.refresh_monthly_factors()
-            monthly_factors = self.load_pkl("monthly_factors_"+self.identifier_name+".p")
-            self.logger.debug('Monthly factors saved as pickle file')
-            
+
+        if self.identifier_name=='centreline_id':
+            monthly_factors = self.get_sql_results('SELECT * FROM prj_volume.monthly_factors', [self.identifier_name,'dir_bin','year','weights'])
+        else:
+            monthly_factors = self.get_sql_results('SELECT * FROM prj_volume.monthly_factors_group', [self.identifier_name,'dir_bin','year','weights'])
+        monthly_factors.set_index([self.identifier_name,'dir_bin','year'], inplace=True, drop=True)
+        self.logger.debug('Reading monthly factors from database')
+          
         # if date is a year, then target month is 13 - weight = 1
         try:
             year = int(date)
@@ -59,9 +58,9 @@ class temporal_extrapolation(vol_utils):
             month = date.month
             
         if (int(identifier_value), int(dir_bin), year) in monthly_factors.index:
-            mfactors = [float(i) for i in monthly_factors.iloc[monthly_factors.index.get_loc((int(identifier_value), int(dir_bin), year))]['weights']]
-        else:
-            mfactors = monthly_factors.loc['average']['weights']
+            mfactors = [float(i) for i in monthly_factors.loc[(int(identifier_value), int(dir_bin), year)]['weights']]
+        else: # Use average profile, denoted by index (0,0,0)
+            mfactors = [float(i) for i in monthly_factors.loc[(0,0,0)]['weights']]
         mfactors.append(1/12)
         
         dates = pd.DataFrame(pd.to_datetime(dates), columns=['count_date'])
@@ -150,7 +149,6 @@ class temporal_extrapolation(vol_utils):
         
         data = self.get_sql_results("query_relevant_counts.sql", columns=[self.identifier_name, 'dir_bin', 'count_date', 'count_time', 'count_type', 'volume'], replace_columns = {'place_holder_identifier_name':self.identifier_name}, parameters=parameters)
         data['volume'] = data['volume'].astype(int)
-        print(data)
         tmc = data[data['count_type'] == 2][[self.identifier_name, 'dir_bin', 'count_date', 'count_time', 'volume']]
         atr = data[data['count_type'] == 1][[self.identifier_name, 'dir_bin', 'count_date', 'count_time', 'volume']]
         
@@ -355,19 +353,29 @@ class temporal_extrapolation(vol_utils):
         return None
         
     def refresh_monthly_factors(self):
-        
-        factors = self.get_sql_results("query_monthly_factors.sql", columns = ['centreline_id', 'dir_bin','year','weights'], parameters=[self.identifier_name])
+        factors = self.get_sql_results("query_monthly_factors.sql", columns = [self.identifier_name, 'dir_bin','year','weights'], replace_columns = {'place_holder_identifier_name':self.identifier_name})
     
-        factors1 = factors.set_index(['centreline_id', 'dir_bin','year'])
         f_sum = [0] * 12
-        for weight in factors1['weights']:
-            f = [float(i) for i in weight]
-            f_sum = [i+j for i, j in zip(f, f_sum)]
+        t = []
+        for (i, d, y, weight) in zip(factors[self.identifier_name], factors['dir_bin'], factors['year'], factors['weights']):
+            f = [float(x) for x in weight]
+            f_sum = [x+j for x, j in zip(f, f_sum)]
+            c = [str(float(x)) for x in weight]
+            t.append([int(i),int(d),int(y),"{"+",".join(c)+"}"])
+            
         f_sum = [i/len(factors) for i in f_sum]
-        f_sum = pd.DataFrame([[f_sum]], index=['average'], columns=['weights'])
-        factors1 = factors1.append(f_sum)
-        pickle.dump(factors1, open("monthly_factors_"+self.identifier_name+".p","wb"))    
+        c = [str(float(x)) for x in f_sum]
+        t.append([0,0,0,"{"+",".join(c)+"}"])
         
+        if self.identifier_name == 'centreline_id':
+            self.truncatetable('prj_volume.monthly_factors')
+            self.inserttable('prj_volume.monthly_factors',t)
+            self.logger.info('Updated monthly factors for centrelines')
+        elif self.identifier_name == 'group_number':
+            self.truncatetable('prj_volume.monthly_factors_group')
+            self.inserttable('prj_volume.monthly_factors_group',t)
+            self.logger.info('Updated monthly factors for centreline groups')
+            
     def slice_data(self, df1, df2, args):
         
         '''

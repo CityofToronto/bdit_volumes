@@ -15,12 +15,14 @@ from pg import ProgrammingError
 import configparser
 import pandas as pd
 import pickle
+import logging
 
 class vol_utils(object):
     
     def __init__(self):
+        self.logger = logging.getLogger('volume_project.sql_utilities')
         self.db_connect()
-        
+
     def db_connect(self):
         CONFIG = configparser.ConfigParser()
         CONFIG.read('db.cfg')
