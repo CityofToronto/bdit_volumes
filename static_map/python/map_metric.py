@@ -29,8 +29,8 @@ if __name__ == '__console__':
     
     # Variables to change
     # Paths
-    templatepath = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\template_test.qpt"
-    stylepath = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\centreline_style.qml"
+    templatepath = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\template_test2.qpt"
+    stylepath = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\centreline_style_2.qml"
     print_directory = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\test"
     #print_format = ''
     
@@ -52,12 +52,12 @@ if __name__ == '__console__':
 
     
     sql = '''(SELECT *
-        FROM dolejarz.centreline_group_map
+        FROM dolejarz.volume_map_dir
         WHERE year = {year} 
         AND fcode_desc != 'Local' 
         )'''
     
-    mapper = VolumeMapper(LOGGER, dbset, stylepath, templatepath, sql, gid='group_number', console=True, iface=iface)
+    mapper = VolumeMapper(LOGGER, dbset, stylepath, templatepath, sql, gid='id', console=True, iface=iface)
     #(self, logger, dbsettings, stylepath, templatepath, sql_string, *args, **kwargs)
     LOGGER.debug('created the mapper, about to go into the loop')
     
