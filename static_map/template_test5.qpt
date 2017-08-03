@@ -1,0 +1,570 @@
+<Composer title="Composer 6" visible="1">
+ <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" alignmentSnap="1" printResolution="300" paperWidth="431.8" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="279.4" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
+  <symbol alpha="1" clip_to_extent="1" type="fill" name="">
+   <layer pass="0" class="SimpleFill" locked="0">
+    <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+    <prop k="color" v="255,255,255,255"/>
+    <prop k="joinstyle" v="miter"/>
+    <prop k="offset" v="0,0"/>
+    <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+    <prop k="offset_unit" v="MM"/>
+    <prop k="outline_color" v="0,0,0,255"/>
+    <prop k="outline_style" v="no"/>
+    <prop k="outline_width" v="0.26"/>
+    <prop k="outline_width_unit" v="MM"/>
+    <prop k="style" v="solid"/>
+   </layer>
+  </symbol>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Yonge St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="187.116" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="380.966" y="187.116" visibility="1" zValue="499" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{1caee1d0-0266-4038-a657-f6b443d3415a}" height="5.20529" itemRotation="90" frame="false" pagex="380.966">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Kingston Rd" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="142.553" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="281.135" y="142.553" visibility="1" zValue="478" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{30719c35-5173-4f97-954a-2444fdc806a2}" height="5.68631" itemRotation="325" frame="false" pagex="281.135">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Markham Rd" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="112.078" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="300.156" y="112.078" visibility="1" zValue="478" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{c848d882-9eed-4763-943a-8e9e98f3efb6}" height="5.68631" itemRotation="90" frame="false" pagex="300.156">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Brimley Rd" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="111.837" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="278.991" y="111.837" visibility="1" zValue="475" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{a3459ceb-6eb7-4c59-9e1e-27e7e5d569dd}" height="5.68631" itemRotation="90" frame="false" pagex="278.991">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Queen's Pk" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="188.559" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="367.498" y="188.559" visibility="1" zValue="460" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{9ef07bc2-fc63-4530-8d6a-e264600b7ab9}" height="5.20529" itemRotation="90" frame="false" pagex="367.498">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Midland Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="111.356" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="271.535" y="111.356" visibility="1" zValue="442" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{1704da70-18f1-4282-a8b3-7726a6f7640c}" height="5.68631" itemRotation="90" frame="false" pagex="271.535">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Spadina Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="187.116" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="348.017" y="187.116" visibility="1" zValue="422" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{b1b29896-b22c-4ab6-9cb9-a201ea49344b}" height="5.20529" itemRotation="90" frame="false" pagex="348.017">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Kennedy Rd" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="111.356" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="264.079" y="111.356" visibility="1" zValue="410" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{b848b77e-1f08-41f4-9a54-ee850b20c531}" height="5.20529" itemRotation="90" frame="false" pagex="264.079">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Bathurst St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="190.002" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="333.586" y="190.002" visibility="1" zValue="385" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{f3687eb9-8b13-4f60-a562-35b800a5da29}" height="5.20529" itemRotation="90" frame="false" pagex="333.586">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Birchmount Rd" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="111.356" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="256.864" y="111.356" visibility="1" zValue="379" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{8960b058-8f6b-42cc-9f8e-fa6e40ce3f9d}" height="5.20529" itemRotation="90" frame="false" pagex="256.864">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Warden Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="110.875" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="249.167" y="110.875" visibility="1" zValue="349" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{6d5e846b-98a7-422d-80df-34f5b5feb76d}" height="5.20529" itemRotation="90" frame="false" pagex="249.167">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Pharmacy Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="111.596" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="242.433" y="111.596" visibility="1" zValue="320" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{bbf30f81-7ffe-483c-9e07-c15fe36ee360}" height="5.20529" itemRotation="90" frame="false" pagex="242.433">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Victoria Park Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="111.356" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="237.623" y="111.356" visibility="1" zValue="292" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{b765790f-2af5-40d0-995c-c695323095f0}" height="5.20529" itemRotation="90" frame="false" pagex="237.623">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Don Mills Rd" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="76.9629" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="220.547" y="76.9629" visibility="1" zValue="265" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{c0c0046d-a203-4d8a-bdff-0096aed1be2d}" height="5.20529" itemRotation="90" frame="false" pagex="220.547">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Leslie St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="74.0768" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="210.205" y="74.0768" visibility="1" zValue="239" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{de8ba9df-981b-48a0-b206-052f5eb28fd3}" height="5.20529" itemRotation="90" frame="false" pagex="210.205">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Bayview Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="74.5578" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="192.648" y="74.5578" visibility="1" zValue="214" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{1580f6f8-4244-4bef-8415-774a82bbc8cc}" height="5.20529" itemRotation="90" frame="false" pagex="192.648">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Yonge St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="74.7983" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="176.293" y="74.7983" visibility="1" zValue="190" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{7e6868e3-d0e0-4b6b-b88b-e24f678b9643}" height="5.20529" itemRotation="90" frame="false" pagex="176.293">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Bathurst St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="74.3173" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="156.331" y="74.3173" visibility="1" zValue="167" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{6c2cc11c-0f12-477e-a481-78417b76d1f9}" height="5.20529" itemRotation="90" frame="false" pagex="156.331">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Dufferin St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="93.7985" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="135.407" y="93.7985" visibility="1" zValue="145" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{d3eb88fd-dd02-4569-87c8-523354beadc0}" height="5.20529" itemRotation="90" frame="false" pagex="135.407">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Keele St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="76.7224" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="120.255" y="76.7224" visibility="1" zValue="124" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{b3a079bf-8b40-4e13-833a-29afc9107f77}" height="5.20529" itemRotation="90" frame="false" pagex="120.255">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Jane St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="76.7224" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="101.013" y="76.7224" visibility="1" zValue="104" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{a6341f6b-4742-4dfc-9244-1b7da48bb624}" height="5.20529" itemRotation="90" frame="false" pagex="101.013">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="King St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="237.67" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="296.413" y="237.67" visibility="1" zValue="103" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{4680b322-36ac-484b-85de-9c380d6b96ac}" height="5.20529" itemRotation="0" frame="false" pagex="296.413">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Queen St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="229.082" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="295.398" y="229.082" visibility="1" zValue="89" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{fd57a580-5c3a-4b19-8b61-bdca58623c25}" height="5.20529" itemRotation="0" frame="false" pagex="295.398">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Islington Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="79.1275" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="67.102" y="79.1275" visibility="1" zValue="85" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{d2fda680-1349-4360-bf7c-4ac1b36c9c60}" height="5.20529" itemRotation="90" frame="false" pagex="67.102">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Dundas St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="216.381" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="295.398" y="216.381" visibility="1" zValue="76" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{ef7f378b-4bab-4b7a-8d0f-e38d3657b3fc}" height="5.20529" itemRotation="0" frame="false" pagex="295.398">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Kipling Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="62.5324" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="57.4817" y="62.5324" visibility="1" zValue="67" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{14fd96c0-df06-4964-92dd-aa6263c855fe}" height="5.20529" itemRotation="90" frame="false" pagex="57.4817">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="College St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="204.567" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="295.666" y="204.567" visibility="1" zValue="64" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{afc6c058-1225-4f17-bcd4-5bb1be312659}" height="5.20529" itemRotation="0" frame="false" pagex="295.666">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Ellesmere Rd" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="95.5984" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="250.299" y="95.5984" visibility="1" zValue="59" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{a74bb3dd-951b-48dd-9277-a43f6a877098}" height="5.20529" itemRotation="0" frame="false" pagex="250.299">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Bloor St" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="184.624" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="296.666" y="184.624" visibility="1" zValue="53" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{59cd4dbd-7df7-4b33-a58b-538f70f8f975}" height="5.20529" itemRotation="0" frame="false" pagex="296.666">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Martin Grove Rd" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="63.535" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="48.6968" y="63.535" visibility="1" zValue="50" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="19.0736" outlineWidth="0.3" excludeFromExports="0" uuid="{96236fa7-6e79-4fe0-a361-5d699e8b0a55}" height="5.20529" itemRotation="90" frame="false" pagex="48.6968">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="St Clair Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="143.968" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="97.2928" y="143.968" visibility="1" zValue="43" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{2b9bcfca-0785-4fe8-86de-5ea31946aaf5}" height="5.20529" itemRotation="0" frame="false" pagex="97.2928">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Eglinton Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="126.298" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="90.464" y="126.298" visibility="1" zValue="34" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{3459b21c-fbd1-453c-8dde-83b0c6da690d}" height="5.20529" itemRotation="0" frame="false" pagex="90.464">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="City of Toronto Average Annual Daily Traffic - 2015" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,24,-1,5,75,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="15.3926" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="15.3453" y="15.3926" visibility="1" zValue="31" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="230.719" outlineWidth="0.3" excludeFromExports="0" uuid="{f0aa0c22-4d86-4e85-95d2-1278f22ec57f}" height="19.2038" itemRotation="0" frame="false" pagex="15.3453">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Lawrence Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="108.992" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="97.2928" y="108.992" visibility="1" zValue="26" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{fbf74c88-458c-40ef-861b-64464605e176}" height="5.20529" itemRotation="0" frame="false" pagex="97.2928">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Wilson Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="90.9568" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="97.2928" y="90.9568" visibility="1" zValue="19" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{90a128db-6950-4cf7-a852-b3bb28677997}" height="5.20529" itemRotation="0" frame="false" pagex="97.2928">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Sheppard Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="73.4976" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="98.6165" y="73.4976" visibility="1" zValue="13" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{2f41e8b5-d4d3-497a-b4d5-b28073dc1373}" height="5.20529" itemRotation="0" frame="false" pagex="98.6165">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Finch Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="55.8272" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="100.602" y="55.8272" visibility="1" zValue="8" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{4d69ce69-0ba7-4275-8084-da0b08528029}" height="5.20529" itemRotation="0" frame="false" pagex="100.602">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Steeles Ave" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,6,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="38.1179" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="100.602" y="38.1179" visibility="1" zValue="4" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="17.1495" outlineWidth="0.3" excludeFromExports="0" uuid="{6ce5da07-8992-49f3-a5e0-62d86f867abb}" height="5.20529" itemRotation="0" frame="false" pagex="100.602">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerMap mapRotation="17.5" keepLayerSet="false" id="2" previewMode="Cache" drawCanvasItems="true">
+   <Extent ymin="4830883.97361464332789183" xmin="616127.1780080865137279" ymax="4836279.20306938700377941" xmax="633407.17802571202628314"/>
+   <LayerSet/>
+   <Grid/>
+   <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="0" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{5a8a67ea-1f1d-40a3-8d1c-b38f5bae5e38}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="0" gridFrameSideFlags="15" intervalY="0" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
+    <lineStyle>
+     <symbol alpha="1" clip_to_extent="1" type="line" name="">
+      <layer pass="0" class="SimpleLine" locked="0">
+       <prop k="capstyle" v="square"/>
+       <prop k="customdash" v="5;2"/>
+       <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="customdash_unit" v="MM"/>
+       <prop k="draw_inside_polygon" v="0"/>
+       <prop k="joinstyle" v="bevel"/>
+       <prop k="line_color" v="0,0,0,255"/>
+       <prop k="line_style" v="solid"/>
+       <prop k="line_width" v="0"/>
+       <prop k="line_width_unit" v="MM"/>
+       <prop k="offset" v="0"/>
+       <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="offset_unit" v="MM"/>
+       <prop k="use_custom_dash" v="0"/>
+       <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+      </layer>
+     </symbol>
+    </lineStyle>
+    <markerStyle>
+     <symbol alpha="1" clip_to_extent="1" type="marker" name="">
+      <layer pass="0" class="SimpleMarker" locked="0">
+       <prop k="angle" v="0"/>
+       <prop k="color" v="0,0,0,255"/>
+       <prop k="horizontal_anchor_point" v="1"/>
+       <prop k="name" v="circle"/>
+       <prop k="offset" v="0,0"/>
+       <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="offset_unit" v="MM"/>
+       <prop k="outline_color" v="0,0,0,255"/>
+       <prop k="outline_style" v="solid"/>
+       <prop k="outline_width" v="0"/>
+       <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="outline_width_unit" v="MM"/>
+       <prop k="scale_method" v="diameter"/>
+       <prop k="size" v="2"/>
+       <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="size_unit" v="MM"/>
+       <prop k="vertical_anchor_point" v="1"/>
+      </layer>
+     </symbol>
+    </markerStyle>
+    <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+   </ComposerMapGrid>
+   <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
+   <ComposerItem pagey="205.567" page="1" id="" lastValidViewScaleFactor="4.15785" positionMode="0" positionLock="false" x="35.1913" y="205.567" visibility="1" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="191.027" outlineWidth="0.3" excludeFromExports="0" uuid="{18f47c20-22a7-4ac9-aaf1-45450fb30253}" height="59.6432" itemRotation="0" frame="false" pagex="35.1913">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerMap>
+  <ComposerMap mapRotation="17.5" keepLayerSet="false" id="1" previewMode="Cache" drawCanvasItems="true">
+   <Extent ymin="4832729.12882697209715843" xmin="626960.06347653036937118" ymax="4836979.68591601308435202" xmax="631055.06348070735111833"/>
+   <LayerSet/>
+   <Grid/>
+   <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="0" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{ead9fa33-da1d-44e3-947b-de342adfcae2}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="0" gridFrameSideFlags="15" intervalY="0" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
+    <lineStyle>
+     <symbol alpha="1" clip_to_extent="1" type="line" name="">
+      <layer pass="0" class="SimpleLine" locked="0">
+       <prop k="capstyle" v="square"/>
+       <prop k="customdash" v="5;2"/>
+       <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="customdash_unit" v="MM"/>
+       <prop k="draw_inside_polygon" v="0"/>
+       <prop k="joinstyle" v="bevel"/>
+       <prop k="line_color" v="0,0,0,255"/>
+       <prop k="line_style" v="solid"/>
+       <prop k="line_width" v="0"/>
+       <prop k="line_width_unit" v="MM"/>
+       <prop k="offset" v="0"/>
+       <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="offset_unit" v="MM"/>
+       <prop k="use_custom_dash" v="0"/>
+       <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+      </layer>
+     </symbol>
+    </lineStyle>
+    <markerStyle>
+     <symbol alpha="1" clip_to_extent="1" type="marker" name="">
+      <layer pass="0" class="SimpleMarker" locked="0">
+       <prop k="angle" v="0"/>
+       <prop k="color" v="0,0,0,255"/>
+       <prop k="horizontal_anchor_point" v="1"/>
+       <prop k="name" v="circle"/>
+       <prop k="offset" v="0,0"/>
+       <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="offset_unit" v="MM"/>
+       <prop k="outline_color" v="0,0,0,255"/>
+       <prop k="outline_style" v="solid"/>
+       <prop k="outline_width" v="0"/>
+       <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="outline_width_unit" v="MM"/>
+       <prop k="scale_method" v="diameter"/>
+       <prop k="size" v="2"/>
+       <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="size_unit" v="MM"/>
+       <prop k="vertical_anchor_point" v="1"/>
+      </layer>
+     </symbol>
+    </markerStyle>
+    <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+   </ComposerMapGrid>
+   <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
+   <ComposerItem pagey="164.845" page="1" id="" lastValidViewScaleFactor="4.15785" positionMode="0" positionLock="false" x="295.398" y="164.845" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="91.8015" outlineWidth="0.3" excludeFromExports="0" uuid="{89924afc-4b1b-44a4-b4bc-40ab66169ccf}" height="95.2888" itemRotation="0" frame="false" pagex="295.398">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerMap>
+  <ComposerMap mapRotation="17.5" keepLayerSet="false" id="0" previewMode="Cache" drawCanvasItems="true">
+   <Extent ymin="4830650.93804213684052229" xmin="609350.57594926760066301" ymax="4855717.69585581868886948" xmax="651900.57599266862962395"/>
+   <LayerSet/>
+   <Grid/>
+   <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="0" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{d27f531c-98c7-4483-961e-afa1dd9729b8}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="0" gridFrameSideFlags="15" intervalY="0" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
+    <lineStyle>
+     <symbol alpha="1" clip_to_extent="1" type="line" name="">
+      <layer pass="0" class="SimpleLine" locked="0">
+       <prop k="capstyle" v="square"/>
+       <prop k="customdash" v="5;2"/>
+       <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="customdash_unit" v="MM"/>
+       <prop k="draw_inside_polygon" v="0"/>
+       <prop k="joinstyle" v="bevel"/>
+       <prop k="line_color" v="0,0,0,255"/>
+       <prop k="line_style" v="solid"/>
+       <prop k="line_width" v="0"/>
+       <prop k="line_width_unit" v="MM"/>
+       <prop k="offset" v="0"/>
+       <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="offset_unit" v="MM"/>
+       <prop k="use_custom_dash" v="0"/>
+       <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
+      </layer>
+     </symbol>
+    </lineStyle>
+    <markerStyle>
+     <symbol alpha="1" clip_to_extent="1" type="marker" name="">
+      <layer pass="0" class="SimpleMarker" locked="0">
+       <prop k="angle" v="0"/>
+       <prop k="color" v="0,0,0,255"/>
+       <prop k="horizontal_anchor_point" v="1"/>
+       <prop k="name" v="circle"/>
+       <prop k="offset" v="0,0"/>
+       <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="offset_unit" v="MM"/>
+       <prop k="outline_color" v="0,0,0,255"/>
+       <prop k="outline_style" v="solid"/>
+       <prop k="outline_width" v="0"/>
+       <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="outline_width_unit" v="MM"/>
+       <prop k="scale_method" v="diameter"/>
+       <prop k="size" v="2"/>
+       <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
+       <prop k="size_unit" v="MM"/>
+       <prop k="vertical_anchor_point" v="1"/>
+      </layer>
+     </symbol>
+    </markerStyle>
+    <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+   </ComposerMapGrid>
+   <ComposerMapOverview frameMap="1" centered="0" inverted="0" uuid="{be545581-35e6-4c36-b9bc-2c99f47b8a68}" name="Overview 1" show="1" blendMode="0">
+    <symbol alpha="0.3" clip_to_extent="1" type="fill" name="">
+     <layer pass="0" class="SimpleFill" locked="0">
+      <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+      <prop k="color" v="125,125,125,255"/>
+      <prop k="joinstyle" v="bevel"/>
+      <prop k="offset" v="0,0"/>
+      <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+      <prop k="offset_unit" v="MM"/>
+      <prop k="outline_color" v="0,0,0,255"/>
+      <prop k="outline_style" v="no"/>
+      <prop k="outline_width" v="0.26"/>
+      <prop k="outline_width_unit" v="MM"/>
+      <prop k="style" v="solid"/>
+     </layer>
+    </symbol>
+   </ComposerMapOverview>
+   <ComposerMapOverview frameMap="2" centered="0" inverted="0" uuid="{a94e4aa9-18c3-4b37-9f18-18a0ff35455c}" name="Overview 2" show="1" blendMode="0">
+    <symbol alpha="0.3" clip_to_extent="1" type="fill" name="">
+     <layer pass="0" class="SimpleFill" locked="0">
+      <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+      <prop k="color" v="125,125,125,255"/>
+      <prop k="joinstyle" v="bevel"/>
+      <prop k="offset" v="0,0"/>
+      <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+      <prop k="offset_unit" v="MM"/>
+      <prop k="outline_color" v="0,0,0,255"/>
+      <prop k="outline_style" v="no"/>
+      <prop k="outline_width" v="0.26"/>
+      <prop k="outline_width_unit" v="MM"/>
+      <prop k="style" v="solid"/>
+     </layer>
+    </symbol>
+   </ComposerMapOverview>
+   <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
+   <ComposerItem pagey="0" page="1" id="" lastValidViewScaleFactor="4.15785" positionMode="0" positionLock="false" x="0" y="0" visibility="1" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="370.019" outlineWidth="0.3" excludeFromExports="0" uuid="{5621415b-707c-4cad-b43a-8441208b9b9c}" height="217.983" itemRotation="0" frame="false" pagex="0">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerMap>
+  <customproperties/>
+ </Composition>
+</Composer>
