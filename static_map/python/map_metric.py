@@ -29,7 +29,7 @@ if __name__ == '__console__':
     
     # Variables to change
     # Paths
-    templatepath = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\template_test2.qpt"
+    templatepath = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\template_test5_shadow.qpt"
     stylepath = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\centreline_style_3.qml"
     print_directory = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\test"
     #print_format = ''
@@ -51,17 +51,12 @@ if __name__ == '__console__':
     LOGGER = logging.getLogger(__name__)
 
     
-    sql = '''((SELECT DISTINCT ON (geom) *
-        FROM dolejarz.volume_map_dir
+    sql = '''(SELECT *
+        FROM dolejarz.volume_map_agg
         WHERE year = {year} 
-        AND fcode_desc != 'Local' 
-        AND dir_bin = 1)
-        UNION
-        (SELECT DISTINCT ON (geom) *
-        FROM dolejarz.volume_map_dir
-        WHERE year = {year} 
-        AND fcode_desc != 'Local' 
-        AND dir_bin =  -1)
+        AND fcode_desc != 'Local'
+        AND fcode_desc != 'Collector' 
+        AND fcode_desc != 'Minor Arterial' 
         )'''
     
     mapper = VolumeMapper(LOGGER, dbset, stylepath, templatepath, sql, gid='id', console=True, iface=iface)
