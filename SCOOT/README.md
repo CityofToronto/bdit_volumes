@@ -11,18 +11,22 @@ This table tags all legs of an intersection to centreline segments.
 This table stores information on SCOOT detectors in the city. The px and scn numbers in the table indicate the intersection that the detector is physically located (which can be different from the intersection that the detector's data is contributing towards). The intersection and approach that the detector is counting towards is indicated by the detector id (det).
 ### **Table scoot.detector_tcl**
 This table contains the mapping of each SCOOT detector to the centreline segment it is located at. Exact mapping process can be found [below](# Mapping Process).
-### **Tables scoot.raw_yyyymm**
-Monthly data exported from the scoot system in 15min bins.
+### **Tables scoot.agg_15_yyyymm**
+Monthly data exported from the scoot system in 15min bins. Parent table is **scoot.scoot.scoot_agg_15_all**
 
 |column|type|notes|
 |------|----|-----|
 |detector|text|in the form of N(scn #)(approach letter)(detector number) Example: N10111A1 where 10111 is intersection that detector is counting towards, A indicates the approach, and 1 means this is detector 1 of this approach.|
 |start_time|timestamp||
 |end_time|timestamp|start_time+15mins if count is present, but not necessarily start_time+15min if counts are missing|
-|flow_mean|int|volume in veh/h|
+|flow_mean|int|volume in **veh/h**|
 |occ_mean|double precision|expressed in %|
 |vehicle_occ_mean|int|ms/veh|
 |lpu_factor_mean|double precision|lpu/veh|  
+### **Tables scoot.cycle_level_yymmdd**
+Cycle level data from the scoot system.  
+### **Table video_counts**
+Video counts done for SCOOT data validation.
 
 ## Mapping Process
 

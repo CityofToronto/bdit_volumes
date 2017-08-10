@@ -29,7 +29,7 @@ The City of Toronto's traffic volume collection efforts can be broken into three
 The purpose of this project is to leverage existing count data to develop a model that can produce volume estimates at specific locations in the City of Toronto at specific times, and is sensitive to time-of-day, day-of-week and seasonality effects, as well as long-term trends. These estimates will facilitate the development of volume-weighted congestion performance metrics, as well as allow the Team to produce detailed volume profiles that can feed into congestion reporting tools and AADT summaries.
 
 ## 3. Project Tasks
-1. **Map Source Geometries to Toronto Centreline:** Link Artery Codes used in the City's FLOW database to the City's Centreline shapefile, with additional descriptive fields (e.g. directionality) as necessary. Detailed process can be found at [centreline_mapping.md](centreline_mapping.md).
+1. **Map Source Geometries to Toronto Centreline:** Link Artery Codes used in the City's FLOW database to the City's Centreline shapefile, with additional descriptive fields (e.g. directionality) as necessary. Detailed process can be found at [arterycode_mapping](volume_project/arterycode_mapping).
 
 2. **Definition of Corridors:** Develop reproducible process for aggregating relevant centreline segments into corridors [corridors](corridors/).
 
@@ -37,17 +37,18 @@ The purpose of this project is to leverage existing count data to develop a mode
 
 4. **Exploratory Analysis:** Explore and summarize the availability and quality of volume data. Results are in jupyter notebook form in [exploratory_analysis](exploratory_analysis/).
 
-5. **Data Cleaning:** Detect and cleanup anomalies in the counts. [count_anomalies](count_anomalies/)
+5. **Data Cleaning:** Detect and cleanup anomalies in the counts. [count_anomalies](volume_project/data_cleanup/)
 
 6. **Model Development:**  
-	1. Spatial Interpolation: Group centrelines that share the same volume (intercepted by non-roads or road class local and below) together. [spatial_interpolation](spatial_interpolation/)  
-	2. Clustering: Cluster Time-of-Day profiles and fill in incomplete counts accordingly. [clustering](clustering/)  
-	3. Factoring and Reporting: A function that accepts information about counts required (average daily volume, hourly profile, etc) and returns a volume, calling clustering, filling in, spatial interpolation, seasonality factors as necessary. [reporting](reporting/)
+	1. Spatial Interpolation: Group centrelines that share the same volume (intercepted by non-roads or road class local and below) together. [spatial_interpolation](volume_project/preprocessing/spatial_interpolation/)  
+	2. Clustering: Cluster Time-of-Day profiles and fill in incomplete counts accordingly. [clustering](volume_project/clustering/)  
+	3. Temporal Interpolation: A function that accepts information about counts required (average daily volume, hourly profile, etc) and returns a volume, calling clustering, filling in, spatial interpolation, seasonality factors as necessary. [reporting](volume_project/estimation_extraction/)
+	4. Spatial Extrapolation: Estimate volume on segments with no counts based on nearby counts. [spatial_extrapolation](volume_project/spatial_extrapolation)
 
 7. **Model Validation:** 
 
 8. **Tool Deployment: (under development)**
-	1. Static AADT Map: A static map that shows the annual average daily volume for all segments in Toronto.
+	1. [Static AADT Map](static_map/): A static map that shows the annual average daily volume for all segments in Toronto. 
 	2. Interactive Map: An interactive map that can display TOD profiles and average volume trends at different zoom levels. 
 
 ## 4. Related Tasks
