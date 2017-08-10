@@ -16,7 +16,6 @@ warnings.simplefilter('error', RuntimeWarning)
 from datetime import datetime
 import pandas as pd
 import cl_fcn
-import pickle
 from utilities import vol_utils
 import logging
 
@@ -496,9 +495,9 @@ class temporal_extrapolation(vol_utils):
                     
                 if v is not None:
                     if self.identifier_name == 'centreline_id':
-                        volumes.append([identifier, dir_bin, 2015, int(v)])
+                        volumes.append([identifier, dir_bin, 2015, int(v), None, 1])
                     else:
-                        volumes.append([None, dir_bin, 2015, int(v), identifier])
+                        volumes.append([None, dir_bin, 2015, int(v), identifier, 1])
                 else:
                     non.append([identifier, dir_bin])
             i = i + 1
@@ -509,9 +508,9 @@ class temporal_extrapolation(vol_utils):
         except:
             self.logger.error(sys.exc_info()[0])
             if self.identifier_name == 'centreline_id':
-                volumes = pd.DataFrame(volumes, columns = ['centreline_id', 'dir_bin', 'year', 'volume'])  
+                volumes = pd.DataFrame(volumes, columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number','confidence']) 
             else:
-                volumes = pd.DataFrame(volumes,columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number']) 
+                volumes = pd.DataFrame(volumes,columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number','confidence']) 
             volumes.to_csv('volumes.csv')
             self.logger.info('Saved results to volumes.csv')  
 
@@ -524,6 +523,6 @@ class temporal_extrapolation(vol_utils):
             volumes = pd.merge(volumes, groups, how='inner', on=['centreline_id','dir_bin'])
             
             volumes = volumes.values.tolist()
-        #self.truncatetable('prj_volume.aadt')
+        self.truncatetable('prj_volume.aadt')
         self.inserttable('prj_volume.aadt', volumes)
         self.logger.info('Uploaded results to prj_volume.aadt')

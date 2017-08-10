@@ -1,9 +1,11 @@
-﻿DROP TABLE IF EXISTS prj_volume.centreline_groups_geom;
+﻿--DROP TABLE IF EXISTS prj_volume.centreline_groups_geom;
 
-CREATE TABLE prj_volume.centreline_groups_geom(group_number integer, shape geometry, feature_code bigint, feature_code_desc text);
+--CREATE TABLE prj_volume.centreline_groups_geom(group_number integer, shape geometry, feature_code bigint, feature_code_desc text, linear_name_full text, from_intersection_id bigint, to_intersection_id bigint);
 
-INSERT INTO prj_volume.centreline_groups_geom(group_number, shape, feature_code, feature_code_desc)
-SELECT group_number, ST_LineMerge(ST_Union(shape)) AS shape, AVG(feature_code), MAX(feature_code_desc)
+TRUNCATE prj_volume.centreline_groups_geom;
+
+INSERT INTO prj_volume.centreline_groups_geom(group_number, shape, feature_code, feature_code_desc, linear_name_full)
+SELECT group_number, ST_LineMerge(ST_Union(shape)) AS shape, AVG(feature_code), MAX(feature_code_desc), MAX(linear_name_full)
 FROM prj_volume.centreline_groups JOIN prj_volume.centreline USING (centreline_id)
 WHERE from_intersection_id != to_intersection_id
 GROUP BY group_number;
@@ -46,3 +48,14 @@ SET shape =
 	FROM prj_volume.centreline
 	WHERE centreline_id in (10011118, 446577,446591,446601,30074319))
 WHERE group_number = 13708;
+
+
+UPDATE prj_volume.centreline_groups_geom t
+SET from_intersection = ST_AsText(ST_StartPoint(shape));
+
+UPDATE prj_volume.centreline_groups_geom t
+SET to_intersection = ST_AsText(ST_EndPoint(shape));
+
+UPDATE prj_volume.centreline_groups_geom t
+SET shape = ST_Reverse(shape)
+WHERE dir_binary((ST_Azimuth(ST_StartPoint(shape),ST_EndPoint(shape))+0.292)*180/pi()) != (SELECT dir_bin FROM prj_volume.centreline_groups WHERE t.group_number = group_number LIMIT 1)
