@@ -78,3 +78,4 @@ update_db/eglinton_counts.R
 *.log
 volume_project/volumes.csv
 *.pyc
+.ipynb_checkpoints
