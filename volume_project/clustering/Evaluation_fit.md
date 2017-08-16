@@ -1,7 +1,7 @@
 # Evaluating Fit to Clusters
 
 ## Metric
-Take minimum of distance to average profile normalized by number of points. (distance/point)
+
 partial day weights (PDW) = SUM(weights) for all available timestamps for each cluster
 ![distance_formula](img/distance_formula.png)
 
