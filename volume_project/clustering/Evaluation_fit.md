@@ -2,6 +2,8 @@
 
 ## Metric
 Take minimum of distance to average profile normalized by number of points. (distance/point)
+partial day weights (PDW) = SUM(weights) for all available timestamps for each cluster
+![distance_formula](img/distance_formula.png)
 
 ## Results
 ### Distribution
@@ -32,6 +34,8 @@ The cutoff for a good fit should be drawn somewhere on the order of -5. However,
 ### Distance distribution by cluster
 ![distribution_by_cluster](img/distribution_by_cluster.png)
 
+* percentage shown here are the percentage representation of each cluster in turning movement counts (incomplete day), therefore different from the distribution for training data described [here](README.md)
+
 Cluster 2 (relatively consistent volume throughout the day) are generally lesser fit. Same is demonstrated in the profiles above, the lesser fit ones mostly belong to this cluster. 
 Same goes for cluster 5, which also represents no particular up/down trend during the day.
 
@@ -51,5 +55,5 @@ Below are examples in the first bin, middle bin, and last bin, respectively.
 ![diff-mins-3](img/diff-mins-3.png)
 
 Ideally, the percent difference should be close to 1. However, the plots suggest that
-1. at least two of our cluster centres should quite similar
-2. some of the data is messy.
+1. at least two of our cluster centres are quite similar
+2. some of the data is noisy.

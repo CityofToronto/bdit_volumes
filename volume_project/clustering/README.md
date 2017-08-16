@@ -20,7 +20,7 @@ Volume data from all data sources has gaps, which could be a missing count or a 
 The result of this exercise is a lookup table of location and cluster ids and a list of cluster centre profiles to be fed into extract+estimate phase of volume reporting. 
 Based on existing counts, the six cluster centres are shown below:
 !['cluster_profiles'](img/cluster_profiles.PNG)
-* Percentage shown is the percent share of this profile among all individual profiles.
+* Percentage shown is the percent share of segments that belong to this cluster among all segments.
 * The bands represent 25% and 95% percentile of the profiles.
 
 The distribution of profiles is shown below:
