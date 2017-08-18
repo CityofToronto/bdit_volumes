@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from sklearn.metrics import mean_squared_error
 import pandas as pd
+import statsmodels.api as sm
 
 def fill_in_linear(data):
     i = 0
@@ -92,48 +93,62 @@ def func_quad(x,a,b,c):
     else:
         return [a*x0*x0 + b*x0 + c for x0 in x]
 
-def my_curve_fit(ax, x, y, func1, func2=None, step=None, color='b', fitname='Model name missing', p01=None, p02=None):
+def my_curve_fit(ax, x, y, func1, func2=None, color='b', fitname='Model name missing', p01=None, p02=None, remove_outliers = True):
+    
+    if remove_outliers:
+        [ax.scatter(a,b, color = 'r', label=None) for a,b in zip(x, y) if (a>=3*b or b>=3*a)]
+        x1 = [a for a,b in zip(x,y) if (a<=3*b and b<=3*a)]
+        y1 = [b for a,b in zip(x,y) if (a<=3*b and b<=3*a)]
+        x = x1
+        y = y1
+    
     if func2 is None:
-        fit_1 = [(a,b) for a,b in zip(x, y)]
-        fit_2 = []
+        f1 = sm.OLS(y,x).fit()
+        ax.plot(x, f1.predict(x), label=fitname, linewidth=3, color = color)
+        y_actual = y
+        y_predict = f1.predict(x)
+        
+        return f1
+
     else:
-        fit_2 = [(a,b) for a,b in zip(x, y) if a>step]
-        fit_1 = [(a,b) for a,b in zip(x, y) if a<=step]
-        
-    if fit_1:
-        if p01 is None:
-            popt, pcov = curve_fit(func1, [x[0] for x in fit_1], [x[1] for x in fit_1])
-        else:
-            popt, pcov = curve_fit(func1, [x[0] for x in fit_1], [x[1] for x in fit_1], p0=p01)
-             
-        line = ax.plot(np.linspace(1,max([x[0] for x in fit_1]),max([x[0] for x in fit_1])), func1(range(max([x[0] for x in fit_1])), *popt), label=fitname, linewidth=3, color = color)
-        y_actual = [x[1] for x in fit_1]
-        y_predict = func1([x[0] for x in fit_1], *popt)
+        minERR = 1000000
+        for pct in np.linspace(15,85,17):
+            step = np.percentile(x, pct)
+            x_1 = [i for i in x if i < step]
+            x_2 = [i for i in x if i >= step]
+            y_1 = [j for (i,j) in zip(x,y) if i < step]
+            y_2 = [j for (i,j) in zip(x,y) if i >= step]
+            
+            f1 = sm.OLS(y_1,x_1).fit()
                 
-        
-    if fit_2:
-        if fit_1:
-            conn_point = func1(step, *popt)
-            fit_2.append((step, conn_point))
-            sigma = np.ones(len(fit_2))
+            conn_point = f1.predict(step)
+            x_2.append(step)
+            y_2.append(conn_point)
+            sigma = np.ones(len(x_2))
             sigma[-1] = 0.001
-        else:
-            return None
-        if p02 is None:
-            try:
-                popt, pcov = curve_fit(func2, [x[0] for x in fit_2], [x[1] for x in fit_2], sigma=sigma)
-            except: # does not fit -> move on
-                line.pop(0).remove()
-                return None
-        else:
-            try:
-                popt, pcov = curve_fit(func2, [x[0] for x in fit_2], [x[1] for x in fit_2], p0=p02, sigma=sigma)
-            except: # does not fit -> move on
-                line.pop(0).remove()
-                return None
-        ax.plot(np.linspace(step,max([x[0] for x in fit_2]),max([x[0] for x in fit_2])-step), func2(np.linspace(step,max([x[0] for x in fit_2]),max([x[0] for x in fit_2])-step), *popt), label=None, linewidth=3, color = color)
-        y_actual = y_actual + [x[1] for x in fit_2]
-        y_predict = np.append(y_predict, func2([x[0] for x in fit_2], *popt))
-        
-    return sum([abs(a-b) for a,b in zip(y_actual, y_predict)])    
+            
+            if p02 is None:
+                try:
+                    popt, pcov = curve_fit(func2, x_2, y_2, sigma=sigma)
+                except: # does not fit -> move on
+                    continue
+            else:
+                try:
+                    popt, pcov = curve_fit(func2, x_2, y_2, p0=p02, sigma=sigma)
+                except: # does not fit -> move on
+                    continue
+            
+            y_actual = y_1 + y_2
+            y_predict = np.append(f1.predict(x_1), func2(x_2, *popt)[:-1])
+            err = sum([abs(a-b) for a,b in zip(y_actual, y_predict)])    
+            if err < minERR:
+                minERR  = err
+                minf1 = f1
+                minstep = step
+                miny_2 = func2(np.linspace(step, max(x_2), max(x_2)-step), *popt)
+        ax.plot(minstep, minf1.predict(minstep), 'mo', ms = 15)
+        ax.plot(np.linspace(1,minstep,minstep), minf1.predict(np.linspace(1,minstep,minstep)), label=None, linewidth=3, color = color)
+        ax.plot(np.linspace(minstep, max(x_2), max(x_2)-minstep), miny_2, label=fitname, linewidth=3, color = color)
+
+        return f1, popt, step #(step, minf1.predict(step))
     
