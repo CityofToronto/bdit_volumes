@@ -108,7 +108,7 @@ def my_curve_fit(ax, x, y, func1, func2=None, color='b', fitname='Model name mis
         y_actual = y
         y_predict = f1.predict(x)
         
-        return f1
+        return f1, sum([abs(a-b) for a,b in zip(y_actual, y_predict)])   
 
     else:
         minERR = 1000000
@@ -150,5 +150,5 @@ def my_curve_fit(ax, x, y, func1, func2=None, color='b', fitname='Model name mis
         ax.plot(np.linspace(1,minstep,minstep), minf1.predict(np.linspace(1,minstep,minstep)), label=None, linewidth=3, color = color)
         ax.plot(np.linspace(minstep, max(x_2), max(x_2)-minstep), miny_2, label=fitname, linewidth=3, color = color)
 
-        return f1, popt, step #(step, minf1.predict(step))
+        return f1, err, popt, step #(step, minf1.predict(step))
     
