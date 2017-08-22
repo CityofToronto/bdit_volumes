@@ -136,7 +136,16 @@ class spatial_extrapolation(vol_utils):
         self.logger.info('Uploaded results for road class ' + self.rc_lookup[road_class] +' to prj_volume.aadt. Estimated by linear regression(proximity)')
         
     def linear_regression_prox_eval(self, road_class, sample_size=0.3):
-        data = self.get_coord_data(road_class)
+        ''' This function evaluates linear regression by proximity on a given road class.
+            Input:
+                road_class: 6-digit feature code
+                (optional) sample_size: the proportion of sample used for testing
+            Output:
+                (to screen)
+                Scatter plot of predicted and observed value and the root mean squared error.
+                Plot of root mean squred eroor vs. number of neighbours used for regression.
+        '''
+        data = self.get_coord_data(road_class).dropna()
         dist = np.array(data[['from_x','from_y','to_x','to_y']])
         kdt = KDTree(dist, 12)
         
@@ -145,15 +154,20 @@ class spatial_extrapolation(vol_utils):
         for i in range(10):
             neighb.append([data['volume'].iloc[kdt.query(l,k=11)[1]].iloc[i+1] for l in dist])
         neighb = np.asarray(neighb).T
-        x_train, x_test, y_train, y_test = train_test_split(neighb, orig, test_size=sample_size, random_state=0)    
+        x_train, x_test, y_train, y_test = train_test_split(neighb, orig, test_size=sample_size, random_state=0)   
         regr = linear_model.LinearRegression()
         score = []
         for i in range(10):
             regr.fit(x_train[:,0:i+1], y_train)
             y_predict = regr.predict(x_test[:,0:i+1])
             if i == 9:
-                self.scatterplot(y_predict, y_test, road_class, regr.score(x_test, y_test), 'proximikty_regr',  ' Linear Regression (by proximity) \n with ' + str(i+2) + ' neighbours')
-                
+                self.scatterplot(y_predict, y_test, road_class, regr.score(x_test, y_test), 'proximity_regr',  ' Linear Regression (by proximity) \n with ' + str(i+2) + ' neighbours')
+                new = np.insert(x_train[:,0:i+1], 0, 1, axis = 1)
+                C = np.linalg.inv(np.matmul(new.transpose(),new)) * mean_squared_error(y_test,y_predict)/(len(new)-(i+2)-1)
+                for j in range(i+1):
+                    print(regr.coef_[j]/np.sqrt(C[j+1,j+1]))
+                #print(mean_squared_error(y_test,y_predict)/(len(new)-(i+2)-1))
+                    
             score.append(np.sqrt(mean_squared_error(y_test,y_predict)))
             
         fig, ax = plt.subplots(figsize=[8,6])    
@@ -179,8 +193,11 @@ class spatial_extrapolation(vol_utils):
         
         ax.annotate('Root Mean Squared Error: ' + "{:.0f}".format(np.sqrt(mean_squared_error(y_test,y_predict))), xy=((x[1]-x[0])*0.06+x[0], x[1]*0.92), fontsize = 11)
         ax.annotate('Coef of Det: ' + "{:.3f}".format(coef_det), xy=((x[1]-x[0])*0.06+x[0], x[1]*0.86), fontsize = 11)
-        fig.savefig('spatial_extrapolation/img/'+self.rc_lookup[road_class].lower().replace(' ','_') + '_' + estimation_method + '.png')
-    
+        try:
+            fig.savefig('spatial_extrapolation/img/'+self.rc_lookup[road_class].lower().replace(' ','_') + '_' + estimation_method + '.png')
+        except FileNotFoundError:
+            fig.savefig(self.rc_lookup[road_class].lower().replace(' ','_') + '_' + estimation_method + '.png')
+            
     def plot_semivariogram(self, road_class):
         data = self.get_sql_results("query_semi_variogram.sql", columns = ['dist','semivariance','correlation','numobs'], parameters=[road_class])
         data['dist'] = data['dist']*50/1000

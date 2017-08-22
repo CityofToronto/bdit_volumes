@@ -12,12 +12,10 @@ for x in os.walk('.'):
 
 import S03_geocode_and_match_street_number as S03
 import S08_combine_correction_files as S08
-import pandas as pd
+
 
 from utilities import vol_utils
-from cluster import cluster
-from reporting import temporal_extrapolation
-from spatial_extrapolation import spatial_extrapolation
+
 from datetime import datetime
 import logging
 
@@ -92,45 +90,20 @@ if __name__ == '__main__':
         handler.setFormatter(formatter)
         logger.addHandler(handler)
     
+    # 1. Prepare Data
     pfd = prepare_flow_data()
     
+    # 1.1 Arterycode matching
     tStart = datetime.now()        
     newmatch = pfd.arterycode_matching()
     logger.info('Finished Arterycode Matching in %s', str(datetime.now()-tStart))
-    
+    # 1.2 Clean up counts
     tStart = datetime.now()
     pfd.cleanup_traffic_counts()
     logger.info('Finished clean up counts in %s', str(datetime.now()-tStart))   
-    
+    # 1.3 Populating volume tables
     tStart = datetime.now()
     pfd.populate_volumes_table()
     logger.info('Finished populating volume tables in %s', str(datetime.now()-tStart))   
     del pfd
     
-    tStart = datetime.now()
-    clst = cluster(nClusters = 6)
-    include_incomplete = False
-
-    if include_incomplete == True:
-        clst.fit_incomplete_data(pd.DataFrame(), include_incomplete)
-        clst.refresh_db_export()
-    else:
-        clst.refresh_db_export()
-    del clst
-    logger.info('Finished clustering in %s', str(datetime.now()-tStart))   
-    
-    tStart = datetime.now()
-    tex = temporal_extrapolation('centreline_id')
-    #(optional)
-    #tex.refresh_monthly_factors()
-    vol, non = tex.testing_entire_TO()
-    del tex
-    logger.info('Finished calculating AADT for Toronto in %s', str(datetime.now()-tStart))   
-    
-    tStart = datetime.now()
-    spa = spatial_extrapolation()
-    print(spa.linear_regression_directional(201400,0.3))
-    print(spa.linear_regression_directional(201500,0.3))
-    #spa.fill_all()
-    del spa
-   # logger.info('Finished filling in AADT for Toronto in %s', str(datetime.now()-tStart))      

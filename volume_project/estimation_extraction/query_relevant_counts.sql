@@ -12,6 +12,6 @@ FROM (SELECT group_number, centreline_id, dir_bin, count_bin::date as count_date
 	GROUP BY group_number, centreline_id, dir_bin, count_bin::date, count_bin::time, count_type) A
 GROUP BY place_holder_identifier_name, dir_bin, count_date, count_time, count_type, class)	
 	
-SELECT place_holder_identifier_name, dir_bin, count_date, count_time, count_type, volume
+SELECT place_holder_identifier_name, dir_bin, count_date, EXTRACT(YEAR FROM count_date)::int AS year, EXTRACT(MONTH FROM count_date)::int AS month, EXTRACT(day FROM count_date)::int as day, count_time, count_type, volume
 FROM rel_cnt
 WHERE class = (SELECT MIN(class) FROM rel_cnt)
