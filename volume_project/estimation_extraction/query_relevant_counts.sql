@@ -8,7 +8,7 @@ FROM (SELECT group_number, centreline_id, dir_bin, count_bin::date as count_date
 	ELSE 2
 	END) AS class, count_type
 	FROM prj_volume.centreline_volumes JOIN prj_volume.centreline_groups USING (centreline_id, dir_bin) 
-	WHERE EXTRACT(DOW FROM count_bin) NOT IN (0,6) AND group_number = (SELECT group_number FROM prj_volume.centreline_groups WHERE place_holder_identifier_name = $3 AND dir_bin = $1 LIMIT 1)
+	WHERE EXTRACT(DOW FROM count_bin) NOT IN (0,6) AND group_number = (SELECT group_number FROM prj_volume.centreline_groups WHERE place_holder_identifier_name = $3 AND dir_bin = $1 LIMIT 1) AND EXTRACT(YEAR FROM count_bin::date) >= 2003
 	GROUP BY group_number, centreline_id, dir_bin, count_bin::date, count_bin::time, count_type) A
 GROUP BY place_holder_identifier_name, dir_bin, count_date, count_time, count_type, class)	
 	

@@ -70,6 +70,6 @@ if __name__ == '__main__':
     #df = tex.get_relevant_counts(1149, 1, 2004)
     #tex.testing_hourly()
     #tex.testing_daily()
-    volumes, non = tex.calc_all_TO_gr(0, 2015, 'hour')
+    volumes, non = tex.calc_all_TO_gr(1, 2015, 'hour')
     del tex
     

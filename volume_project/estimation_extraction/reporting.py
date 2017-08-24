@@ -27,7 +27,14 @@ class temporal_extrapolation(vol_utils):
         super().__init__()
         self.identifier_name = identifier_name
         self.get_clusterinfo()
-   
+        
+        if self.identifier_name=='centreline_id':
+            self.monthly_factors = self.get_sql_results('SELECT * FROM prj_volume.monthly_factors', [self.identifier_name,'dir_bin','year','weights'])
+        else:
+            self.monthly_factors = self.get_sql_results('SELECT * FROM prj_volume.monthly_factors_group', [self.identifier_name,'dir_bin','year','weights'])
+        self.monthly_factors.set_index([self.identifier_name,'dir_bin','year'], inplace=True, drop=True)
+        self.logger.debug('Read monthly factors from database')
+        
     def calc_date_factors(self, year, month, dates, identifier_value, dir_bin):
         '''
         This function calculates seaonal and annual factors and weights to apply on existing counts to estimate volume on another day.
@@ -39,18 +46,11 @@ class temporal_extrapolation(vol_utils):
         Output:
             dataframe with columns: count_date, factors_month (seasonality factors to be applied to the counts), weight_year (weighting of the count calculated based on recency)
         '''
-
-        if self.identifier_name=='centreline_id':
-            monthly_factors = self.get_sql_results('SELECT * FROM prj_volume.monthly_factors', [self.identifier_name,'dir_bin','year','weights'])
-        else:
-            monthly_factors = self.get_sql_results('SELECT * FROM prj_volume.monthly_factors_group', [self.identifier_name,'dir_bin','year','weights'])
-        monthly_factors.set_index([self.identifier_name,'dir_bin','year'], inplace=True, drop=True)
-        self.logger.debug('Reading monthly factors from database')
-           
-        if (int(identifier_value), int(dir_bin), year) in monthly_factors.index:
-            mfactors = [float(i) for i in monthly_factors.loc[(int(identifier_value), int(dir_bin), year)]['weights']]
+  
+        if (int(identifier_value), int(dir_bin), year) in self.monthly_factors.index:
+            mfactors = [float(i) for i in self.monthly_factors.loc[(int(identifier_value), int(dir_bin), year)]['weights']]
         else: # Use average profile, denoted by index (0,0,0)
-            mfactors = [float(i) for i in monthly_factors.loc[(0,0,0)]['weights']]
+            mfactors = [float(i) for i in self.monthly_factors.loc[(0,0,0)]['weights']]
         mfactors.append(1/12)
         
         dates = pd.DataFrame(pd.to_datetime(dates), columns=['count_date'])
@@ -560,22 +560,29 @@ class temporal_extrapolation(vol_utils):
             self.identifier_name = 'group_number'
             self.get_clusterinfo()
             
-        centrelines = self.get_sql_results('SELECT DISTINCT group_number, dir_bin FROM prj_volume.centreline_groups ORDER BY group_number DESC', columns = ['identifier', 'dir_bin'])
+        centrelines = self.get_sql_results('SELECT DISTINCT group_number, dir_bin FROM prj_volume.centreline_groups ORDER BY group_number', columns = ['identifier', 'dir_bin'])
 
         volumes =  []
         non = []
-        i = 0
+        count = 0
+        i = 1
         for identifier, dir_bin in zip(centrelines['identifier'], centrelines['dir_bin']):
             if i >= start_number:
                 self.logger.info('#%i - Calculating volume for %i %i', i, identifier, dir_bin)
                 try:
                     if freq == 'year':
                         v = self.get_volume(identifier, dir_bin, year)  
+                        if v is not None:
+                            volumes.append([None, dir_bin, year, int(v), identifier, 1])
+                            count = count + 1
+                        else:
+                            non.append([identifier, dir_bin])
                     elif freq == 'month':
                         for m in range(12):
                             v = self.get_volume(identifier, dir_bin, year, month = m+1)
                             if v is not None:
                                 volumes.append([None, dir_bin, year, m+1, int(v), identifier, 1])
+                                count = count + 1
                             else:
                                 non.append([identifier, dir_bin])
                                 break
@@ -585,6 +592,7 @@ class temporal_extrapolation(vol_utils):
                             if v is not None:
                                 for h in range(24):
                                     volumes.append([None, dir_bin, year, m+1, h, int(v[h]), identifier, 1])
+                                    count = count + 1
                             else:
                                 non.append([identifier, dir_bin])
                                 break
@@ -601,8 +609,16 @@ class temporal_extrapolation(vol_utils):
                         volumes.to_csv('volumes.csv')
                         self.logger.info('Saved results to volumes.csv')
                         
-                    return volumes, non             
-
+                    return volumes, non     
+                if count == 5000:
+                    if freq == 'year':
+                        self.upload_to_aadt(volumes,truncate=(i==start_number == 0))      
+                    elif freq == 'month':
+                        self.upload_to_daily_total(volumes,truncate=(i==start_number == 0))  
+                    elif freq == 'hour':
+                        self.upload_to_monthly_profile(volumes,truncate=(i==start_number == 0))  
+                    count = 0
+                    volumes = []
             i = i + 1
 
         try:
