@@ -32,7 +32,7 @@ if __name__ == '__main__':
         handler.setFormatter(formatter)
         logger.addHandler(handler)
     '''    
-    # 2. Cluster
+    # 2. (optional) Cluster
     tStart = datetime.now()
     # 2.1 Cluster counts
     clst = cluster(nClusters = 6)
@@ -48,28 +48,25 @@ if __name__ == '__main__':
     
     # 3. Calculate volume based on existing counts
     tStart = datetime.now()
-    tex = temporal_extrapolation('centreline_id') 
+    tex = temporal_extrapolation('group_number') 
     # 3.1 (optional) Refersh factors
     #tex.refresh_monthly_factors()
     # 3.2 Calculate for all locations that are ever counted 
-    vol, non = tex.testing_entire_TO()
+    year = 2015
+    start_number = 0
+    freq = 'hour'
+    vol, non = tex.calc_all_TO(start_number, year, freq)
     del tex
     logger.info('Finished calculating AADT for Toronto in %s', str(datetime.now()-tStart))   
     
     # 4. Calculate volume for locations that are never counted
     tStart = datetime.now()
     spa = spatial_extrapolation()
-    # 4.0 (optional) techniques evaluation:
-    spa.linear_regression_prox_eval(201500,0.3)
     # 4.1 Fill in the entire city (method pre-determined)
     spa.fill_all()
     del spa
     logger.info('Finished filling in AADT for Toronto in %s', str(datetime.now()-tStart))      
     '''
-    tex = temporal_extrapolation('group_number') 
-    #df = tex.get_relevant_counts(1149, 1, 2004)
-    #tex.testing_hourly()
-    #tex.testing_daily()
-    volumes, non = tex.calc_all_TO_gr(1, 2015, 'hour')
-    del tex
     
+    tex = temporal_extrapolation('centreline_id') 
+    tex.testing_daily()

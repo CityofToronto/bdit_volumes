@@ -35,6 +35,112 @@ class temporal_extrapolation(vol_utils):
         self.monthly_factors.set_index([self.identifier_name,'dir_bin','year'], inplace=True, drop=True)
         self.logger.debug('Read monthly factors from database')
         
+    def calc_all_TO(self, start_number, year, freq):
+        ''' This function iterates through all centreline_id/group_number, retrieves requested information and uploads to the database.
+        
+        Input: 
+            start_number: default = 0; **index** of start centreline_id/group_number. 
+            year: the year of interest
+            freq: one of 'year', 'day', 'hour'
+        Output:
+            returns a tuple of a dataframe of volumes and a list of locations where no counts exist
+            meanwhile, results are uploaded to the database; if that fails, saved to volumes.csv in the running directoryl
+        '''
+            
+        ids = self.get_sql_results('SELECT DISTINCT ' + self.identifier_name + ', dir_bin FROM prj_volume.centreline_groups ORDER BY ' + self.identifier_name, columns = ['identifier', 'dir_bin'])
+
+        volumes =  []
+        non = []
+        count = 0
+        i = 0
+        for identifier, dir_bin in zip(ids['identifier'], ids['dir_bin']):
+            if i >= start_number:
+                self.logger.info('#%i - Calculating volume for %i %i', i, identifier, dir_bin)
+                try:
+                    if freq == 'year':
+                        v = self.get_volume(identifier, dir_bin, year)  
+                        if v is not None:
+                            if self.identifier_name == 'group_number':
+                                volumes.append([None, dir_bin, year, int(v), identifier, 1])
+                            else:
+                                volumes.append([identifier, dir_bin, year, int(v), None, 1])
+                            count = count + 1
+                        else:
+                            non.append([identifier, dir_bin])
+                    elif freq == 'month':
+                        for m in range(12):
+                            v = self.get_volume(identifier, dir_bin, year, month = m+1)
+                            if v is not None:
+                                if self.identifier_name == 'group_number':
+                                    volumes.append([None, dir_bin, year, int(v), identifier, 1])
+                                else:
+                                    volumes.append([identifier, dir_bin, year, int(v), None, 1])
+                                count = count + 1
+                            else:
+                                non.append([identifier, dir_bin])
+                                break
+                    elif freq == 'hour':
+                        for m in range(12):
+                            v = self.get_volume(identifier, dir_bin, year, month = m+1, outtype = 'profile')
+                            if v is not None:
+                                for h in range(24):
+                                    if self.identifier_name == 'group_number':
+                                        volumes.append([None, dir_bin, year, int(v), identifier, 1])
+                                    else:
+                                        volumes.append([identifier, dir_bin, year, int(v), None, 1])
+                                    count = count + 1
+                            else:
+                                non.append([identifier, dir_bin])
+                                break
+                except:
+                    self.logger.error('Calculating Procedure Interrupted', exc_info=True)
+                    try:
+                        self.upload_to_aadt(volumes,truncate=(start_number == 0))  
+                    except:
+                        self.logger.error(sys.exc_info()[0])
+                        if self.identifier_name == 'centreline_id':
+                            volumes = pd.DataFrame(volumes, columns = ['centreline_id', 'dir_bin', 'year', 'volume'])  
+                        else:
+                            volumes = pd.DataFrame(volumes, columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number']) 
+                        volumes.to_csv('volumes.csv')
+                        self.logger.info('Saved results to volumes.csv')
+                        
+                    return volumes, non     
+                if count == 5000:
+                    if freq == 'year':
+                        self.upload_to_aadt(volumes,truncate=(i==start_number == 0))      
+                    elif freq == 'month':
+                        self.upload_to_daily_total(volumes,truncate=(i==start_number == 0))  
+                    elif freq == 'hour':
+                        self.upload_to_monthly_profile(volumes,truncate=(i==start_number == 0))  
+                    count = 0
+                    volumes = []
+            i = i + 1
+
+        try:
+            if freq == 'year':
+                self.upload_to_aadt(volumes,truncate=(start_number == 0))      
+            elif freq == 'month':
+                self.upload_to_daily_total(volumes,truncate=(start_number == 0))  
+            elif freq == 'hour':
+                self.upload_to_monthly_profile(volumes,truncate=(start_number == 0))  
+        except:
+            self.logger.error(sys.exc_info()[0])
+            if freq == 'year':
+                columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number','confidence']
+            elif freq == 'month':
+                columns = ['centreline_id', 'dir_bin', 'year', 'month', 'volume', 'group_number','confidence']
+            elif freq == 'hour':
+                columns = ['centreline_id', 'dir_bin', 'year', 'month', 'hour', 'volume', 'group_number','confidence']
+            if self.identifier_name == 'centreline_id':
+                volumes = pd.DataFrame(volumes, columns = columns) 
+            else:
+                volumes = pd.DataFrame(volumes, columns = columns) 
+            volumes.to_csv('volumes.csv')
+            self.logger.info('Saved results to volumes.csv')  
+
+        return volumes, non
+            
     def calc_date_factors(self, year, month, dates, identifier_value, dir_bin):
         '''
         This function calculates seaonal and annual factors and weights to apply on existing counts to estimate volume on another day.
@@ -112,6 +218,11 @@ class temporal_extrapolation(vol_utils):
             return df[df['time_15']//4==int(hour)]
         
     def get_clusterinfo(self):
+        
+        ''' 
+        This function retrieves cluster information from the database.
+        '''
+        
         clusterinfo = self.get_sql_results('SELECT cluster, time_15, vol_weight FROM prj_volume.cluster_profiles ORDER BY cluster, time_15', columns = ['cluster', 'time_15', 'vol_weight'])
         self.cluster_profile = list(clusterinfo.groupby('cluster')['vol_weight'].apply(list))
         if self.identifier_name == 'centreline_id':
@@ -147,6 +258,17 @@ class temporal_extrapolation(vol_utils):
         return tmc, atr    
         
     def get_volume(self, identifier_value, dir_bin, year, month=None, day=None, hour=None, outtype='volume'):
+        
+        ''' High level get volume function that processes input and calls appropriate functions for information.
+        
+        Input:
+            identififer_value: centreline_id or group_number
+            dir_bin
+            year, (optional) month, (optional) day, (optional) hour
+            outtype: one of 'volume' or 'profile' 
+        Output:
+            a list of volume profiles or a number.
+        '''
 
         if day is not None:
             count_date = '-'.join([str(x) for x in [year,month,day]])
@@ -176,6 +298,18 @@ class temporal_extrapolation(vol_utils):
                 return sum(p['volume'])
 
     def get_volume_annualavg(self, tmc, atr, identifier_value, dir_bin, year):
+        
+        ''' This function calculates annual average weekday daily traffic. 
+        
+        Input: 
+            tmc, atr: dataframes containing relevant tmc, atr counts 
+            identifier_value: centreline_id/group_number
+            dir_bin
+            year
+            
+        Output:
+            a dataframe of volumes 
+        '''
         
         # No temporal aggregation while taking weighted average
         agglvl = 'dir_bin'
@@ -210,7 +344,19 @@ class temporal_extrapolation(vol_utils):
         return self.take_weighted_average(data, None, agglvl, factors)['volume'][0]
             
     def get_volume_day_hour(self, tmc, atr, identifier_value, dir_bin, year, month, day, hour=None):
-
+        
+        ''' This function calcualtes daily total/profile based on information passed in.
+        
+        Input: 
+            tmc, atr: dataframes containing relevant tmc, atr counts 
+            identifier_value: centreline_id/group_number
+            dir_bin
+            year, month, day, (optional) hour
+            
+        Output:
+            a dataframe of volumes     
+        '''
+        
         agglvl = 'time_15'
         
         if day is not None:
@@ -388,6 +534,10 @@ class temporal_extrapolation(vol_utils):
         return None
         
     def refresh_monthly_factors(self):
+        '''
+        This function refreshes monthly factors table in the database based on the current version of prj_volume.centreline_volumes.
+        '''
+        
         factors = self.get_sql_results("query_monthly_factors.sql", columns = [self.identifier_name, 'dir_bin','year','weights'], replace_columns = {'place_holder_identifier_name':self.identifier_name})
     
         f_sum = [0] * 12
@@ -414,14 +564,15 @@ class temporal_extrapolation(vol_utils):
     def slice_data(self, df1, df2, args):
         
         '''
-        This function slices the two dataframes passed in based on the optional criteria.
+        This function slices the two dataframes passed in based on requirements.
         
         Input:
             df1, df2: dataframes to be sliced with columns: count_date, centreline_id, time_15
-            identifier_value, count_date, hour: (optional) filter criteria
+            args: dictionary. filter criteria. {name:value}
         Output:
             two dataframes after slicing
         '''
+        
         df1['hour'] = df1['time_15']//4
         df2['hour'] = df2['time_15']//4
         
@@ -434,6 +585,7 @@ class temporal_extrapolation(vol_utils):
         return df1, df2
         
     def take_weighted_average(self, tmc, atr, agglvl, factors_date=None):
+        
         '''
         ** all data will be added up do not pass in redundant rows
         This function calculates a factored&weighted average volume for estimation.
@@ -445,6 +597,7 @@ class temporal_extrapolation(vol_utils):
         Output:
             a weighted total volume/volume profile
         '''
+        
         if factors_date is None:
             df = pd.concat([tmc,atr]).groupby([self.identifier_name, 'dir_bin', agglvl], as_index=False).mean()
             df['hour'] = df['time_15']//4
@@ -521,131 +674,31 @@ class temporal_extrapolation(vol_utils):
             self.logger.error('Please create instance with identifier being centreline_id')
             return
         
-        # (1) same date, directly retrieve TMC
-        self.logger.info(self.get_volume(142, -1, 2002, 3, 11)) # 41
-        # (1) same date, Average of ATR and TMC
-        self.logger.info(self.get_volume(1149, +1, 2004, 6, 24)) # 61
-        
-        # (2) same date, Fill in ATR
-        self.logger.info(self.get_volume(890, -1, 2005, 8, 4)) # ~5000
-        # (2) same date, Fill in TMC
-        self.logger.info(self.get_volume(161, -1, 2005, 8, 11)) # ~60
-    
-        # (3) same date, share volume with tcl 7636691, directly retrieve ATR
-        self.logger.info(self.get_volume(14020872, -1, 2010, 4, 27)) # 47
-    
-        # (4) same date, share volume with tcl 7636691, fill in TMC
-        self.logger.info(self.get_volume(14020872, -1, 2009, 7, 21)) # ~180
-        self.logger.info(self.get_volume(14020872, -1, 2009, 7)) # ~180
-        
-        # (5) diff date, weighted avg of ATR
-        self.logger.info(self.get_volume(117, +1, 2011, 6)) # ~55
-        # (5) diff date, weighted avg of ATR and TMC
-        self.logger.info(self.get_volume(142, -1, 2003, 3, 11)) # ~40
-        
-        # (6) diff date, Fill in ATR
-        self.logger.info(self.get_volume(8570852, 1, 2006, 8, 4)) # ~60
-        # (6) diff date, Fill in TMC
-        self.logger.info(self.get_volume(112888, -1, 2006, 8)) # ~860
-        
-        # (7) diff date, share volume with tcl 7636691, full hour
-        self.logger.info(self.get_volume(14020872, -1, 2011, 4, 27)) # ~54   
-        
-        # (8) diff date, share volume with tcl 181, fill in TMC
-        self.logger.info(self.get_volume(1863, 1, 2013, 4, 24)) # ~15    
-        
-    def calc_all_TO_gr(self, start_number, year, freq):
-        
-        if self.identifier_name != 'group_number':
-            self.identifier_name = 'group_number'
-            self.get_clusterinfo()
-            
-        centrelines = self.get_sql_results('SELECT DISTINCT group_number, dir_bin FROM prj_volume.centreline_groups ORDER BY group_number', columns = ['identifier', 'dir_bin'])
+        self.logger.info(self.get_volume(142, -1, 2002, 3, 11))  # 1549
 
-        volumes =  []
-        non = []
-        count = 0
-        i = 1
-        for identifier, dir_bin in zip(centrelines['identifier'], centrelines['dir_bin']):
-            if i >= start_number:
-                self.logger.info('#%i - Calculating volume for %i %i', i, identifier, dir_bin)
-                try:
-                    if freq == 'year':
-                        v = self.get_volume(identifier, dir_bin, year)  
-                        if v is not None:
-                            volumes.append([None, dir_bin, year, int(v), identifier, 1])
-                            count = count + 1
-                        else:
-                            non.append([identifier, dir_bin])
-                    elif freq == 'month':
-                        for m in range(12):
-                            v = self.get_volume(identifier, dir_bin, year, month = m+1)
-                            if v is not None:
-                                volumes.append([None, dir_bin, year, m+1, int(v), identifier, 1])
-                                count = count + 1
-                            else:
-                                non.append([identifier, dir_bin])
-                                break
-                    elif freq == 'hour':
-                        for m in range(12):
-                            v = self.get_volume(identifier, dir_bin, year, month = m+1, outtype = 'profile')
-                            if v is not None:
-                                for h in range(24):
-                                    volumes.append([None, dir_bin, year, m+1, h, int(v[h]), identifier, 1])
-                                    count = count + 1
-                            else:
-                                non.append([identifier, dir_bin])
-                                break
-                except:
-                    self.logger.error('Calculating Procedure Interrupted', exc_info=True)
-                    try:
-                        self.upload_to_aadt(volumes,truncate=(start_number == 0))  
-                    except:
-                        self.logger.error(sys.exc_info()[0])
-                        if self.identifier_name == 'centreline_id':
-                            volumes = pd.DataFrame(volumes, columns = ['centreline_id', 'dir_bin', 'year', 'volume'])  
-                        else:
-                            volumes = pd.DataFrame(volumes, columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number']) 
-                        volumes.to_csv('volumes.csv')
-                        self.logger.info('Saved results to volumes.csv')
-                        
-                    return volumes, non     
-                if count == 5000:
-                    if freq == 'year':
-                        self.upload_to_aadt(volumes,truncate=(i==start_number == 0))      
-                    elif freq == 'month':
-                        self.upload_to_daily_total(volumes,truncate=(i==start_number == 0))  
-                    elif freq == 'hour':
-                        self.upload_to_monthly_profile(volumes,truncate=(i==start_number == 0))  
-                    count = 0
-                    volumes = []
-            i = i + 1
-
-        try:
-            if freq == 'year':
-                self.upload_to_aadt(volumes,truncate=(start_number == 0))      
-            elif freq == 'month':
-                self.upload_to_daily_total(volumes,truncate=(start_number == 0))  
-            elif freq == 'hour':
-                self.upload_to_monthly_profile(volumes,truncate=(start_number == 0))  
-        except:
-            self.logger.error(sys.exc_info()[0])
-            if freq == 'year':
-                columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number','confidence']
-            elif freq == 'month':
-                columns = ['centreline_id', 'dir_bin', 'year', 'month', 'volume', 'group_number','confidence']
-            elif freq == 'hour':
-                columns = ['centreline_id', 'dir_bin', 'year', 'month', 'hour', 'volume', 'group_number','confidence']
-            if self.identifier_name == 'centreline_id':
-                volumes = pd.DataFrame(volumes, columns = columns) 
-            else:
-                volumes = pd.DataFrame(volumes, columns = columns) 
-            volumes.to_csv('volumes.csv')
-            self.logger.info('Saved results to volumes.csv')  
-
-        return volumes, non
+        self.logger.info(self.get_volume(1149, +1, 2004, 6, 24))  # 978
+        
+        self.logger.info(self.get_volume(890, -1, 2005, 8, 4)) # ~77513
+        
+        self.logger.info(self.get_volume(161, -1, 2005, 8, 11)) # ~1131
     
+        self.logger.info(self.get_volume(14020872, -1, 2010, 4, 27)) # 6205
+    
+        self.logger.info(self.get_volume(14020872, -1, 2009, 7, 21)) # ~3040
+        self.logger.info(self.get_volume(14020872, -1, 2009, 7))  # ~3040
+        
+        self.logger.info(self.get_volume(117, +1, 2011, 6)) # ~1304
+        
+        self.logger.info(self.get_volume(8570852, 1, 2006, 8, 4)) # ~1403
+        self.logger.info(self.get_volume(112888, -1, 2006, 8))  # ~8303
+
+        self.logger.info(self.get_volume(14020872, -1, 2011, 4, 27))# ~5964
+        
+        self.logger.info(self.get_volume(1863, 1, 2013, 4, 24)) # ~381
+
     def upload_to_daily_total(self, volumes, truncate=True):
+        ''' Upload to prj_volume.daily_total_by_month '''
+        
         if self.identifier_name == 'centreline_id':
             groups = self.get_sql_results('SELECT centreline_id, dir_bin, group_number FROM prj_volume.centreline_groups', columns = ['centreline_id','dir_bin','group_number'])
             volumes = pd.DataFrame(volumes, columns = ['centreline_id','dir_bin','year','volume'])  
@@ -657,7 +710,8 @@ class temporal_extrapolation(vol_utils):
         self.logger.info('Uploaded results to prj_volume.daily_total_by_month')
         
     def upload_to_monthly_profile(self, volumes, truncate=True):
-
+        ''' Upload to prj_volume.daily_profile_by_month '''
+        
         if self.identifier_name == 'centreline_id':
             groups = self.get_sql_results('SELECT centreline_id, dir_bin, group_number FROM prj_volume.centreline_groups', columns = ['centreline_id','dir_bin','group_number'])
             volumes = pd.DataFrame(volumes, columns = ['centreline_id','dir_bin','year','volume'])  
@@ -669,6 +723,8 @@ class temporal_extrapolation(vol_utils):
         self.logger.info('Uploaded results to prj_volume.daily_profile_by_month')
         
     def upload_to_aadt(self, volumes, truncate=True):
+        ''' Upload to prj_volume.aadt '''
+        
         if self.identifier_name == 'centreline_id':
             groups = self.get_sql_results('SELECT centreline_id, dir_bin, group_number FROM prj_volume.centreline_groups', columns = ['centreline_id','dir_bin','group_number'])
             volumes = pd.DataFrame(volumes, columns = ['centreline_id','dir_bin','year','volume'])  

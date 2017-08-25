@@ -20,7 +20,7 @@ Color Schema:
  - **White**: Intermediate tables used for processing and transforming the data.
  - **Green**: The final table, consisting of processed count data mapped to the City's centreline system.
 
-!['process'](img/process.png)
+!['volume_model_2'](img/volume_model_2.png)
 
 
 ## Grid Angle Correction
