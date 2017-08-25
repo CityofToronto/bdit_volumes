@@ -40,15 +40,14 @@ The table prj_volume.centreline_volumes bridges the two procedures together. The
 
 The script [run_model.py](run_model.py) starts with the table prj_volume.centreline_volumes, and proceeds to populate the aadt table, daily totals table, or the daily profiles table based on parameters given.   
 
-	1. (2.1) Clustering is optional. If there is no update to centreline_volumes table. There's no need to refresh clustering. 
-	
-	2. (2.2) Including incomplete day counts in clustering results is optional. If so, the set variable include_incomplete to True. If True, incomplete day cluster results will be uploaded to database. When there are multiple days at one location, the mode will be chosen. If False, count estimation program will cluster if needed and the clustered profile will be based on only the relevant counts (relevant to the estimation)
-	3. (3) Temporal extrapolation instance initialization. (centreline_id/group_number)
-	3. (3.1) Refreshing monthly factors is optional. If there is no update to the centreline_volumes table. There's no need to refresh monthly factors.
-	4. (3.2) Three parameters in fill in data: start_number, year, freq
-		* start_number: default = 0; **index** of start centreline_id/group_number. Does not translate to actual centreline_id or group_number. Set to other values when procedure got interrupted by error or connection drop so that no work is duplicated.
-		* year: the year of interest
-		* freq: one of 'year', 'day', 'hour'
-			* 'year': Will calculate annual average weekdays daily volume and store in prj_volume.aadt.
-			* 'day': Will calculate average weekday daily total volume for each month in the given year and upload to prj_volume.daily_total_by_month.
-			* 'hour': Will calculate average weekday daily volume profiles for each month in the given year and upload to prj_volume.daily_profile_by_month. 
+1. (2.1) Clustering is optional. If there is no update to centreline_volumes table. There's no need to refresh clustering. 
+2. (2.2) Including incomplete day counts in clustering results is optional. If so, the set variable include_incomplete to True. If True, incomplete day cluster results will be uploaded to database. When there are multiple days at one location, the mode will be chosen. If False, count estimation program will cluster if needed and the clustered profile will be based on only the relevant counts (relevant to the estimation)
+3. (3) Temporal extrapolation instance initialization. (centreline_id/group_number)
+3. (3.1) Refreshing monthly factors is optional. If there is no update to the centreline_volumes table. There's no need to refresh monthly factors.
+4. (3.2) Three parameters in fill in data: start_number, year, freq
+	- start_number: default = 0; **index** of start centreline_id/group_number. Does not translate to actual centreline_id or group_number. Set to other values when procedure got interrupted by error or connection drop so that no work is duplicated.
+	- year: the year of interest
+	- freq: one of 'year', 'day', 'hour'
+		* 'year': Will calculate annual average weekdays daily volume and store in prj_volume.aadt.
+		* 'day': Will calculate average weekday daily total volume for each month in the given year and upload to prj_volume.daily_total_by_month.
+		* 'hour': Will calculate average weekday daily volume profiles for each month in the given year and upload to prj_volume.daily_profile_by_month. 
