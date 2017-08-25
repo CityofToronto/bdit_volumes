@@ -3,11 +3,11 @@
 Extract volume counts wherever possible and estimate volumes based on spatial relationships and temporal (TOD, seasonal, yearly) factors.
 
 ## Process:
-![volume_model_3.png](volume_model_3.png)
+![volume_model_3.png](img/volume_model_3.png)
 
 ## Implementation:
 The figure below illustrates implementation of the algorithm. Each box represents a function in the script and detauks on all functions are documented in the sections below.
-![volume_model_4.png](volume_model_4.png)
+![volume_model_4.png](img/volume_model_4.png)
 ### Core Functions
 * calc_all_TO(self, start_number, year, freq)
   - iterates through all centreline_id/group_number, retrieves requested information and uploads to the database
