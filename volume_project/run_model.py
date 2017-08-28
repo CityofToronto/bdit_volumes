@@ -45,7 +45,7 @@ if __name__ == '__main__':
         clst.refresh_db_export()
     del clst
     logger.info('Finished clustering in %s', str(datetime.now()-tStart))   
-    
+    '''
     # 3. Calculate volume based on existing counts
     tStart = datetime.now()
     tex = temporal_extrapolation('group_number') 
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     vol, non = tex.calc_all_TO(start_number, year, freq)
     del tex
     logger.info('Finished calculating AADT for Toronto in %s', str(datetime.now()-tStart))   
-    
+    '''
     # 4. Calculate volume for locations that are never counted
     tStart = datetime.now()
     spa = spatial_extrapolation()
@@ -67,6 +67,3 @@ if __name__ == '__main__':
     del spa
     logger.info('Finished filling in AADT for Toronto in %s', str(datetime.now()-tStart))      
     '''
-    
-    tex = temporal_extrapolation('centreline_id') 
-    tex.testing_daily()

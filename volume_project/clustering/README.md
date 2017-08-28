@@ -16,6 +16,11 @@ Volume data from all data sources has gaps, which could be a missing count or a 
 		If complete-day data exists for a particular location, it is treated as the source of truth and incomplete-day data will not be used towards clustering. 
 	2. If the location does not have complete-day data (as do many TMCs), distance to each established cluster centre is calculated. The profile is then assigned to the closest cluster centre. 
 
+## Implementation
+The algorithm is implemented with a class and a module in python. The figure below illustrates the attributes and methods. For detailed information on respective methods, please look for the docstrings of the methods in [cluster.py](cluster.py) and [cl_fcn.py](cl_fcn.py).
+
+![class_cluster.png](img/class_cluster.png)
+
 ## Results
 The result of this exercise is a lookup table of location and cluster ids and a list of cluster centre profiles to be fed into extract+estimate phase of volume reporting. 
 Based on existing counts, the six cluster centres are shown below:

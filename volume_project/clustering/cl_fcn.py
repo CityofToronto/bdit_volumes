@@ -24,6 +24,7 @@ def fill_missing_values(profiles, new, clusterinfo, identifier_name, plot=None):
         profiles: a list of cluster profile centres
         new: dataframe of new,incomplete days of data with columns: count_date, centreline_id, dir_bin
         clusterinfo: dataframe returned by function fit_incomplete with columns: centreline_id, dir_bin, cluster
+        plot: (optional) a list of [centreline_id, dir_bin, and count_date] to visualize filled-in vs. original profiles
     Output:
         a dictionary with complete day profile filled in. key: (centreline_id, dir_bin, count_date); value: list of volumes of each 15min bin.
     '''
@@ -131,6 +132,17 @@ def fit_incomplete(centres, new, identifier_name, plot=None):
     return pd.DataFrame(cls,columns=['count_date',identifier_name,'dir_bin','cluster']), distmtx  
     
 def get_percentiles(data, percentiles):
+    
+    ''' 
+    This function takes a data frame of data and a list of percentiles and returns a dictionary of percentile:profile
+    
+    Input:
+        data: dataframe of all clustered data with columns cluster and vol_weight
+        percentiles: a list of all the percentiles 
+    Output:
+        dictionary {percentile:profile}
+    '''
+    
     p = {}
     for (clusternum), group in data.groupby(['cluster']):
         p[clusternum] = {}

@@ -35,19 +35,7 @@ class spatial_extrapolation(vol_utils):
         self.logger = logging.getLogger('volume_project.spatial_extrapolation')
         super().__init__()
         self.rc_lookup = {201200:'Major Arterials', 201300:'Minor Arterials', 201400:'Collectors', 201500:'Locals'}
-           
-    def fill_all(self):
-        self.logger.info('Filling in Locals')
-        self.average_neighbours(201500)
-        self.logger.info('Filling in Collectors')
-        self.average_neighbours(201400)
-        self.logger.info('Filling in Minor Arterials')
-        self.linear_regression_directional(201300)
-        self.average_neighbours(201300)
-        self.logger.info('Filling in Major Arterials')
-        self.linear_regression_directional(201200)
-        self.average_neighbours(201200)
-        
+
     def average_neighbours(self, road_class):
         
         data = self.get_sql_results("query_avg_neighbour_volumes.sql",columns = ['group_number', 'dir_bin', 'neighbour_vol'], parameters = [road_class])
@@ -69,7 +57,19 @@ class spatial_extrapolation(vol_utils):
     def color_y_axis(self, ax, color):
         for t in ax.get_yticklabels():
             t.set_color(color)
-     
+           
+    def fill_all(self):
+        self.logger.info('Filling in Locals')
+        self.average_neighbours(201500)
+        self.logger.info('Filling in Collectors')
+        self.average_neighbours(201400)
+        self.logger.info('Filling in Minor Arterials')
+        self.linear_regression_directional(201300)
+        self.average_neighbours(201300)
+        self.logger.info('Filling in Major Arterials')
+        self.linear_regression_directional(201200)
+        self.average_neighbours(201200)
+             
     def get_coord_data(self, road_class):
         return self.get_sql_results("query_coord_volume.sql",['from_x','from_y','to_x','to_y','volume'], parameters=[road_class])
 

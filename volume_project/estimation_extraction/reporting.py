@@ -55,7 +55,7 @@ class temporal_extrapolation(vol_utils):
         i = 0
         for identifier, dir_bin in zip(ids['identifier'], ids['dir_bin']):
             if i >= start_number:
-                self.logger.info('#%i - Calculating volume for %i %i', i, identifier, dir_bin)
+                self.logger.info('#%i - Calculating volume for %i %i %i', i, identifier, dir_bin, count)
                 try:
                     if freq == 'year':
                         v = self.get_volume(identifier, dir_bin, year)  
@@ -72,9 +72,9 @@ class temporal_extrapolation(vol_utils):
                             v = self.get_volume(identifier, dir_bin, year, month = m+1)
                             if v is not None:
                                 if self.identifier_name == 'group_number':
-                                    volumes.append([None, dir_bin, year, int(v), identifier, 1])
+                                    volumes.append([None, dir_bin, year, m+1, int(v), identifier, 1])
                                 else:
-                                    volumes.append([identifier, dir_bin, year, int(v), None, 1])
+                                    volumes.append([identifier, dir_bin, year, m+1, int(v), None, 1])
                                 count = count + 1
                             else:
                                 non.append([identifier, dir_bin])
@@ -85,28 +85,18 @@ class temporal_extrapolation(vol_utils):
                             if v is not None:
                                 for h in range(24):
                                     if self.identifier_name == 'group_number':
-                                        volumes.append([None, dir_bin, year, int(v), identifier, 1])
+                                        volumes.append([None, dir_bin, year, m+1, h, int(v[h]), identifier, 1])
                                     else:
-                                        volumes.append([identifier, dir_bin, year, int(v), None, 1])
+                                        volumes.append([identifier, dir_bin, year, m+1, h, int(v[h]), None, 1])
                                     count = count + 1
                             else:
                                 non.append([identifier, dir_bin])
                                 break
                 except:
                     self.logger.error('Calculating Procedure Interrupted', exc_info=True)
-                    try:
-                        self.upload_to_aadt(volumes,truncate=(start_number == 0))  
-                    except:
-                        self.logger.error(sys.exc_info()[0])
-                        if self.identifier_name == 'centreline_id':
-                            volumes = pd.DataFrame(volumes, columns = ['centreline_id', 'dir_bin', 'year', 'volume'])  
-                        else:
-                            volumes = pd.DataFrame(volumes, columns = ['centreline_id', 'dir_bin', 'year', 'volume', 'group_number']) 
-                        volumes.to_csv('volumes.csv')
-                        self.logger.info('Saved results to volumes.csv')
-                        
-                    return volumes, non     
-                if count == 5000:
+                    break
+    
+                if count > 5000:
                     if freq == 'year':
                         self.upload_to_aadt(volumes,truncate=(i==start_number == 0))      
                     elif freq == 'month':
