@@ -93,7 +93,7 @@ def func_quad(x,a,b,c):
     else:
         return [a*x0*x0 + b*x0 + c for x0 in x]
 
-def my_curve_fit(ax, x, y, func1, func2=None, color='b', fitname='Model name missing', p01=None, p02=None, remove_outliers = True):
+def my_curve_fit(ax, x, y, func1, func2=None, color1='b', color2=None, fitname='Model name missing', p01=None, p02=None, remove_outliers = True):
     
     if remove_outliers:
         [ax.scatter(a,b, color = 'r', label=None) for a,b in zip(x, y) if (a>=3*b or b>=3*a)]
@@ -102,17 +102,9 @@ def my_curve_fit(ax, x, y, func1, func2=None, color='b', fitname='Model name mis
         x = x1
         y = y1
     
-    if func2 is None:
-        f1 = sm.OLS(y,x).fit()
-        ax.plot(x, f1.predict(x), label=fitname, linewidth=3, color = color)
-        y_actual = y
-        y_predict = f1.predict(x)
-        
-        return f1, sum([abs(a-b) for a,b in zip(y_actual, y_predict)])   
-
-    else:
+    if func2 is not None:
         minERR = 1000000
-        for pct in np.linspace(15,85,17):
+        for pct in np.linspace(10, 85, 18):
             step = np.percentile(x, pct)
             x_1 = [i for i in x if i < step]
             x_2 = [i for i in x if i >= step]
@@ -140,15 +132,25 @@ def my_curve_fit(ax, x, y, func1, func2=None, color='b', fitname='Model name mis
             
             y_actual = y_1 + y_2
             y_predict = np.append(f1.predict(x_1), func2(x_2, *popt)[:-1])
-            err = sum([abs(a-b) for a,b in zip(y_actual, y_predict)])    
+            err = sum([(a-b)*(a-b) for a,b in zip(y_actual, y_predict)])    
             if err < minERR:
                 minERR  = err
                 minf1 = f1
                 minstep = step
                 miny_2 = func2(np.linspace(step, max(x_2), max(x_2)-step), *popt)
-        ax.plot(minstep, minf1.predict(minstep), 'mo', ms = 15)
-        ax.plot(np.linspace(1,minstep,minstep), minf1.predict(np.linspace(1,minstep,minstep)), label=None, linewidth=3, color = color)
-        ax.plot(np.linspace(minstep, max(x_2), max(x_2)-minstep), miny_2, label=fitname, linewidth=3, color = color)
-
-        return f1, err, popt, step #(step, minf1.predict(step))
+                minpct = pct
+                
+        if minpct < 75:
+            ax.plot(minstep, minf1.predict(minstep), 'go', ms = 15)
+            ax.plot(np.linspace(1,minstep,minstep), minf1.predict(np.linspace(1,minstep,minstep)), label=None, linewidth=3, color = color2)
+            ax.plot(np.linspace(minstep, max(x_2), max(x_2)-minstep), miny_2, label=fitname, linewidth=3, color = color2)
+        
+            return f1, err, popt, step 
+            
+    # if passing in a linear function OR percentile of connection point > 80
+    f1 = sm.OLS(y,x).fit()
+    ax.plot(x, f1.predict(x), label=fitname, linewidth=3, color = color1)
+    y_actual = y
+    y_predict = f1.predict(x)
     
+    return f1, sum([(a-b)*(a-b) for a,b in zip(y_actual, y_predict)]), None, None   
