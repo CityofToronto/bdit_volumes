@@ -36,7 +36,7 @@ The model is divided into 2 parts, data processing and estimation. The flowchart
 
 Note that the legend here applies to other flowcharts in the subfolders as well.
 
-The table prj_volume.centreline_volumes bridges the two procedures together. The script [data_processing_flow.py](data_processing_flow.py) starts with the tables in traffic and outputs results to `prj_volume.centreline_volumes`. No parameters are required to run the script. When there are new sources coming in, they should be populating `prj_volume.centreline_volumes`. Note that the table does not allow duplicate entries. A merging algorithm needs to be developed when new data sources that potentially overlap with existing data. 
+The table prj_volume.centreline_volumes bridges the two procedures together. The script [flow_data_processing.py](flow_data_processing.py) starts with the tables in traffic and outputs results to `prj_volume.centreline_volumes`. No parameters are required to run the script. When there are new sources coming in, they should be populating `prj_volume.centreline_volumes`. Note that the table does not allow duplicate entries. A merging algorithm needs to be developed when new data sources that potentially overlap with existing data. 
 
 The script [run_model.py](run_model.py) starts with the table `prj_volume.centreline_volumes`, and proceeds to populate the aadt table (`prj_volume.aadt`), daily totals table (`prj_volume.daily_total_by_month`), or the daily profiles table (`prj_volume.daily_profile_by_month`) based on parameters given.   
 
