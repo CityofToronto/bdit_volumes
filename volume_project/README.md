@@ -49,5 +49,5 @@ The script [run_model.py](run_model.py) starts with the table `prj_volume.centre
 	- year: the year of interest
 	- freq: one of 'year', 'day', 'hour'
 		* 'year': Will calculate annual average weekdays daily volume and store in prj_volume.aadt.
-		* 'day': Will calculate average weekday daily total volume for each month in the given year and upload to prj_volume.daily_total_by_month.
+		* 'month': Will calculate average weekday daily total volume for each month in the given year and upload to prj_volume.daily_total_by_month.
 		* 'hour': Will calculate average weekday daily volume profiles for each month in the given year and upload to prj_volume.daily_profile_by_month. 
