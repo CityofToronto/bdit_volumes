@@ -7,7 +7,7 @@ Develop a methodology for estimating traffic volumes on road segments in the Cit
 ## 2. Data Tables and Preprocessing
 
 ### 2.1 FLOW (traffic schema)
-Tables in the traffic schema should be up-to-date by running scipts in [update_db](preprocessing/update_db/). Required tables are traffic.cnt_det, traffic.det, traffic.countinfo, traffic.countinfomics.
+Tables in the traffic schema should be up-to-date by running scipts in [update_db](preprocessing/update_db/). Required tables are `traffic.cnt_det`, `traffic.det`, `traffic.countinfo`, `traffic.countinfomics`.
 
 ### 2.2 Centreline 
 Table prj_volume.centreline should be up-to-date. 
@@ -36,11 +36,11 @@ The model is divided into 2 parts, data processing and estimation. The flowchart
 
 Note that the legend here applies to other flowcharts in the subfolders as well.
 
-The table prj_volume.centreline_volumes bridges the two procedures together. The script [data_processing_flow.py](data_processing_flow.py) starts with the tables in traffic and outputs results to prj_volume.centreline_volumes. No parameters are required to run the script. When there are new sources coming in, they should be populating `prj_volume.centreline_volumes`. Note that the table does not allow duplicate entries. A merging algorithm needs to be developed when new data sources that potentially overlap with existing data. 
+The table prj_volume.centreline_volumes bridges the two procedures together. The script [data_processing_flow.py](data_processing_flow.py) starts with the tables in traffic and outputs results to `prj_volume.centreline_volumes`. No parameters are required to run the script. When there are new sources coming in, they should be populating `prj_volume.centreline_volumes`. Note that the table does not allow duplicate entries. A merging algorithm needs to be developed when new data sources that potentially overlap with existing data. 
 
-The script [run_model.py](run_model.py) starts with the table `prj_volume.centreline_volumes`, and proceeds to populate the aadt table, daily totals table, or the daily profiles table based on parameters given.   
+The script [run_model.py](run_model.py) starts with the table `prj_volume.centreline_volumes`, and proceeds to populate the aadt table (`prj_volume.aadt`), daily totals table (`prj_volume.daily_total_by_month`), or the daily profiles table (`prj_volume.daily_profile_by_month`) based on parameters given.   
 
-1. (2.1) Clustering is optional. If there is no update to centreline_volumes table. There's no need to refresh clustering. 
+1. (2.1) Clustering is optional. If there is no update to `centreline_volumes` table, there is no need to refresh clustering. 
 2. (2.2) Including incomplete day counts in clustering results is optional. If so, the set variable include_incomplete to True. If True, incomplete day cluster results will be uploaded to database. When there are multiple days at one location, the mode will be chosen. If False, count estimation program will cluster if needed and the clustered profile will be based on only the relevant counts (relevant to the estimation)
 3. (3) Temporal extrapolation instance initialization. (centreline_id/group_number)
 3. (3.1) Refreshing monthly factors is optional. If there is no update to the centreline_volumes table. There's no need to refresh monthly factors.
