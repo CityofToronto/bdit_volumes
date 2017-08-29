@@ -31,7 +31,7 @@ if __name__ == '__main__':
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         logger.addHandler(handler)
-    '''    
+    
     # 2. (optional) Cluster
     tStart = datetime.now()
     # 2.1 Cluster counts
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     year = 2015
     start_number = 0
     freq = 'year'
-    vol, non = tex.calc_all_TO(26713, year, freq)
+    vol, non = tex.calc_all_TO(start_number, year, freq)
     del tex
     logger.info('Finished calculating AADT for Toronto in %s', str(datetime.now()-tStart))   
     
@@ -63,9 +63,7 @@ if __name__ == '__main__':
     tStart = datetime.now()
     spa = spatial_extrapolation()
     # 4.1 Fill in the entire city (method pre-determined)
-    #spa.fill_all('aadt')
-    #del spa
-    #logger.info('Finished filling in AADT for Toronto in %s', str(datetime.now()-tStart))      
-    '''
-    spa = spatial_extrapolation()
-    spa.average_neighbours_eval(201200, 30, 'daily_profile_by_month')
+    spa.fill_all('aadt')
+    del spa
+    logger.info('Finished filling in AADT for Toronto in %s', str(datetime.now()-tStart))      
+    

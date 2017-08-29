@@ -38,17 +38,37 @@ class spatial_extrapolation(vol_utils):
         self.time_var = {'aadt':'year', 'daily_profile_by_month':'year, month, hour', 'daily_total_by_month': 'year, month'}
         
     def average_neighbours(self, road_class, tablename):
-        
-        data = self.get_sql_results("query_avg_neighbour_volumes.sql",columns = ['group_number', 'dir_bin', 'neighbour_vol'], replace_columns = {'place_holder_table_name': tablename, 'place_holder_time_var': self.time_var[tablename]}, parameters = [road_class])
+        '''
+        Fills in uncounted sites by averaging closest 5 (or less if there is not enough) neighbour volumes and upload to database
+        '''
+        if tablename == 'aadt':
+            columns = ['group_number','dir_bin', 'year','neighbour_vol']
+        if tablename == 'daily_total_by_month':
+            columns = ['group_number','dir_bin', 'year','month','neighbour_vol']
+        if tablename == 'daily_profile_by_month':
+            columns = ['group_number','dir_bin', 'year','month','hour','neighbour_vol']    
+            
+        data = self.get_sql_results("query_avg_neighbour_volumes.sql",columns = columns, replace_columns = {'place_holder_table_name': tablename, 'place_holder_time_var': self.time_var[tablename]}, parameters = [road_class])
         data = [[None, a, 2015, b, c, 3] for a, b, c in zip(data['dir_bin'], data['neighbour_vol'], data['group_number'])]
         self.db.inserttable('prj_volume.'+tablename, data)
         self.logger.info('Uploaded results for road class ' + self.rc_lookup[road_class] + ' to prj_volume.' + tablename+ '. Estimated by averaging neighbour volumes')
         
     def average_neighbours_eval(self, road_class, sample_size, tablename):
+        ''' 
+        Evaluating results by averaging neighbour volumes by splitting available data into train and test set.
+        '''
+        
         if sample_size < 1:
             sample_size = sample_size*100
             
-        data = self.get_sql_results("query_avg_neighbour_volumes_eval.sql",columns = ['group_number','neighbour_vol','volume'], replace_columns = {'place_holder_table_name': tablename, 'place_holder_time_var': self.time_var[tablename]}, parameters = [road_class, sample_size])
+        if tablename == 'aadt':
+            columns = ['group_number','dir_bin', 'year','neighbour_vol','volume']
+        if tablename == 'daily_total_by_month':
+            columns = ['group_number','dir_bin', 'year','month','neighbour_vol','volume']
+        if tablename == 'daily_profile_by_month':
+            columns = ['group_number','dir_bin', 'year','month','hour','neighbour_vol','volume']    
+            
+        data = self.get_sql_results("query_avg_neighbour_volumes_eval.sql",columns = columns, replace_columns = {'place_holder_table_name': tablename, 'place_holder_time_var': self.time_var[tablename]}, parameters = [road_class, sample_size])
         y_predict = data['neighbour_vol']
         y_test = data['volume']
         
@@ -60,30 +80,69 @@ class spatial_extrapolation(vol_utils):
             t.set_color(color)
            
     def fill_all(self, tablename):
-        self.logger.info('Filling in Locals')
-        self.average_neighbours(201500, tablename)
-        self.logger.info('Filling in Collectors')
-        self.average_neighbours(201400, tablename)
-        self.logger.info('Filling in Minor Arterials')
-        self.linear_regression_directional(201300, tablename)
-        self.average_neighbours(201300, tablename)
         self.logger.info('Filling in Major Arterials')
         self.linear_regression_directional(201200, tablename)
         self.average_neighbours(201200, tablename)
-             
+        
+        self.logger.info('Filling in Minor Arterials')
+        self.linear_regression_directional(201300, tablename)
+        self.average_neighbours(201300, tablename)
+        
+        self.logger.info('Filling in Collectors')
+        self.average_neighbours(201400, tablename)
+        
+        self.logger.info('Filling in Locals')
+        self.average_neighbours(201500, tablename)
+
     def get_coord_data(self, road_class, tablename):
         return self.get_sql_results("query_coord_volume.sql",['from_x','from_y','to_x','to_y','volume'], replace_columns = {'place_holder_table_name': tablename, 'place_holder_time_var': self.time_var[tablename]}, parameters=[road_class])
 
     def get_directional_rel_groups(self, road_class, tablename):
-        return self.get_sql_results("query_relation_groups_train.sql",columns = ['group_number','neighbour_vol','volume'], replace_columns = {'place_holder_table_name': tablename, 'place_holder_time_var': self.time_var[tablename]}, parameters = [road_class])
+        '''
+        Getting training data for linear regression by direction
+        '''
+        
+        if tablename == 'aadt':
+            columns = ['group_number','dir_bin', 'year','neighbour_vol','volume']
+        if tablename == 'daily_total_by_month':
+            columns = ['group_number','dir_bin', 'year','month','neighbour_vol','volume']
+        if tablename == 'daily_profile_by_month':
+            columns = ['group_number','dir_bin', 'year','month','hour','neighbour_vol','volume']
+            
+        return self.get_sql_results("query_relation_groups_train.sql",columns = columns, replace_columns = {'place_holder_table_name': tablename, 'place_holder_time_var': self.time_var[tablename]}, parameters = [road_class])
         
     def get_directional_rel_groups_test(self, road_class, tablename):
-        return self.get_sql_results("query_relation_groups_test.sql",columns = ['group_number','dir_bin', 'neighbour_vol'], parameters = [road_class])
+        '''
+        Getting testing data for linear regression by direction
+        '''
+        if tablename == 'aadt':
+            columns = ['group_number','dir_bin', 'year','neighbour_vol']
+        if tablename == 'daily_total_by_month':
+            columns = ['group_number','dir_bin', 'year','month','neighbour_vol']
+        if tablename == 'daily_profile_by_month':
+            columns = ['group_number','dir_bin', 'year','month','hour','neighbour_vol']
+            
+        return self.get_sql_results("query_relation_groups_test.sql",columns = columns, replace_columns = {'place_holder_table_name': tablename, 'place_holder_time_var': self.time_var[tablename]}, parameters = [road_class])
         
     def get_neighbour_data(self, road_class, nNeighbours, tablename):
-        return self.get_sql_results("query_neighbour_volume.sql", columns = ['group_number','dir_bin','neighbour_vol'], parameters = [road_class, nNeighbours])
+        '''
+        Getting neighbour volumes for linear regression by proximity.
+        '''
+        if tablename == 'aadt':
+            columns = ['group_number','dir_bin', 'year','neighbour_vol']
+        if tablename == 'daily_total_by_month':
+            columns = ['group_number','dir_bin', 'year','month','neighbour_vol']
+        if tablename == 'daily_profile_by_month':
+            columns = ['group_number','dir_bin', 'year','month','hour','neighbour_vol']
+            
+        return self.get_sql_results("query_neighbour_volume.sql", columns = columns, replace_columns = {'place_holder_table_name': tablename, 'place_holder_time_var': self.time_var[tablename]}, parameters = [road_class, nNeighbours])
         
     def linear_regression_directional(self, road_class, tablename, sample_size = 1):
+        ''' Directional linear regression.
+        Doing evaluation if sample_size != 1, test_size = sample_size
+        Estimating to fill in if sample_size = 1.
+        '''
+        
         if sample_size > 1:
             sample_size = sample_size / 100
             
@@ -114,6 +173,11 @@ class spatial_extrapolation(vol_utils):
         return regr.coef_
         
     def linear_regression_prox(self, road_class, nNeighbours, tablename):
+        '''
+        AADT only.
+        Estimate volume by regression by proximity and upload to database.
+        '''
+        
         data = self.get_coord_data(road_class, tablename)
         self.logger.debug('Linear Regression Proximity - Got Training Data')
         
@@ -129,15 +193,18 @@ class spatial_extrapolation(vol_utils):
         self.logger.debug('Linear Regression Proximity - Trained')       
         
         data = self.get_neighbour_data(road_class, nNeighbours, tablename)
+        
         y_predict = regr.predict(list(data['neighbour_vol']))
 
         data = [[None, a, 2015, int(b), c, 4] for a, b, c in zip(data['dir_bin'],y_predict, data['group_number'])]
-
+        
         self.db.inserttable('prj_volume.aadt', data)
         self.logger.info('Uploaded results for road class ' + self.rc_lookup[road_class] +' to prj_volume.aadt. Estimated by linear regression(proximity)')
         
+        
     def linear_regression_prox_eval(self, road_class, sample_size=0.3):
-        ''' This function evaluates linear regression by proximity on a given road class.
+        ''' AADT only
+            This function evaluates linear regression by proximity on a given road class. **AADT only**
             Input:
                 road_class: 6-digit feature code
                 (optional) sample_size: the proportion of sample used for testing

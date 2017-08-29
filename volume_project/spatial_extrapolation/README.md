@@ -87,3 +87,4 @@ The relationship between distance and volume relationship is weak. The variance 
 |Collectors|Average of Neighbours|
 |Locals|Average of Neighbours|
 
+Note that expressways are not included. However, there are uncounted expressways that need to be included in the future.

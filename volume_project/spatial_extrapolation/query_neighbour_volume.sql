@@ -16,3 +16,4 @@ FROM(
 	ON (E.group_number = g2)) G
 WHERE row_number <= $2 
 GROUP BY g1, dir_bin, place_holder_time_var
+HAVING count(v) = $2

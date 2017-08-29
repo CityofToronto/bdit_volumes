@@ -1,6 +1,6 @@
 -- Parameters: $1 - feature_codes
 
-SELECT g1, place_holder_time_var, dir_bin, AVG(neighbourvolume)::int
+SELECT g1, dir_bin, place_holder_time_var, AVG(neighbourvolume)::int
 FROM (SELECT l1.group_number AS g1, l1.dir_bin AS dir_bin, l2.volume as neighbourvolume, place_holder_time_var, row_number() OVER (PARTITION BY l1.group_number ORDER BY ST_Distance(l1.shape, l2.shape))
 	FROM (SELECT group_number, dir_bin, shape
 		FROM prj_volume.centreline_groups_geom JOIN prj_volume.centreline_groups USING (group_number)

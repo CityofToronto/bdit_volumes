@@ -1,9 +1,9 @@
 -- Parameters: $1 - feature_code
 -- String replacement: place_holder_table_name, place_holder_time_var
 
-SELECT g1, place_holder_time_var, array_agg(v ORDER BY parallel, row_number), F.volume::int
+SELECT g1, dir_bin, place_holder_time_var, array_agg(v ORDER BY parallel, row_number), F.volume::int
 FROM(
-	SELECT g1, g2, parallel, dist, row_number() OVER (PARTITION BY g1, parallel ORDER BY dist, feature_code), E.volume::int as v
+	SELECT g1, C.dir_bin, g2, parallel, dist, row_number() OVER (PARTITION BY g1, parallel ORDER BY dist, feature_code), E.volume::int as v
 	FROM (
 		SELECT g1, g2, (CASE WHEN diff BETWEEN 45 AND 135 OR diff BETWEEN 225 AND 315 THEN FALSE ELSE TRUE END) AS parallel, dist, feature_code
 		FROM (SELECT t1.group_number AS g1, t2.group_number AS g2, ST_Distance(t1.shape, t2.shape) AS dist, t2.feature_code, 
@@ -29,4 +29,4 @@ FROM(
 			GROUP BY group_number, place_holder_time_var) F
 	ON (F.group_number = g1)
 WHERE row_number < 3 
-GROUP BY g1, place_holder_time_var, volume
+GROUP BY g1, dir_bin, place_holder_time_var, volume
