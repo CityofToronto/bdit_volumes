@@ -39,7 +39,7 @@ class temporal_extrapolation(vol_utils):
         ''' This function iterates through all centreline_id/group_number, retrieves requested information and uploads to the database.
         
         Input: 
-            start_number: default = 0; **index** of start centreline_id/group_number. 
+            start_number: **index** of start centreline_id/group_number (inclusive). i.e. for ordered, consecutive group_numbers, start_number = group_number-1
             year: the year of interest
             freq: one of 'year', 'day', 'hour'
         Output:

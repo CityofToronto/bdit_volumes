@@ -74,6 +74,15 @@ class vol_utils(object):
         
         
     def get_sql_results(self, filename, columns, replace_columns=None, parameters=None):
+        '''
+        Input:
+            filename
+            columns: a list of column names
+            replace_columns: a dictionary of {placeholders:real strings}
+            parameters: list of parameter values
+        Output:
+            dataframe of results
+        '''
         
         f = None
         try:

@@ -45,7 +45,7 @@ if __name__ == '__main__':
         clst.refresh_db_export()
     del clst
     logger.info('Finished clustering in %s', str(datetime.now()-tStart))   
-    '''
+    
     # 3. Calculate volume based on existing counts
     tStart = datetime.now()
     tex = temporal_extrapolation('group_number') 
@@ -54,16 +54,18 @@ if __name__ == '__main__':
     # 3.2 Calculate for all locations that are ever counted 
     year = 2015
     start_number = 0
-    freq = 'hour'
-    vol, non = tex.calc_all_TO(start_number, year, freq)
+    freq = 'year'
+    vol, non = tex.calc_all_TO(26713, year, freq)
     del tex
     logger.info('Finished calculating AADT for Toronto in %s', str(datetime.now()-tStart))   
-    '''
+    
     # 4. Calculate volume for locations that are never counted
     tStart = datetime.now()
     spa = spatial_extrapolation()
     # 4.1 Fill in the entire city (method pre-determined)
-    spa.fill_all()
-    del spa
-    logger.info('Finished filling in AADT for Toronto in %s', str(datetime.now()-tStart))      
+    #spa.fill_all('aadt')
+    #del spa
+    #logger.info('Finished filling in AADT for Toronto in %s', str(datetime.now()-tStart))      
     '''
+    spa = spatial_extrapolation()
+    spa.average_neighbours_eval(201200, 30, 'daily_profile_by_month')
