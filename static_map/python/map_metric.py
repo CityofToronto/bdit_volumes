@@ -52,7 +52,7 @@ if __name__ == '__console__':
 
     
     sql = '''(SELECT *
-        FROM dolejarz.volume_map_grouped_l2
+        FROM prj_volume.aadt_l2
         WHERE year = {year} 
         AND fcode_desc != 'Local'
         AND fcode_desc != 'Collector' 
