@@ -79,3 +79,7 @@ update_db/eglinton_counts.R
 volume_project/volumes.csv
 *.pyc
 .ipynb_checkpoints
+env/
+.settings/org.eclipse.core.resources.prefs
+*.pydevproject
+.project
