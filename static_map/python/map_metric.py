@@ -18,7 +18,7 @@ WARNING
 
 
 import sys
-sys.path.append(r"C:\Users\dolejar\Documents\bdit_volumes\static_map\python")
+sys.path.append(r"C:\Users\qchen\Documents\GitHub\bdit_volumes\static_map\python")
 import logging
 from qgis.utils import iface
 from volume_mapper import VolumeMapper
@@ -29,15 +29,15 @@ if __name__ == '__console__':
     
     # Variables to change
     # Paths
-    templatepath = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\template_test5_shadow.qpt"
-    stylepath = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\centreline_style_4.qml"
-    print_directory = r"C:\Users\dolejar\Documents\bdit_volumes\static_map\test"
+    templatepath = r"C:\Users\qchen\Documents\GitHub\bdit_volumes\static_map\template_2015_WIP.qpt"
+    stylepath = r"C:\Users\qchen\Documents\GitHub\bdit_volumes\static_map\style_traffic_volume_2015_WIP.qml"
+    print_directory = r"C:\Users\qchen\Documents\GitHub\bdit_volumes\static_map\test"
     #print_format = ''
     
     # Setting up variables for iteration
     yyyyrange = [2015] 
     # Copy and paste your db.cfg file between the quotes
-    s_config = '''C:\Users\dolejar\default.cfg'''
+    s_config = '''C:\Users\qchen\default.cfg'''
     
     # The script can take it from here.
     
@@ -64,7 +64,7 @@ if __name__ == '__console__':
     
     for year in yyyyrange:
         LOGGER.debug('just entered the loop')
-        layername = str(year) + ' Test Layer'
+        layername = str(year) + ' Test Layer 6'
 
         #mapper.uri.setDataSource() needs to be called
         sql_params = {'year':year}
