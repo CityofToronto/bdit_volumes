@@ -9,6 +9,7 @@ See info about the hosted version of this service here:
 
 Installation Guide
 ------------------
+Tested on an Ubuntu 16.04 operating system.
 
 ### 1. Install
 
@@ -70,6 +71,7 @@ sudo apt-get install python-dev python-virtualenv libgeos-dev libpq-dev python-p
 
 ```shell
 git clone https://github.com/mapzen/tileserver.git
+git checkout v2.1.0
 ```
 
 #### Prepare a virtualenv
@@ -88,7 +90,6 @@ Install dependencies for tileserver
 pip install -U -r tileserver/requirements.txt
 (cd tileserver && python setup.py develop)
 # optionally checkout the latest tagged release instead (see warning above), for example:
-# git checkout v2.1.0
 ```
 
 Install tilequeue in development mode
@@ -114,6 +115,10 @@ cp config.yaml.sample config.yaml
 # update configuration as necessary
 edit config.yaml
 ```
+**Make sure `dbnames` are an array**, e.g.:
+```yaml
+dbnames: [bigdata]
+```
 
 #### Run
 
@@ -131,32 +136,6 @@ Need to confirm your configuration? A [test suite](https://github.com/mapzen/vec
 
 ##### Sample test URLs
 
-* http://localhost:8080/buildings/16/19293/24641.json
-* http://localhost:8080/buildings/16/19293/24641.mvt
+* http://localhost:8080/roads/16/19293/24641.mvt
 * http://localhost:8080/all/16/19293/24641.json
 
-## Keeping up to date with osm data
-
-OpenStreetMap data is constantly changing, and OpenStreetMap produces [diffs](http://wiki.openstreetmap.org/wiki/Planet.osm/diffs) for consumers to keep up to date. [Mapzen](https://mapzen.com/) uses [osmosis](http://wiki.openstreetmap.org/wiki/Osmosis) and [osm2pgsql](http://wiki.openstreetmap.org/wiki/Osm2pgsql) to pull down the latest changes and apply them.
-
-Generally speaking, tile service providers make the trade-off to prefer generating stale tiles over serving the request on demand more slowly. Mapzen also makes this trade-off.
-
-A lot of factors go into choosing how to support a system that remains up to date. For example, existing infrastructure, tolerance for request latency and stale tiles, expected number of users, and cost can all play roles in coming up with a strategy for remaining current with OpenStreetMap changes.
-
-## Tracking releases
-
-If you are on a particular release and would like to migrate your database to a newer one, you'll want to run the appropriate migrations. Database migrations are required when the database queries & functions that select what map content should be included in tiles change. 
-
-Note that the migration for each release in between will need to be run individually. For example, if you are on v0.5.0 and would like to upgrade to v0.7.0, you'll want to run the v0.6.0 and v0.7.0 migrations (we don't provide "combo" migrations).
-
-```shell
-# in this example, we're on v0.5.0 - checkout the migration to v0.6.0
-git checkout v0.6.0
-bash data/migrations/run_migrations.sh -d osm
-
-# now our database reflects v0.6.0 - checkout the migration to v0.7.0
-git checkout v0.7.0
-bash data/migrations/run_migrations.sh -d osm
-
-# now our database reflects v0.7.0
-```
