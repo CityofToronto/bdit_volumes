@@ -14,7 +14,10 @@ dbsettings = CONFIG['DBSETTINGS']
 
 sql = pgsql.SQL('SELECT hh, volume FROM prj_volume.centreline_hourly_group12 WHERE year = {year} AND centreline_id = {centreline_id}')
 
-@hug.get(examples='year=2015&centreline_id=3154251')
+def cors_support(response, *args, **kwargs):
+    response.set_header('Access-Control-Allow-Origin', '*')
+
+@hug.get(examples='year=2015&centreline_id=3154251', requires=cors_support)
 def get_volume_year_link(year: hug.types.number, centreline_id: hug.types.number):
     '''Return 24hr volume profile for a given year and centreline_id'''
     con = connect(**dbsettings)
