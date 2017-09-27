@@ -9,10 +9,10 @@ import hug
 
 
 CONFIG = configparser.ConfigParser()
-CONFIG.read('../../db.cfg')
+CONFIG.read('db.cfg')
 dbsettings = CONFIG['DBSETTINGS']
 
-sql = pgsql.SQL('SELECT hh, volume FROM prj_volume.centreline_hourly_group12 WHERE year = {year} AND centreline_id = {centreline_id}')
+sql = pgsql.SQL('SELECT * FROM prj_volume.centreline_hourly_group12 WHERE year = {year} AND centreline_id = {centreline_id}')
 
 def cors_support(response, *args, **kwargs):
     response.set_header('Access-Control-Allow-Origin', '*')
@@ -26,10 +26,12 @@ def get_volume_year_link(year: hug.types.number, centreline_id: hug.types.number
                                centreline_id=pgsql.Literal(centreline_id)))
         data = cur.fetchall()
     con.close()
-    data_dict = {'hh': [], 'volume': []}
-    for row in data:
-        data_dict['hh'].append(row['hh'])
-        data_dict['volume'].append(row['volume'])
-    return data_dict
-
+#    data_dict = {'centreline_id': [], 'hh': [], 'volume': [], 'dir_bin': []}
+#    for row in data:
+#        data_dict['centreline_id'].append(row['centreline_id'])
+#        data_dict['hh'].append(row['hh'])
+#        data_dict['volume'].append(row['volume'])
+#        data_dict['dir_bin'].append(row['dir_bin'])
+#    return data_dict
+    return data
     
