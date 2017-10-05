@@ -9,7 +9,7 @@ import hug
 
 
 CONFIG = configparser.ConfigParser()
-CONFIG.read('../../db.cfg')
+CONFIG.read('hug.cfg')
 dbsettings = CONFIG['DBSETTINGS']
 
 sql = pgsql.SQL('SELECT hh, volume FROM prj_volume.centreline_hourly_group12 WHERE year = {year} AND centreline_id = {centreline_id}')
