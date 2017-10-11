@@ -4,15 +4,16 @@
 The static map displays annual average daily volumes, from the volume model, created using a combined automated process.
 
 ## 2.0 Process Summary
-[]()
+[flow diagram]()
+
 
 ## 3.0 Process
 ### 3.1 Volume Model
-See [bdit_volumes](../) root repository for more information. 
+See [bdit_volumes](../readme.md) root repository for more information. 
 
 ### 3.2 PostgreSQL Tables
 #### l2_aadt_2015
-This table contains data created from the volume model as well as other attribute data describing the centrelines, and feeds into the Python script. The SQL script to create `l2_aadt_2015` is in the [sql folder](sql/)
+This table contains data created from the volume model as well as other attribute data describing the centrelines, and feeds into the Python script. The SQL script to create `l2_aadt_2015` is in the [sql folder](sql/).
 
 #### Data Elements
 Field Name|Description|Type
@@ -71,7 +72,8 @@ void_box|Not visible, used by Volume Label Layer style to create gap in downtown
 ```
 
 #### Volume Label Layer Rules / Print Composer Map Items
-Map Item	|Rules/Description
+Map Item|Rules/Description
+--------|-----------------
 Main|(1:40,000)
 No labels of Gardiner Expressway
 No labels within void_box geometry
