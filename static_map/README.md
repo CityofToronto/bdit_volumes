@@ -4,7 +4,7 @@
 The static map displays annual average daily volumes, from the volume model, created using a combined automated process.
 
 ## 2.0 Process Summary
-[](flowdiagram.PNG)
+![](flowdiagram.PNG)
 
 ## 3.0 Process
 ### 3.1 Volume Model
@@ -47,8 +47,12 @@ The SQL query in the Python script will filter for the records on interest, and 
 
 
 ### 3.4 QGIS & Print Composer
-#### Project CRS
-NAD83 / UTM zone 17N, EPSG SRID 26917
+#### Settings
+QGIS Version: 2.18.12 Las Palmas
+ - This version or higher is required for the volume labels to be placed properly.
+
+Project CRS: NAD83 / UTM zone 17N, EPSG SRID 26917
+ - The project, `void_box` layer, and volume label layer need to share the same CRS for the style to display properly.
 
 #### Project Layers
 Layer|Description
