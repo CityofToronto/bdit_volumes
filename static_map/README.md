@@ -4,12 +4,11 @@
 The static map displays annual average daily volumes, from the volume model, created using a combined automated process.
 
 ## 2.0 Process Summary
-[flow diagram]()
-
+[](flowdiagram.PNG)
 
 ## 3.0 Process
 ### 3.1 Volume Model
-See [bdit_volumes](../readme.md) root repository for more information. 
+See [bdit_volumes](https://github.com/CityofToronto/bdit_volumes/) root repository for more information. 
 
 ### 3.2 PostgreSQL Tables
 #### l2_aadt_2015
@@ -58,7 +57,7 @@ Volume Label Layer|Created from Python script
 Centreline Network|From street_centreline in the gis schema, with filter
 Expressways|From street_centreline in the gis schema, with filter
 Land Boundaries|Shapefile of city zoning and shoreline boundaries
-void_box|Not visible, used by Volume Label Layer style to create gap in downtown labelling in main map view
+void_box|Not visible, used by Volume Label Layer style <br>to create gap in downtown labelling in main map view
 
 #### Centreline Network Layer Filter
 ```SQL
@@ -74,11 +73,7 @@ void_box|Not visible, used by Volume Label Layer style to create gap in downtown
 #### Volume Label Layer Rules / Print Composer Map Items
 Map Item|Rules/Description
 --------|-----------------
-Main|(1:40,000)
-No labels of Gardiner Expressway
-No labels within void_box geometry
-Downtown (Inset A)|(1:15,000)
-No labels of any Expressway
-Gardiner (Inset B)|(1:30,000)
-Only labels of Expressways
+Main|(1:40,000)<br>No labels of Gardiner Expressway<br>No labels within void_box geometry
+Downtown (Inset A)|(1:15,000)<br>No labels of any Expressway
+Gardiner (Inset B)|(1:30,000)<br>Only labels of Expressways
 
