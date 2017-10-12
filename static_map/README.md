@@ -65,9 +65,12 @@ void_box|Not visible, used by Volume Label Layer style <br>to create gap in down
 
 #### Centreline Network Layer Filter
 ```SQL
-"fcode_desc" IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR
-"lf_name" IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')
+("fcode_desc" IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR
+"lf_name" IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))
+AND NOT("lf_name" LIKE '%Dovercourt%' OR "lf_name" LIKE '%Cosburn%')
+AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))
 ```
+ - The `AND NOT(gid...)` currently filters out the centrelines of Greenwood Ave north of Danforth.
 
 #### Expressways Layer Filter
 ```SQL
@@ -77,7 +80,7 @@ void_box|Not visible, used by Volume Label Layer style <br>to create gap in down
 #### Volume Label Layer Rules / Print Composer Map Items
 Map Item|Rules/Description
 --------|-----------------
-Main|(1:40,000)<br>No labels of Gardiner Expressway<br>No labels within void_box geometry
+Main|(1:40,000)<br>No labels of Gardiner Expressway<br>No labels within void_box geometry<br>No labels for select streets
 Downtown (Inset A)|(1:15,000)<br>No labels of any Expressway
 Gardiner (Inset B)|(1:30,000)<br>Only labels of Expressways
-
+ - The Main map view currently filters out Dovercourt, Cosburn, and Greenwood north of Danforth.
