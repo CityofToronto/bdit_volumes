@@ -29,7 +29,7 @@
     <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="street_centreline_copy20170907130623025" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">
+    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
@@ -40,10 +40,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>629162.58801773155573756</xmin>
-      <ymin>4833787.33073771372437477</ymin>
-      <xmax>632544.41051319462712854</xmax>
-      <ymax>4836299.54949027672410011</ymax>
+      <xmin>627669.9439772340701893</xmin>
+      <ymin>4833990.74119208287447691</ymin>
+      <xmax>639438.61065590486396104</xmax>
+      <ymax>4842733.20628671813756227</ymax>
     </extent>
     <rotation>17</rotation>
     <projections>1</projections>
@@ -2061,7 +2061,7 @@
         </styles>
         <layer-tree-group expanded="1" checked="Qt::Checked" name="">
           <customproperties/>
-          <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">
+          <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
             <customproperties>
               <property key="legend/title-label" value="Centrelines"/>
             </customproperties>
@@ -4296,7 +4296,7 @@
         </styles>
         <layer-tree-group expanded="1" checked="Qt::Checked" name="">
           <customproperties/>
-          <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">
+          <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
             <customproperties>
               <property key="legend/title-label" value="Centrelines"/>
             </customproperties>
@@ -4339,7 +4339,7 @@
         <LayerSet>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT *&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 1">2015_L2_Test_120171006105400383</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">street_centreline_copy20170907130623025</Layer>
-          <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">street_centreline20170815133009672</Layer>
+          <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
           <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <LayerStyles>
@@ -4987,7 +4987,7 @@ def my_form_open(dialog, layer, feature):
               <layerGeometryType>1</layerGeometryType>
             </qgis>
           </LayerStyle>
-          <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">
+          <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
             <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
               <edittypes>
                 <edittype widgetv2type="TextEdit" name="gid">
@@ -5809,7 +5809,7 @@ def my_form_open(dialog, layer, feature):
         <LayerSet>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT *&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 1">2015_L2_Test_120171006105400383</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">street_centreline_copy20170907130623025</Layer>
-          <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">street_centreline20170815133009672</Layer>
+          <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
           <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <LayerStyles>
@@ -6457,7 +6457,7 @@ def my_form_open(dialog, layer, feature):
               <layerGeometryType>1</layerGeometryType>
             </qgis>
           </LayerStyle>
-          <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">
+          <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
             <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
               <edittypes>
                 <edittype widgetv2type="TextEdit" name="gid">
@@ -7279,7 +7279,7 @@ def my_form_open(dialog, layer, feature):
         <LayerSet>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT *&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 1">2015_L2_Test_120171006105400383</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">street_centreline_copy20170907130623025</Layer>
-          <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">street_centreline20170815133009672</Layer>
+          <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
           <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <LayerStyles>
@@ -7927,7 +7927,7 @@ def my_form_open(dialog, layer, feature):
               <layerGeometryType>1</layerGeometryType>
             </qgis>
           </LayerStyle>
-          <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">
+          <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
             <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
               <edittypes>
                 <edittype widgetv2type="TextEdit" name="gid">
@@ -8799,6 +8799,24 @@ def my_form_open(dialog, layer, feature):
         </layer>
       </symbol>
       <SnapLine y1="0" x1="0" y2="863.6" x2="0"/>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="JONES AVE" htmlState="0" halign="1">
+        <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="428.434" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="579.062" y="428.434" visibility="1" zValue="920" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="28.172" outlineWidth="0.3" excludeFromExports="0" uuid="{68a8a70d-6c6f-4871-8d5e-ced61b4f7172}" height="8.317" itemRotation="91" frame="false" pagex="579.062">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="COXWELL AVE" htmlState="0" halign="1">
+        <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="389.543" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="614.302" y="389.543" visibility="1" zValue="919" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="28.172" outlineWidth="0.3" excludeFromExports="0" uuid="{ef4984dc-a0ba-4999-92b6-447d0d18086e}" height="8.317" itemRotation="91" frame="false" pagex="614.302">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="EASTERN AVE" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
@@ -8808,10 +8826,73 @@ def my_form_open(dialog, layer, feature):
           <customproperties/>
         </ComposerItem>
       </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="EASTERN AVE" htmlState="0" halign="1">
+        <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="664.395" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1057.59" y="664.395" visibility="1" zValue="777" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{0c760457-c045-4a4b-8ae2-9597b086b08f}" height="8.31667" itemRotation="0" frame="false" pagex="1057.59">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DONLANDS AVE" htmlState="0" halign="1">
+        <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="386.51" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="586.398" y="386.51" visibility="1" zValue="681" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="28.172" outlineWidth="0.3" excludeFromExports="0" uuid="{bf5cc6aa-fd0e-4f25-be64-87bb6a8e034c}" height="8.317" itemRotation="91" frame="false" pagex="586.398">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="EXPRESSWAY" htmlState="0" halign="1">
+        <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="496.467" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="450.414" y="496.467" visibility="1" zValue="680" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="29.9963" outlineWidth="0.3" excludeFromExports="0" uuid="{0c7260bb-3822-49fe-b172-e6dc07ddf2d5}" height="8.317" itemRotation="345" frame="false" pagex="450.414">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="HARBORD ST" htmlState="0" halign="1">
+        <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="425.327" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="411.155" y="425.327" visibility="1" zValue="647" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{83803160-122d-4c66-beb4-23a713c9bb20}" height="8.31667" itemRotation="0" frame="false" pagex="411.155">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DUNDAS ST E" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
         <ComposerItem pagey="456.287" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="527.385" y="456.287" visibility="1" zValue="636" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="43.3504" outlineWidth="0.3" excludeFromExports="0" uuid="{da59f215-7780-4464-ae7c-b6fb8139811b}" height="8.31667" itemRotation="0" frame="false" pagex="527.385">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="QUEEN ST E" htmlState="0" halign="1">
+        <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="643.806" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1058.64" y="643.806" visibility="1" zValue="541" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{c3739c03-1fc6-4369-be21-353408f068f9}" height="8.31667" itemRotation="0" frame="false" pagex="1058.64">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="FG GARDINER" htmlState="0" halign="1">
+        <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="494.857" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="423.545" y="494.857" visibility="1" zValue="447" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="29.9963" outlineWidth="0.3" excludeFromExports="0" uuid="{7a2b858c-b454-4fc4-b8cb-07f5134a8a03}" height="8.317" itemRotation="2" frame="false" pagex="423.545">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="PAPE AVE" htmlState="0" halign="1">
+        <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="403.28" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="569.344" y="403.28" visibility="1" zValue="444" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="20.1717" outlineWidth="0.3" excludeFromExports="0" uuid="{538a257b-b722-442c-94c2-2c7ba08b870e}" height="8.317" itemRotation="90" frame="false" pagex="569.344">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -8835,15 +8916,6 @@ def my_form_open(dialog, layer, feature):
           <customproperties/>
         </ComposerItem>
       </ComposerLabel>
-      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DUFFERIN ST" htmlState="0" halign="1">
-        <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
-        <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="454.243" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="374.296" y="454.243" visibility="1" zValue="383" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{7d063efc-3c9d-4c95-9066-31e0172a2591}" height="8.31667" itemRotation="91" frame="false" pagex="374.296">
-          <FrameColor alpha="255" red="0" blue="0" green="0"/>
-          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
-          <customproperties/>
-        </ComposerItem>
-      </ComposerLabel>
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="RONCESVALLES AVE" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
@@ -8856,7 +8928,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BATHURST ST" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="399.439" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="427.535" y="399.439" visibility="1" zValue="380" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{7a8267fb-0317-440e-a87f-d0d79d43445c}" height="8.31667" itemRotation="91" frame="false" pagex="427.535">
+        <ComposerItem pagey="398.439" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="427.535" y="398.439" visibility="1" zValue="380" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{7a8267fb-0317-440e-a87f-d0d79d43445c}" height="8.31667" itemRotation="91" frame="false" pagex="427.535">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -8875,6 +8947,15 @@ def my_form_open(dialog, layer, feature):
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
         <ComposerItem pagey="307.964" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="497.644" y="307.964" visibility="1" zValue="335" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{4b77bc30-e631-4eb4-ae83-40d8fa336f51}" height="8.31667" itemRotation="2" frame="false" pagex="497.644">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DUNDAS ST E" htmlState="0" halign="1">
+        <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="616.544" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1055.4" y="616.544" visibility="1" zValue="306" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{606adcb9-47ec-48dd-a06f-416f0450a1c2}" height="8.31667" itemRotation="0" frame="false" pagex="1055.4">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9016,9 +9097,9 @@ def my_form_open(dialog, layer, feature):
         </ComposerItem>
       </ComposerLabel>
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="VICTORIA PARK AVE" htmlState="0" halign="1">
-        <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
+        <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="376.085" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="687.648" y="376.085" visibility="1" zValue="207" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.5" outlineWidth="0.3" excludeFromExports="0" uuid="{ce06a2ca-d760-44d8-bf6b-9bb936db4478}" height="8.317" itemRotation="89" frame="false" pagex="687.648">
+        <ComposerItem pagey="380.154" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="688.002" y="380.154" visibility="1" zValue="207" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.5" outlineWidth="0.3" excludeFromExports="0" uuid="{ce06a2ca-d760-44d8-bf6b-9bb936db4478}" height="8.317" itemRotation="90" frame="false" pagex="688.002">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9027,7 +9108,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="PHARMACY AVE" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="289.212" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="699.64" y="289.212" visibility="1" zValue="206" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{acdf8814-6706-4eec-9cb1-a80e1bfc86e2}" height="8.31667" itemRotation="90" frame="false" pagex="699.64">
+        <ComposerItem pagey="288.973" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="699.879" y="288.973" visibility="1" zValue="206" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{acdf8814-6706-4eec-9cb1-a80e1bfc86e2}" height="8.31667" itemRotation="90" frame="false" pagex="699.879">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9036,7 +9117,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="WARDEN AVE" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="284.485" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="719.985" y="284.485" visibility="1" zValue="205" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{fd16d6d9-d24a-4cc3-a715-f0cfbbfdd3af}" height="8.31667" itemRotation="90" frame="false" pagex="719.985">
+        <ComposerItem pagey="284.485" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="720.224" y="284.485" visibility="1" zValue="205" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{fd16d6d9-d24a-4cc3-a715-f0cfbbfdd3af}" height="8.31667" itemRotation="90" frame="false" pagex="720.224">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9045,7 +9126,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BIRCHMOUNT RD" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="279.54" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="740.385" y="279.54" visibility="1" zValue="204" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{20afc4ce-a2cb-464a-b726-9107ebafcf43}" height="8.31667" itemRotation="90" frame="false" pagex="740.385">
+        <ComposerItem pagey="279.54" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="740.624" y="279.54" visibility="1" zValue="204" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{20afc4ce-a2cb-464a-b726-9107ebafcf43}" height="8.31667" itemRotation="90" frame="false" pagex="740.624">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9054,7 +9135,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="KENNEDY RD" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="284.508" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="761.171" y="284.508" visibility="1" zValue="203" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f4b84fb6-a8d7-40d8-8e51-eb1b6019ae57}" height="8.31667" itemRotation="90" frame="false" pagex="761.171">
+        <ComposerItem pagey="284.508" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="761.41" y="284.508" visibility="1" zValue="203" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f4b84fb6-a8d7-40d8-8e51-eb1b6019ae57}" height="8.31667" itemRotation="90" frame="false" pagex="761.41">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9063,7 +9144,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="MIDLAND AVE" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="285.508" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="781.602" y="285.508" visibility="1" zValue="202" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{285a5edf-4960-46ef-a292-8f2e8ad418ed}" height="8.31667" itemRotation="90" frame="false" pagex="781.602">
+        <ComposerItem pagey="285.508" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="782.08" y="285.508" visibility="1" zValue="202" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{285a5edf-4960-46ef-a292-8f2e8ad418ed}" height="8.31667" itemRotation="90" frame="false" pagex="782.08">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9099,7 +9180,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="QUEEN ST E" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="465.718" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="632.175" y="465.718" visibility="1" zValue="198" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f5105c93-edd4-4582-83d4-70df7be53955}" height="8.31667" itemRotation="1" frame="false" pagex="632.175">
+        <ComposerItem pagey="466.718" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="529.175" y="466.718" visibility="1" zValue="198" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f5105c93-edd4-4582-83d4-70df7be53955}" height="8.31667" itemRotation="1" frame="false" pagex="529.175">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9108,7 +9189,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DUNDAS ST" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="446.667" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="393.929" y="446.667" visibility="1" zValue="197" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{48e3ff81-1bd2-4464-9423-59dd918df519}" height="8.31667" itemRotation="2" frame="false" pagex="393.929">
+        <ComposerItem pagey="454.237" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="423.146" y="454.237" visibility="1" zValue="197" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{48e3ff81-1bd2-4464-9423-59dd918df519}" height="8.31667" itemRotation="0" frame="false" pagex="423.146">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9123,10 +9204,10 @@ def my_form_open(dialog, layer, feature):
           <customproperties/>
         </ComposerItem>
       </ComposerLabel>
-      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="SCARBOROUGH GOLF CLUB RD" htmlState="0" halign="1">
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="SCARBOROUGH GC RD" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="235.906" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="885.875" y="235.906" visibility="1" zValue="195" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="61.5" outlineWidth="0.3" excludeFromExports="0" uuid="{bafc0913-129e-497b-98ba-732ff4efd2c1}" height="8.317" itemRotation="90" frame="false" pagex="885.875">
+        <ComposerItem pagey="230.906" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="886.353" y="230.906" visibility="1" zValue="195" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="61.5" outlineWidth="0.3" excludeFromExports="0" uuid="{bafc0913-129e-497b-98ba-732ff4efd2c1}" height="8.317" itemRotation="90" frame="false" pagex="886.353">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9135,7 +9216,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="QUEEN ST W" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="461.574" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="392.027" y="461.574" visibility="1" zValue="194" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{c9b1ddf2-fb36-4d70-a322-5cbcafa56cae}" height="8.31667" itemRotation="2" frame="false" pagex="392.027">
+        <ComposerItem pagey="465.717" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="419.862" y="465.717" visibility="1" zValue="194" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{c9b1ddf2-fb36-4d70-a322-5cbcafa56cae}" height="8.31667" itemRotation="1" frame="false" pagex="419.862">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9150,19 +9231,10 @@ def my_form_open(dialog, layer, feature):
           <customproperties/>
         </ComposerItem>
       </ComposerLabel>
-      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DOVERCOURT RD" htmlState="0" halign="1">
-        <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
-        <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="428.521" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="386.906" y="428.521" visibility="1" zValue="192" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{792923d4-cf24-4314-9afa-9135e01e779b}" height="8.31667" itemRotation="90" frame="false" pagex="386.906">
-          <FrameColor alpha="255" red="0" blue="0" green="0"/>
-          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
-          <customproperties/>
-        </ComposerItem>
-      </ComposerLabel>
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="COLLEGE ST" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="435.367" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="393.462" y="435.367" visibility="1" zValue="191" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f845c02d-8879-4c32-88c3-ce7686b86caa}" height="8.31667" itemRotation="0" frame="false" pagex="393.462">
+        <ComposerItem pagey="439.193" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="411.92" y="439.193" visibility="1" zValue="191" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f845c02d-8879-4c32-88c3-ce7686b86caa}" height="8.31667" itemRotation="0" frame="false" pagex="411.92">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9225,7 +9297,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="KING ST W" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="473.42" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="388.733" y="473.42" visibility="1" zValue="184" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{e701b4a9-47f8-4106-a06a-38449f51e682}" height="8.31667" itemRotation="2" frame="false" pagex="388.733">
+        <ComposerItem pagey="476.207" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="421.189" y="476.207" visibility="1" zValue="184" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{e701b4a9-47f8-4106-a06a-38449f51e682}" height="8.31667" itemRotation="0" frame="false" pagex="421.189">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9414,7 +9486,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DANFORTH RD" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="414.619" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="602.932" y="414.619" visibility="1" zValue="163" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="43.3504" outlineWidth="0.3" excludeFromExports="0" uuid="{efa62a87-601b-4a15-aa2e-a35d151e1b43}" height="8.31667" itemRotation="1" frame="false" pagex="602.932">
+        <ComposerItem pagey="413.619" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="532.932" y="413.619" visibility="1" zValue="163" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="43.3504" outlineWidth="0.3" excludeFromExports="0" uuid="{efa62a87-601b-4a15-aa2e-a35d151e1b43}" height="8.31667" itemRotation="1" frame="false" pagex="532.932">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9432,7 +9504,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="AVENUE RD" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="237.182" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="470.009" y="237.182" visibility="1" zValue="161" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{da53d4d8-8771-4423-a6bc-ce715316698a}" height="8.31667" itemRotation="90" frame="false" pagex="470.009">
+        <ComposerItem pagey="228.425" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="469.958" y="228.425" visibility="1" zValue="161" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{da53d4d8-8771-4423-a6bc-ce715316698a}" height="8.31667" itemRotation="93" frame="false" pagex="469.958">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9459,7 +9531,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="PARKSIDE DR" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="431.521" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="327.483" y="431.521" visibility="1" zValue="158" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{fd165e9a-0565-4dd0-9760-017bdb9f1c55}" height="8.31667" itemRotation="91" frame="false" pagex="327.483">
+        <ComposerItem pagey="431.521" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="315.961" y="431.521" visibility="1" zValue="158" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{fd165e9a-0565-4dd0-9760-017bdb9f1c55}" height="8.31667" itemRotation="91" frame="false" pagex="315.961">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9513,7 +9585,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="ANNETTE ST" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="387.304" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="296.046" y="387.304" visibility="1" zValue="152" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{fbe1e4ee-086e-4ab5-83aa-81350cb498dd}" height="8.31667" itemRotation="0" frame="false" pagex="296.046">
+        <ComposerItem pagey="387.065" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="298.481" y="387.065" visibility="1" zValue="152" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{fbe1e4ee-086e-4ab5-83aa-81350cb498dd}" height="8.31667" itemRotation="0" frame="false" pagex="298.481">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9531,7 +9603,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DUFFERIN ST" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="76.3311" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="411.027" y="76.3311" visibility="1" zValue="150" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{309348d8-4a79-439e-b6ec-ee60e2470405}" height="8.31667" itemRotation="97" frame="false" pagex="411.027">
+        <ComposerItem pagey="76.3311" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="412.027" y="76.3311" visibility="1" zValue="150" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{309348d8-4a79-439e-b6ec-ee60e2470405}" height="8.31667" itemRotation="97" frame="false" pagex="412.027">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9549,7 +9621,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="SOUTH KINGSWAY" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="424.209" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="273.128" y="424.209" visibility="1" zValue="148" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f3942c66-e0ba-4f4b-8539-cf58b494b1d1}" height="8.317" itemRotation="70" frame="false" pagex="273.128">
+        <ComposerItem pagey="425.367" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="260.135" y="425.367" visibility="1" zValue="148" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f3942c66-e0ba-4f4b-8539-cf58b494b1d1}" height="8.317" itemRotation="67" frame="false" pagex="260.135">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9603,7 +9675,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="ST CLAIR AVE E" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="361.547" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="679.95" y="361.547" visibility="1" zValue="142" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{9e13a141-469d-4d57-b64f-a4c1d58490be}" height="8.31667" itemRotation="0" frame="false" pagex="679.95">
+        <ComposerItem pagey="361.547" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="678.472" y="361.547" visibility="1" zValue="142" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{9e13a141-469d-4d57-b64f-a4c1d58490be}" height="8.31667" itemRotation="0" frame="false" pagex="678.472">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9612,7 +9684,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="OVERLEA BLVD" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="338.852" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="573.006" y="338.852" visibility="1" zValue="141" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.4688" outlineWidth="0.3" excludeFromExports="0" uuid="{acb59473-5374-4f63-93b0-32e179c0c846}" height="8.31667" itemRotation="0" frame="false" pagex="573.006">
+        <ComposerItem pagey="337.852" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="572.006" y="337.852" visibility="1" zValue="141" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.4688" outlineWidth="0.3" excludeFromExports="0" uuid="{acb59473-5374-4f63-93b0-32e179c0c846}" height="8.31667" itemRotation="0" frame="false" pagex="572.006">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9639,7 +9711,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DANFORTH RD" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="361.926" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="752.166" y="361.926" visibility="1" zValue="138" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="43.3504" outlineWidth="0.3" excludeFromExports="0" uuid="{1a46a271-6542-4977-b64b-52a757a4c77b}" height="8.31667" itemRotation="315" frame="false" pagex="752.166">
+        <ComposerItem pagey="394.913" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="718.3" y="394.913" visibility="1" zValue="138" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="43.3504" outlineWidth="0.3" excludeFromExports="0" uuid="{1a46a271-6542-4977-b64b-52a757a4c77b}" height="8.31667" itemRotation="318" frame="false" pagex="718.3">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9738,7 +9810,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="LAWRENCE AVE E" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="265.934" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="732.599" y="265.934" visibility="1" zValue="127" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.4688" outlineWidth="0.3" excludeFromExports="0" uuid="{90e83cb6-1602-4c4e-b29d-41788edded16}" height="8.31667" itemRotation="1" frame="false" pagex="732.599">
+        <ComposerItem pagey="265.695" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="732.359" y="265.695" visibility="1" zValue="127" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.4688" outlineWidth="0.3" excludeFromExports="0" uuid="{90e83cb6-1602-4c4e-b29d-41788edded16}" height="8.31667" itemRotation="1" frame="false" pagex="732.359">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9756,7 +9828,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="ALNESS ST" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="78.6917" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="398.735" y="78.6917" visibility="1" zValue="125" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{ab52a201-d178-46bc-8c77-9007cf8b217d}" height="8.31667" itemRotation="90" frame="false" pagex="398.735">
+        <ComposerItem pagey="78.7671" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="387.053" y="78.7671" visibility="1" zValue="125" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{ab52a201-d178-46bc-8c77-9007cf8b217d}" height="8.31667" itemRotation="91" frame="false" pagex="387.053">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9783,7 +9855,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="SENTINEL RD" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="88.1688" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="339.815" y="88.1688" visibility="1" zValue="122" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{3d50d538-28f0-4ec5-8ad2-d05bd61bc02c}" height="8.31667" itemRotation="97" frame="false" pagex="339.815">
+        <ComposerItem pagey="89.1688" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="327.815" y="89.1688" visibility="1" zValue="122" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{3d50d538-28f0-4ec5-8ad2-d05bd61bc02c}" height="8.31667" itemRotation="97" frame="false" pagex="327.815">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9810,7 +9882,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="THE EAST MALL" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="430.069" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="129.175" y="430.069" visibility="1" zValue="119" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{9c3e5171-ec56-4e8f-82f8-0668e463a610}" height="8.31667" itemRotation="90" frame="false" pagex="129.175">
+        <ComposerItem pagey="431.069" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="129.175" y="431.069" visibility="1" zValue="119" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{9c3e5171-ec56-4e8f-82f8-0668e463a610}" height="8.31667" itemRotation="90" frame="false" pagex="129.175">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9819,7 +9891,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="HIGHWAY 409" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="228.865" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="92.3667" y="228.865" visibility="1" zValue="118" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f7dfbbf2-9e82-4348-a976-d07748f998be}" height="8.31667" itemRotation="0" frame="false" pagex="92.3667">
+        <ComposerItem pagey="233.865" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="114.367" y="233.865" visibility="1" zValue="118" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f7dfbbf2-9e82-4348-a976-d07748f998be}" height="8.31667" itemRotation="0" frame="false" pagex="114.367">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9828,7 +9900,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="SHORNCLIFFE RD" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="416.512" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="142.404" y="416.512" visibility="1" zValue="117" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{c1181d34-2300-4bf1-84f0-b9ffd611e6ab}" height="8.31667" itemRotation="90" frame="false" pagex="142.404">
+        <ComposerItem pagey="427.512" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="145.404" y="427.512" visibility="1" zValue="117" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{c1181d34-2300-4bf1-84f0-b9ffd611e6ab}" height="8.31667" itemRotation="90" frame="false" pagex="145.404">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9936,7 +10008,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="NUGGET AVE" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="157.015" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="831.792" y="157.015" visibility="1" zValue="105" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{6a4e76dc-65cd-4278-8335-351b7b4e4345}" height="8.31667" itemRotation="359" frame="false" pagex="831.792">
+        <ComposerItem pagey="156.015" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="830.792" y="156.015" visibility="1" zValue="105" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{6a4e76dc-65cd-4278-8335-351b7b4e4345}" height="8.31667" itemRotation="359" frame="false" pagex="830.792">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9945,7 +10017,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="HUNTINGWOOD DR" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="154.659" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="690.136" y="154.659" visibility="1" zValue="104" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="43.3504" outlineWidth="0.3" excludeFromExports="0" uuid="{c2f222ba-8a04-4c59-9459-d4d39258915b}" height="8.31667" itemRotation="341" frame="false" pagex="690.136">
+        <ComposerItem pagey="145.998" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="747.385" y="145.998" visibility="1" zValue="104" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="43.3504" outlineWidth="0.3" excludeFromExports="0" uuid="{c2f222ba-8a04-4c59-9459-d4d39258915b}" height="8.31667" itemRotation="1" frame="false" pagex="747.385">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9972,7 +10044,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="LAWRENCE AVE W" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="256.058" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="421.531" y="256.058" visibility="1" zValue="101" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.4688" outlineWidth="0.3" excludeFromExports="0" uuid="{8d4a0f5f-65b2-4c6d-8f11-48117187e65f}" height="8.31667" itemRotation="0" frame="false" pagex="421.531">
+        <ComposerItem pagey="255.705" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="450.607" y="255.705" visibility="1" zValue="101" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.4688" outlineWidth="0.3" excludeFromExports="0" uuid="{8d4a0f5f-65b2-4c6d-8f11-48117187e65f}" height="8.31667" itemRotation="1" frame="false" pagex="450.607">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -9990,7 +10062,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DREWRY AVE" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="85.725" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="452.379" y="85.725" visibility="1" zValue="99" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{ab18abaa-e1df-4f65-9e8b-f215dfcdf103}" height="8.31667" itemRotation="0" frame="false" pagex="452.379">
+        <ComposerItem pagey="82.725" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="462.379" y="82.725" visibility="1" zValue="99" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{ab18abaa-e1df-4f65-9e8b-f215dfcdf103}" height="8.31667" itemRotation="0" frame="false" pagex="462.379">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -10044,7 +10116,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="INTERNATIONAL BLVD" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="275.019" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="61.7958" y="275.019" visibility="1" zValue="93" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="54.4917" outlineWidth="0.3" excludeFromExports="0" uuid="{a460df83-0ed2-44cc-bc99-24ba7125f952}" height="8.31667" itemRotation="0" frame="false" pagex="61.7958">
+        <ComposerItem pagey="274.019" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="61.7958" y="274.019" visibility="1" zValue="93" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="54.4917" outlineWidth="0.3" excludeFromExports="0" uuid="{a460df83-0ed2-44cc-bc99-24ba7125f952}" height="8.31667" itemRotation="0" frame="false" pagex="61.7958">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -10062,7 +10134,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="FRONT ST" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="683.741" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="935.714" y="683.741" visibility="1" zValue="91" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="24.3292" outlineWidth="0.3" excludeFromExports="0" uuid="{b18ab6d7-0fda-45cb-a7de-142a60149897}" height="8.31667" itemRotation="0" frame="false" pagex="935.714">
+        <ComposerItem pagey="688.741" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="938.714" y="688.741" visibility="1" zValue="91" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="24.3292" outlineWidth="0.3" excludeFromExports="0" uuid="{b18ab6d7-0fda-45cb-a7de-142a60149897}" height="8.31667" itemRotation="0" frame="false" pagex="938.714">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -10091,7 +10163,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="THE WESTWAY" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="277.256" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="146.902" y="277.256" visibility="1" zValue="88" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{8b7bdb46-7e54-4547-a0a4-80fdc891814c}" height="8.31667" itemRotation="0" frame="false" pagex="146.902">
+        <ComposerItem pagey="282.575" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="160.832" y="282.575" visibility="1" zValue="88" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{8b7bdb46-7e54-4547-a0a4-80fdc891814c}" height="8.31667" itemRotation="359" frame="false" pagex="160.832">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -10163,7 +10235,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="N QUEEN ST" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="447.702" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="139.867" y="447.702" visibility="1" zValue="80" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{4790065b-9caa-4437-bc44-4403cafbe3e2}" height="8.31667" itemRotation="0" frame="false" pagex="139.867">
+        <ComposerItem pagey="452.702" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="161.867" y="452.702" visibility="1" zValue="80" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{4790065b-9caa-4437-bc44-4403cafbe3e2}" height="8.31667" itemRotation="0" frame="false" pagex="161.867">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -10172,7 +10244,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DUNDAS ST W" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="367.55" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="214.916" y="367.55" visibility="1" zValue="79" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{bc3e1e5a-d0eb-46cf-9292-475831debb93}" height="8.31667" itemRotation="345" frame="false" pagex="214.916">
+        <ComposerItem pagey="366.593" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="214.438" y="366.593" visibility="1" zValue="79" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{bc3e1e5a-d0eb-46cf-9292-475831debb93}" height="8.31667" itemRotation="345" frame="false" pagex="214.438">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -10235,7 +10307,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="GERRARD ST" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="596.842" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="981.075" y="596.842" visibility="1" zValue="72" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{972ba247-e680-4a33-af9f-d6f34412383b}" height="8.31667" itemRotation="0" frame="false" pagex="981.075">
+        <ComposerItem pagey="593.016" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1055.97" y="593.016" visibility="1" zValue="72" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{972ba247-e680-4a33-af9f-d6f34412383b}" height="8.31667" itemRotation="0" frame="false" pagex="1055.97">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -10271,7 +10343,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="RICHMOND ST" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="657.283" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="815.419" y="657.283" visibility="1" zValue="68" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{03b89864-b0be-4269-ba30-5ae092178ec1}" height="8.31667" itemRotation="0" frame="false" pagex="815.419">
+        <ComposerItem pagey="659.283" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="809.419" y="659.283" visibility="1" zValue="68" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{03b89864-b0be-4269-ba30-5ae092178ec1}" height="8.31667" itemRotation="0" frame="false" pagex="809.419">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -10307,7 +10379,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="KING ST W" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="672.365" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="765.829" y="672.365" visibility="1" zValue="64" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{3ce5afff-0ac9-4cb4-9a78-eba35b20dc17}" height="8.31667" itemRotation="0" frame="false" pagex="765.829">
+        <ComposerItem pagey="674.365" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="795.829" y="674.365" visibility="1" zValue="64" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{3ce5afff-0ac9-4cb4-9a78-eba35b20dc17}" height="8.31667" itemRotation="0" frame="false" pagex="795.829">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -10334,7 +10406,7 @@ def my_form_open(dialog, layer, feature):
       <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DUNDAS ST W" htmlState="0" halign="1">
         <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
         <FontColor red="0" blue="0" green="0"/>
-        <ComposerItem pagey="608.012" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="717.667" y="608.012" visibility="1" zValue="61" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{d0d92020-73a0-4ff8-b30a-9dcf18839927}" height="8.31667" itemRotation="0" frame="false" pagex="717.667">
+        <ComposerItem pagey="608.012" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="719.667" y="608.012" visibility="1" zValue="61" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{d0d92020-73a0-4ff8-b30a-9dcf18839927}" height="8.31667" itemRotation="0" frame="false" pagex="719.667">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -10845,7 +10917,7 @@ def my_form_open(dialog, layer, feature):
         </styles>
         <layer-tree-group expanded="1" checked="Qt::Checked" name="">
           <customproperties/>
-          <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">
+          <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
             <customproperties>
               <property key="legend/title-label" value="Centrelines"/>
             </customproperties>
@@ -10888,7 +10960,7 @@ def my_form_open(dialog, layer, feature):
         <LayerSet>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT *&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 1">2015_L2_Test_120171006105400383</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">street_centreline_copy20170907130623025</Layer>
-          <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">street_centreline20170815133009672</Layer>
+          <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
           <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <LayerStyles>
@@ -11536,7 +11608,7 @@ def my_form_open(dialog, layer, feature):
               <layerGeometryType>1</layerGeometryType>
             </qgis>
           </LayerStyle>
-          <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">
+          <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
             <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
               <edittypes>
                 <edittype widgetv2type="TextEdit" name="gid">
@@ -12358,7 +12430,7 @@ def my_form_open(dialog, layer, feature):
         <LayerSet>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT l2_group_number, linear_name_full, fcode_desc, dir_bin, year, avg_vol, st_transform(geom,26917) as geom&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 2">2015_L2_Test_220171010102916076</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">street_centreline_copy20170907130623025</Layer>
-          <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">street_centreline20170815133009672</Layer>
+          <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
           <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <LayerStyles>
@@ -13028,7 +13100,7 @@ def my_form_open(dialog, layer, feature):
               <layerGeometryType>1</layerGeometryType>
             </qgis>
           </LayerStyle>
-          <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')" name="street_centreline">
+          <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
             <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
               <edittypes>
                 <edittype widgetv2type="TextEdit" name="gid">
@@ -13898,10 +13970,10 @@ def my_form_open(dialog, layer, feature):
           <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <ComposerMapOverview frameMap="1" centered="0" inverted="0" uuid="{be545581-35e6-4c36-b9bc-2c99f47b8a68}" name="Overview 1" show="1" blendMode="0">
-          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="">
+          <symbol alpha="0.290196" clip_to_extent="1" type="fill" name="">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="color" v="125,125,125,255"/>
+              <prop k="color" v="153,153,153,255"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
@@ -13915,10 +13987,10 @@ def my_form_open(dialog, layer, feature):
           </symbol>
         </ComposerMapOverview>
         <ComposerMapOverview frameMap="2" centered="0" inverted="0" uuid="{a94e4aa9-18c3-4b37-9f18-18a0ff35455c}" name="Overview 2" show="1" blendMode="0">
-          <symbol alpha="0.3" clip_to_extent="1" type="fill" name="">
+          <symbol alpha="0.290196" clip_to_extent="1" type="fill" name="">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="color" v="125,125,125,255"/>
+              <prop k="color" v="179,179,179,255"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
@@ -14385,8 +14457,8 @@ def my_form_open(dialog, layer, feature):
         <sizescale scalemethod="diameter"/>
       </renderer-v2>
       <labeling type="rule-based">
-        <rules key="{886a63de-399c-4c56-8de9-409dd1030969}">
-          <rule scalemaxdenom="50000" description="Main map, EB NB" filter="(dir_bin = 1) AND NOT(&quot;fcode_desc&quot; = 'Expressway' AND &quot;linear_name_full&quot; LIKE '%Gardiner%')&#xd;&#xa;AND NOT(within($geometry, geometry(get_feature('void_box','id',1))))" key="{61417f10-e2fa-463b-8cf2-25fed27284d4}" scalemindenom="35000">
+        <rules key="{83b8aa15-b9cc-4303-a1b3-4ae1246b2782}">
+          <rule scalemaxdenom="50000" description="Main map, EB NB" filter="(dir_bin = 1) AND NOT(&quot;fcode_desc&quot; = 'Expressway' AND &quot;linear_name_full&quot; LIKE '%Gardiner%')&#xd;&#xa;AND NOT(within($geometry, geometry(get_feature('void_box','id',1))))&#xd;&#xa;AND NOT(&quot;linear_name_full&quot; LIKE '%Dovercourt%' OR &quot;linear_name_full&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(&quot;l2_group_number&quot; IN (34739,38805,708))" key="{1a57994b-a34d-4ce5-970f-d457e04169cf}" scalemindenom="35000">
             <settings>
               <text-style fontItalic="0" fontFamily="MS Shell Dlg 2" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="10" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
                 <substitutions/>
@@ -14400,7 +14472,7 @@ def my_form_open(dialog, layer, feature):
               <data-defined/>
             </settings>
           </rule>
-          <rule scalemaxdenom="50000" description="Main Map, WB SB" filter="(dir_bin = -1) AND NOT(&quot;fcode_desc&quot; = 'Expressway' AND &quot;linear_name_full&quot; LIKE '%Gardiner%')&#xd;&#xa;AND NOT(within($geometry, geometry(get_feature('void_box','id',1))))" key="{90e2a6c5-591e-44a6-99e1-2a970b687ff9}" scalemindenom="35000">
+          <rule scalemaxdenom="50000" description="Main Map, WB SB" filter="(dir_bin = -1) AND NOT(&quot;fcode_desc&quot; = 'Expressway' AND &quot;linear_name_full&quot; LIKE '%Gardiner%')&#xd;&#xa;AND NOT(within($geometry, geometry(get_feature('void_box','id',1))))&#xd;&#xa;AND NOT(&quot;linear_name_full&quot; LIKE '%Dovercourt%' OR &quot;linear_name_full&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(&quot;l2_group_number&quot; IN (26806,26881,462))" key="{d68838d6-5d72-4c8e-8771-8ae6b46090eb}" scalemindenom="35000">
             <settings>
               <text-style fontItalic="0" fontFamily="MS Shell Dlg 2" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="10" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
                 <substitutions/>
@@ -14414,7 +14486,7 @@ def my_form_open(dialog, layer, feature):
               <data-defined/>
             </settings>
           </rule>
-          <rule scalemaxdenom="35000" description="FGG EB" filter="(dir_bin = 1) AND (fcode_desc = 'Expressway')" key="{47afad6c-cd12-4e2c-a1b4-810bb84f107f}" scalemindenom="25000">
+          <rule scalemaxdenom="35000" description="FGG EB" filter="(dir_bin = 1) AND (fcode_desc = 'Expressway')" key="{09fa7e27-fc27-4b34-a6cf-d14c0c2f264b}" scalemindenom="25000">
             <settings>
               <text-style fontItalic="0" fontFamily="MS Shell Dlg 2" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="15" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
                 <substitutions/>
@@ -14428,7 +14500,7 @@ def my_form_open(dialog, layer, feature):
               <data-defined/>
             </settings>
           </rule>
-          <rule scalemaxdenom="35000" description="FGG WB" filter="(dir_bin = -1) AND (fcode_desc = 'Expressway') AND NOT(l2_group_number = 40917)" key="{ef6fcf1d-f0d7-4eed-a2ec-051c617fc112}" scalemindenom="25000">
+          <rule scalemaxdenom="35000" description="FGG WB" filter="(dir_bin = -1) AND (fcode_desc = 'Expressway') AND NOT(l2_group_number = 40917)" key="{08e252c9-6df6-4c4f-a824-0aca99891a97}" scalemindenom="25000">
             <settings>
               <text-style fontItalic="0" fontFamily="MS Shell Dlg 2" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="15" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
                 <substitutions/>
@@ -14442,7 +14514,7 @@ def my_form_open(dialog, layer, feature):
               <data-defined/>
             </settings>
           </rule>
-          <rule scalemaxdenom="25000" description="Downtown EB NB" filter="(dir_bin = 1) AND NOT(fcode_desc = 'Expressway')" key="{f6291872-5ff2-4a0f-806a-ca8978e3e91a}" scalemindenom="1000">
+          <rule scalemaxdenom="25000" description="Downtown EB NB" filter="(dir_bin = 1) AND NOT(fcode_desc = 'Expressway')" key="{99d65280-88f2-4540-8aaa-64ff6b479914}" scalemindenom="1000">
             <settings>
               <text-style fontItalic="0" fontFamily="Arial Narrow" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="10" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
                 <substitutions/>
@@ -14456,7 +14528,7 @@ def my_form_open(dialog, layer, feature):
               <data-defined/>
             </settings>
           </rule>
-          <rule scalemaxdenom="25000" description="Downtown WB SB" filter="(dir_bin = -1) AND NOT(fcode_desc = 'Expressway')" key="{36f5e280-6118-4896-8fcb-b3414db53e5f}" scalemindenom="1000">
+          <rule scalemaxdenom="25000" description="Downtown WB SB" filter="(dir_bin = -1) AND NOT(fcode_desc = 'Expressway')" key="{c6047c7c-ad50-4cb3-9853-c33ce620415b}" scalemindenom="1000">
             <settings>
               <text-style fontItalic="0" fontFamily="Arial Narrow" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="10" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
                 <substitutions/>
@@ -16061,8 +16133,10 @@ def my_form_open(dialog, layer, feature):
         <ymax>43.85545718299999862</ymax>
       </extent>
       <id>street_centreline20170815133009672</id>
-      <datasource>dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table="gis"."street_centreline" (geom) sql="fcode_desc" IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;
-"lf_name" IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd')</datasource>
+      <datasource>dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table="gis"."street_centreline" (geom) sql=("fcode_desc" IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;
+"lf_name" IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;
+AND NOT("lf_name" LIKE '%Dovercourt%' OR "lf_name" LIKE '%Cosburn%')&#xd;
+AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))</datasource>
       <keywordList>
         <value></value>
       </keywordList>
