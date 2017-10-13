@@ -136,7 +136,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="RONCESVALLES AVE" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="435.657" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="341.361" y="435.657" visibility="1" zValue="382" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="42.9437" outlineWidth="0.3" excludeFromExports="0" uuid="{6c178247-56b7-45be-bae0-beec08939068}" height="8.31667" itemRotation="91" frame="false" pagex="341.361">
+   <ComposerItem pagey="426.657" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="330.84" y="426.657" visibility="1" zValue="382" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="42.9437" outlineWidth="0.3" excludeFromExports="0" uuid="{6c178247-56b7-45be-bae0-beec08939068}" height="8.31667" itemRotation="91" frame="false" pagex="330.84">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -169,10 +169,28 @@
     <customproperties/>
    </ComposerItem>
   </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DANFORTH AVE" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="508.215" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1052.38" y="508.215" visibility="1" zValue="312" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{488f0c69-faab-4e29-97dd-6b32772af0f2}" height="8.31667" itemRotation="1" frame="false" pagex="1052.38">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DUNDAS ST E" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
    <ComposerItem pagey="616.544" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1055.4" y="616.544" visibility="1" zValue="306" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{606adcb9-47ec-48dd-a06f-416f0450a1c2}" height="8.31667" itemRotation="0" frame="false" pagex="1055.4">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BAYVIEW AVE" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="478.721" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1008.24" y="478.721" visibility="1" zValue="284" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="33.325" outlineWidth="0.3" excludeFromExports="0" uuid="{908fa0e9-79ee-48b4-8cb5-af7d1d862224}" height="8.58125" itemRotation="67" frame="false" pagex="1008.24">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -314,9 +332,9 @@
    </ComposerItem>
   </ComposerLabel>
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="VICTORIA PARK AVE" htmlState="0" halign="1">
-   <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
+   <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="380.154" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="688.002" y="380.154" visibility="1" zValue="207" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.5" outlineWidth="0.3" excludeFromExports="0" uuid="{ce06a2ca-d760-44d8-bf6b-9bb936db4478}" height="8.317" itemRotation="90" frame="false" pagex="688.002">
+   <ComposerItem pagey="232.399" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="678.056" y="232.399" visibility="1" zValue="207" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.5" outlineWidth="0.3" excludeFromExports="0" uuid="{ce06a2ca-d760-44d8-bf6b-9bb936db4478}" height="8.317" itemRotation="93" frame="false" pagex="678.056">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -487,7 +505,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="OSSINGTON AVE" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="403.929" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="393.923" y="403.929" visibility="1" zValue="187" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{b9bfdda8-65bb-4b1b-9f5c-13f113c9b05f}" height="8.31667" itemRotation="90" frame="false" pagex="393.923">
+   <ComposerItem pagey="402.255" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="388.662" y="402.255" visibility="1" zValue="187" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{b9bfdda8-65bb-4b1b-9f5c-13f113c9b05f}" height="8.31667" itemRotation="90" frame="false" pagex="388.662">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -604,7 +622,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="LANDSDOWNE AVE" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="424.03" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="363.66" y="424.03" visibility="1" zValue="174" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="38.5" outlineWidth="0.3" excludeFromExports="0" uuid="{55a382fb-d9ff-42a6-ab6f-13e3b762e5a6}" height="8.317" itemRotation="95" frame="false" pagex="363.66">
+   <ComposerItem pagey="427.139" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="352.181" y="427.139" visibility="1" zValue="174" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="38.5" outlineWidth="0.3" excludeFromExports="0" uuid="{55a382fb-d9ff-42a6-ab6f-13e3b762e5a6}" height="8.317" itemRotation="95" frame="false" pagex="352.181">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -640,7 +658,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DUFFERIN ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="286.175" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="382.077" y="286.175" visibility="1" zValue="170" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{0f938954-a4e0-4821-8439-573600e36d29}" height="8.31667" itemRotation="92" frame="false" pagex="382.077">
+   <ComposerItem pagey="233.775" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="390.942" y="233.775" visibility="1" zValue="170" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{0f938954-a4e0-4821-8439-573600e36d29}" height="8.31667" itemRotation="98" frame="false" pagex="390.942">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -649,7 +667,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="TRETHEWEY DR" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="273.901" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="273.341" y="273.901" visibility="1" zValue="169" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f3e5324f-ad10-46f1-b303-343084ddfd4e}" height="8.31667" itemRotation="21" frame="false" pagex="273.341">
+   <ComposerItem pagey="284.647" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="275.475" y="284.647" visibility="1" zValue="169" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{f3e5324f-ad10-46f1-b303-343084ddfd4e}" height="8.31667" itemRotation="23" frame="false" pagex="275.475">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -700,10 +718,10 @@
     <customproperties/>
    </ComposerItem>
   </ComposerLabel>
-  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DANFORTH RD" htmlState="0" halign="1">
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DANFORTH AVE" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="413.619" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="532.932" y="413.619" visibility="1" zValue="163" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="43.3504" outlineWidth="0.3" excludeFromExports="0" uuid="{efa62a87-601b-4a15-aa2e-a35d151e1b43}" height="8.31667" itemRotation="1" frame="false" pagex="532.932">
+   <ComposerItem pagey="412.482" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="530.971" y="412.482" visibility="1" zValue="163" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="43.3504" outlineWidth="0.3" excludeFromExports="0" uuid="{efa62a87-601b-4a15-aa2e-a35d151e1b43}" height="8.31667" itemRotation="2" frame="false" pagex="530.971">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -748,7 +766,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="PARKSIDE DR" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="431.521" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="315.961" y="431.521" visibility="1" zValue="158" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{fd165e9a-0565-4dd0-9760-017bdb9f1c55}" height="8.31667" itemRotation="91" frame="false" pagex="315.961">
+   <ComposerItem pagey="430.521" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="315.961" y="430.521" visibility="1" zValue="158" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{fd165e9a-0565-4dd0-9760-017bdb9f1c55}" height="8.31667" itemRotation="91" frame="false" pagex="315.961">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -802,7 +820,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="ANNETTE ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="387.065" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="298.481" y="387.065" visibility="1" zValue="152" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{fbe1e4ee-086e-4ab5-83aa-81350cb498dd}" height="8.31667" itemRotation="0" frame="false" pagex="298.481">
+   <ComposerItem pagey="394.065" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="293.481" y="394.065" visibility="1" zValue="152" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{fbe1e4ee-086e-4ab5-83aa-81350cb498dd}" height="8.31667" itemRotation="0" frame="false" pagex="293.481">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -829,7 +847,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="OAKDALE RD" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="129.211" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="274.046" y="129.211" visibility="1" zValue="149" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{25040556-930f-41fc-b3f8-dec56420de98}" height="8.31667" itemRotation="98" frame="false" pagex="274.046">
+   <ComposerItem pagey="129.211" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="275.046" y="129.211" visibility="1" zValue="149" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{25040556-930f-41fc-b3f8-dec56420de98}" height="8.31667" itemRotation="98" frame="false" pagex="275.046">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -928,7 +946,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DANFORTH RD" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="394.913" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="718.3" y="394.913" visibility="1" zValue="138" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="43.3504" outlineWidth="0.3" excludeFromExports="0" uuid="{1a46a271-6542-4977-b64b-52a757a4c77b}" height="8.31667" itemRotation="318" frame="false" pagex="718.3">
+   <ComposerItem pagey="416.203" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="696.142" y="416.203" visibility="1" zValue="138" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="43.3504" outlineWidth="0.3" excludeFromExports="0" uuid="{1a46a271-6542-4977-b64b-52a757a4c77b}" height="8.31667" itemRotation="314" frame="false" pagex="696.142">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1434,7 +1452,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="EVANS AVE" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,10,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="477.308" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="121.883" y="477.308" visibility="1" zValue="82" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{e5e5cced-a08d-48a5-a539-3e19e2fe99f0}" height="8.31667" itemRotation="0" frame="false" pagex="121.883">
+   <ComposerItem pagey="486.308" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="128.883" y="486.308" visibility="1" zValue="82" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{e5e5cced-a08d-48a5-a539-3e19e2fe99f0}" height="8.31667" itemRotation="0" frame="false" pagex="128.883">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -2166,7 +2184,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Average Weekday Daily Traffic Volume, 2015" htmlState="0" halign="1">
    <LabelFont description="Arial Narrow,84,-1,5,75,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="12.4563" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="257.064" y="12.4563" visibility="1" zValue="4" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="599.953" outlineWidth="0.3" excludeFromExports="0" uuid="{1f23d3c5-700b-4e2b-bb47-c1868f34af26}" height="36.9744" itemRotation="0" frame="false" pagex="257.064">
+   <ComposerItem pagey="12.4563" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="29.064" y="12.4563" visibility="1" zValue="4" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="599.953" outlineWidth="0.3" excludeFromExports="0" uuid="{1f23d3c5-700b-4e2b-bb47-c1868f34af26}" height="36.9744" itemRotation="0" frame="false" pagex="29.064">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
