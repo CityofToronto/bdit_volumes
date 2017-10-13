@@ -46,7 +46,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="EASTERN AVE" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="664.395" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1057.59" y="664.395" visibility="1" zValue="777" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{0c760457-c045-4a4b-8ae2-9597b086b08f}" height="8.31667" itemRotation="0" frame="false" pagex="1057.59">
+   <ComposerItem pagey="664.395" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1031.59" y="664.395" visibility="1" zValue="777" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{0c760457-c045-4a4b-8ae2-9597b086b08f}" height="8.31667" itemRotation="0" frame="false" pagex="1031.59">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -91,12 +91,56 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="QUEEN ST E" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="643.806" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1058.64" y="643.806" visibility="1" zValue="541" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{c3739c03-1fc6-4369-be21-353408f068f9}" height="8.31667" itemRotation="0" frame="false" pagex="1058.64">
+   <ComposerItem pagey="643.806" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1030.64" y="643.806" visibility="1" zValue="541" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{c3739c03-1fc6-4369-be21-353408f068f9}" height="8.31667" itemRotation="0" frame="false" pagex="1030.64">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
    </ComposerItem>
   </ComposerLabel>
+  <ComposerShape shapeType="1" cornerRadius="0">
+   <symbol alpha="1" clip_to_extent="1" type="fill" name="">
+    <layer pass="0" class="SimpleFill" locked="0">
+     <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+     <prop k="color" v="255,255,255,255"/>
+     <prop k="joinstyle" v="miter"/>
+     <prop k="offset" v="0,0"/>
+     <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="outline_color" v="0,0,0,0"/>
+     <prop k="outline_style" v="solid"/>
+     <prop k="outline_width" v="0.3"/>
+     <prop k="outline_width_unit" v="MM"/>
+     <prop k="style" v="solid"/>
+    </layer>
+   </symbol>
+   <ComposerItem pagey="511.506" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="706.57" y="511.506" visibility="1" zValue="485" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="3.43958" outlineWidth="0.3" excludeFromExports="0" uuid="{46de96da-0bff-45b1-aed3-81e520d5715d}" height="3.96875" itemRotation="0" frame="false" pagex="706.57">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerShape>
+  <ComposerShape shapeType="1" cornerRadius="0">
+   <symbol alpha="1" clip_to_extent="1" type="fill" name="">
+    <layer pass="0" class="SimpleFill" locked="0">
+     <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+     <prop k="color" v="255,255,255,255"/>
+     <prop k="joinstyle" v="miter"/>
+     <prop k="offset" v="0,0"/>
+     <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="outline_color" v="0,0,0,0"/>
+     <prop k="outline_style" v="solid"/>
+     <prop k="outline_width" v="0.3"/>
+     <prop k="outline_width_unit" v="MM"/>
+     <prop k="style" v="solid"/>
+    </layer>
+   </symbol>
+   <ComposerItem pagey="578.908" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1086.25" y="578.908" visibility="1" zValue="484" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="2.64583" outlineWidth="0.3" excludeFromExports="0" uuid="{0642f99e-ba66-457c-9c1a-07e254d6f436}" height="3.30729" itemRotation="0" frame="false" pagex="1086.25">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerShape>
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="FG GARDINER" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
@@ -172,7 +216,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DANFORTH AVE" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="508.215" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1052.38" y="508.215" visibility="1" zValue="312" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{488f0c69-faab-4e29-97dd-6b32772af0f2}" height="8.31667" itemRotation="1" frame="false" pagex="1052.38">
+   <ComposerItem pagey="507.215" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1027.38" y="507.215" visibility="1" zValue="312" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{488f0c69-faab-4e29-97dd-6b32772af0f2}" height="8.31667" itemRotation="1" frame="false" pagex="1027.38">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -181,7 +225,16 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DUNDAS ST E" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="616.544" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1055.4" y="616.544" visibility="1" zValue="306" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{606adcb9-47ec-48dd-a06f-416f0450a1c2}" height="8.31667" itemRotation="0" frame="false" pagex="1055.4">
+   <ComposerItem pagey="616.544" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1030.4" y="616.544" visibility="1" zValue="306" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{606adcb9-47ec-48dd-a06f-416f0450a1c2}" height="8.31667" itemRotation="0" frame="false" pagex="1030.4">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerLabel>
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="CARLAW AVE" htmlState="0" halign="1">
+   <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
+   <FontColor red="0" blue="0" green="0"/>
+   <ComposerItem pagey="614.829" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1081.53" y="614.829" visibility="1" zValue="298" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="27.7688" outlineWidth="0.3" excludeFromExports="0" uuid="{bdbc96c9-ae8f-4573-a0c0-33a05ad1ea03}" height="8.58125" itemRotation="90" frame="false" pagex="1081.53">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -190,7 +243,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BAYVIEW AVE" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="478.721" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1008.24" y="478.721" visibility="1" zValue="284" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="33.325" outlineWidth="0.3" excludeFromExports="0" uuid="{908fa0e9-79ee-48b4-8cb5-af7d1d862224}" height="8.58125" itemRotation="67" frame="false" pagex="1008.24">
+   <ComposerItem pagey="477.721" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="984.236" y="477.721" visibility="1" zValue="284" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="33.325" outlineWidth="0.3" excludeFromExports="0" uuid="{908fa0e9-79ee-48b4-8cb5-af7d1d862224}" height="8.58125" itemRotation="67" frame="false" pagex="984.236">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -205,6 +258,50 @@
     <customproperties/>
    </ComposerItem>
   </ComposerLabel>
+  <ComposerShape shapeType="1" cornerRadius="0">
+   <symbol alpha="1" clip_to_extent="1" type="fill" name="">
+    <layer pass="0" class="SimpleFill" locked="0">
+     <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+     <prop k="color" v="255,255,255,255"/>
+     <prop k="joinstyle" v="miter"/>
+     <prop k="offset" v="0,0"/>
+     <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="outline_color" v="0,0,0,0"/>
+     <prop k="outline_style" v="solid"/>
+     <prop k="outline_width" v="0.3"/>
+     <prop k="outline_width_unit" v="MM"/>
+     <prop k="style" v="solid"/>
+    </layer>
+   </symbol>
+   <ComposerItem pagey="516.797" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="706.371" y="516.797" visibility="1" zValue="246" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="2.51354" outlineWidth="0.3" excludeFromExports="0" uuid="{ee723db4-c09d-4e37-87c6-aaa60cd03d14}" height="3.77031" itemRotation="0" frame="false" pagex="706.371">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerShape>
+  <ComposerShape shapeType="1" cornerRadius="0">
+   <symbol alpha="1" clip_to_extent="1" type="fill" name="">
+    <layer pass="0" class="SimpleFill" locked="0">
+     <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+     <prop k="color" v="255,255,255,255"/>
+     <prop k="joinstyle" v="miter"/>
+     <prop k="offset" v="0,0"/>
+     <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+     <prop k="offset_unit" v="MM"/>
+     <prop k="outline_color" v="0,0,0,0"/>
+     <prop k="outline_style" v="solid"/>
+     <prop k="outline_width" v="0.3"/>
+     <prop k="outline_width_unit" v="MM"/>
+     <prop k="style" v="solid"/>
+    </layer>
+   </symbol>
+   <ComposerItem pagey="574.014" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1086.25" y="574.014" visibility="1" zValue="242" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="2.64583" outlineWidth="0.3" excludeFromExports="0" uuid="{8fdf0d21-9f50-4e6f-8719-6bc096efe5a7}" height="3.30729" itemRotation="0" frame="false" pagex="1086.25">
+    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+    <customproperties/>
+   </ComposerItem>
+  </ComposerShape>
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="MEADOWVALE RD" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
@@ -235,7 +332,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="LAKESHORE BLVD E" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="706.586" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1050.34" y="706.586" visibility="1" zValue="219" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.5" outlineWidth="0.3" excludeFromExports="0" uuid="{d911097c-156f-4003-bbcf-6d19d6df602f}" height="8.317" itemRotation="346" frame="false" pagex="1050.34">
+   <ComposerItem pagey="703.586" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1039.34" y="703.586" visibility="1" zValue="219" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="40.5" outlineWidth="0.3" excludeFromExports="0" uuid="{d911097c-156f-4003-bbcf-6d19d6df602f}" height="8.317" itemRotation="346" frame="false" pagex="1039.34">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -262,7 +359,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="QUEENS QUAY E" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="725.927" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="900.241" y="725.927" visibility="1" zValue="216" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{9dd83ca7-b141-4520-8481-cd26a4cd91f5}" height="8.31667" itemRotation="351" frame="false" pagex="900.241">
+   <ComposerItem pagey="725.927" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="874.241" y="725.927" visibility="1" zValue="216" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{9dd83ca7-b141-4520-8481-cd26a4cd91f5}" height="8.31667" itemRotation="351" frame="false" pagex="874.241">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -298,7 +395,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BREMNER BLVD" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="712.952" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="824.157" y="712.952" visibility="1" zValue="212" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{0b04ef72-2eeb-4c0d-845c-5374db5a948a}" height="8.31667" itemRotation="0" frame="false" pagex="824.157">
+   <ComposerItem pagey="712.952" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="801.157" y="712.952" visibility="1" zValue="212" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{0b04ef72-2eeb-4c0d-845c-5374db5a948a}" height="8.31667" itemRotation="0" frame="false" pagex="801.157">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1360,7 +1457,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="EASTERN AVE" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="683.63" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="986.725" y="683.63" visibility="1" zValue="92" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{5273331f-9f86-4322-8a61-bbdc82f39dd6}" height="8.31667" itemRotation="341" frame="false" pagex="986.725">
+   <ComposerItem pagey="685.954" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="955.763" y="685.954" visibility="1" zValue="92" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{5273331f-9f86-4322-8a61-bbdc82f39dd6}" height="8.31667" itemRotation="340" frame="false" pagex="955.763">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1369,7 +1466,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="FRONT ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="688.741" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="938.714" y="688.741" visibility="1" zValue="91" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="24.3292" outlineWidth="0.3" excludeFromExports="0" uuid="{b18ab6d7-0fda-45cb-a7de-142a60149897}" height="8.31667" itemRotation="0" frame="false" pagex="938.714">
+   <ComposerItem pagey="688.954" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="920.643" y="688.954" visibility="1" zValue="91" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="24.3292" outlineWidth="0.3" excludeFromExports="0" uuid="{b18ab6d7-0fda-45cb-a7de-142a60149897}" height="8.31667" itemRotation="359" frame="false" pagex="920.643">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1380,7 +1477,7 @@
    <ComposerItemGroupElement uuid="{949369ba-0dd1-4eb3-b1b6-a94ba07d617a}"/>
    <ComposerItemGroupElement uuid="{1ba7041f-ae67-4b2e-ba28-229fbdd258c0}"/>
    <ComposerItemGroupElement uuid="{5ddcc859-28dc-43a8-bea2-7216a2f647ce}"/>
-   <ComposerItem pagey="366.175" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="933.442" y="366.175" visibility="1" zValue="90" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="106.9" outlineWidth="0.3" excludeFromExports="0" uuid="{311155da-b83f-4099-8e3b-834602e54a12}" height="56.5948" itemRotation="0" frame="false" pagex="933.442">
+   <ComposerItem pagey="366.175" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="933.442" y="366.175" visibility="1" zValue="90" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="106.9" outlineWidth="0.3" excludeFromExports="0" uuid="{4d257e4c-7304-4230-a0d1-5a61d0e94938}" height="56.4625" itemRotation="0" frame="false" pagex="933.442">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1503,19 +1600,10 @@
     <customproperties/>
    </ComposerItem>
   </ComposerLabel>
-  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DON VALLEY" htmlState="0" halign="1">
+  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DVP" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="540.934" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1037.53" y="540.934" visibility="1" zValue="76" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="27.0301" outlineWidth="0.3" excludeFromExports="0" uuid="{0c607230-e78a-4716-9bcc-ffa9a7415886}" height="8.58125" itemRotation="73" frame="false" pagex="1037.53">
-    <FrameColor alpha="255" red="0" blue="0" green="0"/>
-    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
-    <customproperties/>
-   </ComposerItem>
-  </ComposerLabel>
-  <ComposerLabel valign="32" marginX="1" marginY="1" labelText="PARKWAY" htmlState="0" halign="1">
-   <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
-   <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="566.033" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1044.34" y="566.033" visibility="1" zValue="75" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="21.6552" outlineWidth="0.3" excludeFromExports="0" uuid="{9dbf6c6e-11df-47ed-9c47-4a230f7805d8}" height="8.58125" itemRotation="94" frame="false" pagex="1044.34">
+   <ComposerItem pagey="547.934" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1016.53" y="547.934" visibility="1" zValue="76" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="27.0301" outlineWidth="0.3" excludeFromExports="0" uuid="{0c607230-e78a-4716-9bcc-ffa9a7415886}" height="8.58125" itemRotation="73" frame="false" pagex="1016.53">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1524,7 +1612,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="ROSEDALE VALLEY RD" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="498.277" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="937.809" y="498.277" visibility="1" zValue="74" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="47.8771" outlineWidth="0.3" excludeFromExports="0" uuid="{67436a8b-0e31-48a3-8060-d59be44d0d17}" height="8.31667" itemRotation="22" frame="false" pagex="937.809">
+   <ComposerItem pagey="497.277" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="912.809" y="497.277" visibility="1" zValue="74" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="47.8771" outlineWidth="0.3" excludeFromExports="0" uuid="{67436a8b-0e31-48a3-8060-d59be44d0d17}" height="8.31667" itemRotation="22" frame="false" pagex="912.809">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1533,7 +1621,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="SHUTER ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="634.646" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="975.815" y="634.646" visibility="1" zValue="73" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{5da6e8f6-fbf7-47c4-bb28-588b88442764}" height="8.31667" itemRotation="0" frame="false" pagex="975.815">
+   <ComposerItem pagey="634.646" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="955.815" y="634.646" visibility="1" zValue="73" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{5da6e8f6-fbf7-47c4-bb28-588b88442764}" height="8.31667" itemRotation="0" frame="false" pagex="955.815">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1542,7 +1630,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="GERRARD ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="593.016" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1055.97" y="593.016" visibility="1" zValue="72" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{972ba247-e680-4a33-af9f-d6f34412383b}" height="8.31667" itemRotation="0" frame="false" pagex="1055.97">
+   <ComposerItem pagey="593.016" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1029.97" y="593.016" visibility="1" zValue="72" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{972ba247-e680-4a33-af9f-d6f34412383b}" height="8.31667" itemRotation="0" frame="false" pagex="1029.97">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1551,7 +1639,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="WELLESLEY ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="548.804" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="874.183" y="548.804" visibility="1" zValue="71" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{1953707b-2f0b-402d-9736-5169660068b0}" height="8.31667" itemRotation="0" frame="false" pagex="874.183">
+   <ComposerItem pagey="547.804" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="850.183" y="547.804" visibility="1" zValue="71" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{1953707b-2f0b-402d-9736-5169660068b0}" height="8.31667" itemRotation="0" frame="false" pagex="850.183">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1560,7 +1648,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="CARLTON ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="578.76" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="907.408" y="578.76" visibility="1" zValue="70" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{4f80ed4d-a5d0-4819-9423-1e621c828dd7}" height="8.31667" itemRotation="0" frame="false" pagex="907.408">
+   <ComposerItem pagey="577.76" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="873.408" y="577.76" visibility="1" zValue="70" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{4f80ed4d-a5d0-4819-9423-1e621c828dd7}" height="8.31667" itemRotation="0" frame="false" pagex="873.408">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1569,7 +1657,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="WELLINGTON ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="685.212" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="798.073" y="685.212" visibility="1" zValue="69" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{aea6f56e-930e-4da7-9787-72d1c4daaa8b}" height="8.31667" itemRotation="0" frame="false" pagex="798.073">
+   <ComposerItem pagey="685.212" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="774.073" y="685.212" visibility="1" zValue="69" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{aea6f56e-930e-4da7-9787-72d1c4daaa8b}" height="8.31667" itemRotation="0" frame="false" pagex="774.073">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1578,7 +1666,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="RICHMOND ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="659.283" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="809.419" y="659.283" visibility="1" zValue="68" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{03b89864-b0be-4269-ba30-5ae092178ec1}" height="8.31667" itemRotation="0" frame="false" pagex="809.419">
+   <ComposerItem pagey="659.283" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="786.419" y="659.283" visibility="1" zValue="68" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{03b89864-b0be-4269-ba30-5ae092178ec1}" height="8.31667" itemRotation="0" frame="false" pagex="786.419">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1587,7 +1675,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="FLEET ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="725.045" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="715.514" y="725.045" visibility="1" zValue="67" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{112a9641-7c78-4220-b102-79976b9e353d}" height="8.31667" itemRotation="13" frame="false" pagex="715.514">
+   <ComposerItem pagey="727.045" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="706.514" y="727.045" visibility="1" zValue="67" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{112a9641-7c78-4220-b102-79976b9e353d}" height="8.31667" itemRotation="13" frame="false" pagex="706.514">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1596,7 +1684,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="FRONT ST W" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="694.932" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="753.637" y="694.932" visibility="1" zValue="66" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{9aeb1a41-0825-4d5e-a6c8-e6c0e4f139bd}" height="8.31667" itemRotation="357" frame="false" pagex="753.637">
+   <ComposerItem pagey="693.932" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="731.637" y="693.932" visibility="1" zValue="66" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{9aeb1a41-0825-4d5e-a6c8-e6c0e4f139bd}" height="8.31667" itemRotation="357" frame="false" pagex="731.637">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1605,7 +1693,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="ST GEORGE ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="550.629" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="823.383" y="550.629" visibility="1" zValue="65" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.2938" outlineWidth="0.3" excludeFromExports="0" uuid="{d23d3eb1-f753-43b5-91f4-9004426bcdf7}" height="8.58125" itemRotation="90" frame="false" pagex="823.383">
+   <ComposerItem pagey="550.629" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="799.383" y="550.629" visibility="1" zValue="65" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.2938" outlineWidth="0.3" excludeFromExports="0" uuid="{d23d3eb1-f753-43b5-91f4-9004426bcdf7}" height="8.58125" itemRotation="90" frame="false" pagex="799.383">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1614,7 +1702,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="KING ST W" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="674.365" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="795.829" y="674.365" visibility="1" zValue="64" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{3ce5afff-0ac9-4cb4-9a78-eba35b20dc17}" height="8.31667" itemRotation="0" frame="false" pagex="795.829">
+   <ComposerItem pagey="674.365" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="771.358" y="674.365" visibility="1" zValue="64" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{3ce5afff-0ac9-4cb4-9a78-eba35b20dc17}" height="8.31667" itemRotation="0" frame="false" pagex="771.358">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1623,7 +1711,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="ADELAIDE ST W" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="664.104" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="754.21" y="664.104" visibility="1" zValue="63" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{b8a47d0a-3a56-436a-81c6-2d5208dfb9d5}" height="8.31667" itemRotation="0" frame="false" pagex="754.21">
+   <ComposerItem pagey="664.104" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="730.21" y="664.104" visibility="1" zValue="63" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{b8a47d0a-3a56-436a-81c6-2d5208dfb9d5}" height="8.31667" itemRotation="0" frame="false" pagex="730.21">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1632,7 +1720,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="QUEEN ST W" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="647.7" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="722.519" y="647.7" visibility="1" zValue="62" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{4ec91121-836f-47f2-b556-220056d8f578}" height="8.31667" itemRotation="0" frame="false" pagex="722.519">
+   <ComposerItem pagey="645.382" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="725.594" y="645.382" visibility="1" zValue="62" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{4ec91121-836f-47f2-b556-220056d8f578}" height="8.31667" itemRotation="1" frame="false" pagex="725.594">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1641,7 +1729,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="DUNDAS ST W" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="608.012" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="719.667" y="608.012" visibility="1" zValue="61" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{d0d92020-73a0-4ff8-b30a-9dcf18839927}" height="8.31667" itemRotation="0" frame="false" pagex="719.667">
+   <ComposerItem pagey="613.012" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="733.667" y="613.012" visibility="1" zValue="61" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{d0d92020-73a0-4ff8-b30a-9dcf18839927}" height="8.31667" itemRotation="0" frame="false" pagex="733.667">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1650,7 +1738,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="COLLEGE ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="575.998" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="724.031" y="575.998" visibility="1" zValue="60" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{5eca42f9-f6ea-43a0-a554-ba6d2619e7b5}" height="8.31667" itemRotation="0" frame="false" pagex="724.031">
+   <ComposerItem pagey="573.68" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="726.106" y="573.68" visibility="1" zValue="60" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{5eca42f9-f6ea-43a0-a554-ba6d2619e7b5}" height="8.31667" itemRotation="1" frame="false" pagex="726.106">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1659,7 +1747,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="HARBORD ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="537.575" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="721.725" y="537.575" visibility="1" zValue="59" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{4dfda74d-1628-434c-a88f-9aa559358104}" height="8.31667" itemRotation="0" frame="false" pagex="721.725">
+   <ComposerItem pagey="534.257" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="725.8" y="534.257" visibility="1" zValue="59" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{4dfda74d-1628-434c-a88f-9aa559358104}" height="8.31667" itemRotation="1" frame="false" pagex="725.8">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1668,7 +1756,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BROADVIEW AVE" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="518.699" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1050.51" y="518.699" visibility="1" zValue="58" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.2938" outlineWidth="0.3" excludeFromExports="0" uuid="{4b13d8cb-01dc-4ae7-9cd7-3b19169824fe}" height="8.58125" itemRotation="72" frame="false" pagex="1050.51">
+   <ComposerItem pagey="518.699" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1026.51" y="518.699" visibility="1" zValue="58" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.2938" outlineWidth="0.3" excludeFromExports="0" uuid="{4b13d8cb-01dc-4ae7-9cd7-3b19169824fe}" height="8.58125" itemRotation="72" frame="false" pagex="1026.51">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1677,7 +1765,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="RIVER ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="579.792" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="1018.7" y="579.792" visibility="1" zValue="57" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="21.6834" outlineWidth="0.3" excludeFromExports="0" uuid="{a7c32ef7-1278-44cb-8b46-f0bb7b1c8d3a}" height="8.58125" itemRotation="90" frame="false" pagex="1018.7">
+   <ComposerItem pagey="579.792" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="994.7" y="579.792" visibility="1" zValue="57" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="21.6834" outlineWidth="0.3" excludeFromExports="0" uuid="{a7c32ef7-1278-44cb-8b46-f0bb7b1c8d3a}" height="8.58125" itemRotation="90" frame="false" pagex="994.7">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1686,7 +1774,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BEVERLEY ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="590.29" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="826.029" y="590.29" visibility="1" zValue="56" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="30.6792" outlineWidth="0.3" excludeFromExports="0" uuid="{37694b1e-d86f-406d-b61c-8ce5dfd8c7a6}" height="8.58125" itemRotation="90" frame="false" pagex="826.029">
+   <ComposerItem pagey="590.29" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="801.558" y="590.29" visibility="1" zValue="56" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="30.6792" outlineWidth="0.3" excludeFromExports="0" uuid="{37694b1e-d86f-406d-b61c-8ce5dfd8c7a6}" height="8.58125" itemRotation="90" frame="false" pagex="801.558">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1695,7 +1783,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="QUEENS PARK" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="541.692" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="845.106" y="541.692" visibility="1" zValue="55" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.2938" outlineWidth="0.3" excludeFromExports="0" uuid="{8368e4bb-ff90-4413-a079-6c9539ba7f07}" height="8.58125" itemRotation="90" frame="false" pagex="845.106">
+   <ComposerItem pagey="541.692" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="821.106" y="541.692" visibility="1" zValue="55" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.2938" outlineWidth="0.3" excludeFromExports="0" uuid="{8368e4bb-ff90-4413-a079-6c9539ba7f07}" height="8.58125" itemRotation="90" frame="false" pagex="821.106">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1704,7 +1792,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="CHURCH ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="522.342" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="917.046" y="522.342" visibility="1" zValue="54" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="25.9166" outlineWidth="0.3" excludeFromExports="0" uuid="{a2ac394b-aa00-4d1c-a435-ae16814d001c}" height="8.58125" itemRotation="90" frame="false" pagex="917.046">
+   <ComposerItem pagey="522.342" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="893.046" y="522.342" visibility="1" zValue="54" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="25.9166" outlineWidth="0.3" excludeFromExports="0" uuid="{a2ac394b-aa00-4d1c-a435-ae16814d001c}" height="8.58125" itemRotation="90" frame="false" pagex="893.046">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1785,7 +1873,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BLOOR ST W" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="507.148" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="723.371" y="507.148" visibility="1" zValue="45" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{8dc6f61d-7a78-42d2-bc94-779b21496c1c}" height="8.31667" itemRotation="0" frame="false" pagex="723.371">
+   <ComposerItem pagey="506.148" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="725.842" y="506.148" visibility="1" zValue="45" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="36.5" outlineWidth="0.3" excludeFromExports="0" uuid="{8dc6f61d-7a78-42d2-bc94-779b21496c1c}" height="8.31667" itemRotation="0" frame="false" pagex="725.842">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1794,7 +1882,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="PARLIAMENT ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="557.477" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="981.34" y="557.477" visibility="1" zValue="44" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="33.325" outlineWidth="0.3" excludeFromExports="0" uuid="{a5b2fffe-9cb6-48fa-bbde-0ff0a82e830d}" height="8.58125" itemRotation="90" frame="false" pagex="981.34">
+   <ComposerItem pagey="557.477" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="957.34" y="557.477" visibility="1" zValue="44" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="33.325" outlineWidth="0.3" excludeFromExports="0" uuid="{a5b2fffe-9cb6-48fa-bbde-0ff0a82e830d}" height="8.58125" itemRotation="90" frame="false" pagex="957.34">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1803,7 +1891,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="SHERBOURNE ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="521.229" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="951.765" y="521.229" visibility="1" zValue="43" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.2938" outlineWidth="0.3" excludeFromExports="0" uuid="{586af661-5fbc-47ed-9df1-b90afbebdf3f}" height="8.58125" itemRotation="90" frame="false" pagex="951.765">
+   <ComposerItem pagey="521.229" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="927.765" y="521.229" visibility="1" zValue="43" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="37.2938" outlineWidth="0.3" excludeFromExports="0" uuid="{586af661-5fbc-47ed-9df1-b90afbebdf3f}" height="8.58125" itemRotation="90" frame="false" pagex="927.765">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1812,7 +1900,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="JARVIS ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="532.728" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="931.598" y="532.728" visibility="1" zValue="42" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="21.4187" outlineWidth="0.3" excludeFromExports="0" uuid="{198cc4b5-b71b-4b7f-adb7-a2a6087ce2f2}" height="8.58125" itemRotation="90" frame="false" pagex="931.598">
+   <ComposerItem pagey="532.728" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="907.598" y="532.728" visibility="1" zValue="42" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="21.4187" outlineWidth="0.3" excludeFromExports="0" uuid="{198cc4b5-b71b-4b7f-adb7-a2a6087ce2f2}" height="8.58125" itemRotation="90" frame="false" pagex="907.598">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1821,7 +1909,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="YONGE ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="522.432" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="897.202" y="522.432" visibility="1" zValue="41" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="22.4771" outlineWidth="0.3" excludeFromExports="0" uuid="{9811e57b-fb2a-4b64-8d51-89b00e2e714b}" height="8.58125" itemRotation="90" frame="false" pagex="897.202">
+   <ComposerItem pagey="522.432" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="873.202" y="522.432" visibility="1" zValue="41" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="22.4771" outlineWidth="0.3" excludeFromExports="0" uuid="{9811e57b-fb2a-4b64-8d51-89b00e2e714b}" height="8.58125" itemRotation="90" frame="false" pagex="873.202">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1830,7 +1918,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BAY ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="524.871" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="881.327" y="524.871" visibility="1" zValue="40" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="23.5354" outlineWidth="0.3" excludeFromExports="0" uuid="{26b56d64-ebc1-42a1-858e-281e13a1fde8}" height="8.58125" itemRotation="90" frame="false" pagex="881.327">
+   <ComposerItem pagey="524.871" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="857.327" y="524.871" visibility="1" zValue="40" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="23.5354" outlineWidth="0.3" excludeFromExports="0" uuid="{26b56d64-ebc1-42a1-858e-281e13a1fde8}" height="8.58125" itemRotation="90" frame="false" pagex="857.327">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1839,7 +1927,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="YORK ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="704.743" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="866.805" y="704.743" visibility="1" zValue="39" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="22.4771" outlineWidth="0.3" excludeFromExports="0" uuid="{baf3e00f-fc27-4eef-ac63-f00a79860410}" height="8.58125" itemRotation="90" frame="false" pagex="866.805">
+   <ComposerItem pagey="704.743" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="842.805" y="704.743" visibility="1" zValue="39" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="22.4771" outlineWidth="0.3" excludeFromExports="0" uuid="{baf3e00f-fc27-4eef-ac63-f00a79860410}" height="8.58125" itemRotation="90" frame="false" pagex="842.805">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1848,7 +1936,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="SPADINA AVE" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="589.819" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="802.482" y="589.819" visibility="1" zValue="38" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="33.325" outlineWidth="0.3" excludeFromExports="0" uuid="{6f9c93f9-e994-43d4-a1a0-70810fa3525f}" height="8.58125" itemRotation="90" frame="false" pagex="802.482">
+   <ComposerItem pagey="589.554" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="777.747" y="589.554" visibility="1" zValue="38" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="33.325" outlineWidth="0.3" excludeFromExports="0" uuid="{6f9c93f9-e994-43d4-a1a0-70810fa3525f}" height="8.58125" itemRotation="90" frame="false" pagex="777.747">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -1857,7 +1945,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BATHURST ST" htmlState="0" halign="1">
    <LabelFont description="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="546.867" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="758.825" y="546.867" visibility="1" zValue="37" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="33.325" outlineWidth="0.3" excludeFromExports="0" uuid="{90d6050e-52da-4342-8106-b5afc42f465f}" height="8.58125" itemRotation="90" frame="false" pagex="758.825">
+   <ComposerItem pagey="477.867" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="722.825" y="477.867" visibility="1" zValue="37" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="33.325" outlineWidth="0.3" excludeFromExports="0" uuid="{90d6050e-52da-4342-8106-b5afc42f465f}" height="8.58125" itemRotation="90" frame="false" pagex="722.825">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -2126,7 +2214,7 @@
   <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Street Name&#xa;Traffic Volume" htmlState="0" halign="1">
    <LabelFont description="Arial Narrow,24,-1,5,50,0,0,0,0,0" style=""/>
    <FontColor red="0" blue="0" green="0"/>
-   <ComposerItem pagey="399.215" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="958.781" y="399.215" visibility="1" zValue="7" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="75.4085" outlineWidth="0.3" excludeFromExports="0" uuid="{949369ba-0dd1-4eb3-b1b6-a94ba07d617a}" height="23.5548" itemRotation="0" frame="false" pagex="958.781">
+   <ComposerItem pagey="399.083" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="959.442" y="399.083" visibility="1" zValue="7" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="75.4085" outlineWidth="0.3" excludeFromExports="0" uuid="{949369ba-0dd1-4eb3-b1b6-a94ba07d617a}" height="23.5548" itemRotation="0" frame="false" pagex="959.442">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -2152,7 +2240,7 @@
    </styles>
    <layer-tree-group expanded="1" checked="Qt::Checked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
+    <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Checked" id="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%' OR &quot;lf_name&quot; LIKE '%Drumsnab%' OR &quot;lf_name&quot; LIKE '%Castle Frank%' OR &quot;lf_name&quot; LIKE '%Millwick%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
      <customproperties>
       <property key="legend/title-label" value="Centrelines"/>
      </customproperties>
@@ -2195,7 +2283,7 @@
    <LayerSet>
     <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT *&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 1">2015_L2_Test_120171006105400383</Layer>
     <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">street_centreline_copy20170907130623025</Layer>
-    <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
+    <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%' OR &quot;lf_name&quot; LIKE '%Drumsnab%' OR &quot;lf_name&quot; LIKE '%Castle Frank%' OR &quot;lf_name&quot; LIKE '%Millwick%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
     <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
    </LayerSet>
    <LayerStyles>
@@ -2843,7 +2931,7 @@ def my_form_open(dialog, layer, feature):
       <layerGeometryType>1</layerGeometryType>
      </qgis>
     </LayerStyle>
-    <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
+    <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%' OR &quot;lf_name&quot; LIKE '%Drumsnab%' OR &quot;lf_name&quot; LIKE '%Castle Frank%' OR &quot;lf_name&quot; LIKE '%Millwick%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
      <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <edittypes>
        <edittype widgetv2type="TextEdit" name="gid">
@@ -3654,1448 +3742,15 @@ def my_form_open(dialog, layer, feature):
     <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
    </ComposerMapGrid>
    <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-   <ComposerItem pagey="608.914" page="1" id="" lastValidViewScaleFactor="4.18137" positionMode="0" positionLock="false" x="30.2193" y="608.914" visibility="1" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="658" outlineWidth="0.3" excludeFromExports="0" uuid="{dde04966-4ced-481d-a9d1-fed2946fb3e9}" height="226.489" itemRotation="0" frame="true" pagex="30.2193">
+   <ComposerItem pagey="608.914" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="30.2193" y="608.914" visibility="1" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="658" outlineWidth="0.3" excludeFromExports="0" uuid="{dde04966-4ced-481d-a9d1-fed2946fb3e9}" height="226.489" itemRotation="0" frame="true" pagex="30.2193">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
    </ComposerItem>
   </ComposerMap>
-  <ComposerMap followPreset="false" mapRotation="17.5" keepLayerSet="true" followPresetName="" id="1" previewMode="Cache" drawCanvasItems="true">
-   <Extent ymin="4832930.75304810889065266" xmin="627908.00697075249627233" ymax="4837364.58046290557831526" xmax="633533.00697648990899324"/>
-   <LayerSet>
-    <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT l2_group_number, linear_name_full, fcode_desc, dir_bin, year, avg_vol, st_transform(geom,26917) as geom&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 2">2015_L2_Test_220171010102916076</Layer>
-    <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">street_centreline_copy20170907130623025</Layer>
-    <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
-    <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
-   </LayerSet>
-   <LayerStyles>
-    <LayerStyle provider="postgres" layerid="2015_L2_Test_220171010102916076" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT l2_group_number, linear_name_full, fcode_desc, dir_bin, year, avg_vol, st_transform(geom,26917) as geom&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 2">
-     <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <edittypes>
-       <edittype widgetv2type="TextEdit" name="l2_group_number">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="linear_name_full">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="fcode_desc">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="dir_bin">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="year">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="avg_vol">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-      </edittypes>
-      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol" enableorderby="0">
-       <symbols>
-        <symbol alpha="0" clip_to_extent="1" type="line" name="0">
-         <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="5;2"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="125,125,125,255"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="0.26"/>
-          <prop k="line_width_unit" v="MM"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="0"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-         </layer>
-         <layer pass="0" class="MarkerLine" locked="0">
-          <prop k="interval" v="3"/>
-          <prop k="interval_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="interval_unit" v="MM"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_along_line" v="0"/>
-          <prop k="offset_along_line_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_along_line_unit" v="MM"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="placement" v="centralpoint"/>
-          <prop k="rotate" v="1"/>
-          <symbol alpha="0" clip_to_extent="1" type="marker" name="@0@1">
-           <layer pass="0" class="SimpleMarker" locked="0">
-            <prop k="angle" v="0"/>
-            <prop k="color" v="255,127,0,255"/>
-            <prop k="horizontal_anchor_point" v="1"/>
-            <prop k="joinstyle" v="bevel"/>
-            <prop k="name" v="filled_arrowhead"/>
-            <prop k="offset" v="0,0"/>
-            <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-            <prop k="offset_unit" v="MM"/>
-            <prop k="outline_color" v="0,0,0,255"/>
-            <prop k="outline_style" v="solid"/>
-            <prop k="outline_width" v="0"/>
-            <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-            <prop k="outline_width_unit" v="MM"/>
-            <prop k="scale_method" v="area"/>
-            <prop k="size" v="4"/>
-            <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-            <prop k="size_unit" v="MM"/>
-            <prop k="vertical_anchor_point" v="1"/>
-           </layer>
-          </symbol>
-         </layer>
-        </symbol>
-       </symbols>
-       <rotation/>
-       <sizescale scalemethod="diameter"/>
-      </renderer-v2>
-      <labeling type="rule-based">
-       <rules key="{ebb2ead9-d201-4078-8dd0-d40aabe54231}">
-        <rule scalemaxdenom="50000" description="Main map, EB NB" filter="(dir_bin = 1) AND NOT(&quot;fcode_desc&quot; = 'Expressway' AND &quot;linear_name_full&quot; LIKE '%Gardiner%')&#xd;&#xa;AND NOT(within($geometry, geometry(get_feature('void_box','id',1))))" key="{db4cac2c-f82f-4f92-adf2-18b08ae8ec16}" scalemindenom="35000">
-         <settings>
-          <text-style fontItalic="0" fontFamily="MS Shell Dlg 2" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="10" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
-           <substitutions/>
-          </text-style>
-          <text-format placeDirectionSymbol="0" multilineAlign="0" rightDirectionSymbol=">" multilineHeight="1" plussign="0" addDirectionSymbol="0" leftDirectionSymbol="&lt;" formatNumbers="0" decimals="3" wrapChar="" reverseDirectionSymbol="0"/>
-          <text-buffer bufferSize="1" bufferSizeMapUnitScale="0,0,0,0,0,0" bufferColor="255,255,255,255" bufferDraw="0" bufferBlendMode="0" bufferTransp="0" bufferSizeInMapUnits="0" bufferNoFill="0" bufferJoinStyle="64"/>
-          <background shapeSizeUnits="1" shapeType="0" shapeSVGFile="" shapeOffsetX="0" shapeOffsetY="0" shapeBlendMode="0" shapeFillColor="255,255,255,255" shapeTransparency="0" shapeSizeMapUnitScale="0,0,0,0,0,0" shapeSizeType="0" shapeJoinStyle="64" shapeDraw="0" shapeBorderWidthUnits="1" shapeSizeX="0" shapeSizeY="0" shapeOffsetMapUnitScale="0,0,0,0,0,0" shapeRadiiX="0" shapeRadiiY="0" shapeOffsetUnits="1" shapeRotation="0" shapeBorderWidth="0" shapeBorderColor="128,128,128,255" shapeRotationType="0" shapeBorderWidthMapUnitScale="0,0,0,0,0,0" shapeRadiiMapUnitScale="0,0,0,0,0,0" shapeRadiiUnits="1"/>
-          <shadow shadowOffsetMapUnitScale="0,0,0,0,0,0" shadowOffsetGlobal="1" shadowRadiusUnits="1" shadowTransparency="30" shadowColor="0,0,0,255" shadowUnder="0" shadowScale="100" shadowOffsetDist="1" shadowDraw="0" shadowOffsetAngle="135" shadowRadius="1.5" shadowRadiusMapUnitScale="0,0,0,0,0,0" shadowBlendMode="6" shadowRadiusAlphaOnly="0" shadowOffsetUnits="1"/>
-          <placement repeatDistanceUnit="1" placement="2" repeatDistance="0" maxCurvedCharAngleIn="20" distInMapUnits="0" labelOffsetInMapUnits="1" xOffset="0" distMapUnitScale="0,0,0,0,0,0" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" repeatDistanceMapUnitScale="0,0,0,0,0,0" preserveRotation="1" centroidWhole="0" priority="5" yOffset="0" offsetType="0" placementFlags="4" centroidInside="0" dist="0" angleOffset="0" maxCurvedCharAngleOut="-20" fitInPolygonOnly="0" quadOffset="4" labelOffsetMapUnitScale="0,0,0,0,0,0"/>
-          <rendering fontMinPixelSize="3" scaleMax="100000" fontMaxPixelSize="10000" scaleMin="150000" upsidedownLabels="0" limitNumLabels="0" obstacle="1" obstacleFactor="2" scaleVisibility="0" fontLimitPixelSize="0" mergeLines="1" obstacleType="0" labelPerPart="0" zIndex="0" maxNumLabels="2000" displayAll="0" minFeatureSize="10"/>
-          <data-defined/>
-         </settings>
-        </rule>
-        <rule scalemaxdenom="50000" description="Main Map, WB SB" filter="(dir_bin = -1) AND NOT(&quot;fcode_desc&quot; = 'Expressway' AND &quot;linear_name_full&quot; LIKE '%Gardiner%')&#xd;&#xa;AND NOT(within($geometry, geometry(get_feature('void_box','id',1))))" key="{2eb84494-f514-4dc8-bb1d-85b7399b737a}" scalemindenom="35000">
-         <settings>
-          <text-style fontItalic="0" fontFamily="MS Shell Dlg 2" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="10" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
-           <substitutions/>
-          </text-style>
-          <text-format placeDirectionSymbol="0" multilineAlign="0" rightDirectionSymbol=">" multilineHeight="1" plussign="0" addDirectionSymbol="0" leftDirectionSymbol="&lt;" formatNumbers="0" decimals="3" wrapChar="" reverseDirectionSymbol="0"/>
-          <text-buffer bufferSize="1" bufferSizeMapUnitScale="0,0,0,0,0,0" bufferColor="255,255,255,255" bufferDraw="0" bufferBlendMode="0" bufferTransp="0" bufferSizeInMapUnits="0" bufferNoFill="0" bufferJoinStyle="64"/>
-          <background shapeSizeUnits="1" shapeType="0" shapeSVGFile="" shapeOffsetX="0" shapeOffsetY="0" shapeBlendMode="0" shapeFillColor="255,255,255,255" shapeTransparency="0" shapeSizeMapUnitScale="0,0,0,0,0,0" shapeSizeType="0" shapeJoinStyle="64" shapeDraw="0" shapeBorderWidthUnits="1" shapeSizeX="0" shapeSizeY="0" shapeOffsetMapUnitScale="0,0,0,0,0,0" shapeRadiiX="0" shapeRadiiY="0" shapeOffsetUnits="1" shapeRotation="0" shapeBorderWidth="0" shapeBorderColor="128,128,128,255" shapeRotationType="0" shapeBorderWidthMapUnitScale="0,0,0,0,0,0" shapeRadiiMapUnitScale="0,0,0,0,0,0" shapeRadiiUnits="1"/>
-          <shadow shadowOffsetMapUnitScale="0,0,0,0,0,0" shadowOffsetGlobal="1" shadowRadiusUnits="1" shadowTransparency="30" shadowColor="0,0,0,255" shadowUnder="0" shadowScale="100" shadowOffsetDist="1" shadowDraw="0" shadowOffsetAngle="135" shadowRadius="1.5" shadowRadiusMapUnitScale="0,0,0,0,0,0" shadowBlendMode="6" shadowRadiusAlphaOnly="0" shadowOffsetUnits="1"/>
-          <placement repeatDistanceUnit="1" placement="2" repeatDistance="0" maxCurvedCharAngleIn="20" distInMapUnits="0" labelOffsetInMapUnits="1" xOffset="0" distMapUnitScale="0,0,0,0,0,0" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" repeatDistanceMapUnitScale="0,0,0,0,0,0" preserveRotation="1" centroidWhole="0" priority="5" yOffset="0" offsetType="0" placementFlags="4" centroidInside="0" dist="0" angleOffset="0" maxCurvedCharAngleOut="-20" fitInPolygonOnly="0" quadOffset="4" labelOffsetMapUnitScale="0,0,0,0,0,0"/>
-          <rendering fontMinPixelSize="3" scaleMax="100000" fontMaxPixelSize="10000" scaleMin="150000" upsidedownLabels="0" limitNumLabels="0" obstacle="1" obstacleFactor="0" scaleVisibility="0" fontLimitPixelSize="0" mergeLines="1" obstacleType="0" labelPerPart="0" zIndex="0" maxNumLabels="2000" displayAll="0" minFeatureSize="10"/>
-          <data-defined/>
-         </settings>
-        </rule>
-        <rule scalemaxdenom="35000" description="FGG EB" filter="(dir_bin = 1) AND (fcode_desc = 'Expressway')" key="{de77f246-0165-456e-89ce-b251b7e0b5f8}" scalemindenom="25000">
-         <settings>
-          <text-style fontItalic="0" fontFamily="MS Shell Dlg 2" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="15" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
-           <substitutions/>
-          </text-style>
-          <text-format placeDirectionSymbol="0" multilineAlign="0" rightDirectionSymbol=">" multilineHeight="1" plussign="0" addDirectionSymbol="0" leftDirectionSymbol="&lt;" formatNumbers="0" decimals="3" wrapChar="" reverseDirectionSymbol="0"/>
-          <text-buffer bufferSize="1" bufferSizeMapUnitScale="0,0,0,0,0,0" bufferColor="255,255,255,255" bufferDraw="0" bufferBlendMode="0" bufferTransp="0" bufferSizeInMapUnits="0" bufferNoFill="0" bufferJoinStyle="64"/>
-          <background shapeSizeUnits="1" shapeType="0" shapeSVGFile="" shapeOffsetX="0" shapeOffsetY="0" shapeBlendMode="0" shapeFillColor="255,255,255,255" shapeTransparency="0" shapeSizeMapUnitScale="0,0,0,0,0,0" shapeSizeType="0" shapeJoinStyle="64" shapeDraw="0" shapeBorderWidthUnits="1" shapeSizeX="0" shapeSizeY="0" shapeOffsetMapUnitScale="0,0,0,0,0,0" shapeRadiiX="0" shapeRadiiY="0" shapeOffsetUnits="1" shapeRotation="0" shapeBorderWidth="0" shapeBorderColor="128,128,128,255" shapeRotationType="0" shapeBorderWidthMapUnitScale="0,0,0,0,0,0" shapeRadiiMapUnitScale="0,0,0,0,0,0" shapeRadiiUnits="1"/>
-          <shadow shadowOffsetMapUnitScale="0,0,0,0,0,0" shadowOffsetGlobal="1" shadowRadiusUnits="1" shadowTransparency="30" shadowColor="0,0,0,255" shadowUnder="0" shadowScale="100" shadowOffsetDist="1" shadowDraw="0" shadowOffsetAngle="135" shadowRadius="1.5" shadowRadiusMapUnitScale="0,0,0,0,0,0" shadowBlendMode="6" shadowRadiusAlphaOnly="0" shadowOffsetUnits="1"/>
-          <placement repeatDistanceUnit="1" placement="2" repeatDistance="0" maxCurvedCharAngleIn="20" distInMapUnits="0" labelOffsetInMapUnits="1" xOffset="0" distMapUnitScale="0,0,0,0,0,0" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" repeatDistanceMapUnitScale="0,0,0,0,0,0" preserveRotation="1" centroidWhole="0" priority="10" yOffset="0" offsetType="0" placementFlags="12" centroidInside="0" dist="0" angleOffset="0" maxCurvedCharAngleOut="-20" fitInPolygonOnly="0" quadOffset="4" labelOffsetMapUnitScale="0,0,0,0,0,0"/>
-          <rendering fontMinPixelSize="3" scaleMax="30000" fontMaxPixelSize="10000" scaleMin="60000" upsidedownLabels="0" limitNumLabels="0" obstacle="0" obstacleFactor="1" scaleVisibility="0" fontLimitPixelSize="0" mergeLines="1" obstacleType="0" labelPerPart="0" zIndex="0" maxNumLabels="2000" displayAll="0" minFeatureSize="0"/>
-          <data-defined/>
-         </settings>
-        </rule>
-        <rule scalemaxdenom="35000" description="FGG WB" filter="(dir_bin = -1) AND (fcode_desc = 'Expressway') AND NOT(l2_group_number = 40917)" key="{3d39e93d-5d6a-43bd-a104-10a5b8aa58f8}" scalemindenom="25000">
-         <settings>
-          <text-style fontItalic="0" fontFamily="MS Shell Dlg 2" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="15" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
-           <substitutions/>
-          </text-style>
-          <text-format placeDirectionSymbol="0" multilineAlign="0" rightDirectionSymbol=">" multilineHeight="1" plussign="0" addDirectionSymbol="0" leftDirectionSymbol="&lt;" formatNumbers="0" decimals="3" wrapChar="" reverseDirectionSymbol="0"/>
-          <text-buffer bufferSize="1" bufferSizeMapUnitScale="0,0,0,0,0,0" bufferColor="255,255,255,255" bufferDraw="0" bufferBlendMode="0" bufferTransp="0" bufferSizeInMapUnits="0" bufferNoFill="0" bufferJoinStyle="64"/>
-          <background shapeSizeUnits="1" shapeType="0" shapeSVGFile="" shapeOffsetX="0" shapeOffsetY="0" shapeBlendMode="0" shapeFillColor="255,255,255,255" shapeTransparency="0" shapeSizeMapUnitScale="0,0,0,0,0,0" shapeSizeType="0" shapeJoinStyle="64" shapeDraw="0" shapeBorderWidthUnits="1" shapeSizeX="0" shapeSizeY="0" shapeOffsetMapUnitScale="0,0,0,0,0,0" shapeRadiiX="0" shapeRadiiY="0" shapeOffsetUnits="1" shapeRotation="0" shapeBorderWidth="0" shapeBorderColor="128,128,128,255" shapeRotationType="0" shapeBorderWidthMapUnitScale="0,0,0,0,0,0" shapeRadiiMapUnitScale="0,0,0,0,0,0" shapeRadiiUnits="1"/>
-          <shadow shadowOffsetMapUnitScale="0,0,0,0,0,0" shadowOffsetGlobal="1" shadowRadiusUnits="1" shadowTransparency="30" shadowColor="0,0,0,255" shadowUnder="0" shadowScale="100" shadowOffsetDist="1" shadowDraw="0" shadowOffsetAngle="135" shadowRadius="1.5" shadowRadiusMapUnitScale="0,0,0,0,0,0" shadowBlendMode="6" shadowRadiusAlphaOnly="0" shadowOffsetUnits="1"/>
-          <placement repeatDistanceUnit="1" placement="2" repeatDistance="0" maxCurvedCharAngleIn="20" distInMapUnits="0" labelOffsetInMapUnits="1" xOffset="0" distMapUnitScale="0,0,0,0,0,0" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" repeatDistanceMapUnitScale="0,0,0,0,0,0" preserveRotation="1" centroidWhole="0" priority="10" yOffset="0" offsetType="0" placementFlags="10" centroidInside="0" dist="0" angleOffset="0" maxCurvedCharAngleOut="-20" fitInPolygonOnly="0" quadOffset="4" labelOffsetMapUnitScale="0,0,0,0,0,0"/>
-          <rendering fontMinPixelSize="3" scaleMax="10000000" fontMaxPixelSize="10000" scaleMin="1" upsidedownLabels="0" limitNumLabels="0" obstacle="0" obstacleFactor="1" scaleVisibility="0" fontLimitPixelSize="0" mergeLines="1" obstacleType="0" labelPerPart="0" zIndex="0" maxNumLabels="2000" displayAll="0" minFeatureSize="0"/>
-          <data-defined/>
-         </settings>
-        </rule>
-        <rule scalemaxdenom="25000" description="Downtown EB NB" filter="(dir_bin = 1) AND NOT(fcode_desc = 'Expressway')" key="{adb72509-0bad-47e5-aa63-90637b45996f}" scalemindenom="1000">
-         <settings>
-          <text-style fontItalic="0" fontFamily="Arial Narrow" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="10" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
-           <substitutions/>
-          </text-style>
-          <text-format placeDirectionSymbol="0" multilineAlign="0" rightDirectionSymbol=">" multilineHeight="1" plussign="0" addDirectionSymbol="0" leftDirectionSymbol="&lt;" formatNumbers="0" decimals="3" wrapChar="" reverseDirectionSymbol="0"/>
-          <text-buffer bufferSize="1" bufferSizeMapUnitScale="0,0,0,0,0,0" bufferColor="255,255,255,255" bufferDraw="0" bufferBlendMode="0" bufferTransp="0" bufferSizeInMapUnits="0" bufferNoFill="0" bufferJoinStyle="64"/>
-          <background shapeSizeUnits="1" shapeType="0" shapeSVGFile="" shapeOffsetX="0" shapeOffsetY="0" shapeBlendMode="0" shapeFillColor="255,255,255,255" shapeTransparency="0" shapeSizeMapUnitScale="0,0,0,0,0,0" shapeSizeType="0" shapeJoinStyle="64" shapeDraw="0" shapeBorderWidthUnits="1" shapeSizeX="0" shapeSizeY="0" shapeOffsetMapUnitScale="0,0,0,0,0,0" shapeRadiiX="0" shapeRadiiY="0" shapeOffsetUnits="1" shapeRotation="0" shapeBorderWidth="0" shapeBorderColor="128,128,128,255" shapeRotationType="0" shapeBorderWidthMapUnitScale="0,0,0,0,0,0" shapeRadiiMapUnitScale="0,0,0,0,0,0" shapeRadiiUnits="1"/>
-          <shadow shadowOffsetMapUnitScale="0,0,0,0,0,0" shadowOffsetGlobal="1" shadowRadiusUnits="1" shadowTransparency="30" shadowColor="0,0,0,255" shadowUnder="0" shadowScale="100" shadowOffsetDist="1" shadowDraw="0" shadowOffsetAngle="135" shadowRadius="1.5" shadowRadiusMapUnitScale="0,0,0,0,0,0" shadowBlendMode="6" shadowRadiusAlphaOnly="0" shadowOffsetUnits="1"/>
-          <placement repeatDistanceUnit="1" placement="2" repeatDistance="0" maxCurvedCharAngleIn="20" distInMapUnits="0" labelOffsetInMapUnits="1" xOffset="0" distMapUnitScale="0,0,0,0,0,0" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" repeatDistanceMapUnitScale="0,0,0,0,0,0" preserveRotation="1" centroidWhole="0" priority="5" yOffset="0" offsetType="0" placementFlags="4" centroidInside="0" dist="0" angleOffset="0" maxCurvedCharAngleOut="-20" fitInPolygonOnly="0" quadOffset="4" labelOffsetMapUnitScale="0,0,0,0,0,0"/>
-          <rendering fontMinPixelSize="3" scaleMax="10000000" fontMaxPixelSize="10000" scaleMin="1" upsidedownLabels="0" limitNumLabels="0" obstacle="0" obstacleFactor="1" scaleVisibility="0" fontLimitPixelSize="0" mergeLines="1" obstacleType="0" labelPerPart="0" zIndex="0" maxNumLabels="2000" displayAll="0" minFeatureSize="9"/>
-          <data-defined/>
-         </settings>
-        </rule>
-        <rule scalemaxdenom="25000" description="Downtown WB SB" filter="(dir_bin = -1) AND NOT(fcode_desc = 'Expressway')" key="{9ca367be-fcba-4aee-93c8-645e3cc39d79}" scalemindenom="1000">
-         <settings>
-          <text-style fontItalic="0" fontFamily="Arial Narrow" fontLetterSpacing="0" fontUnderline="0" fontWeight="50" fontStrikeout="0" textTransp="0" previewBkgrdColor="#ffffff" fontCapitals="0" textColor="0,0,0,255" fontSizeInMapUnits="0" isExpression="1" blendMode="0" fontSizeMapUnitScale="0,0,0,0,0,0" fontSize="10" fieldName="format_number(round(avg_vol,-1) ,0)" namedStyle="Normal" fontWordSpacing="0" useSubstitutions="0">
-           <substitutions/>
-          </text-style>
-          <text-format placeDirectionSymbol="0" multilineAlign="0" rightDirectionSymbol=">" multilineHeight="1" plussign="0" addDirectionSymbol="0" leftDirectionSymbol="&lt;" formatNumbers="0" decimals="3" wrapChar="" reverseDirectionSymbol="0"/>
-          <text-buffer bufferSize="1" bufferSizeMapUnitScale="0,0,0,0,0,0" bufferColor="255,255,255,255" bufferDraw="0" bufferBlendMode="0" bufferTransp="0" bufferSizeInMapUnits="0" bufferNoFill="0" bufferJoinStyle="64"/>
-          <background shapeSizeUnits="1" shapeType="0" shapeSVGFile="" shapeOffsetX="0" shapeOffsetY="0" shapeBlendMode="0" shapeFillColor="255,255,255,255" shapeTransparency="0" shapeSizeMapUnitScale="0,0,0,0,0,0" shapeSizeType="0" shapeJoinStyle="64" shapeDraw="0" shapeBorderWidthUnits="1" shapeSizeX="0" shapeSizeY="0" shapeOffsetMapUnitScale="0,0,0,0,0,0" shapeRadiiX="0" shapeRadiiY="0" shapeOffsetUnits="1" shapeRotation="0" shapeBorderWidth="0" shapeBorderColor="128,128,128,255" shapeRotationType="0" shapeBorderWidthMapUnitScale="0,0,0,0,0,0" shapeRadiiMapUnitScale="0,0,0,0,0,0" shapeRadiiUnits="1"/>
-          <shadow shadowOffsetMapUnitScale="0,0,0,0,0,0" shadowOffsetGlobal="1" shadowRadiusUnits="1" shadowTransparency="30" shadowColor="0,0,0,255" shadowUnder="0" shadowScale="100" shadowOffsetDist="1" shadowDraw="0" shadowOffsetAngle="135" shadowRadius="1.5" shadowRadiusMapUnitScale="0,0,0,0,0,0" shadowBlendMode="6" shadowRadiusAlphaOnly="0" shadowOffsetUnits="1"/>
-          <placement repeatDistanceUnit="1" placement="2" repeatDistance="0" maxCurvedCharAngleIn="20" distInMapUnits="0" labelOffsetInMapUnits="1" xOffset="0" distMapUnitScale="0,0,0,0,0,0" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" repeatDistanceMapUnitScale="0,0,0,0,0,0" preserveRotation="1" centroidWhole="0" priority="5" yOffset="0" offsetType="0" placementFlags="4" centroidInside="0" dist="0" angleOffset="0" maxCurvedCharAngleOut="-20" fitInPolygonOnly="0" quadOffset="4" labelOffsetMapUnitScale="0,0,0,0,0,0"/>
-          <rendering fontMinPixelSize="3" scaleMax="10000000" fontMaxPixelSize="10000" scaleMin="1" upsidedownLabels="0" limitNumLabels="0" obstacle="0" obstacleFactor="1" scaleVisibility="0" fontLimitPixelSize="0" mergeLines="1" obstacleType="0" labelPerPart="0" zIndex="0" maxNumLabels="2000" displayAll="0" minFeatureSize="9"/>
-          <data-defined/>
-         </settings>
-        </rule>
-       </rules>
-      </labeling>
-      <customproperties>
-       <property key="embeddedWidgets/count" value="0"/>
-       <property key="variableNames"/>
-       <property key="variableValues"/>
-      </customproperties>
-      <blendMode>0</blendMode>
-      <featureBlendMode>0</featureBlendMode>
-      <layerTransparency>0</layerTransparency>
-      <displayfield>linear_name_full</displayfield>
-      <label>0</label>
-      <labelattributes>
-       <label fieldname="" text="Label"/>
-       <family fieldname="" name="MS Shell Dlg 2"/>
-       <size fieldname="" units="pt" value="12"/>
-       <bold fieldname="" on="0"/>
-       <italic fieldname="" on="0"/>
-       <underline fieldname="" on="0"/>
-       <strikeout fieldname="" on="0"/>
-       <color fieldname="" red="0" blue="0" green="0"/>
-       <x fieldname=""/>
-       <y fieldname=""/>
-       <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
-       <angle fieldname="" value="0" auto="0"/>
-       <alignment fieldname="" value="center"/>
-       <buffercolor fieldname="" red="255" blue="255" green="255"/>
-       <buffersize fieldname="" units="pt" value="1"/>
-       <bufferenabled fieldname="" on=""/>
-       <multilineenabled fieldname="" on=""/>
-       <selectedonly on=""/>
-      </labelattributes>
-      <SingleCategoryDiagramRenderer diagramType="Histogram" sizeLegend="0" attributeLegend="1">
-       <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="inf">
-        <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
-        <attribute field="" color="#000000" label=""/>
-       </DiagramCategory>
-       <symbol alpha="1" clip_to_extent="1" type="marker" name="sizeSymbol">
-        <layer pass="0" class="SimpleMarker" locked="0">
-         <prop k="angle" v="0"/>
-         <prop k="color" v="255,0,0,255"/>
-         <prop k="horizontal_anchor_point" v="1"/>
-         <prop k="joinstyle" v="bevel"/>
-         <prop k="name" v="circle"/>
-         <prop k="offset" v="0,0"/>
-         <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="offset_unit" v="MM"/>
-         <prop k="outline_color" v="0,0,0,255"/>
-         <prop k="outline_style" v="solid"/>
-         <prop k="outline_width" v="0"/>
-         <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="outline_width_unit" v="MM"/>
-         <prop k="scale_method" v="diameter"/>
-         <prop k="size" v="2"/>
-         <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="size_unit" v="MM"/>
-         <prop k="vertical_anchor_point" v="1"/>
-        </layer>
-       </symbol>
-      </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings yPosColumn="-1" showColumn="-1" linePlacementFlags="10" placement="2" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
-      <annotationform>.</annotationform>
-      <aliases>
-       <alias field="l2_group_number" index="0" name=""/>
-       <alias field="linear_name_full" index="1" name=""/>
-       <alias field="fcode_desc" index="2" name=""/>
-       <alias field="dir_bin" index="3" name=""/>
-       <alias field="year" index="4" name=""/>
-       <alias field="avg_vol" index="5" name=""/>
-      </aliases>
-      <excludeAttributesWMS/>
-      <excludeAttributesWFS/>
-      <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-       <columns>
-        <column width="-1" hidden="0" type="field" name="l2_group_number"/>
-        <column width="-1" hidden="0" type="field" name="linear_name_full"/>
-        <column width="-1" hidden="0" type="field" name="fcode_desc"/>
-        <column width="-1" hidden="0" type="field" name="dir_bin"/>
-        <column width="-1" hidden="0" type="field" name="year"/>
-        <column width="-1" hidden="0" type="field" name="avg_vol"/>
-        <column width="-1" hidden="1" type="actions"/>
-       </columns>
-      </attributetableconfig>
-      <editform>.</editform>
-      <editforminit/>
-      <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
-"""
-QGIS forms can have a Python function that is called when the form is
-opened.
-
-Use this function to add extra logic to your forms.
-
-Enter the name of the function in the "Python Init function"
-field.
-An example follows:
-"""
-from PyQt4.QtGui import QWidget
-
-def my_form_open(dialog, layer, feature):
-	geom = feature.geometry()
-	control = dialog.findChild(QWidget, "MyLineEdit")
-]]></editforminitcode>
-      <featformsuppress>0</featformsuppress>
-      <editorlayout>generatedlayout</editorlayout>
-      <widgets/>
-      <conditionalstyles>
-       <rowstyles/>
-       <fieldstyles/>
-      </conditionalstyles>
-      <defaults>
-       <default field="l2_group_number" expression=""/>
-       <default field="linear_name_full" expression=""/>
-       <default field="fcode_desc" expression=""/>
-       <default field="dir_bin" expression=""/>
-       <default field="year" expression=""/>
-       <default field="avg_vol" expression=""/>
-      </defaults>
-      <previewExpression>COALESCE( "linear_name_full", '&lt;NULL>' )</previewExpression>
-      <layerGeometryType>1</layerGeometryType>
-     </qgis>
-    </LayerStyle>
-    <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
-     <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <edittypes>
-       <edittype widgetv2type="TextEdit" name="GEO_ID">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="LFN_ID">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="LF_NAME">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="ADDRESS_L">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="ADDRESS_R">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="OE_FLAG_L">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="OE_FLAG_R">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="LONUML">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="HINUML">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="LONUMR">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="HINUMR">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="FNODE">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="TNODE">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="FCODE">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="FCODE_DESC">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="JURIS_CODE">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="OBJECTID">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-      </edittypes>
-      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol" enableorderby="0">
-       <symbols>
-        <symbol alpha="1" clip_to_extent="1" type="line" name="0">
-         <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="5;2"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="210,210,210,255"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="0.26"/>
-          <prop k="line_width_unit" v="MM"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="0"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-         </layer>
-        </symbol>
-       </symbols>
-       <rotation/>
-       <sizescale scalemethod="diameter"/>
-      </renderer-v2>
-      <labeling type="simple"/>
-      <customproperties>
-       <property key="embeddedWidgets/count" value="0"/>
-       <property key="labeling" value="pal"/>
-       <property key="labeling/addDirectionSymbol" value="false"/>
-       <property key="labeling/angleOffset" value="0"/>
-       <property key="labeling/blendMode" value="0"/>
-       <property key="labeling/bufferBlendMode" value="0"/>
-       <property key="labeling/bufferColorA" value="255"/>
-       <property key="labeling/bufferColorB" value="255"/>
-       <property key="labeling/bufferColorG" value="255"/>
-       <property key="labeling/bufferColorR" value="255"/>
-       <property key="labeling/bufferDraw" value="false"/>
-       <property key="labeling/bufferJoinStyle" value="64"/>
-       <property key="labeling/bufferNoFill" value="false"/>
-       <property key="labeling/bufferSize" value="1"/>
-       <property key="labeling/bufferSizeInMapUnits" value="false"/>
-       <property key="labeling/bufferSizeMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/bufferTransp" value="0"/>
-       <property key="labeling/centroidInside" value="false"/>
-       <property key="labeling/centroidWhole" value="false"/>
-       <property key="labeling/decimals" value="3"/>
-       <property key="labeling/displayAll" value="false"/>
-       <property key="labeling/dist" value="0"/>
-       <property key="labeling/distInMapUnits" value="false"/>
-       <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/drawLabels" value="false"/>
-       <property key="labeling/enabled" value="true"/>
-       <property key="labeling/fieldName" value=""/>
-       <property key="labeling/fitInPolygonOnly" value="false"/>
-       <property key="labeling/fontCapitals" value="0"/>
-       <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
-       <property key="labeling/fontItalic" value="false"/>
-       <property key="labeling/fontLetterSpacing" value="0"/>
-       <property key="labeling/fontLimitPixelSize" value="false"/>
-       <property key="labeling/fontMaxPixelSize" value="10000"/>
-       <property key="labeling/fontMinPixelSize" value="3"/>
-       <property key="labeling/fontSize" value="8.25"/>
-       <property key="labeling/fontSizeInMapUnits" value="false"/>
-       <property key="labeling/fontSizeMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/fontStrikeout" value="false"/>
-       <property key="labeling/fontUnderline" value="false"/>
-       <property key="labeling/fontWeight" value="50"/>
-       <property key="labeling/fontWordSpacing" value="0"/>
-       <property key="labeling/formatNumbers" value="false"/>
-       <property key="labeling/isExpression" value="true"/>
-       <property key="labeling/labelOffsetInMapUnits" value="true"/>
-       <property key="labeling/labelOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/labelPerPart" value="false"/>
-       <property key="labeling/leftDirectionSymbol" value="&lt;"/>
-       <property key="labeling/limitNumLabels" value="false"/>
-       <property key="labeling/maxCurvedCharAngleIn" value="20"/>
-       <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
-       <property key="labeling/maxNumLabels" value="2000"/>
-       <property key="labeling/mergeLines" value="false"/>
-       <property key="labeling/minFeatureSize" value="0"/>
-       <property key="labeling/multilineAlign" value="0"/>
-       <property key="labeling/multilineHeight" value="1"/>
-       <property key="labeling/namedStyle" value="Normal"/>
-       <property key="labeling/obstacle" value="true"/>
-       <property key="labeling/obstacleFactor" value="1"/>
-       <property key="labeling/obstacleType" value="0"/>
-       <property key="labeling/offsetType" value="0"/>
-       <property key="labeling/placeDirectionSymbol" value="0"/>
-       <property key="labeling/placement" value="2"/>
-       <property key="labeling/placementFlags" value="10"/>
-       <property key="labeling/plussign" value="false"/>
-       <property key="labeling/predefinedPositionOrder" value="TR,TL,BR,BL,R,L,TSR,BSR"/>
-       <property key="labeling/preserveRotation" value="true"/>
-       <property key="labeling/previewBkgrdColor" value="#ffffff"/>
-       <property key="labeling/priority" value="5"/>
-       <property key="labeling/quadOffset" value="4"/>
-       <property key="labeling/repeatDistance" value="0"/>
-       <property key="labeling/repeatDistanceMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/repeatDistanceUnit" value="1"/>
-       <property key="labeling/reverseDirectionSymbol" value="false"/>
-       <property key="labeling/rightDirectionSymbol" value=">"/>
-       <property key="labeling/scaleMax" value="10000000"/>
-       <property key="labeling/scaleMin" value="1"/>
-       <property key="labeling/scaleVisibility" value="false"/>
-       <property key="labeling/shadowBlendMode" value="6"/>
-       <property key="labeling/shadowColorB" value="0"/>
-       <property key="labeling/shadowColorG" value="0"/>
-       <property key="labeling/shadowColorR" value="0"/>
-       <property key="labeling/shadowDraw" value="false"/>
-       <property key="labeling/shadowOffsetAngle" value="135"/>
-       <property key="labeling/shadowOffsetDist" value="1"/>
-       <property key="labeling/shadowOffsetGlobal" value="true"/>
-       <property key="labeling/shadowOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shadowOffsetUnits" value="1"/>
-       <property key="labeling/shadowRadius" value="1.5"/>
-       <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
-       <property key="labeling/shadowRadiusMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shadowRadiusUnits" value="1"/>
-       <property key="labeling/shadowScale" value="100"/>
-       <property key="labeling/shadowTransparency" value="30"/>
-       <property key="labeling/shadowUnder" value="0"/>
-       <property key="labeling/shapeBlendMode" value="0"/>
-       <property key="labeling/shapeBorderColorA" value="255"/>
-       <property key="labeling/shapeBorderColorB" value="128"/>
-       <property key="labeling/shapeBorderColorG" value="128"/>
-       <property key="labeling/shapeBorderColorR" value="128"/>
-       <property key="labeling/shapeBorderWidth" value="0"/>
-       <property key="labeling/shapeBorderWidthMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeBorderWidthUnits" value="1"/>
-       <property key="labeling/shapeDraw" value="false"/>
-       <property key="labeling/shapeFillColorA" value="255"/>
-       <property key="labeling/shapeFillColorB" value="255"/>
-       <property key="labeling/shapeFillColorG" value="255"/>
-       <property key="labeling/shapeFillColorR" value="255"/>
-       <property key="labeling/shapeJoinStyle" value="64"/>
-       <property key="labeling/shapeOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeOffsetUnits" value="1"/>
-       <property key="labeling/shapeOffsetX" value="0"/>
-       <property key="labeling/shapeOffsetY" value="0"/>
-       <property key="labeling/shapeRadiiMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeRadiiUnits" value="1"/>
-       <property key="labeling/shapeRadiiX" value="0"/>
-       <property key="labeling/shapeRadiiY" value="0"/>
-       <property key="labeling/shapeRotation" value="0"/>
-       <property key="labeling/shapeRotationType" value="0"/>
-       <property key="labeling/shapeSVGFile" value=""/>
-       <property key="labeling/shapeSizeMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeSizeType" value="0"/>
-       <property key="labeling/shapeSizeUnits" value="1"/>
-       <property key="labeling/shapeSizeX" value="0"/>
-       <property key="labeling/shapeSizeY" value="0"/>
-       <property key="labeling/shapeTransparency" value="0"/>
-       <property key="labeling/shapeType" value="0"/>
-       <property key="labeling/substitutions" value="&lt;substitutions/>"/>
-       <property key="labeling/textColorA" value="255"/>
-       <property key="labeling/textColorB" value="0"/>
-       <property key="labeling/textColorG" value="0"/>
-       <property key="labeling/textColorR" value="0"/>
-       <property key="labeling/textTransp" value="0"/>
-       <property key="labeling/upsidedownLabels" value="0"/>
-       <property key="labeling/useSubstitutions" value="false"/>
-       <property key="labeling/wrapChar" value=""/>
-       <property key="labeling/xOffset" value="0"/>
-       <property key="labeling/yOffset" value="0"/>
-       <property key="labeling/zIndex" value="0"/>
-       <property key="variableNames"/>
-       <property key="variableValues"/>
-      </customproperties>
-      <blendMode>0</blendMode>
-      <featureBlendMode>0</featureBlendMode>
-      <layerTransparency>0</layerTransparency>
-      <displayfield>LF_NAME</displayfield>
-      <label>0</label>
-      <labelattributes>
-       <label fieldname="" text="Label"/>
-       <family fieldname="" name="MS Shell Dlg 2"/>
-       <size fieldname="" units="pt" value="12"/>
-       <bold fieldname="" on="0"/>
-       <italic fieldname="" on="0"/>
-       <underline fieldname="" on="0"/>
-       <strikeout fieldname="" on="0"/>
-       <color fieldname="" red="0" blue="0" green="0"/>
-       <x fieldname=""/>
-       <y fieldname=""/>
-       <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
-       <angle fieldname="" value="0" auto="0"/>
-       <alignment fieldname="" value="center"/>
-       <buffercolor fieldname="" red="255" blue="255" green="255"/>
-       <buffersize fieldname="" units="pt" value="1"/>
-       <bufferenabled fieldname="" on=""/>
-       <multilineenabled fieldname="" on=""/>
-       <selectedonly on=""/>
-      </labelattributes>
-      <SingleCategoryDiagramRenderer diagramType="Pie" sizeLegend="0" attributeLegend="1">
-       <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="0">
-        <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
-        <attribute field="" color="#000000" label=""/>
-       </DiagramCategory>
-       <symbol alpha="1" clip_to_extent="1" type="marker" name="sizeSymbol">
-        <layer pass="0" class="SimpleMarker" locked="0">
-         <prop k="angle" v="0"/>
-         <prop k="color" v="255,0,0,255"/>
-         <prop k="horizontal_anchor_point" v="1"/>
-         <prop k="joinstyle" v="bevel"/>
-         <prop k="name" v="circle"/>
-         <prop k="offset" v="0,0"/>
-         <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="offset_unit" v="MM"/>
-         <prop k="outline_color" v="0,0,0,255"/>
-         <prop k="outline_style" v="solid"/>
-         <prop k="outline_width" v="0"/>
-         <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="outline_width_unit" v="MM"/>
-         <prop k="scale_method" v="diameter"/>
-         <prop k="size" v="2"/>
-         <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="size_unit" v="MM"/>
-         <prop k="vertical_anchor_point" v="1"/>
-        </layer>
-       </symbol>
-      </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings yPosColumn="-1" showColumn="0" linePlacementFlags="10" placement="2" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
-      <annotationform>.</annotationform>
-      <aliases>
-       <alias field="GEO_ID" index="0" name=""/>
-       <alias field="LFN_ID" index="1" name=""/>
-       <alias field="LF_NAME" index="2" name=""/>
-       <alias field="ADDRESS_L" index="3" name=""/>
-       <alias field="ADDRESS_R" index="4" name=""/>
-       <alias field="OE_FLAG_L" index="5" name=""/>
-       <alias field="OE_FLAG_R" index="6" name=""/>
-       <alias field="LONUML" index="7" name=""/>
-       <alias field="HINUML" index="8" name=""/>
-       <alias field="LONUMR" index="9" name=""/>
-       <alias field="HINUMR" index="10" name=""/>
-       <alias field="FNODE" index="11" name=""/>
-       <alias field="TNODE" index="12" name=""/>
-       <alias field="FCODE" index="13" name=""/>
-       <alias field="FCODE_DESC" index="14" name=""/>
-       <alias field="JURIS_CODE" index="15" name=""/>
-       <alias field="OBJECTID" index="16" name=""/>
-      </aliases>
-      <excludeAttributesWMS/>
-      <excludeAttributesWFS/>
-      <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-       <columns>
-        <column width="-1" hidden="0" type="field" name="GEO_ID"/>
-        <column width="-1" hidden="0" type="field" name="LFN_ID"/>
-        <column width="-1" hidden="0" type="field" name="LF_NAME"/>
-        <column width="-1" hidden="0" type="field" name="ADDRESS_L"/>
-        <column width="-1" hidden="0" type="field" name="ADDRESS_R"/>
-        <column width="-1" hidden="0" type="field" name="OE_FLAG_L"/>
-        <column width="-1" hidden="0" type="field" name="OE_FLAG_R"/>
-        <column width="-1" hidden="0" type="field" name="LONUML"/>
-        <column width="-1" hidden="0" type="field" name="HINUML"/>
-        <column width="-1" hidden="0" type="field" name="LONUMR"/>
-        <column width="-1" hidden="0" type="field" name="HINUMR"/>
-        <column width="-1" hidden="0" type="field" name="FNODE"/>
-        <column width="-1" hidden="0" type="field" name="TNODE"/>
-        <column width="-1" hidden="0" type="field" name="FCODE"/>
-        <column width="-1" hidden="0" type="field" name="FCODE_DESC"/>
-        <column width="-1" hidden="0" type="field" name="JURIS_CODE"/>
-        <column width="-1" hidden="0" type="field" name="OBJECTID"/>
-        <column width="-1" hidden="1" type="actions"/>
-       </columns>
-      </attributetableconfig>
-      <editform>.</editform>
-      <editforminit/>
-      <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
-"""
-QGIS forms can have a Python function that is called when the form is
-opened.
-
-Use this function to add extra logic to your forms.
-
-Enter the name of the function in the "Python Init function"
-field.
-An example follows:
-"""
-from PyQt4.QtGui import QWidget
-
-def my_form_open(dialog, layer, feature):
-	geom = feature.geometry()
-	control = dialog.findChild(QWidget, "MyLineEdit")
-]]></editforminitcode>
-      <featformsuppress>0</featformsuppress>
-      <editorlayout>generatedlayout</editorlayout>
-      <widgets/>
-      <conditionalstyles>
-       <rowstyles/>
-       <fieldstyles/>
-      </conditionalstyles>
-      <defaults>
-       <default field="GEO_ID" expression=""/>
-       <default field="LFN_ID" expression=""/>
-       <default field="LF_NAME" expression=""/>
-       <default field="ADDRESS_L" expression=""/>
-       <default field="ADDRESS_R" expression=""/>
-       <default field="OE_FLAG_L" expression=""/>
-       <default field="OE_FLAG_R" expression=""/>
-       <default field="LONUML" expression=""/>
-       <default field="HINUML" expression=""/>
-       <default field="LONUMR" expression=""/>
-       <default field="HINUMR" expression=""/>
-       <default field="FNODE" expression=""/>
-       <default field="TNODE" expression=""/>
-       <default field="FCODE" expression=""/>
-       <default field="FCODE_DESC" expression=""/>
-       <default field="JURIS_CODE" expression=""/>
-       <default field="OBJECTID" expression=""/>
-      </defaults>
-      <previewExpression/>
-      <layerGeometryType>1</layerGeometryType>
-     </qgis>
-    </LayerStyle>
-    <LayerStyle provider="postgres" layerid="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xd;&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xd;&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%')&#xd;&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
-     <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <edittypes>
-       <edittype widgetv2type="TextEdit" name="gid">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="geo_id">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="lfn_id">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="lf_name">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="address_l">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="address_r">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="oe_flag_l">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="oe_flag_r">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="lonuml">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="hinuml">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="lonumr">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="hinumr">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="fnode">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="tnode">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="fcode">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="fcode_desc">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="juris_code">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="objectid">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-      </edittypes>
-      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol" enableorderby="0">
-       <symbols>
-        <symbol alpha="1" clip_to_extent="1" type="line" name="0">
-         <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="5;2"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="83,83,83,255"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="0.3"/>
-          <prop k="line_width_unit" v="MM"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="0"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-         </layer>
-        </symbol>
-       </symbols>
-       <rotation/>
-       <sizescale scalemethod="diameter"/>
-      </renderer-v2>
-      <labeling type="simple"/>
-      <customproperties>
-       <property key="embeddedWidgets/count" value="0"/>
-       <property key="labeling" value="pal"/>
-       <property key="labeling/addDirectionSymbol" value="false"/>
-       <property key="labeling/angleOffset" value="0"/>
-       <property key="labeling/blendMode" value="0"/>
-       <property key="labeling/bufferBlendMode" value="0"/>
-       <property key="labeling/bufferColorA" value="255"/>
-       <property key="labeling/bufferColorB" value="255"/>
-       <property key="labeling/bufferColorG" value="255"/>
-       <property key="labeling/bufferColorR" value="255"/>
-       <property key="labeling/bufferDraw" value="false"/>
-       <property key="labeling/bufferJoinStyle" value="64"/>
-       <property key="labeling/bufferNoFill" value="false"/>
-       <property key="labeling/bufferSize" value="1"/>
-       <property key="labeling/bufferSizeInMapUnits" value="false"/>
-       <property key="labeling/bufferSizeMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/bufferTransp" value="0"/>
-       <property key="labeling/centroidInside" value="false"/>
-       <property key="labeling/centroidWhole" value="false"/>
-       <property key="labeling/decimals" value="3"/>
-       <property key="labeling/displayAll" value="false"/>
-       <property key="labeling/dist" value="0"/>
-       <property key="labeling/distInMapUnits" value="false"/>
-       <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/drawLabels" value="false"/>
-       <property key="labeling/enabled" value="true"/>
-       <property key="labeling/fieldName" value=""/>
-       <property key="labeling/fitInPolygonOnly" value="false"/>
-       <property key="labeling/fontCapitals" value="0"/>
-       <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
-       <property key="labeling/fontItalic" value="false"/>
-       <property key="labeling/fontLetterSpacing" value="0"/>
-       <property key="labeling/fontLimitPixelSize" value="false"/>
-       <property key="labeling/fontMaxPixelSize" value="10000"/>
-       <property key="labeling/fontMinPixelSize" value="3"/>
-       <property key="labeling/fontSize" value="8.25"/>
-       <property key="labeling/fontSizeInMapUnits" value="false"/>
-       <property key="labeling/fontSizeMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/fontStrikeout" value="false"/>
-       <property key="labeling/fontUnderline" value="false"/>
-       <property key="labeling/fontWeight" value="50"/>
-       <property key="labeling/fontWordSpacing" value="0"/>
-       <property key="labeling/formatNumbers" value="false"/>
-       <property key="labeling/isExpression" value="true"/>
-       <property key="labeling/labelOffsetInMapUnits" value="true"/>
-       <property key="labeling/labelOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/labelPerPart" value="false"/>
-       <property key="labeling/leftDirectionSymbol" value="&lt;"/>
-       <property key="labeling/limitNumLabels" value="false"/>
-       <property key="labeling/maxCurvedCharAngleIn" value="20"/>
-       <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
-       <property key="labeling/maxNumLabels" value="2000"/>
-       <property key="labeling/mergeLines" value="false"/>
-       <property key="labeling/minFeatureSize" value="0"/>
-       <property key="labeling/multilineAlign" value="0"/>
-       <property key="labeling/multilineHeight" value="1"/>
-       <property key="labeling/namedStyle" value="Normal"/>
-       <property key="labeling/obstacle" value="true"/>
-       <property key="labeling/obstacleFactor" value="1"/>
-       <property key="labeling/obstacleType" value="0"/>
-       <property key="labeling/offsetType" value="0"/>
-       <property key="labeling/placeDirectionSymbol" value="0"/>
-       <property key="labeling/placement" value="2"/>
-       <property key="labeling/placementFlags" value="10"/>
-       <property key="labeling/plussign" value="false"/>
-       <property key="labeling/predefinedPositionOrder" value="TR,TL,BR,BL,R,L,TSR,BSR"/>
-       <property key="labeling/preserveRotation" value="true"/>
-       <property key="labeling/previewBkgrdColor" value="#ffffff"/>
-       <property key="labeling/priority" value="5"/>
-       <property key="labeling/quadOffset" value="4"/>
-       <property key="labeling/repeatDistance" value="0"/>
-       <property key="labeling/repeatDistanceMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/repeatDistanceUnit" value="1"/>
-       <property key="labeling/reverseDirectionSymbol" value="false"/>
-       <property key="labeling/rightDirectionSymbol" value=">"/>
-       <property key="labeling/scaleMax" value="10000000"/>
-       <property key="labeling/scaleMin" value="1"/>
-       <property key="labeling/scaleVisibility" value="false"/>
-       <property key="labeling/shadowBlendMode" value="6"/>
-       <property key="labeling/shadowColorB" value="0"/>
-       <property key="labeling/shadowColorG" value="0"/>
-       <property key="labeling/shadowColorR" value="0"/>
-       <property key="labeling/shadowDraw" value="false"/>
-       <property key="labeling/shadowOffsetAngle" value="135"/>
-       <property key="labeling/shadowOffsetDist" value="1"/>
-       <property key="labeling/shadowOffsetGlobal" value="true"/>
-       <property key="labeling/shadowOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shadowOffsetUnits" value="1"/>
-       <property key="labeling/shadowRadius" value="1.5"/>
-       <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
-       <property key="labeling/shadowRadiusMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shadowRadiusUnits" value="1"/>
-       <property key="labeling/shadowScale" value="100"/>
-       <property key="labeling/shadowTransparency" value="30"/>
-       <property key="labeling/shadowUnder" value="0"/>
-       <property key="labeling/shapeBlendMode" value="0"/>
-       <property key="labeling/shapeBorderColorA" value="255"/>
-       <property key="labeling/shapeBorderColorB" value="128"/>
-       <property key="labeling/shapeBorderColorG" value="128"/>
-       <property key="labeling/shapeBorderColorR" value="128"/>
-       <property key="labeling/shapeBorderWidth" value="0"/>
-       <property key="labeling/shapeBorderWidthMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeBorderWidthUnits" value="1"/>
-       <property key="labeling/shapeDraw" value="false"/>
-       <property key="labeling/shapeFillColorA" value="255"/>
-       <property key="labeling/shapeFillColorB" value="255"/>
-       <property key="labeling/shapeFillColorG" value="255"/>
-       <property key="labeling/shapeFillColorR" value="255"/>
-       <property key="labeling/shapeJoinStyle" value="64"/>
-       <property key="labeling/shapeOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeOffsetUnits" value="1"/>
-       <property key="labeling/shapeOffsetX" value="0"/>
-       <property key="labeling/shapeOffsetY" value="0"/>
-       <property key="labeling/shapeRadiiMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeRadiiUnits" value="1"/>
-       <property key="labeling/shapeRadiiX" value="0"/>
-       <property key="labeling/shapeRadiiY" value="0"/>
-       <property key="labeling/shapeRotation" value="0"/>
-       <property key="labeling/shapeRotationType" value="0"/>
-       <property key="labeling/shapeSVGFile" value=""/>
-       <property key="labeling/shapeSizeMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeSizeType" value="0"/>
-       <property key="labeling/shapeSizeUnits" value="1"/>
-       <property key="labeling/shapeSizeX" value="0"/>
-       <property key="labeling/shapeSizeY" value="0"/>
-       <property key="labeling/shapeTransparency" value="0"/>
-       <property key="labeling/shapeType" value="0"/>
-       <property key="labeling/substitutions" value="&lt;substitutions/>"/>
-       <property key="labeling/textColorA" value="255"/>
-       <property key="labeling/textColorB" value="0"/>
-       <property key="labeling/textColorG" value="0"/>
-       <property key="labeling/textColorR" value="0"/>
-       <property key="labeling/textTransp" value="0"/>
-       <property key="labeling/upsidedownLabels" value="0"/>
-       <property key="labeling/useSubstitutions" value="false"/>
-       <property key="labeling/wrapChar" value=""/>
-       <property key="labeling/xOffset" value="0"/>
-       <property key="labeling/yOffset" value="0"/>
-       <property key="labeling/zIndex" value="0"/>
-       <property key="variableNames"/>
-       <property key="variableValues"/>
-      </customproperties>
-      <blendMode>0</blendMode>
-      <featureBlendMode>0</featureBlendMode>
-      <layerTransparency>0</layerTransparency>
-      <displayfield>lf_name</displayfield>
-      <label>0</label>
-      <labelattributes>
-       <label fieldname="" text="Label"/>
-       <family fieldname="" name="MS Shell Dlg 2"/>
-       <size fieldname="" units="pt" value="12"/>
-       <bold fieldname="" on="0"/>
-       <italic fieldname="" on="0"/>
-       <underline fieldname="" on="0"/>
-       <strikeout fieldname="" on="0"/>
-       <color fieldname="" red="0" blue="0" green="0"/>
-       <x fieldname=""/>
-       <y fieldname=""/>
-       <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
-       <angle fieldname="" value="0" auto="0"/>
-       <alignment fieldname="" value="center"/>
-       <buffercolor fieldname="" red="255" blue="255" green="255"/>
-       <buffersize fieldname="" units="pt" value="1"/>
-       <bufferenabled fieldname="" on=""/>
-       <multilineenabled fieldname="" on=""/>
-       <selectedonly on=""/>
-      </labelattributes>
-      <SingleCategoryDiagramRenderer diagramType="Pie" sizeLegend="0" attributeLegend="1">
-       <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="0">
-        <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
-        <attribute field="" color="#000000" label=""/>
-       </DiagramCategory>
-       <symbol alpha="1" clip_to_extent="1" type="marker" name="sizeSymbol">
-        <layer pass="0" class="SimpleMarker" locked="0">
-         <prop k="angle" v="0"/>
-         <prop k="color" v="255,0,0,255"/>
-         <prop k="horizontal_anchor_point" v="1"/>
-         <prop k="joinstyle" v="bevel"/>
-         <prop k="name" v="circle"/>
-         <prop k="offset" v="0,0"/>
-         <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="offset_unit" v="MM"/>
-         <prop k="outline_color" v="0,0,0,255"/>
-         <prop k="outline_style" v="solid"/>
-         <prop k="outline_width" v="0"/>
-         <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="outline_width_unit" v="MM"/>
-         <prop k="scale_method" v="diameter"/>
-         <prop k="size" v="2"/>
-         <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="size_unit" v="MM"/>
-         <prop k="vertical_anchor_point" v="1"/>
-        </layer>
-       </symbol>
-      </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings yPosColumn="-1" showColumn="0" linePlacementFlags="10" placement="2" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
-      <annotationform>.</annotationform>
-      <aliases>
-       <alias field="gid" index="0" name=""/>
-       <alias field="geo_id" index="1" name=""/>
-       <alias field="lfn_id" index="2" name=""/>
-       <alias field="lf_name" index="3" name=""/>
-       <alias field="address_l" index="4" name=""/>
-       <alias field="address_r" index="5" name=""/>
-       <alias field="oe_flag_l" index="6" name=""/>
-       <alias field="oe_flag_r" index="7" name=""/>
-       <alias field="lonuml" index="8" name=""/>
-       <alias field="hinuml" index="9" name=""/>
-       <alias field="lonumr" index="10" name=""/>
-       <alias field="hinumr" index="11" name=""/>
-       <alias field="fnode" index="12" name=""/>
-       <alias field="tnode" index="13" name=""/>
-       <alias field="fcode" index="14" name=""/>
-       <alias field="fcode_desc" index="15" name=""/>
-       <alias field="juris_code" index="16" name=""/>
-       <alias field="objectid" index="17" name=""/>
-      </aliases>
-      <excludeAttributesWMS/>
-      <excludeAttributesWFS/>
-      <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-       <columns>
-        <column width="-1" hidden="0" type="field" name="gid"/>
-        <column width="-1" hidden="0" type="field" name="geo_id"/>
-        <column width="-1" hidden="0" type="field" name="lfn_id"/>
-        <column width="-1" hidden="0" type="field" name="lf_name"/>
-        <column width="-1" hidden="0" type="field" name="address_l"/>
-        <column width="-1" hidden="0" type="field" name="address_r"/>
-        <column width="-1" hidden="0" type="field" name="oe_flag_l"/>
-        <column width="-1" hidden="0" type="field" name="oe_flag_r"/>
-        <column width="-1" hidden="0" type="field" name="lonuml"/>
-        <column width="-1" hidden="0" type="field" name="hinuml"/>
-        <column width="-1" hidden="0" type="field" name="lonumr"/>
-        <column width="-1" hidden="0" type="field" name="hinumr"/>
-        <column width="-1" hidden="0" type="field" name="fnode"/>
-        <column width="-1" hidden="0" type="field" name="tnode"/>
-        <column width="-1" hidden="0" type="field" name="fcode"/>
-        <column width="-1" hidden="0" type="field" name="fcode_desc"/>
-        <column width="-1" hidden="0" type="field" name="juris_code"/>
-        <column width="-1" hidden="0" type="field" name="objectid"/>
-        <column width="-1" hidden="1" type="actions"/>
-       </columns>
-      </attributetableconfig>
-      <editform>.</editform>
-      <editforminit/>
-      <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
-"""
-QGIS forms can have a Python function that is called when the form is
-opened.
-
-Use this function to add extra logic to your forms.
-
-Enter the name of the function in the "Python Init function"
-field.
-An example follows:
-"""
-from PyQt4.QtGui import QWidget
-
-def my_form_open(dialog, layer, feature):
-	geom = feature.geometry()
-	control = dialog.findChild(QWidget, "MyLineEdit")
-]]></editforminitcode>
-      <featformsuppress>0</featformsuppress>
-      <editorlayout>generatedlayout</editorlayout>
-      <widgets/>
-      <conditionalstyles>
-       <rowstyles/>
-       <fieldstyles/>
-      </conditionalstyles>
-      <defaults>
-       <default field="gid" expression=""/>
-       <default field="geo_id" expression=""/>
-       <default field="lfn_id" expression=""/>
-       <default field="lf_name" expression=""/>
-       <default field="address_l" expression=""/>
-       <default field="address_r" expression=""/>
-       <default field="oe_flag_l" expression=""/>
-       <default field="oe_flag_r" expression=""/>
-       <default field="lonuml" expression=""/>
-       <default field="hinuml" expression=""/>
-       <default field="lonumr" expression=""/>
-       <default field="hinumr" expression=""/>
-       <default field="fnode" expression=""/>
-       <default field="tnode" expression=""/>
-       <default field="fcode" expression=""/>
-       <default field="fcode_desc" expression=""/>
-       <default field="juris_code" expression=""/>
-       <default field="objectid" expression=""/>
-      </defaults>
-      <previewExpression>COALESCE( "lf_name", '&lt;NULL>' )</previewExpression>
-      <layerGeometryType>1</layerGeometryType>
-     </qgis>
-    </LayerStyle>
-    <LayerStyle provider="postgres" layerid="street_centreline_copy20170907130623025" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">
-     <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
-      <edittypes>
-       <edittype widgetv2type="TextEdit" name="gid">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="geo_id">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="lfn_id">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="lf_name">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="address_l">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="address_r">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="oe_flag_l">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="oe_flag_r">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="lonuml">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="hinuml">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="lonumr">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="hinumr">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="fnode">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="tnode">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="fcode">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="fcode_desc">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="juris_code">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-       <edittype widgetv2type="TextEdit" name="objectid">
-        <widgetv2config IsMultiline="0" fieldEditable="1" constraint="" UseHtml="0" labelOnTop="0" constraintDescription="" notNull="0"/>
-       </edittype>
-      </edittypes>
-      <renderer-v2 forceraster="0" symbollevels="0" type="singleSymbol" enableorderby="0">
-       <symbols>
-        <symbol alpha="1" clip_to_extent="1" type="line" name="0">
-         <layer pass="0" class="SimpleLine" locked="0">
-          <prop k="capstyle" v="square"/>
-          <prop k="customdash" v="5;2"/>
-          <prop k="customdash_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="customdash_unit" v="MM"/>
-          <prop k="draw_inside_polygon" v="0"/>
-          <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="83,83,83,255"/>
-          <prop k="line_style" v="solid"/>
-          <prop k="line_width" v="0.5"/>
-          <prop k="line_width_unit" v="MM"/>
-          <prop k="offset" v="0"/>
-          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-          <prop k="offset_unit" v="MM"/>
-          <prop k="use_custom_dash" v="0"/>
-          <prop k="width_map_unit_scale" v="0,0,0,0,0,0"/>
-         </layer>
-        </symbol>
-       </symbols>
-       <rotation/>
-       <sizescale scalemethod="diameter"/>
-      </renderer-v2>
-      <labeling type="simple"/>
-      <customproperties>
-       <property key="embeddedWidgets/count" value="0"/>
-       <property key="labeling" value="pal"/>
-       <property key="labeling/addDirectionSymbol" value="false"/>
-       <property key="labeling/angleOffset" value="0"/>
-       <property key="labeling/blendMode" value="0"/>
-       <property key="labeling/bufferBlendMode" value="0"/>
-       <property key="labeling/bufferColorA" value="255"/>
-       <property key="labeling/bufferColorB" value="255"/>
-       <property key="labeling/bufferColorG" value="255"/>
-       <property key="labeling/bufferColorR" value="255"/>
-       <property key="labeling/bufferDraw" value="false"/>
-       <property key="labeling/bufferJoinStyle" value="64"/>
-       <property key="labeling/bufferNoFill" value="false"/>
-       <property key="labeling/bufferSize" value="1"/>
-       <property key="labeling/bufferSizeInMapUnits" value="false"/>
-       <property key="labeling/bufferSizeMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/bufferTransp" value="0"/>
-       <property key="labeling/centroidInside" value="false"/>
-       <property key="labeling/centroidWhole" value="false"/>
-       <property key="labeling/decimals" value="3"/>
-       <property key="labeling/displayAll" value="false"/>
-       <property key="labeling/dist" value="0"/>
-       <property key="labeling/distInMapUnits" value="false"/>
-       <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/drawLabels" value="false"/>
-       <property key="labeling/enabled" value="true"/>
-       <property key="labeling/fieldName" value=""/>
-       <property key="labeling/fitInPolygonOnly" value="false"/>
-       <property key="labeling/fontCapitals" value="0"/>
-       <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
-       <property key="labeling/fontItalic" value="false"/>
-       <property key="labeling/fontLetterSpacing" value="0"/>
-       <property key="labeling/fontLimitPixelSize" value="false"/>
-       <property key="labeling/fontMaxPixelSize" value="10000"/>
-       <property key="labeling/fontMinPixelSize" value="3"/>
-       <property key="labeling/fontSize" value="8.25"/>
-       <property key="labeling/fontSizeInMapUnits" value="false"/>
-       <property key="labeling/fontSizeMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/fontStrikeout" value="false"/>
-       <property key="labeling/fontUnderline" value="false"/>
-       <property key="labeling/fontWeight" value="50"/>
-       <property key="labeling/fontWordSpacing" value="0"/>
-       <property key="labeling/formatNumbers" value="false"/>
-       <property key="labeling/isExpression" value="true"/>
-       <property key="labeling/labelOffsetInMapUnits" value="true"/>
-       <property key="labeling/labelOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/labelPerPart" value="false"/>
-       <property key="labeling/leftDirectionSymbol" value="&lt;"/>
-       <property key="labeling/limitNumLabels" value="false"/>
-       <property key="labeling/maxCurvedCharAngleIn" value="20"/>
-       <property key="labeling/maxCurvedCharAngleOut" value="-20"/>
-       <property key="labeling/maxNumLabels" value="2000"/>
-       <property key="labeling/mergeLines" value="false"/>
-       <property key="labeling/minFeatureSize" value="0"/>
-       <property key="labeling/multilineAlign" value="0"/>
-       <property key="labeling/multilineHeight" value="1"/>
-       <property key="labeling/namedStyle" value="Normal"/>
-       <property key="labeling/obstacle" value="true"/>
-       <property key="labeling/obstacleFactor" value="1"/>
-       <property key="labeling/obstacleType" value="0"/>
-       <property key="labeling/offsetType" value="0"/>
-       <property key="labeling/placeDirectionSymbol" value="0"/>
-       <property key="labeling/placement" value="2"/>
-       <property key="labeling/placementFlags" value="10"/>
-       <property key="labeling/plussign" value="false"/>
-       <property key="labeling/predefinedPositionOrder" value="TR,TL,BR,BL,R,L,TSR,BSR"/>
-       <property key="labeling/preserveRotation" value="true"/>
-       <property key="labeling/previewBkgrdColor" value="#ffffff"/>
-       <property key="labeling/priority" value="5"/>
-       <property key="labeling/quadOffset" value="4"/>
-       <property key="labeling/repeatDistance" value="0"/>
-       <property key="labeling/repeatDistanceMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/repeatDistanceUnit" value="1"/>
-       <property key="labeling/reverseDirectionSymbol" value="false"/>
-       <property key="labeling/rightDirectionSymbol" value=">"/>
-       <property key="labeling/scaleMax" value="10000000"/>
-       <property key="labeling/scaleMin" value="1"/>
-       <property key="labeling/scaleVisibility" value="false"/>
-       <property key="labeling/shadowBlendMode" value="6"/>
-       <property key="labeling/shadowColorB" value="0"/>
-       <property key="labeling/shadowColorG" value="0"/>
-       <property key="labeling/shadowColorR" value="0"/>
-       <property key="labeling/shadowDraw" value="false"/>
-       <property key="labeling/shadowOffsetAngle" value="135"/>
-       <property key="labeling/shadowOffsetDist" value="1"/>
-       <property key="labeling/shadowOffsetGlobal" value="true"/>
-       <property key="labeling/shadowOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shadowOffsetUnits" value="1"/>
-       <property key="labeling/shadowRadius" value="1.5"/>
-       <property key="labeling/shadowRadiusAlphaOnly" value="false"/>
-       <property key="labeling/shadowRadiusMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shadowRadiusUnits" value="1"/>
-       <property key="labeling/shadowScale" value="100"/>
-       <property key="labeling/shadowTransparency" value="30"/>
-       <property key="labeling/shadowUnder" value="0"/>
-       <property key="labeling/shapeBlendMode" value="0"/>
-       <property key="labeling/shapeBorderColorA" value="255"/>
-       <property key="labeling/shapeBorderColorB" value="128"/>
-       <property key="labeling/shapeBorderColorG" value="128"/>
-       <property key="labeling/shapeBorderColorR" value="128"/>
-       <property key="labeling/shapeBorderWidth" value="0"/>
-       <property key="labeling/shapeBorderWidthMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeBorderWidthUnits" value="1"/>
-       <property key="labeling/shapeDraw" value="false"/>
-       <property key="labeling/shapeFillColorA" value="255"/>
-       <property key="labeling/shapeFillColorB" value="255"/>
-       <property key="labeling/shapeFillColorG" value="255"/>
-       <property key="labeling/shapeFillColorR" value="255"/>
-       <property key="labeling/shapeJoinStyle" value="64"/>
-       <property key="labeling/shapeOffsetMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeOffsetUnits" value="1"/>
-       <property key="labeling/shapeOffsetX" value="0"/>
-       <property key="labeling/shapeOffsetY" value="0"/>
-       <property key="labeling/shapeRadiiMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeRadiiUnits" value="1"/>
-       <property key="labeling/shapeRadiiX" value="0"/>
-       <property key="labeling/shapeRadiiY" value="0"/>
-       <property key="labeling/shapeRotation" value="0"/>
-       <property key="labeling/shapeRotationType" value="0"/>
-       <property key="labeling/shapeSVGFile" value=""/>
-       <property key="labeling/shapeSizeMapUnitScale" value="0,0,0,0,0,0"/>
-       <property key="labeling/shapeSizeType" value="0"/>
-       <property key="labeling/shapeSizeUnits" value="1"/>
-       <property key="labeling/shapeSizeX" value="0"/>
-       <property key="labeling/shapeSizeY" value="0"/>
-       <property key="labeling/shapeTransparency" value="0"/>
-       <property key="labeling/shapeType" value="0"/>
-       <property key="labeling/substitutions" value="&lt;substitutions/>"/>
-       <property key="labeling/textColorA" value="255"/>
-       <property key="labeling/textColorB" value="0"/>
-       <property key="labeling/textColorG" value="0"/>
-       <property key="labeling/textColorR" value="0"/>
-       <property key="labeling/textTransp" value="0"/>
-       <property key="labeling/upsidedownLabels" value="0"/>
-       <property key="labeling/useSubstitutions" value="false"/>
-       <property key="labeling/wrapChar" value=""/>
-       <property key="labeling/xOffset" value="0"/>
-       <property key="labeling/yOffset" value="0"/>
-       <property key="labeling/zIndex" value="0"/>
-       <property key="variableNames"/>
-       <property key="variableValues"/>
-      </customproperties>
-      <blendMode>0</blendMode>
-      <featureBlendMode>0</featureBlendMode>
-      <layerTransparency>0</layerTransparency>
-      <displayfield>lf_name</displayfield>
-      <label>0</label>
-      <labelattributes>
-       <label fieldname="" text="Label"/>
-       <family fieldname="" name="MS Shell Dlg 2"/>
-       <size fieldname="" units="pt" value="12"/>
-       <bold fieldname="" on="0"/>
-       <italic fieldname="" on="0"/>
-       <underline fieldname="" on="0"/>
-       <strikeout fieldname="" on="0"/>
-       <color fieldname="" red="0" blue="0" green="0"/>
-       <x fieldname=""/>
-       <y fieldname=""/>
-       <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
-       <angle fieldname="" value="0" auto="0"/>
-       <alignment fieldname="" value="center"/>
-       <buffercolor fieldname="" red="255" blue="255" green="255"/>
-       <buffersize fieldname="" units="pt" value="1"/>
-       <bufferenabled fieldname="" on=""/>
-       <multilineenabled fieldname="" on=""/>
-       <selectedonly on=""/>
-      </labelattributes>
-      <SingleCategoryDiagramRenderer diagramType="Pie" sizeLegend="0" attributeLegend="1">
-       <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="inf">
-        <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
-        <attribute field="" color="#000000" label=""/>
-       </DiagramCategory>
-       <symbol alpha="1" clip_to_extent="1" type="marker" name="sizeSymbol">
-        <layer pass="0" class="SimpleMarker" locked="0">
-         <prop k="angle" v="0"/>
-         <prop k="color" v="255,0,0,255"/>
-         <prop k="horizontal_anchor_point" v="1"/>
-         <prop k="joinstyle" v="bevel"/>
-         <prop k="name" v="circle"/>
-         <prop k="offset" v="0,0"/>
-         <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="offset_unit" v="MM"/>
-         <prop k="outline_color" v="0,0,0,255"/>
-         <prop k="outline_style" v="solid"/>
-         <prop k="outline_width" v="0"/>
-         <prop k="outline_width_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="outline_width_unit" v="MM"/>
-         <prop k="scale_method" v="diameter"/>
-         <prop k="size" v="2"/>
-         <prop k="size_map_unit_scale" v="0,0,0,0,0,0"/>
-         <prop k="size_unit" v="MM"/>
-         <prop k="vertical_anchor_point" v="1"/>
-        </layer>
-       </symbol>
-      </SingleCategoryDiagramRenderer>
-      <DiagramLayerSettings yPosColumn="-1" showColumn="0" linePlacementFlags="10" placement="2" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
-      <annotationform>.</annotationform>
-      <aliases>
-       <alias field="gid" index="0" name=""/>
-       <alias field="geo_id" index="1" name=""/>
-       <alias field="lfn_id" index="2" name=""/>
-       <alias field="lf_name" index="3" name=""/>
-       <alias field="address_l" index="4" name=""/>
-       <alias field="address_r" index="5" name=""/>
-       <alias field="oe_flag_l" index="6" name=""/>
-       <alias field="oe_flag_r" index="7" name=""/>
-       <alias field="lonuml" index="8" name=""/>
-       <alias field="hinuml" index="9" name=""/>
-       <alias field="lonumr" index="10" name=""/>
-       <alias field="hinumr" index="11" name=""/>
-       <alias field="fnode" index="12" name=""/>
-       <alias field="tnode" index="13" name=""/>
-       <alias field="fcode" index="14" name=""/>
-       <alias field="fcode_desc" index="15" name=""/>
-       <alias field="juris_code" index="16" name=""/>
-       <alias field="objectid" index="17" name=""/>
-      </aliases>
-      <excludeAttributesWMS/>
-      <excludeAttributesWFS/>
-      <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="&quot;objectid&quot;" sortOrder="0">
-       <columns>
-        <column width="-1" hidden="0" type="field" name="gid"/>
-        <column width="-1" hidden="0" type="field" name="geo_id"/>
-        <column width="-1" hidden="0" type="field" name="lfn_id"/>
-        <column width="-1" hidden="0" type="field" name="lf_name"/>
-        <column width="-1" hidden="1" type="field" name="address_l"/>
-        <column width="-1" hidden="1" type="field" name="address_r"/>
-        <column width="-1" hidden="1" type="field" name="oe_flag_l"/>
-        <column width="-1" hidden="1" type="field" name="oe_flag_r"/>
-        <column width="-1" hidden="1" type="field" name="lonuml"/>
-        <column width="-1" hidden="1" type="field" name="hinuml"/>
-        <column width="-1" hidden="1" type="field" name="lonumr"/>
-        <column width="-1" hidden="1" type="field" name="hinumr"/>
-        <column width="-1" hidden="0" type="field" name="fnode"/>
-        <column width="-1" hidden="0" type="field" name="tnode"/>
-        <column width="-1" hidden="0" type="field" name="fcode"/>
-        <column width="-1" hidden="0" type="field" name="fcode_desc"/>
-        <column width="-1" hidden="0" type="field" name="juris_code"/>
-        <column width="-1" hidden="0" type="field" name="objectid"/>
-        <column width="-1" hidden="1" type="actions"/>
-       </columns>
-      </attributetableconfig>
-      <editform>.</editform>
-      <editforminit/>
-      <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath>.</editforminitfilepath>
-      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
-"""
-QGIS forms can have a Python function that is called when the form is
-opened.
-
-Use this function to add extra logic to your forms.
-
-Enter the name of the function in the "Python Init function"
-field.
-An example follows:
-"""
-from PyQt4.QtGui import QWidget
-
-def my_form_open(dialog, layer, feature):
-	geom = feature.geometry()
-	control = dialog.findChild(QWidget, "MyLineEdit")
-]]></editforminitcode>
-      <featformsuppress>0</featformsuppress>
-      <editorlayout>generatedlayout</editorlayout>
-      <widgets/>
-      <conditionalstyles>
-       <rowstyles/>
-       <fieldstyles/>
-      </conditionalstyles>
-      <defaults>
-       <default field="gid" expression=""/>
-       <default field="geo_id" expression=""/>
-       <default field="lfn_id" expression=""/>
-       <default field="lf_name" expression=""/>
-       <default field="address_l" expression=""/>
-       <default field="address_r" expression=""/>
-       <default field="oe_flag_l" expression=""/>
-       <default field="oe_flag_r" expression=""/>
-       <default field="lonuml" expression=""/>
-       <default field="hinuml" expression=""/>
-       <default field="lonumr" expression=""/>
-       <default field="hinumr" expression=""/>
-       <default field="fnode" expression=""/>
-       <default field="tnode" expression=""/>
-       <default field="fcode" expression=""/>
-       <default field="fcode_desc" expression=""/>
-       <default field="juris_code" expression=""/>
-       <default field="objectid" expression=""/>
-      </defaults>
-      <previewExpression>COALESCE( "lf_name", '&lt;NULL>' )</previewExpression>
-      <layerGeometryType>1</layerGeometryType>
-     </qgis>
-    </LayerStyle>
-   </LayerStyles>
+  <ComposerMap followPreset="false" mapRotation="17.5" keepLayerSet="false" followPresetName="" id="1" previewMode="Cache" drawCanvasItems="true">
+   <Extent ymin="4833021.96301980596035719" xmin="628141.70639098307583481" ymax="4837447.53737881686538458" xmax="633871.70639682759065181"/>
+   <LayerSet/>
    <Grid/>
    <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="0" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{ead9fa33-da1d-44e3-947b-de342adfcae2}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="0" gridFrameSideFlags="15" intervalY="0" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
     <lineStyle>
@@ -5146,7 +3801,7 @@ def my_form_open(dialog, layer, feature):
     <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
    </ComposerMapGrid>
    <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-   <ComposerItem pagey="469.517" page="1" id="" lastValidViewScaleFactor="4.18137" positionMode="0" positionLock="false" x="713.932" y="469.517" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="375.144" outlineWidth="0.3" excludeFromExports="0" uuid="{fa19e2ee-03e6-4ed6-b864-5cc16e7eeefe}" height="295.702" itemRotation="0" frame="true" pagex="713.932">
+   <ComposerItem pagey="469.517" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="706.217" y="469.517" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="382.859" outlineWidth="0.3" excludeFromExports="0" uuid="{fa19e2ee-03e6-4ed6-b864-5cc16e7eeefe}" height="295.702" itemRotation="0" frame="true" pagex="706.217">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
@@ -5239,7 +3894,7 @@ def my_form_open(dialog, layer, feature):
     </symbol>
    </ComposerMapOverview>
    <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-   <ComposerItem pagey="48.3757" page="1" id="" lastValidViewScaleFactor="4.18137" positionMode="0" positionLock="false" x="18.7579" y="48.3757" visibility="1" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="1082.82" outlineWidth="0.3" excludeFromExports="0" uuid="{bfc3d56d-de7e-4f5e-b194-b6f513b601ab}" height="579.32" itemRotation="0" frame="false" pagex="18.7579">
+   <ComposerItem pagey="48.3757" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="18.7579" y="48.3757" visibility="1" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="1082.82" outlineWidth="0.3" excludeFromExports="0" uuid="{bfc3d56d-de7e-4f5e-b194-b6f513b601ab}" height="579.32" itemRotation="0" frame="false" pagex="18.7579">
     <FrameColor alpha="255" red="0" blue="0" green="0"/>
     <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
     <customproperties/>
