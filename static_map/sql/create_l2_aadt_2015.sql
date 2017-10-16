@@ -1,6 +1,6 @@
 ﻿DROP TABLE l2_aadt_2015;
 
-create table prj_volume.l2_aadt_2015 as
+create table USERSCHEMA.l2_aadt_2015 as
 (
 	select
 	cgl2.l2_group_number,
