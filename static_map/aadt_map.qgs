@@ -20,7 +20,7 @@
     <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Unchecked" id="2015_Test_Layer_420170906164616010" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='id' table=&quot;(SELECT *&#xa;        FROM prj_volume.aadt_l2&#xa;        WHERE year = 2015 &#xa;        AND fcode_desc != 'Local'&#xa;        AND fcode_desc != 'Collector' &#xa;        )&quot; (geom) sql=" name="2015 Test Layer 4">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="void_box20171006151030289" source="C:\Users\qchen\Documents\Toronto Boundaries\void_box.shp" name="void_box">
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="void_box20171006151030289" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/void_box/void_box.shp" name="void_box">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" providerKey="postgres" checked="Qt::Unchecked" id="volume_map_debug_point20170828145729329" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='tid' srid=82181 type=Point table=&quot;dolejarz&quot;.&quot;volume_map_debug_point&quot; (geom) sql=fcode_desc = 'Expressway' OR fcode_desc = 'Major Arterial' OR fcode_desc = 'Minor Arterial' " name="volume_map_debug_point">
@@ -32,7 +32,7 @@
     <layer-tree-layer expanded="0" providerKey="postgres" checked="Qt::Checked" id="street_centreline20170815133009672" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%' OR &quot;lf_name&quot; LIKE '%Drumsnab%' OR &quot;lf_name&quot; LIKE '%Castle Frank%' OR &quot;lf_name&quot; LIKE '%Millwick%')&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="landboundaries120170907160132371" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
@@ -75,9 +75,9 @@
       <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer_220170906163716579"/>
       <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170818111911917"/>
       <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170731105904607"/>
+      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="EPSG:26917" srcDatumTransform="-1" destDatumTransform="-1" layerid="Mask20171006154012485"/>
       <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705151140067"/>
       <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="EPSG:26917" srcDatumTransform="-1" destDatumTransform="-1" layerid="landboundaries120170907160132371"/>
-      <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="EPSG:26917" srcDatumTransform="-1" destDatumTransform="-1" layerid="Mask20171006154012485"/>
       <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170801103238761"/>
       <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="USER:100000" srcDatumTransform="-1" destDatumTransform="-1" layerid="2015_Test_Layer20170705150106179"/>
       <layer_coordinate_transform destAuthId="EPSG:26917" srcAuthId="EPSG:26917" srcDatumTransform="-1" destDatumTransform="-1" layerid="Mask20171006153944778"/>
@@ -1285,8 +1285,8 @@
         </ComposerItem>
       </ComposerLabel>
       <ComposerItemGroup>
-        <ComposerItemGroupElement uuid="{7f91ad77-324d-4870-a847-3ab530b4d54a}"/>
         <ComposerItemGroupElement uuid="{3d4ae4db-4fe7-42e8-b0df-b6c67cb6f5c3}"/>
+        <ComposerItemGroupElement uuid="{7f91ad77-324d-4870-a847-3ab530b4d54a}"/>
         <ComposerItem pagey="778.758" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="741.581" y="778.758" visibility="1" zValue="90" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="318.49" outlineWidth="0.3" excludeFromExports="0" uuid="{9c3071e8-c92c-4a48-8920-dac8295d68ae}" height="59.5312" itemRotation="0" frame="false" pagex="741.581">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
@@ -1294,10 +1294,10 @@
         </ComposerItem>
       </ComposerItemGroup>
       <ComposerItemGroup>
+        <ComposerItemGroupElement uuid="{ffc67f0d-2d76-44cd-ac31-d7102a6c7fd8}"/>
         <ComposerItemGroupElement uuid="{0d65f37c-3d3e-4e14-ba56-e3787b2a41b5}"/>
         <ComposerItemGroupElement uuid="{ae2f4073-8f80-4407-873d-6cc9460680af}"/>
         <ComposerItemGroupElement uuid="{31f268fe-822c-416b-96d7-8e3e285173c8}"/>
-        <ComposerItemGroupElement uuid="{ffc67f0d-2d76-44cd-ac31-d7102a6c7fd8}"/>
         <ComposerItem pagey="366.175" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="933.442" y="366.175" visibility="1" zValue="89" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="106.9" outlineWidth="0.3" excludeFromExports="0" uuid="{59dd6a32-5467-45aa-8e1e-1d60dc3ba78f}" height="56.5948" itemRotation="0" frame="false" pagex="933.442">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
@@ -2066,13 +2066,13 @@
               <property key="legend/title-label" value="Centrelines"/>
             </customproperties>
           </layer-tree-layer>
-          <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
+          <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="landboundaries120170907160132371" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">
             <customproperties>
               <property key="legend/title-label" value="Toronto Land Boundaries"/>
             </customproperties>
           </layer-tree-layer>
         </layer-tree-group>
-        <ComposerItem pagey="366.175" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="933.442" y="366.175" visibility="1" zValue="6" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="106.9" outlineWidth="0.3" excludeFromExports="0" uuid="{0d65f37c-3d3e-4e14-ba56-e3787b2a41b5}" height="34.7" itemRotation="0" frame="false" pagex="933.442">
+        <ComposerItem pagey="366.175" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="933.442" y="366.175" visibility="1" zValue="6" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="108.7" outlineWidth="0.3" excludeFromExports="0" uuid="{0d65f37c-3d3e-4e14-ba56-e3787b2a41b5}" height="117.8" itemRotation="0" frame="false" pagex="933.442">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -2152,7 +2152,7 @@
           <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="608.914" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="30.2193" y="608.914" visibility="1" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="658" outlineWidth="0.3" excludeFromExports="0" uuid="{caf923b7-5d5e-4cd4-b9a2-d97d472c984a}" height="226.489" itemRotation="0" frame="true" pagex="30.2193">
+        <ComposerItem pagey="608.914" page="1" id="" lastValidViewScaleFactor="1.02312" positionMode="0" positionLock="false" x="30.2193" y="608.914" visibility="1" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="658" outlineWidth="0.3" excludeFromExports="0" uuid="{caf923b7-5d5e-4cd4-b9a2-d97d472c984a}" height="226.489" itemRotation="0" frame="true" pagex="30.2193">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -2211,7 +2211,7 @@
           <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="469.517" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="713.932" y="469.517" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="375.144" outlineWidth="0.3" excludeFromExports="0" uuid="{f2aefd04-9c95-48fc-a119-9b61fc7faca4}" height="295.702" itemRotation="0" frame="true" pagex="713.932">
+        <ComposerItem pagey="469.517" page="1" id="" lastValidViewScaleFactor="1.02312" positionMode="0" positionLock="false" x="713.932" y="469.517" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="375.144" outlineWidth="0.3" excludeFromExports="0" uuid="{f2aefd04-9c95-48fc-a119-9b61fc7faca4}" height="295.702" itemRotation="0" frame="true" pagex="713.932">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -2304,7 +2304,7 @@
           </symbol>
         </ComposerMapOverview>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="48.3757" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="18.7579" y="48.3757" visibility="1" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="1082.82" outlineWidth="0.3" excludeFromExports="0" uuid="{49595474-2da6-417f-867c-1403937768fa}" height="579.32" itemRotation="0" frame="false" pagex="18.7579">
+        <ComposerItem pagey="48.3757" page="1" id="" lastValidViewScaleFactor="1.02312" positionMode="0" positionLock="false" x="18.7579" y="48.3757" visibility="1" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="1082.82" outlineWidth="0.3" excludeFromExports="0" uuid="{49595474-2da6-417f-867c-1403937768fa}" height="579.32" itemRotation="0" frame="false" pagex="18.7579">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -3520,8 +3520,8 @@
         </ComposerItem>
       </ComposerLabel>
       <ComposerItemGroup>
-        <ComposerItemGroupElement uuid="{f72eed18-f9f0-45fe-bd81-c37a368a1396}"/>
         <ComposerItemGroupElement uuid="{020ede48-1b41-4dc9-b793-719d9115d0fc}"/>
+        <ComposerItemGroupElement uuid="{f72eed18-f9f0-45fe-bd81-c37a368a1396}"/>
         <ComposerItem pagey="778.758" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="741.581" y="778.758" visibility="1" zValue="90" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="318.49" outlineWidth="0.3" excludeFromExports="0" uuid="{2564e1af-368e-4757-b6da-c22f465221a1}" height="59.5312" itemRotation="0" frame="false" pagex="741.581">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
@@ -3529,10 +3529,10 @@
         </ComposerItem>
       </ComposerItemGroup>
       <ComposerItemGroup>
-        <ComposerItemGroupElement uuid="{f8c0c975-7093-4e7c-a789-35b0d4994681}"/>
-        <ComposerItemGroupElement uuid="{b8b90395-78f5-4506-933e-a2a545f34662}"/>
         <ComposerItemGroupElement uuid="{bb25372d-f05a-41e2-8f75-3829eac93390}"/>
         <ComposerItemGroupElement uuid="{50bdd110-dac6-4c86-80e9-ab37ddc1bc0b}"/>
+        <ComposerItemGroupElement uuid="{f8c0c975-7093-4e7c-a789-35b0d4994681}"/>
+        <ComposerItemGroupElement uuid="{b8b90395-78f5-4506-933e-a2a545f34662}"/>
         <ComposerItem pagey="366.175" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="933.442" y="366.175" visibility="1" zValue="89" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="106.9" outlineWidth="0.3" excludeFromExports="0" uuid="{72bd6b88-cb7f-40c8-827a-d11bc0bfe4eb}" height="56.5948" itemRotation="0" frame="false" pagex="933.442">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
@@ -4301,13 +4301,13 @@
               <property key="legend/title-label" value="Centrelines"/>
             </customproperties>
           </layer-tree-layer>
-          <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
+          <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="landboundaries120170907160132371" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">
             <customproperties>
               <property key="legend/title-label" value="Toronto Land Boundaries"/>
             </customproperties>
           </layer-tree-layer>
         </layer-tree-group>
-        <ComposerItem pagey="366.175" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="933.442" y="366.175" visibility="1" zValue="6" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="106.9" outlineWidth="0.3" excludeFromExports="0" uuid="{bb25372d-f05a-41e2-8f75-3829eac93390}" height="34.7" itemRotation="0" frame="false" pagex="933.442">
+        <ComposerItem pagey="366.175" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="933.442" y="366.175" visibility="1" zValue="6" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="108.7" outlineWidth="0.3" excludeFromExports="0" uuid="{bb25372d-f05a-41e2-8f75-3829eac93390}" height="117.8" itemRotation="0" frame="false" pagex="933.442">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -4340,7 +4340,7 @@
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT *&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 1">2015_L2_Test_120171006105400383</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">street_centreline_copy20170907130623025</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%' OR &quot;lf_name&quot; LIKE '%Drumsnab%' OR &quot;lf_name&quot; LIKE '%Castle Frank%' OR &quot;lf_name&quot; LIKE '%Millwick%')&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
-          <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
+          <Layer provider="ogr" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <LayerStyles>
           <LayerStyle provider="postgres" layerid="2015_L2_Test_120171006105400383" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT *&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 1">
@@ -4635,7 +4635,7 @@ def my_form_open(dialog, layer, feature):
               <layerGeometryType>1</layerGeometryType>
             </qgis>
           </LayerStyle>
-          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
+          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">
             <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
               <edittypes>
                 <edittype widgetv2type="TextEdit" name="GEO_ID">
@@ -5798,19 +5798,19 @@ def my_form_open(dialog, layer, feature):
           <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="608.914" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="30.2193" y="608.914" visibility="1" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="658" outlineWidth="0.3" excludeFromExports="0" uuid="{c27b2e44-642c-4e10-817a-b81fbe43ccc6}" height="226.489" itemRotation="0" frame="true" pagex="30.2193">
+        <ComposerItem pagey="608.914" page="1" id="" lastValidViewScaleFactor="1.02312" positionMode="0" positionLock="false" x="30.2193" y="608.914" visibility="1" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="658" outlineWidth="0.3" excludeFromExports="0" uuid="{c27b2e44-642c-4e10-817a-b81fbe43ccc6}" height="226.489" itemRotation="0" frame="true" pagex="30.2193">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
         </ComposerItem>
       </ComposerMap>
       <ComposerMap followPreset="false" mapRotation="17.5" keepLayerSet="true" followPresetName="" id="1" previewMode="Cache" drawCanvasItems="true">
-        <Extent ymin="4832930.75299999956041574" xmin="627908.00699999998323619" ymax="4837364.58000000007450581" xmax="633533.00699999998323619"/>
+        <Extent ymin="4832930.75299999956041574" xmin="627908.00699999998323619" ymax="4837364.58041027374565601" xmax="633533.00699999998323619"/>
         <LayerSet>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT *&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 1">2015_L2_Test_120171006105400383</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">street_centreline_copy20170907130623025</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%' OR &quot;lf_name&quot; LIKE '%Drumsnab%' OR &quot;lf_name&quot; LIKE '%Castle Frank%' OR &quot;lf_name&quot; LIKE '%Millwick%')&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
-          <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
+          <Layer provider="ogr" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <LayerStyles>
           <LayerStyle provider="postgres" layerid="2015_L2_Test_120171006105400383" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT *&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 1">
@@ -6105,7 +6105,7 @@ def my_form_open(dialog, layer, feature):
               <layerGeometryType>1</layerGeometryType>
             </qgis>
           </LayerStyle>
-          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
+          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">
             <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
               <edittypes>
                 <edittype widgetv2type="TextEdit" name="GEO_ID">
@@ -7268,7 +7268,7 @@ def my_form_open(dialog, layer, feature):
           <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="469.517" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="713.932" y="469.517" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="375.144" outlineWidth="0.3" excludeFromExports="0" uuid="{7c408581-7bee-4adf-8d91-31c1c395d42e}" height="295.702" itemRotation="0" frame="true" pagex="713.932">
+        <ComposerItem pagey="469.517" page="1" id="" lastValidViewScaleFactor="1.02312" positionMode="0" positionLock="false" x="713.932" y="469.517" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="375.144" outlineWidth="0.3" excludeFromExports="0" uuid="{7c408581-7bee-4adf-8d91-31c1c395d42e}" height="295.702" itemRotation="0" frame="true" pagex="713.932">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -7280,7 +7280,7 @@ def my_form_open(dialog, layer, feature):
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT *&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 1">2015_L2_Test_120171006105400383</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=&quot;fcode_desc&quot; = 'Expressway'" name="expressways">street_centreline_copy20170907130623025</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%' OR &quot;lf_name&quot; LIKE '%Drumsnab%' OR &quot;lf_name&quot; LIKE '%Castle Frank%' OR &quot;lf_name&quot; LIKE '%Millwick%')&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
-          <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
+          <Layer provider="ogr" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <LayerStyles>
           <LayerStyle provider="postgres" layerid="2015_L2_Test_120171006105400383" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT *&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 1">
@@ -7575,7 +7575,7 @@ def my_form_open(dialog, layer, feature):
               <layerGeometryType>1</layerGeometryType>
             </qgis>
           </LayerStyle>
-          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
+          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">
             <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
               <edittypes>
                 <edittype widgetv2type="TextEdit" name="GEO_ID">
@@ -8772,7 +8772,7 @@ def my_form_open(dialog, layer, feature):
           </symbol>
         </ComposerMapOverview>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="48.3757" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="18.7579" y="48.3757" visibility="1" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="1082.82" outlineWidth="0.3" excludeFromExports="0" uuid="{cc2d7300-4ec5-4bf5-8c4b-0eb05ba3d2ad}" height="579.32" itemRotation="0" frame="false" pagex="18.7579">
+        <ComposerItem pagey="48.3757" page="1" id="" lastValidViewScaleFactor="1.02312" positionMode="0" positionLock="false" x="18.7579" y="48.3757" visibility="1" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="1082.82" outlineWidth="0.3" excludeFromExports="0" uuid="{cc2d7300-4ec5-4bf5-8c4b-0eb05ba3d2ad}" height="579.32" itemRotation="0" frame="false" pagex="18.7579">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -8781,7 +8781,7 @@ def my_form_open(dialog, layer, feature):
       <customproperties/>
     </Composition>
   </Composer>
-  <Composer title="Composer 3" visible="1">
+  <Composer title="Latest 2017-10-16" visible="1">
     <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" worldFileMap="" alignmentSnap="1" printResolution="300" paperWidth="1117.6" gridVisible="0" snapGridOffsetX="0" smartGuides="0" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="863.6" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
@@ -11105,7 +11105,7 @@ def my_form_open(dialog, layer, feature):
         <ComposerItemGroupElement uuid="{949369ba-0dd1-4eb3-b1b6-a94ba07d617a}"/>
         <ComposerItemGroupElement uuid="{1ba7041f-ae67-4b2e-ba28-229fbdd258c0}"/>
         <ComposerItemGroupElement uuid="{5ddcc859-28dc-43a8-bea2-7216a2f647ce}"/>
-        <ComposerItem pagey="366.175" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="true" x="933.442" y="366.175" visibility="1" zValue="18" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="106.9" outlineWidth="0.3" excludeFromExports="0" uuid="{4d257e4c-7304-4230-a0d1-5a61d0e94938}" height="56.4625" itemRotation="0" frame="false" pagex="933.442">
+        <ComposerItem pagey="366.175" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="true" x="933.442" y="366.175" visibility="1" zValue="18" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="106.9" outlineWidth="0.3" excludeFromExports="0" uuid="{4d257e4c-7304-4230-a0d1-5a61d0e94938}" height="56.4628" itemRotation="0" frame="false" pagex="933.442">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -11227,7 +11227,7 @@ def my_form_open(dialog, layer, feature):
               <property key="legend/title-style" value="hidden"/>
             </customproperties>
           </layer-tree-layer>
-          <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
+          <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="landboundaries120170907160132371" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">
             <customproperties>
               <property key="legend/title-label" value="Toronto Land Boundaries"/>
             </customproperties>
@@ -11256,7 +11256,7 @@ def my_form_open(dialog, layer, feature):
         <LayerSet>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT l2_group_number, linear_name_full, fcode_desc, dir_bin, year, avg_vol, st_transform(geom,26917) as geom&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 2">2015_L2_Test_220171010102916076</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%' OR &quot;lf_name&quot; LIKE '%Drumsnab%' OR &quot;lf_name&quot; LIKE '%Castle Frank%' OR &quot;lf_name&quot; LIKE '%Millwick%')&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
-          <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
+          <Layer provider="ogr" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <LayerStyles>
           <LayerStyle provider="postgres" layerid="2015_L2_Test_220171010102916076" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT l2_group_number, linear_name_full, fcode_desc, dir_bin, year, avg_vol, st_transform(geom,26917) as geom&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 2">
@@ -11579,7 +11579,7 @@ def my_form_open(dialog, layer, feature):
               <layerGeometryType>1</layerGeometryType>
             </qgis>
           </LayerStyle>
-          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
+          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">
             <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
               <edittypes>
                 <edittype widgetv2type="TextEdit" name="GEO_ID">
@@ -12545,18 +12545,18 @@ def my_form_open(dialog, layer, feature):
           <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="733.728" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="30.15" y="733.728" visibility="1" zValue="5" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="648.593" outlineWidth="0.3" excludeFromExports="0" uuid="{f3e8d944-0054-4a5f-8c4e-9ccb0df5862e}" height="100" itemRotation="0" frame="true" pagex="30.15">
+        <ComposerItem pagey="733.728" page="1" id="" lastValidViewScaleFactor="1.02312" positionMode="0" positionLock="false" x="30.15" y="733.728" visibility="1" zValue="5" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="648.593" outlineWidth="0.3" excludeFromExports="0" uuid="{f3e8d944-0054-4a5f-8c4e-9ccb0df5862e}" height="100" itemRotation="0" frame="true" pagex="30.15">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
         </ComposerItem>
       </ComposerMap>
       <ComposerMap followPreset="false" mapRotation="17.5" keepLayerSet="true" followPresetName="" id="2" previewMode="Cache" drawCanvasItems="true">
-        <Extent ymin="4830969.38388268183916807" xmin="615163.67421049205586314" ymax="4833971.63645399641245604" xmax="634636.07423035381361842"/>
+        <Extent ymin="4830969.38388268183916807" xmin="615163.67421049205586314" ymax="4833971.63645399548113346" xmax="634636.07423035381361842"/>
         <LayerSet>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT l2_group_number, linear_name_full, fcode_desc, dir_bin, year, avg_vol, st_transform(geom,26917) as geom&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 2">2015_L2_Test_220171010102916076</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%' OR &quot;lf_name&quot; LIKE '%Drumsnab%' OR &quot;lf_name&quot; LIKE '%Castle Frank%' OR &quot;lf_name&quot; LIKE '%Millwick%')&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
-          <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
+          <Layer provider="ogr" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <LayerStyles>
           <LayerStyle provider="postgres" layerid="2015_L2_Test_220171010102916076" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT l2_group_number, linear_name_full, fcode_desc, dir_bin, year, avg_vol, st_transform(geom,26917) as geom&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 2">
@@ -12879,7 +12879,7 @@ def my_form_open(dialog, layer, feature):
               <layerGeometryType>1</layerGeometryType>
             </qgis>
           </LayerStyle>
-          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
+          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">
             <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
               <edittypes>
                 <edittype widgetv2type="TextEdit" name="GEO_ID">
@@ -13845,18 +13845,18 @@ def my_form_open(dialog, layer, feature):
           <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="608.914" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="30.15" y="608.914" visibility="1" zValue="4" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="648.593" outlineWidth="0.3" excludeFromExports="0" uuid="{dde04966-4ced-481d-a9d1-fed2946fb3e9}" height="100" itemRotation="0" frame="true" pagex="30.15">
+        <ComposerItem pagey="608.914" page="1" id="" lastValidViewScaleFactor="1.02312" positionMode="0" positionLock="false" x="30.15" y="608.914" visibility="1" zValue="4" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="648.593" outlineWidth="0.3" excludeFromExports="0" uuid="{dde04966-4ced-481d-a9d1-fed2946fb3e9}" height="100" itemRotation="0" frame="true" pagex="30.15">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
         </ComposerItem>
       </ComposerMap>
       <ComposerMap followPreset="false" mapRotation="17.5" keepLayerSet="true" followPresetName="" id="1" previewMode="Cache" drawCanvasItems="true">
-        <Extent ymin="4833021.96301980596035719" xmin="628141.70639098307583481" ymax="4837447.53737881686538458" xmax="633871.70639682759065181"/>
+        <Extent ymin="4833021.96301980596035719" xmin="628141.70639098307583481" ymax="4837447.54126591794192791" xmax="633871.70639682759065181"/>
         <LayerSet>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT l2_group_number, linear_name_full, fcode_desc, dir_bin, year, avg_vol, st_transform(geom,26917) as geom&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 2">2015_L2_Test_220171010102916076</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%' OR &quot;lf_name&quot; LIKE '%Drumsnab%' OR &quot;lf_name&quot; LIKE '%Castle Frank%' OR &quot;lf_name&quot; LIKE '%Millwick%')&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
-          <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
+          <Layer provider="ogr" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <LayerStyles>
           <LayerStyle provider="postgres" layerid="2015_L2_Test_220171010102916076" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT l2_group_number, linear_name_full, fcode_desc, dir_bin, year, avg_vol, st_transform(geom,26917) as geom&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 2">
@@ -14179,7 +14179,7 @@ def my_form_open(dialog, layer, feature):
               <layerGeometryType>1</layerGeometryType>
             </qgis>
           </LayerStyle>
-          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">
+          <LayerStyle provider="ogr" layerid="landboundaries120170907160132371" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">
             <qgis version="2.18.12" simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" readOnly="0" simplifyMaxScale="1" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
               <edittypes>
                 <edittype widgetv2type="TextEdit" name="GEO_ID">
@@ -15145,7 +15145,7 @@ def my_form_open(dialog, layer, feature):
           <annotationFontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="469.517" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="false" x="706.217" y="469.517" visibility="1" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="382.859" outlineWidth="0.3" excludeFromExports="0" uuid="{fa19e2ee-03e6-4ed6-b864-5cc16e7eeefe}" height="295.702" itemRotation="0" frame="true" pagex="706.217">
+        <ComposerItem pagey="469.517" page="1" id="" lastValidViewScaleFactor="1.02312" positionMode="0" positionLock="false" x="706.217" y="469.517" visibility="1" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="382.859" outlineWidth="0.3" excludeFromExports="0" uuid="{fa19e2ee-03e6-4ed6-b864-5cc16e7eeefe}" height="295.702" itemRotation="0" frame="true" pagex="706.217">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -15156,7 +15156,7 @@ def my_form_open(dialog, layer, feature):
         <LayerSet>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='qchen' key='l2_group_number' table=&quot;(SELECT l2_group_number, linear_name_full, fcode_desc, dir_bin, year, avg_vol, st_transform(geom,26917) as geom&#xa;        FROM qchen.l2_aadt_2015&#xa;        WHERE year = 2015 &#xa;        AND (fcode_desc IN ('Expressway','Major Arterial','Minor Arterial')&#xa;        OR linear_name_full IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;        )&quot; (geom) sql=" name="2015 L2 Test 2">2015_L2_Test_220171010102916076</Layer>
           <Layer provider="postgres" source="dbname='bigdata' host=10.160.12.47 port=5432 user='dolejarz' sslmode=disable key='gid' srid=4326 type=MultiLineString table=&quot;gis&quot;.&quot;street_centreline&quot; (geom) sql=(&quot;fcode_desc&quot; IN ('Expressway','Major Arterial','Minor Arterial','Expressway Ramp') OR&#xa;&quot;lf_name&quot; IN ('Finch Ave E','Old Finch Ave','McNicoll Ave','Neilson Rd','Morningside Ave','Staines Rd','Sewell''s Rd','Meadowvale Rd','Plug Hat Rd','Beare Rd','Reesor Rd'))&#xa;AND NOT(&quot;lf_name&quot; LIKE '%Dovercourt%' OR &quot;lf_name&quot; LIKE '%Cosburn%' OR &quot;lf_name&quot; LIKE '%Drumsnab%' OR &quot;lf_name&quot; LIKE '%Castle Frank%' OR &quot;lf_name&quot; LIKE '%Millwick%')&#xa;AND NOT(gid in (44165,43077,17625,16469,16468,19505,17360,18160,18062,18061,17984,17312,17141,15553))" name="street_centreline">street_centreline20170815133009672</Layer>
-          <Layer provider="ogr" source="C:/Users/qchen/Documents/Toronto Boundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
+          <Layer provider="ogr" source="C:/Users/qchen/Documents/GitHub/bdit_volumes/static_map/landboundaries/landboundaries1.shp" name="landboundaries1">landboundaries120170907160132371</Layer>
         </LayerSet>
         <Grid/>
         <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="0" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{d27f531c-98c7-4483-961e-afa1dd9729b8}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="0" gridFrameSideFlags="15" intervalY="0" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
@@ -15242,7 +15242,7 @@ def my_form_open(dialog, layer, feature):
           </symbol>
         </ComposerMapOverview>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="48.3757" page="1" id="" lastValidViewScaleFactor="3.77953" positionMode="0" positionLock="true" x="18.7579" y="48.3757" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="1082.82" outlineWidth="0.3" excludeFromExports="0" uuid="{bfc3d56d-de7e-4f5e-b194-b6f513b601ab}" height="579.32" itemRotation="0" frame="false" pagex="18.7579">
+        <ComposerItem pagey="48.3757" page="1" id="" lastValidViewScaleFactor="1.02312" positionMode="0" positionLock="true" x="18.7579" y="48.3757" visibility="1" zValue="2" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="1082.82" outlineWidth="0.3" excludeFromExports="0" uuid="{bfc3d56d-de7e-4f5e-b194-b6f513b601ab}" height="579.32" itemRotation="0" frame="false" pagex="18.7579">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
@@ -17006,7 +17006,7 @@ def my_form_open(dialog, layer, feature):
         <ymax>4857446.07524186745285988</ymax>
       </extent>
       <id>landboundaries120170907160132371</id>
-      <datasource>../../../Toronto Boundaries/landboundaries1.shp</datasource>
+      <datasource>./landboundaries/landboundaries1.shp</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -18388,7 +18388,7 @@ def my_form_open(dialog, layer, feature):
         <ymax>4838316.71813191100955009</ymax>
       </extent>
       <id>void_box20171006151030289</id>
-      <datasource>../../../Toronto Boundaries/void_box.shp</datasource>
+      <datasource>./void_box/void_box.shp</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -18613,6 +18613,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer diagramType="Histogram" sizeLegend="0" attributeLegend="1">
         <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="inf">
           <fontProperties description="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
         <symbol alpha="1" clip_to_extent="1" type="marker" name="sizeSymbol">
           <layer pass="0" class="SimpleMarker" locked="0">
@@ -18638,7 +18639,7 @@ def my_form_open(dialog, layer, feature):
         </symbol>
       </SingleCategoryDiagramRenderer>
       <DiagramLayerSettings yPosColumn="-1" showColumn="-1" linePlacementFlags="10" placement="0" dist="0" xPosColumn="-1" priority="0" obstacle="0" zIndex="0" showAll="1"/>
-      <annotationform></annotationform>
+      <annotationform>.</annotationform>
       <aliases>
         <alias field="id" index="0" name=""/>
         <alias field="name" index="1" name=""/>
@@ -18653,10 +18654,10 @@ def my_form_open(dialog, layer, feature):
           <column width="-1" hidden="1" type="actions"/>
         </columns>
       </attributetableconfig>
-      <editform></editform>
+      <editform>.</editform>
       <editforminit/>
       <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
+      <editforminitfilepath>.</editforminitfilepath>
       <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
 """
 QGIS forms can have a Python function that is called when the form is
