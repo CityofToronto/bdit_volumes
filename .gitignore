@@ -83,3 +83,4 @@ env/
 .settings/org.eclipse.core.resources.prefs
 *.pydevproject
 .project
+*.zip
