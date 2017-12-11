@@ -13,21 +13,21 @@ LEFT JOIN (SELECT link_id::bigint AS tnode_id, x_coord as tx, y_coord as ty FROM
 
 UPDATE 	prj_volume.arteries a
 SET 	fx = c.fx, fy = c.fy, source = 'tcl'
-FROM 	aharpal.cl_attr c 
+FROM 	prj_volume.cl_attr c 
 WHERE 	a.fnode_id IS NOT NULL AND (a.fx IS NULL OR a.fy IS NULL) AND c.from_inter = a.fnode_id;
 
 UPDATE prj_volume.arteries a
 SET 	tx = c.tx, ty = c.ty, source = 'tcl'
-FROM 	aharpal.cl_attr c 
+FROM 	prj_volume.cl_attr c 
 WHERE 	a.tnode_id IS NOT NULL AND (a.tx IS NULL OR a.ty IS NULL) AND c.to_inter = a.tnode_id;
 
 UPDATE 	prj_volume.arteries a
 SET 	fx = c.tx, fy = c.ty, source = 'tcl'
-FROM 	aharpal.cl_attr c 
+FROM 	prj_volume.cl_attr c 
 WHERE 	a.fnode_id IS NOT NULL AND (a.fx IS NULL OR a.fy IS NULL) AND c.to_inter = a.fnode_id;
 
 UPDATE 	prj_volume.arteries a
 SET 	tx = c.fx, ty = c.fy, source = 'tcl'
-FROM 	aharpal.cl_attr c 
+FROM 	prj_volume.cl_attr c 
 WHERE 	a.tnode_id IS NOT NULL AND (a.tx IS NULL OR a.ty IS NULL) AND c.from_inter = a.tnode_id;
 

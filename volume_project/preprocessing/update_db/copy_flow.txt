@@ -7,7 +7,7 @@
 
 \COPY traffic_new.arterydata FROM '[path]\arterydata.csv' DELIMITER ';' CSV HEADER;
 \COPY traffic_new.cnt_det FROM '[path]\cnt_det.csv' DELIMITER ';' CSV HEADER;
-\COPY traffic_new.countinfo ROM '[path]\countinfo.csv' DELIMITER ';' CSV HEADER;
+\COPY traffic_new.countinfo FROM '[path]\countinfo.csv' DELIMITER ';' CSV HEADER;
 \COPY traffic_new.countinfomics FROM '[path]\countinfomics.csv' DELIMITER ';' CSV HEADER;
 \COPY traffic_new.det FROM '[path]\det.csv' DELIMITER ';' CSV HEADER;
 \COPY traffic_new.node FROM '[path]\node.csv' DELIMITER ';' CSV HEADER;

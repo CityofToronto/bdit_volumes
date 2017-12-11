@@ -1,6 +1,7 @@
 --*****BE CAREFUL, RUNNING THIS SCRIPT RESTARTS THE MATCHING PROCESS*******
 TRUNCATE prj_volume.artery_tcl;
 
+-- TEMPORARY TABLE: Centreline IDs that shouldn't be included in the match process
 DROP TABLE IF EXISTS excluded_geoids;
 CREATE TEMPORARY TABLE excluded_geoids(centreline_id bigint,reason int);
 
