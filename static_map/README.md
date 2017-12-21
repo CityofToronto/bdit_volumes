@@ -37,7 +37,8 @@ prj_volume.centreline_groups_l2_geom|l2_group_number|geom
 The Python script should be run from the QGIS Python Console, within the `aadt_map.qgs` project file. The script will run assuming that the user has readied the tools in [bdit_python_utilities repository](https://github.com/CityofToronto/bdit_python_utilities). 
 
 `map_metric_Q.py`
- - Update paths (lines 21, 32-34, 40)
+ - Update paths (lines 19, 41)
+ - Update SQL query to point to the right schema to access table `l2_aadt_2015` (line 55)
  - `mapper` function argument `gid` should be `l2_group_number` or another pkey field (line 61)
  - Update `yyyyrange` and `layername` if necessary (lines 38, 67)
 
