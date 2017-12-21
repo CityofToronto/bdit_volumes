@@ -1,6 +1,6 @@
-﻿DROP TABLE l2_aadt_2015;
+﻿DROP TABLE IF EXISTS [USER SCHEMA].l2_aadt_2015; -- change [USER SCHEMA] to target schema
 
-create table USERSCHEMA.l2_aadt_2015 as
+CREATE TABLE [USER SCHEMA].l2_aadt_2015 AS -- change [USER SCHEMA] to target schema
 (
 	select
 	cgl2.l2_group_number,
