@@ -1,6 +1,7 @@
-﻿-- Create new instance of table for operations
---Query returned successfully: 111875806 rows affected, 07:34 minutes execution time.
+-- Create new instance of table for operations
+-- Query returned successfully: 111875806 rows affected, 07:34 minutes execution time.
 
+DROP TABLE IF EXISTS temp_cnt_det;
 CREATE TEMPORARY TABLE temp_cnt_det (LIKE prj_volume.cnt_det_clean);
 
 INSERT INTO temp_cnt_det
@@ -15,6 +16,7 @@ CREATE INDEX temp_cnt_det_count_info_id_idx
 
 -- Delete NULL values (time bin exists but count is NULL)
 -- Query returned successfully: 15352 rows affected
+
 DELETE FROM temp_cnt_det
 WHERE count IS NULL;
 
@@ -93,27 +95,17 @@ INSERT INTO temp_cnt_det
 SELECT *
 FROM duplicate;
 
--- Remove duplicate instances mentioned above
--- Based on same daily volume 
--- 7 count_info_ids
--- Find the records
-/*
-SELECT MIN(count_info_id), vol, arterycode, count_date
-FROM (SELECT count_info_id, arterycode, count_date, sum(count) AS vol, category_id
-	FROM traffic.countinfo join temp_cnt_det using (count_info_id)
-	WHERE category_id NOT IN (3,4)
-	GROUP BY count_info_id, arterycode, count_date) A
-GROUP BY arterycode, count_date, vol
-HAVING count(*) > 1;*/
 
 -- Delete manually, three cases exists: 1. shifted profile, cannot delete a random one 2. identical profile, delete a random one 3. wrong counts discovered from other processing.
 -- 672 rows deleted
+
 DELETE FROM temp_cnt_det
 WHERE count_info_id IN (136298, 298873, 179128, 136297, 719350, 719364, 721374, 301314, 301318, 301320, 301322, 301289, 301291, 301295, 301297, 301275);
 
 -- Remove Entries where volume between 8am and 12am is 0
 -- AND (whole day count is present OR less than 8h count)
 -- 41577 rows affected
+
 DELETE FROM temp_cnt_det
 WHERE (count_info_id) IN 
 	(SELECT count_info_id

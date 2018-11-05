@@ -54,17 +54,17 @@ def geocode(add):
         OUTPUT: (formatted long address, latitude, longitude)
     '''
     proxies = {'https':'https://137.15.73.132:8080'}
-    add = add.replace(' ', '+')
-    url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+add+',+Toronto,+ON,+Canada&key=AIzaSyBkp0W5IHAXgcb28MN_8wnUMxO1BGOlM3E'
+    add = add.replace(' ', '%20')
+    # url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+add+',+Toronto,+ON,+Canada&key=AIzaSyBkp0W5IHAXgcb28MN_8wnUMxO1BGOlM3E'
+    url = 'https://nominatim.openstreetmap.org/search/ca/toronto/'+add+'?format=json&addressdetails=1&limit=1'
     r = requests.get(url,proxies = proxies).json()
-    if r["status"] == 'ZERO_RESULTS':
-        return (add.replace('+', ' '),None,None)
+    if r == []:
+        return (add.replace('%20', ' '),None,None)
     try:
-        lat = r["results"][0]["geometry"]["location"]["lat"]
-        lon = r["results"][0]["geometry"]["location"]["lng"]
-        add = r["results"][0]["formatted_address"]
+        lat = r[0]["lat"]
+        lon = r[0]["lon"]
+        add = r[0]["display_name"]
     except:
-        print(r["status"])
         return(add,None,None)
     return (add,lat,lon)
 

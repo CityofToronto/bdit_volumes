@@ -11,23 +11,14 @@ FROM traffic.arterydata) a
 LEFT JOIN (SELECT link_id::bigint AS fnode_id, x_coord as fx, y_coord as fy FROM traffic.node) f USING (fnode_id)
 LEFT JOIN (SELECT link_id::bigint AS tnode_id, x_coord as tx, y_coord as ty FROM traffic.node) t USING (tnode_id);
 
+-- FROM NODE, X and Y
 UPDATE 	prj_volume.arteries a
-SET 	fx = c.fx, fy = c.fy, source = 'tcl'
-FROM 	prj_volume.cl_attr c 
-WHERE 	a.fnode_id IS NOT NULL AND (a.fx IS NULL OR a.fy IS NULL) AND c.from_inter = a.fnode_id;
+SET 	fx = x, fy = y, source = 'tcl'
+FROM 	gis.centreline_intersection c
+WHERE 	a.fnode_id IS NOT NULL AND (a.fx IS NULL OR a.fy IS NULL) AND c.int_id = a.fnode_id;
 
+-- TO NODE, X and Y
 UPDATE prj_volume.arteries a
-SET 	tx = c.tx, ty = c.ty, source = 'tcl'
-FROM 	prj_volume.cl_attr c 
-WHERE 	a.tnode_id IS NOT NULL AND (a.tx IS NULL OR a.ty IS NULL) AND c.to_inter = a.tnode_id;
-
-UPDATE 	prj_volume.arteries a
-SET 	fx = c.tx, fy = c.ty, source = 'tcl'
-FROM 	prj_volume.cl_attr c 
-WHERE 	a.fnode_id IS NOT NULL AND (a.fx IS NULL OR a.fy IS NULL) AND c.to_inter = a.fnode_id;
-
-UPDATE 	prj_volume.arteries a
-SET 	tx = c.fx, ty = c.fy, source = 'tcl'
-FROM 	prj_volume.cl_attr c 
-WHERE 	a.tnode_id IS NOT NULL AND (a.tx IS NULL OR a.ty IS NULL) AND c.from_inter = a.tnode_id;
-
+SET 	tx = x, ty = y, source = 'tcl'
+FROM 	gis.centreline_intersection c 
+WHERE 	a.tnode_id IS NOT NULL AND (a.tx IS NULL OR a.ty IS NULL) AND c.int_id = a.tnode_id;

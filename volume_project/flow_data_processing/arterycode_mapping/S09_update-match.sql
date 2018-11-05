@@ -10,13 +10,19 @@ SELECT arterycode,
 	WHEN 0 THEN NULL
 	ELSE a.centreline_id
 	END) AS centreline_id, a.direction, a.sideofint, a.match_on_case, artery_type
-FROM prj_volume.artery_tcl_manual_corr a JOIN traffic.arterydata d USING (arterycode);
+FROM 		prj_volume.artery_tcl_manual_corr a 
+INNER JOIN 	traffic.arterydata d USING (arterycode)
+ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
+UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.match_on_case;
 
 --2. update geometry and node_ids in prj_volume.arteries
-UPDATE prj_volume.arteries ar
-SET fnode_id = sub.from_intersection_id, tnode_id = sub.to_intersection_id, loc = shape
-FROM (SELECT arterycode, from_intersection_id, to_intersection_id, shape
-	FROM prj_volume.artery_tcl_manual_corr JOIN prj_volume.centreline USING (centreline_id)
-	WHERE was_match_on_case = 1 and match_on_case = 10
+UPDATE 	prj_volume.arteries ar
+SET 	fnode_id = sub.from_intersection_id, 
+		tnode_id = sub.to_intersection_id,
+		loc = shape
+FROM 	(	SELECT arterycode, B.fnode AS from_intersection_id, B.tnode AS to_intersection_id, geom AS shape
+			FROM prj_volume.artery_tcl_manual_corr A
+			INNER JOIN gis.centreline B ON A.centreline_id = B.geo_id
+			WHERE was_match_on_case = 1 and match_on_case = 10
 	) AS sub
 WHERE ar.arterycode = sub.arterycode;

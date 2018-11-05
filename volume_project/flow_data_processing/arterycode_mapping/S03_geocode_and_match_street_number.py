@@ -12,7 +12,7 @@ import AddressFunctions as AF
 import numpy as np
 
 def MatchStreetNumber(n,b1,e1,b2,e2):
-    if n % 2 == 1:
+    if n % 2 == b1 % 2:
         if n >= b1 and n <= e1:
             return True
         else:
@@ -29,7 +29,6 @@ def Geocode(db,ac,s1,s2):
     else:
         (add,lat,lon) = AF.geocode(s1)
     if lat is None:
-        #print(s1+' and '+s2)
         return False
     artery = {}
     artery['arterycode'] = ac
@@ -94,7 +93,7 @@ def geocode_match_lingstrings(db, roads, tcl_fl):
             
             # Find street numbers in the centreline file
             icl = tcl_fl.get_group(street[0].upper())
-            for (clid,c,b1,e1,b2,e2) in zip(icl['centreline_id'],icl['linear_name_full'],icl['low_num_odd'],icl['high_num_odd'],icl['low_num_even'],icl['high_num_even']):
+            for (clid,c,b1,e1,b2,e2) in zip(icl['centreline_id'],icl['linear_name_full'],icl['low_num_l'],icl['high_num_l'],icl['low_num_r'],icl['high_num_r']):
                 c = c.lower()        
                 mc = fuzz.ratio(street, c)
                 mp = fuzz.partial_ratio(street, c)
@@ -133,8 +132,15 @@ def geocode_points(db):
     nogeomP = pd.DataFrame.from_records(nogeomP, columns = ['arterycode', 'location', 'street1', 'street2'])
     
     for (ac, loc, s1, s2) in zip(nogeomP['arterycode'],nogeomP['location'],nogeomP['street1'], nogeomP['street2']):
-        m1 = re.search('#(\s)*[0-9]+', s1)
-        m2 = re.search('#(\s)*[0-9]+', s2)
+        if s1 is None:
+            m1 = None
+        else:
+            m1 = re.search('#(\s)*[0-9]+', s1)
+		
+        if s2 is None:
+            m2 = None
+        else:
+            m2 = re.search('#(\s)*[0-9]+', s2)
     
         if m1 is not None:
             f = Geocode(db,ac,s1[m1.start()+1:], '')
@@ -190,7 +196,7 @@ def match_by_street_number(db, roads, tcl_fl):
         except:
             continue
     
-        for (clid,cfull,cpart,b1,e1,b2,e2) in zip(icl['centreline_id'],icl['linear_name_full'],icl['linear_name'],icl['low_num_odd'],icl['high_num_odd'],icl['low_num_even'],icl['high_num_even']):
+        for (clid,cfull,cpart,b1,e1,b2,e2) in zip(icl['centreline_id'],icl['linear_name_full'],icl['linear_name'],icl['low_num_l'],icl['high_num_l'],icl['low_num_r'],icl['high_num_r']):
             cfull = cfull.lower()       
             cpart = cpart.lower()
             if n is None:
@@ -214,7 +220,7 @@ def match_by_street_number(db, roads, tcl_fl):
     
 def geocode_match(db):
     roads = re.compile('\s(AVE|RD|ROAD|PKWY|ST|CRES|PL|BLVD|DR|GT|CRT|GDNS|TER|WAY|LANE|TRL|CIR|CRCL|PARK|TCS|HTS|GROVE|SQ|GATE)\s([EWNS])?');
-    tcl = pd.DataFrame(db.query('SELECT centreline_id, linear_name_full, linear_name, low_num_odd, high_num_odd, low_num_even, high_num_even FROM prj_volume.centreline').getresult(), columns = ['centreline_id', 'linear_name_full', 'linear_name', 'low_num_odd', 'high_num_odd', 'low_num_even', 'high_num_even'])
+    tcl = pd.DataFrame(db.query('SELECT geo_id AS centreline_id, lf_name AS linear_name_full, street_strip(lf_name) AS linear_name, lonuml, hinuml, lonumr, hinumr FROM gis.centreline').getresult(), columns = ['centreline_id', 'linear_name_full', 'linear_name', 'low_num_l', 'high_num_l', 'low_num_r', 'high_num_r'])
     tcl['first_letter'] = tcl.linear_name_full.str[0]
     tcl_fl = tcl.groupby('first_letter')
     

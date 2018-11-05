@@ -12,8 +12,8 @@ import re
 
 def combine_and_upload(db, directory):
     
-    # File 1: checking segments <25m
-    e = pd.read_csv(directory+'tmc_qc_25m.csv')
+    # File 1: TMC artery codes with short segments (<25m)
+    e = pd.read_csv(directory+'tmc_short.csv')
     d = []
     for a,b,c in zip(e['arterycode'], e['centreline_id'], e['sideofint']):
         if not np.isnan(a):
@@ -29,11 +29,11 @@ def combine_and_upload(db, directory):
                 d.append([int(a),'Eastbound',c,int(b),m[1],10,case])
                 d.append([int(a),'Westbound',c,int(b),m[1],10,case])
     df1 = pd.DataFrame(d, columns = ['arterycode','direction','sideofint','centreline_id','artery_type','match_on_case','was_match_on_case'])
-    df1.to_csv(directory+'ready_tmc_qc_25m.csv', index = False)
+    df1.to_csv(directory+'ready_tmc_short.csv', index = False)
     
-    # File 2: checking segments with unmatched+attached centreline segments
+    # File 2: TMC artery codes - manual corrections
     f = []
-    e = pd.read_csv(directory+'manual_corr_full_tmc.csv')
+    e = pd.read_csv(directory+'tmc_corrections.csv')
     for a,b,c,d in zip(e['arterycode'], e['direction'], e['sideofint'],e['centreline_id']):
         m = db.query('select match_on_case,artery_type from prj_volume.artery_tcl where arterycode = '+str(int(a))).getresult()[0]
         if m[0] == 10:
@@ -49,10 +49,10 @@ def combine_and_upload(db, directory):
     f.append([28112,'Westbound','E',0,2,11,6])
     
     df2 = pd.DataFrame(f, columns = ['arterycode','direction','sideofint','centreline_id','artery_type','match_on_case','was_match_on_case'])
-    df2.to_csv(directory+'ready_manual_corr_tmc_full.csv', index = False)
+    df2.to_csv(directory+'ready_tmc_corrections.csv', index = False)
     
-    # File 3: corrections for case 1,2,3,4,5,12
-    e = pd.read_csv(directory+'ready_manual_corrections_atr.csv')
+    # File 3: ATR artery codes - manual corrections
+    e = pd.read_csv(directory+'ready_atr_corrections.csv')
     f = []
     for a,b,c,d,g,h in zip(e['arterycode'], e['direction'], e['sideofint'],e['centreline_id'],e['match_on_case'],e['was_match_on_case']):
         if np.isnan(h):
@@ -69,7 +69,7 @@ def combine_and_upload(db, directory):
     df3 = pd.DataFrame(f, columns = ['arterycode','direction','sideofint','centreline_id','artery_type','match_on_case','was_match_on_case'])
     
     # File 4: randomly spotted errors
-    e = pd.read_csv(directory+'Additional_fixes.csv')
+    e = pd.read_csv(directory+'fixes_additional.csv')
     f = []
     num = re.compile('\d+')
     for a,b in zip(e['arterycode'],e['comment']):
@@ -93,7 +93,7 @@ def combine_and_upload(db, directory):
     df4 = pd.DataFrame(f, columns = ['arterycode','direction','sideofint','centreline_id','artery_type','match_on_case','was_match_on_case'])
     
     # File 5: failed arterycodes
-    e = pd.read_csv(directory+'case-9-failed.csv')
+    e = pd.read_csv(directory+'failed_matches_case09.csv')
     f = []
     for a,b,c,d,g,h in zip(e['arterycode'], e['direction'], e['sideofint'],e['centreline_id'],e['count_type'],e['comment']):
         if np.isnan(d):
@@ -110,7 +110,7 @@ def combine_and_upload(db, directory):
     
     df = pd.concat([df1,df2,df3,df4,df5])
     df.drop_duplicates(subset = ['arterycode', 'direction', 'sideofint'], keep = 'first', inplace = True)
-    df.to_csv(directory+'ready_corr_import.csv',index = False)
+    df.to_csv(directory+'all_corrections.csv',index = False)
     df['was_match_on_case'] = df['was_match_on_case'].astype(int)
     
     return df.values.tolist()
