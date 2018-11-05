@@ -2,7 +2,6 @@
 #! python2
 """Automate printings maps of congestion metrics using PyQGIS
 
-
 ###############################################
 
 WARNING 
@@ -16,9 +15,11 @@ WARNING
 ###############################################
 """
 
+# Update this path to the folder containing the static_map folder:
+staticmap_dir = r"C:\Users\qchen\Documents\GitHub\bdit_volumes"
 
 import sys
-sys.path.append(r"C:\Users\qchen\Documents\GitHub\bdit_volumes\static_map\python")
+sys.path.append(staticmap_dir + r"\static_map\python")
 import logging
 from qgis.utils import iface
 from volume_mapper import VolumeMapper
@@ -29,9 +30,9 @@ if __name__ == '__console__':
     
     # Variables to change
     # Paths
-    templatepath = r"C:\Users\qchen\Documents\GitHub\bdit_volumes\static_map\template_2015_STREETS_Q.qpt"
-    stylepath = r"C:\Users\qchen\Documents\GitHub\bdit_volumes\static_map\style_traffic_volume_2015_Q.qml"
-    print_directory = r"C:\Users\qchen\Documents\GitHub\bdit_volumes\static_map\test"
+    templatepath = staticmap_dir + r"\static_map\template_2015_STREETS_Q.qpt"
+    stylepath = staticmap_dir + r"\static_map\style_traffic_volume_2015_Q.qml"
+    print_directory = staticmap_dir + r"\static_map\test"
     #print_format = ''
     
     # Setting up variables for iteration
