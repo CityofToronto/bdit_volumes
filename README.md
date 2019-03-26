@@ -29,9 +29,9 @@ The City of Toronto's traffic volume collection efforts can be broken into three
 The purpose of this project is to leverage existing count data to develop a model that can produce volume estimates at specific locations in the City of Toronto at specific times, and is sensitive to time-of-day, day-of-week and seasonality effects, as well as long-term trends. These estimates will facilitate the development of volume-weighted congestion performance metrics, as well as allow the Team to produce detailed volume profiles that can feed into congestion reporting tools and AADT summaries.
 
 ## 3. Project Tasks
-1. **Map Source Geometries to Toronto Centreline:** Link Artery Codes used in the City's FLOW database to the City's Centreline shapefile, with additional descriptive fields (e.g. directionality) as necessary. Detailed process can be found at [arterycode_mapping](volume_project/arterycode_mapping).
+1. **Map Source Geometries to Toronto Centreline:** Link Artery Codes used in the City's FLOW database to the City's Centreline shapefile, with additional descriptive fields (e.g. directionality) as necessary. Detailed process can be found at [arterycode_mapping](volume_project/flow_data_processing/arterycode_mapping).
 
-2. **Definition of Corridors:** Develop reproducible process for aggregating relevant centreline segments into corridors [corridors](corridors/).
+2. **Definition of Corridors:** Develop reproducible process for aggregating relevant centreline segments into corridors [corridors](volume_project/preprocessing/corridors/).
 
 3. **Literature Review:** Explore methods employed in other jurisdictions for interpolating or extrapolating traffic volumes both spatially and temporally, with a specific focus on cases where sparse counts exist. Produce summary of methods that may have value for this project for further exploration.
 
