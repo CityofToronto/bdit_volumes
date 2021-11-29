@@ -107,18 +107,18 @@ if __name__ == '__main__':
 	
     # 1.1 Arterycode matching
     tStart = datetime.now()        
-    newmatch = pfd.arterycode_matching()
+    newmatch = pfd.arterycode_matching() ## comment this line out to skip arterycode matching process
     logger.info('Finished Arterycode Matching in %s', str(datetime.now()-tStart))
     
 	
     # 1.2 Clean up counts
     tStart = datetime.now()
-    # pfd.cleanup_traffic_counts()
+    pfd.cleanup_traffic_counts()
     logger.info('Finished clean up counts in %s', str(datetime.now()-tStart))
 
     # 1.3 Populating volume tables
     tStart = datetime.now()
-    # pfd.populate_volumes_table()
+    pfd.populate_volumes_table()
     logger.info('Finished populating volume tables in %s', str(datetime.now()-tStart))   
 	
 	
