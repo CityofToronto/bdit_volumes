@@ -24,10 +24,11 @@ def MatchStreetNumber(n,b1,e1,b2,e2):
             return False
 
 def Geocode(db,ac,s1,s2):
+    
     if s2 != '' :
-        (add,lat,lon) = AF.geocode(s1+' and '+s2)
+        (add,lat,lon) = AF.geocode(str(s1)+' and '+str(s2))
     else:
-        (add,lat,lon) = AF.geocode(s1)
+        (add,lat,lon) = AF.geocode(str(s1))
     if lat is None:
         return False
     artery = {}
