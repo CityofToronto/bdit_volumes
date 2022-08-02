@@ -157,7 +157,7 @@ UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.matc
 
 --3. insert all failed instances (not within 30m to any intersection and not within 15m to any segment) (or segments not within 200m of anything else)
 INSERT INTO prj_volume.artery_tcl(arterycode, sideofint, direction, match_on_case, artery_type)
-SELECT arterycode, sideofint, apprdir as direction, 9 as match_on_case, 2 as artery_type
+SELECT arterycode, COALESCE(arterydata.sideofint,'') as sideofint, COALESCE(apprdir,'') as direction, 9 as match_on_case, 2 as artery_type
 FROM prj_volume.arteries JOIN traffic.arterydata USING (arterycode)
 WHERE arterycode NOT IN (SELECT DISTINCT arterycode FROM prj_volume.artery_tcl)
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO

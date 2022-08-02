@@ -5,13 +5,13 @@ CREATE TABLE unmatched_linestrings(arterycode bigint, loc geometry, direction ch
 
 -- Collection of Artery Codes where lines were formed, but no centreline is matched
 INSERT INTO unmatched_linestrings
-SELECT arterycode, loc, apprdir AS direction, arterydata.sideofint, fnode_id, tnode_id
+SELECT arterycode, loc, apprdir AS direction, COALESCE(arterydata.sideofint,''), fnode_id, tnode_id
 FROM prj_volume.arteries LEFT JOIN prj_volume.artery_tcl USING (arterycode) JOIN traffic.arterydata USING (arterycode)
 WHERE centreline_id IS NULL and ST_GeometryType(loc) = 'ST_LineString';
 
 -- take out segments that are obviously outside of tcl boundary
 INSERT INTO prj_volume.artery_tcl
-SELECT arterycode, NULL as centreline_id, direction, unmatched_linestrings.sideofint, 11 as match_on_case, 1 as artery_type
+SELECT arterycode, NULL as centreline_id, direction, COALESCE(unmatched_linestrings.sideofint,''), 11 as match_on_case, 1 as artery_type
 FROM unmatched_linestrings JOIN traffic.arterydata USING (arterycode)
 WHERE location LIKE '%N OF STEELES%' or loc LIKE '%W OF ETOBICOKE CREEK%'
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS temp_match;
 CREATE TEMPORARY TABLE temp_match(arterycode bigint, centreline_id bigint, direction character varying, sideofint character varying, match_on_case smallint, shape geometry);
 
 INSERT INTO temp_match(arterycode, centreline_id, direction, sideofint, match_on_case, shape)
-SELECT arterycode, centreline_id, direction, sideofint, 2 as match_on_case, geom AS shape
+SELECT arterycode, centreline_id, direction, COALESCE(sideofint,''), 2 as match_on_case, geom AS shape
 FROM 		unmatched_linestrings A
 CROSS JOIN 	(	SELECT geom, geo_id AS centreline_id, fnode, tnode, lf_name
 				FROM 	gis.centreline WHERE geo_id NOT IN (SELECT centreline_id FROM excluded_geoids)) B
@@ -37,7 +37,7 @@ ORDER BY arterycode;
 
 -- Choose the longer segment in case >1 segment overlaps with arterycode
 INSERT INTO prj_volume.artery_tcl 
-SELECT DISTINCT ON (arterycode) arterycode, centreline_id, direction, sideofint, match_on_case, 1 as artery_type
+SELECT DISTINCT ON (arterycode) arterycode, centreline_id, direction, COALESCE(sideofint,''), match_on_case, 1 as artery_type
 FROM temp_match
 ORDER BY arterycode, ST_Length(shape) DESC
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO
@@ -50,7 +50,7 @@ WHERE unmatched_linestrings.arterycode IN (SELECT arterycode FROM temp_match);
 INSERT INTO prj_volume.artery_tcl
 SELECT arterycode, centreline_id, direction, sideofint, 12 as match_on_case, 1 as artery_type
 FROM (
-	SELECT DISTINCT ON (ar.arterycode) ar.arterycode, cl.geo_id as centreline_id, ar.direction, ar.sideofint
+	SELECT DISTINCT ON (ar.arterycode) ar.arterycode, cl.geo_id as centreline_id, ar.direction, COALESCE(ar.sideofint,'') as sideofint
 	FROM 		unmatched_linestrings ar 
 	CROSS JOIN 	(	SELECT * 
 					FROM gis.centreline 
@@ -74,7 +74,7 @@ DELETE FROM unmatched_linestrings
 WHERE unmatched_linestrings.arterycode IN (SELECT arterycode FROM prj_volume.artery_tcl);
 
 INSERT INTO prj_volume.artery_tcl(arterycode, sideofint, direction, match_on_case, artery_type)
-SELECT arterycode, sideofint, direction, 9 as match_on_case, 1 as artery_type
+SELECT arterycode, COALESCE(sideofint,''), direction, 9 as match_on_case, 1 as artery_type
 FROM unmatched_linestrings
 WHERE unmatched_linestrings.arterycode NOT IN (SELECT arterycode FROM prj_volume.artery_tcl)
 ON CONFLICT ON CONSTRAINT artery_tcl_pkey DO

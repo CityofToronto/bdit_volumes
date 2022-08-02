@@ -33,7 +33,8 @@ DROP TABLE IF EXISTS temp_match CASCADE;
 CREATE TEMPORARY TABLE temp_match (arterycode bigint, cl_id1 bigint, cl_id2 bigint, dist1 double precision, dist2 double precision, direction character varying, sideofint character);
 
 INSERT INTO temp_match
-SELECT ad.arterycode, sc1.geo_id as cl_id1, sc2.geo_id as cl_id2, ST_HausdorffDistance(loc,sc1.geom) as dist1, ST_HausdorffDistance(loc,sc2.geom) as dist2, apprdir AS direction, sideofint
+-- 2022-07-14 Added COALESCE function to apprdir and sideofint to address Issue #75
+SELECT ad.arterycode, sc1.geo_id as cl_id1, sc2.geo_id as cl_id2, ST_HausdorffDistance(loc,sc1.geom) as dist1, ST_HausdorffDistance(loc,sc2.geom) as dist2, COALESCE(apprdir,'') AS direction, COALESCE(sideofint,'') AS sideofint
 FROM traffic.arterydata ad
 LEFT JOIN (SELECT * FROM gis.centreline WHERE geo_id NOT IN (SELECT centreline_id FROM excluded_geoids)) sc1 ON SUBSTRING(ad.linkid,'([0-9]{1,20})@?')::bigint = sc1.fnode AND SUBSTRING(linkid,'@([0-9]{1,20})')::bigint = sc1.tnode
 LEFT JOIN (SELECT * FROM gis.centreline WHERE geo_id NOT IN (SELECT centreline_id FROM excluded_geoids)) sc2 ON SUBSTRING(ad.linkid,'([0-9]{1,20})@?')::bigint = sc2.tnode AND SUBSTRING(linkid,'@([0-9]{1,20})')::bigint = sc2.fnode
@@ -55,7 +56,8 @@ UPDATE SET centreline_id = EXCLUDED.centreline_id, match_on_case = EXCLUDED.matc
 
 -- STEP 1.1: For segments with the same fnode, tnode combination, pick out the one with the closest text match using Levenshtein
 INSERT INTO prj_volume.artery_tcl
-SELECT DISTINCT ON (arterycode) arterycode, centreline_id, apprdir as direction, sideofint, 1 as match_on_case, 1 as artery_type
+-- 2022-07-14 Added COALESCE function to apprdir and sideofint to address Issue #75
+SELECT DISTINCT ON (arterycode) arterycode, centreline_id, COALESCE(apprdir,'') as direction, COALESCE(sideofint,''), 1 as match_on_case, 1 as artery_type
 FROM (SELECT arterycode, levenshtein(UPPER(lf_name), CONCAT(street1,' ',street1type)) AS strscore, A.geo_id AS centreline_id, street1, lf_name, apprdir, sideofint
 		FROM 		gis.centreline A
 		INNER JOIN 	(SELECT centreline_id AS geo_id FROM excluded_geoids WHERE reason = 0) B USING (geo_id) 
