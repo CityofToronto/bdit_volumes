@@ -13,6 +13,11 @@ Some recent precedents (in other repos) to refer to:
 - This [data request](https://github.com/Toronto-Big-Data-Innovation-Team/bdit_data_requests/tree/master/volumes/atr/miovision/2023-02-03_UofT_miovision_to_centreline_update)
 - This assessment of [RESCU data](https://github.com/CityofToronto/bdit_data-sources/tree/master/volumes/rescu/date_evaluation)
 
+## Miovision Data
+There are two steps to this process:
+1. Rerun the miovision to centreline conflation table with the 2022-07-05 centreline data
+2. Rerun this [data request](https://github.com/Toronto-Big-Data-Innovation-Team/bdit_data_requests/tree/master/volumes/atr/miovision/2023-02-03_UofT_miovision_to_centreline_update) with the 2022-07-05 miovision to centreline conflation table
+
 ## RESCU Data
 After assessing the lane stats, the minimum valid volumes should stay the same as 2021:
  - Lakeshore weekends and weekdays - 2000 vehicles per lane
