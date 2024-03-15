@@ -140,7 +140,7 @@ WHERE centreline_id = 107942;
 
 -- 50 W Kingston and Morningside, two sets of NS, so I made Kingston EW
 UPDATE scannon.centreline_miovision_20220705
-SET leg = 'W'
+SET leg = 'W' 
 WHERE centreline_id = 8087359;
 
 -- 52 N Sheppard and some curvy streets you've never heard of, two W, made the north one N
@@ -157,6 +157,16 @@ WHERE centreline_id = 10750670;
 UPDATE scannon.centreline_miovision_20220705
 SET leg = 'W'
 WHERE centreline_id = 5070833;
+
+-- 78 has two E and two W but it's a T intersection. 
+-- 78 One of the W should be a N
+UPDATE scannon.centreline_miovision_20220705
+SET leg = 'N'
+WHERE centreline_id = 911198;
+
+-- 78 One of the E should be deleted
+DELETE FROM scannon.centreline_miovision_20220705
+WHERE centreline_id = 911197;
 
 -- 1 W Adelaide and Bathurst, shouldn't exist because this intersection jogs
 DELETE FROM scannon.centreline_miovision_20220705
