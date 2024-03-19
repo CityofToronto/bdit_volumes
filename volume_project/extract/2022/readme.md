@@ -18,6 +18,12 @@ There are two steps to this process:
 1. Rerun the miovision to centreline conflation table with the 2022-07-05 centreline data (see [this file](miovision_sqls/miovision_atr_2022.sql))
 2. Rerun this [data request](https://github.com/Toronto-Big-Data-Innovation-Team/bdit_data_requests/tree/master/volumes/atr/miovision/2023-02-03_UofT_miovision_to_centreline_update) with the 2022-07-05 miovision to centreline conflation table (see [this file](miovision_sqls/miovision_centreline_20220705.sql))
 
+After the data request is rerun, check to see if there are any instances where the `centreline_id` is null and the `volume` is greater than 0: 
+```
+SELECT * FROM mio_atr_centreline_20220705 WHERE centreline_id IS NULL AND volume > 0
+```
+
+
 ## RESCU Data
 After assessing the lane stats, the minimum valid volumes should stay the same as 2021:
  - Lakeshore weekends and weekdays - 2000 vehicles per lane
