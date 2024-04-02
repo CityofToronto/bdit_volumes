@@ -17,4 +17,6 @@ LEFT JOIN scannon.rescu_cent_20220705 AS art USING (detector_id)
 LEFT JOIN vds.counts_15min AS v 
         ON ev.entity_location_uid = v.entity_location_uid
             AND ev.dt = v.datetime_15min::date
+WHERE detector_id NOT IN ('DW0070DEG', 'DW0120DEG') -- these detectors had fewer days of data than another detector on the same centreline_id
+    AND v.count_15min > 0
 );

@@ -16,7 +16,7 @@ FROM traffic.cnt_det AS sv
 LEFT JOIN traffic.countinfo AS ci USING(count_info_id)
 LEFT JOIN traffic.arteries_centreline AS ac USING(arterycode)
 LEFT JOIN prj_volume.speed_classes AS sc USING (speed_class)
-WHERE ci.count_date >= '2022-01-01' AND ci.count_date < '2023-01-01'
+WHERE ci.count_date >= '2022-01-01' AND ci.count_date < '2023-01-01' AND sv.count > 0
 AND ci.category_id = 4
 ORDER BY centreline_id, count_bin, speed_class
 );

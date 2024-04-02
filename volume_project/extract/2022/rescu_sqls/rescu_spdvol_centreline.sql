@@ -18,4 +18,5 @@ LEFT JOIN vds.veh_speeds_15min AS v
         ON ev.entity_location_uid = v.entity_location_uid
             AND ev.dt = v.datetime_15min::date
 WHERE v.count IS NOT NULL
-    );
+AND detector_id NOT IN ('DW0070DEG', 'DW0120DEG') -- these detectors had fewer days of data than another detector on the same centreline_id
+);

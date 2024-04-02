@@ -14,7 +14,7 @@ INSERT INTO scannon.oti_class VALUES
 (7, 'four or more axle single units'),
 (8, 'four or less axle single trailers'),
 (9, 'five axle single trailers'),
-(10, 'six or more single trailers'),
+(10, 'six or more axle single trailers'),
 (11, 'five or less axle multi-trailers'),
 (12, 'six axle multi-trailers'),
 (13, 'seven or more axle multi-trailers');
