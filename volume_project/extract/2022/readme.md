@@ -5,6 +5,7 @@ We've done this pretty much annually, now we have some documentation!
 We are extracting:
 - ATR data from Miovision
 - Short Term ATR counts
+- Short Term TMC counts that were converted to ATRs
 - RESCU data
 
 All volume counts will be matched to the 2022-07-05 version of the centreline.
@@ -34,7 +35,7 @@ SELECT * FROM mio_atr_centreline_20220705 WHERE centreline_id IS NULL AND volume
 ```
 There are also no notes in the `anomalous_range_notes` field, but miovision data that was marked as anomalous (where `project_level IN ('do-not-use', 'questionable')`) was omitted. The only non "do not use" or "questionable" entries in the anomalous range table in 2022 are for bicycles, which are not included in this request.
 
-## Short Term ATR counts
+## Short Term ATR Counts
 The table `traffic.arteries_centreline` is updated daily. Only 23 Of the unique arterycode and centreline_id combinations in 2022 did not have a `gis.centreline_20220705` equivalent (out of 1191), so no further centreline mapping was needed.
 
 Two types of short term counts were provided:
@@ -42,6 +43,23 @@ Two types of short term counts were provided:
 - classification data was extracted using [this code](short_term_count_sqls/classvol.sql)
 
 The table `scannon.oti_class` was created using [this code](short_term_count_sqls/oti_class.sql) to map classification id numbers to their descriptions.
+
+## Converting Short Term TMC Counts to ATRs
+TMCs count cars as they approach and move through an intersection. The TMC count for a single vehicle was assigned to the centreline segment where it:
+- entered the intersection, and
+- exited the intersection.
+Therefore every TMC vehicle was counted twice.
+
+The `traffic.tmc_miovision_long_format` table contains TMC data in a long (as opposed to wide) format. It was joined to the `prj_volume.tmc_turns` table, which links arterycodes to centreline_ids for all movement types.
+
+The entrance centreline_ids were unionioned to the exit centreline_ids to create a table of ATR counts based on TMC counts using [this code](short_term_count_sqls/tmc_2_atr_vol.sql). Note that segments that did not have a centreline_id (like mall entrances) were excluded in the final output table.
+
+Two checks were performed:
+- Since ATRs count vehicle entrances and exits, they should be double the volume counts for TMCs (before the non-centreline_id segments were excluded, that is)
+- Higher functional class roads should have more volume than lower functional class roads (an arterial road's volume should be higher than a local road's volume, in other words).
+Both checks passed!!!
+
+See [this code](short_term_count_sqls/tmc_2_atr_check.sql) for more details on how these checks were implemented.
 
 ## RESCU Data
 After assessing the lane stats, the minimum valid volumes should stay the same as 2021:
