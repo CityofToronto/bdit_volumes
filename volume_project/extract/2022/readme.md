@@ -33,7 +33,7 @@ After the data request is rerun, check to see if there are any instances where t
 ```
 SELECT * FROM mio_atr_centreline_20220705 WHERE centreline_id IS NULL AND volume > 0
 ```
-There are also no notes in the `anomalous_range_notes` field, but miovision data that was marked as anomalous (where `project_level IN ('do-not-use', 'questionable')`) was omitted. The only non "do not use" or "questionable" entries in the anomalous range table in 2022 are for bicycles, which are not included in this request.
+There are also no notes in the `anomalous_range_notes` field, but miovision data that was marked as anomalous (where `problem_level IN ('do-not-use', 'questionable')`) was omitted. The only non "do not use" or "questionable" entries in the anomalous range table in 2022 are for bicycles, which are not included in this request.
 
 ## Short Term ATR Counts
 The table `traffic.arteries_centreline` is updated daily. Only 23 Of the unique arterycode and centreline_id combinations in 2022 did not have a `gis.centreline_20220705` equivalent (out of 1191), so no further centreline mapping was needed.
