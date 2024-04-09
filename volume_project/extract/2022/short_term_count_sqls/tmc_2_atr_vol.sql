@@ -39,7 +39,8 @@ SELECT
     traffic_classification AS vehicle_class,
     count_info_id AS volume_id
 FROM vol_cent
-    
+WHERE vol_cent.tcl_to_segment IS NOT NULL
+
 UNION ALL
 
 SELECT 
