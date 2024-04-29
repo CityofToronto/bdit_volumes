@@ -1,5 +1,5 @@
 -- Make a table that compares daily volumes with the average daily volumes and z scores
-CREATE TABLE scannon.rescu_dayvol_stats_22 AS (
+CREATE TABLE teps.rescu_dayvol_stats_22 AS (
 
 -- determine what day it is (weekday or weekend)    
     WITH day_jam AS (

@@ -92,35 +92,35 @@ ORDER BY (atr_ct / tmc_ct)::float
 -- I also checked that the higher functional class road had more volume for a few cases...
 -- Forest Hill and Lonsdale
 SELECT centreline_id, lf_name, fcode_desc, sum(volume)
-FROM scannon.tmcs_to_atrs_20220705
+FROM teps.tmcs_to_atrs_20220705
 LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
 WHERE centreline_id IN (1139211, 1139232, 1139355, 7254137)
 GROUP BY centreline_id, lf_name, fcode_desc
 
 -- Morningside and Warnsworth
 SELECT centreline_id, lf_name, fcode_desc, sum(volume)
-FROM scannon.tmcs_to_atrs_20220705
+FROM teps.tmcs_to_atrs_20220705
 LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
 WHERE centreline_id IN (107586, 107621, 107724)
 GROUP BY centreline_id, lf_name, fcode_desc
 
 -- St. Leonard's and Mildenhall
 SELECT centreline_id, lf_name, fcode_desc, sum(volume)
-FROM scannon.tmcs_to_atrs_20220705
+FROM teps.tmcs_to_atrs_20220705
 LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
 WHERE centreline_id IN (444286, 444372, 444285, 444387)
 GROUP BY centreline_id, lf_name, fcode_desc
 
 -- Kipling and St. Andrews
 SELECT centreline_id, lf_name, fcode_desc, sum(volume)
-FROM scannon.tmcs_to_atrs_20220705
+FROM teps.tmcs_to_atrs_20220705
 LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
 WHERE centreline_id IN (908458, 908511, 9980271)
 GROUP BY centreline_id, lf_name, fcode_desc
 
 -- Blythwood and Strathgowan
 SELECT centreline_id, lf_name, fcode_desc, sum(volume)
-FROM scannon.tmcs_to_atrs_20220705
+FROM teps.tmcs_to_atrs_20220705
 LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
 WHERE centreline_id IN (7754013, 30057003, 1137956)
 GROUP BY centreline_id, lf_name, fcode_desc

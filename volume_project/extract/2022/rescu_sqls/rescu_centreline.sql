@@ -1,5 +1,5 @@
 -- Make a table that links RESCU detectors with the centreline from 2022-07-05
-CREATE TABLE scannon.rescu_cent_20220705 AS (
+CREATE TABLE teps.rescu_cent_20220705 AS (
 
 -- get centreline segments
 WITH cl_segs AS (
@@ -18,7 +18,7 @@ SELECT DISTINCT
     ev.direction, 
     ev.gen_loc, 
     ST_SetSRID(ST_MAKEPOINT(ev.longitude, ev.latitude), 4326) AS rescu_geom
-FROM scannon.rescu_enuf_vol_22 AS ev
+FROM teps.rescu_enuf_vol_22 AS ev
 ),
 
 -- spatially join buffered detectors and segments
@@ -84,78 +84,78 @@ LEFT JOIN good_check AS gc USING (detector_id)
 );
 
 -- 19 records didn't match (mosty because of "Lake Shore Blvd E" or "Lake Shore Blvd W" issues :cry_cat: so I found them manually and updated them
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 1145945
 WHERE detector_id = 'DE0030DWL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30021327
 WHERE detector_id = 'DW0070DEL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 1147026
 WHERE detector_id = 'DW0020DEL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30016242
 WHERE detector_id = 'DW0080DEL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 1146358
 WHERE detector_id = 'DE0010DWL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30021714
 WHERE detector_id = 'DW0130DEL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30134464
 WHERE detector_id = 'DW0050DEL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30087988
 WHERE detector_id = 'DE0020DWL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 20043579
 WHERE detector_id = 'DW0151DEG';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30021784
 WHERE detector_id = 'DE0050DWL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 913364
 WHERE detector_id = 'DW0161DEG';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30010427
 WHERE detector_id = 'DW0126DWG';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 14189397
 WHERE detector_id = 'DW0120DEL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 913354
 WHERE detector_id = 'DW0161DWG';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30007492
 WHERE detector_id = 'DW0126DEG';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 1147201
 WHERE detector_id = 'DW0040DEL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30121301
 WHERE detector_id = 'DW0110DEL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30125351
 WHERE detector_id = 'DW0060DEL';
 
-UPDATE scannon.rescu_cent_20220705
+UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30036182
 WHERE detector_id = 'DW0100DEL';
