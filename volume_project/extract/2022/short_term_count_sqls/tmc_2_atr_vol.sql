@@ -1,4 +1,4 @@
-CREATE MATERIALIZED VIEW scannon.tmcs_to_atrs_20220705 AS (
+CREATE MATERIALIZED VIEW teps.tmcs_to_atrs_20220705 AS (
 
 -- Grab TMC volume from the long format table 
 with vol_cent AS (

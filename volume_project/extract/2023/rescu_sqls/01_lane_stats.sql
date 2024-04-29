@@ -1,5 +1,5 @@
 -- make a table that contains stats by lane so that we can set volume minimums
-CREATE TABLE scannon.rescu_lane_stats_22 AS (
+CREATE TABLE teps.rescu_lane_stats_22 AS (
     
     -- calculate daily volumes for days when detectors have data for every 15 minute bin 
     WITH daily_vol AS (

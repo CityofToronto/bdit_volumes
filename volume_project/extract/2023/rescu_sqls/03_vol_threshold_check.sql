@@ -1,4 +1,4 @@
-CREATE TABLE scannon.rescu_enuf_vol_22 AS (
+CREATE TABLE teps.rescu_enuf_vol_22 AS (
     WITH vol_asmt AS (
         SELECT 
             *,
@@ -10,7 +10,7 @@ CREATE TABLE scannon.rescu_enuf_vol_22 AS (
                 WHEN det_group = 'On-Ramp' THEN 'exclude'
                 ELSE 'check volume'
             END AS vol_check
-        FROM scannon.rescu_dayvol_stats_22
+        FROM teps.rescu_dayvol_stats_22
     )
 
     SELECT 

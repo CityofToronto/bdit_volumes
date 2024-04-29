@@ -1,4 +1,4 @@
-CREATE MATERIALIZED VIEW scannon.classvol_20220705 AS (
+CREATE MATERIALIZED VIEW teps.classvol_20220705 AS (
 SELECT
     ac.centreline_id,
     CASE

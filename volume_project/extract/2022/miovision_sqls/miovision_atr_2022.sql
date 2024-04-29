@@ -1,4 +1,4 @@
-CREATE MATERIALIZED VIEW IF NOT EXISTS scannon.mio_atr_centreline_20220705
+CREATE MATERIALIZED VIEW IF NOT EXISTS teps.mio_atr_centreline_20220705
 TABLESPACE pg_default
 AS
  WITH mio_data AS (
@@ -56,8 +56,8 @@ AS
      LEFT JOIN centreline_miovision_20220705 cm ON md.intersection_uid = cm.intersection_uid AND md.leg = cm.leg
 WITH DATA;
 
-ALTER TABLE IF EXISTS scannon.mio_atr_centreline_20220705
-    OWNER TO scannon;
+ALTER TABLE IF EXISTS teps.mio_atr_centreline_20220705
+    OWNER TO teps_admins;
 
-GRANT SELECT ON TABLE scannon.mio_atr_centreline_20220705 TO bdit_humans;
-GRANT ALL ON TABLE scannon.mio_atr_centreline_20220705 TO scannon;
+GRANT SELECT ON TABLE teps.mio_atr_centreline_20220705 TO bdit_humans;
+GRANT ALL ON TABLE teps.mio_atr_centreline_20220705 TO teps_admins;

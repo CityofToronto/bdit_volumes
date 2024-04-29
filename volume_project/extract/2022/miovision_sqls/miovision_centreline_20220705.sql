@@ -4,7 +4,7 @@
 -- 3. manually investigated and fixed the centrelines that needed to be fixed (in the table)
 
 -- 1. Here is the code that finds centreline_ids that touch miovision intersections:
-CREATE TABLE scannon.centreline_miovision_20220705 AS (
+CREATE TABLE teps.centreline_miovision_20220705 AS (
 
     --find all the nodes in the centreline file that touch miovision intersections. You have to match with "from" and "to" nodes to get all the segments
     WITH cent_int AS (
@@ -120,54 +120,54 @@ ORDER BY dl.intersection_uid;
 --the first two digits in forthcoming comments represent intersection_uid and leg
 
 -- 1 W Adelaide jogs at Bathurst, the miovision node doesn't capture that so I added it
-INSERT INTO scannon.centreline_miovision_20220705
+INSERT INTO teps.centreline_miovision_20220705
 VALUES (14073511, 1, 'W');
 
 -- 24 N Queen and Curvy Bay, there were two W, made Bay N 
-UPDATE scannon.centreline_miovision_20220705
+UPDATE teps.centreline_miovision_20220705
 SET leg = 'N'
 WHERE centreline_id = 1145090;
 
 -- 45 N Eglinton and Kingston, two W, so I made Eglinton N and it felt so wrong
-UPDATE scannon.centreline_miovision_20220705
+UPDATE teps.centreline_miovision_20220705
 SET leg = 'N'
 WHERE centreline_id = 110384;
 
 -- 50 E Kingston and Morningside, two sets of NS, so I made Kingston EW
-UPDATE scannon.centreline_miovision_20220705
+UPDATE teps.centreline_miovision_20220705
 SET leg = 'E'
 WHERE centreline_id = 107942;
 
 -- 50 W Kingston and Morningside, two sets of NS, so I made Kingston EW
-UPDATE scannon.centreline_miovision_20220705
+UPDATE teps.centreline_miovision_20220705
 SET leg = 'W' 
 WHERE centreline_id = 8087359;
 
 -- 52 N Sheppard and some curvy streets you've never heard of, two W, made the north one N
-UPDATE scannon.centreline_miovision_20220705
+UPDATE teps.centreline_miovision_20220705
 SET leg = 'N'
 WHERE centreline_id = 440997;
 
 -- 56 had no W leg but it should so
-UPDATE scannon.centreline_miovision_20220705
+UPDATE teps.centreline_miovision_20220705
 SET leg = 'W'
 WHERE centreline_id = 10750670;
 
 -- 65 W River and Bayview, two S legs so I made River W
-UPDATE scannon.centreline_miovision_20220705
+UPDATE teps.centreline_miovision_20220705
 SET leg = 'W'
 WHERE centreline_id = 5070833;
 
 -- 78 has two E and two W but it's a T intersection. 
 -- 78 One of the W should be a N
-UPDATE scannon.centreline_miovision_20220705
+UPDATE teps.centreline_miovision_20220705
 SET leg = 'N'
 WHERE centreline_id = 911198;
 
 -- 78 One of the E should be deleted
-DELETE FROM scannon.centreline_miovision_20220705
+DELETE FROM teps.centreline_miovision_20220705
 WHERE centreline_id = 911197;
 
 -- 1 W Adelaide and Bathurst, shouldn't exist because this intersection jogs
-DELETE FROM scannon.centreline_miovision_20220705
+DELETE FROM teps.centreline_miovision_20220705
 WHERE intersection_uid = 1 AND leg = 'W';

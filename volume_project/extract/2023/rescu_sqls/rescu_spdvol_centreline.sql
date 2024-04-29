@@ -1,4 +1,4 @@
-CREATE TABLE scannon.rescu_spdvol_centreline_20220705 AS (
+CREATE TABLE teps.rescu_spdvol_centreline_20220705 AS (
 SELECT 
     art.centreline_id, 
     CASE
@@ -12,8 +12,8 @@ SELECT
     v.speed_5kph AS speed_class,
     NULL AS vehicle_class,
     uid AS volume_id
-FROM scannon.rescu_enuf_vol_22 AS ev
-LEFT JOIN scannon.rescu_cent_20220705 AS art USING (detector_id)
+FROM teps.rescu_enuf_vol_22 AS ev
+LEFT JOIN teps.rescu_cent_20220705 AS art USING (detector_id)
 LEFT JOIN vds.veh_speeds_15min AS v 
         ON ev.entity_location_uid = v.entity_location_uid
             AND ev.dt = v.datetime_15min::date
