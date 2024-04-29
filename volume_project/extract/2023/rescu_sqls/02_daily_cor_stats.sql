@@ -1,5 +1,5 @@
 -- Make a table that compares daily volumes with the average daily volumes and z scores
-CREATE TABLE teps.rescu_dayvol_stats_22 AS (
+CREATE TABLE teps.rescu_dayvol_stats_23 AS (
 
 -- determine what day it is (weekday or weekend)    
     WITH day_jam AS (
@@ -26,8 +26,8 @@ CREATE TABLE teps.rescu_dayvol_stats_22 AS (
         LEFT JOIN vds.vdsconfig AS vc ON vc.uid = v.vdsconfig_uid
         LEFT JOIN vds.entity_locations AS el ON el.uid = v.entity_location_uid
         WHERE 
-            v.datetime_15min >= '2022-01-01'
-            AND v.datetime_15min < '2023-01-01'
+            v.datetime_15min >= '2023-01-01'
+            AND v.datetime_15min < '2024-01-01'
             AND di.det_type = 'RESCU Detectors'
     ),
 
@@ -110,6 +110,6 @@ CREATE TABLE teps.rescu_dayvol_stats_22 AS (
     FROM daily_vol AS dv
     LEFT JOIN ave_vol AS av 
         ON av.detector_id = dv.detector_id 
-            AND av.day_type = dv.day_type
+        AND av.day_type = dv.day_type
     WHERE av.stdev_vol > 0
 );
