@@ -171,3 +171,57 @@ WHERE centreline_id = 911197;
 -- 1 W Adelaide and Bathurst, shouldn't exist because this intersection jogs
 DELETE FROM teps.centreline_miovision_20220705
 WHERE intersection_uid = 1 AND leg = 'W';
+
+--examine intersections with dupes
+SELECT mio.*, gis.geom
+FROM (
+    SELECT DISTINCT intersection_uid
+    FROM teps.centreline_miovision_20220705
+    GROUP BY intersection_uid, leg
+    HAVING COUNT(1) > 1
+) dupes
+LEFT JOIN teps.centreline_miovision_20220705 AS mio USING (intersection_uid)
+LEFT JOIN gis.centreline_20220705 AS gis ON gis.geo_id = mio.centreline_id
+ORDER BY intersection_uid, leg;
+
+--fix dupes:
+UPDATE teps.centreline_miovision_20220705 SET leg = 'S'
+WHERE centreline_id = 30037990 AND intersection_uid = 71 AND leg = 'E';
+UPDATE teps.centreline_miovision_20220705 SET leg = 'S'
+WHERE centreline_id = 11034642 AND intersection_uid = 92 AND leg = 'E';
+UPDATE teps.centreline_miovision_20220705 SET leg = 'W'
+WHERE centreline_id = 112257 AND intersection_uid = 97 AND leg = 'S';
+
+--lakeshore and spadina - there are two W legs, both are valid. TBD.
+SELECT *
+FROM teps.centreline_miovision_20220705 AS mio
+LEFT JOIN gis.centreline_20220705 AS gis ON gis.geo_id = mio.centreline_id
+WHERE intersection_uid = 91;
+
+--identified some intersections with missing legs that are in intersection_movements:
+--1 and 5 are 3 legged
+--78: Bloor and Kingsway is a 4 legged intersection, but the south leg is not in the centreline (private road?)
+--68: Steels and Jane, N leg is outside of TO.
+WITH missing AS (
+    SELECT DISTINCT intersection_uid, leg
+    FROM miovision_api.intersection_movements
+    EXCEPT
+    SELECT DISTINCT intersection_uid, leg
+    FROM teps.centreline_miovision_20220705
+    ORDER BY intersection_uid, leg
+)
+SELECT missing.*, intersections.geom
+FROM missing
+JOIN miovision_api.intersections USING (intersection_uid);
+
+--fix above missing legs
+INSERT INTO teps.centreline_miovision_20220705 (intersection_uid, leg, centreline_id)
+(VALUES
+    (94, 'E', 14019296) --this looks like a 3 legged intersection, but in the configuration, it was clear we are measuring Carr St as the East leg.
+);
+
+--this is a 4 legged intersection, but the south leg is not in the centreline (private road?)
+SELECT *
+FROM teps.centreline_miovision_20220705 AS mio
+LEFT JOIN gis.centreline_20220705 AS gis ON gis.geo_id = mio.centreline_id
+WHERE intersection_uid = 78;
