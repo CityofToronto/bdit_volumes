@@ -18,7 +18,7 @@ WITH mio_data AS (
         AS anomalous_range_caveats,
         array_agg(ar.uid ORDER BY ar.range_start, ar.uid) FILTER (WHERE ar.uid IS NOT NULL)
         AS anomalous_range_uids
-    FROM miovision_api.volumes_15min volumes
+    FROM miovision_api.volumes_15min AS volumes
     LEFT JOIN miovision_api.anomalous_ranges AS ar
         ON (
             ar.intersection_uid = volumes.intersection_uid
@@ -57,7 +57,9 @@ SELECT
     md.volume_15min_uid AS volume_id,
     md.anomalous_range_caveats
 FROM mio_data md
-LEFT JOIN teps.centreline_miovision_20220705 cm
+--excludes a few legs that have miovision data, but
+--no centreline (private rds/3 legged intersections/anomalous)
+JOIN teps.centreline_miovision_20220705 cm
     ON md.intersection_uid = cm.intersection_uid
     AND md.leg = cm.leg
 WITH DATA;
