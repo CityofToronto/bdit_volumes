@@ -21,7 +21,7 @@ CREATE MATERIALIZED VIEW teps.classvol_2023 AS (
         ci.count_date >= '2023-01-01'
         AND ci.count_date < '2024-01-01'
         AND sv.count > 0
-    AND ci.category_id = 3
+        AND ci.category_id = 3
     ORDER BY
         centreline_id,
         count_bin,

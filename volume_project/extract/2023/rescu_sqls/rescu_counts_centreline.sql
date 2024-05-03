@@ -1,3 +1,9 @@
+--check there are no missing centrelines.
+SELECT DISTINCT detector_id
+FROM teps.rescu_enuf_vol_23 AS ev
+LEFT JOIN teps.rescu_cent_20220705 AS art USING (detector_id)
+WHERE art.centreline_id IS NULL;
+
 CREATE TABLE teps.rescu_count_centreline_2023 AS (
     SELECT 
         art.centreline_id, 
