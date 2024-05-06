@@ -1,3 +1,5 @@
+REFRESH MATERIALIZED VIEW traffic.tmc_miovision_long_format WITH DATA;
+
 CREATE MATERIALIZED VIEW teps.tmcs_to_atrs_2023 AS (
 
     -- Grab TMC volume from the long format table 
