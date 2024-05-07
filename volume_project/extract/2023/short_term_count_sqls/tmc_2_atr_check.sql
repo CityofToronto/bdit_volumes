@@ -91,38 +91,82 @@ LEFT JOIN atr_vol USING(volume_id)
 ORDER BY (atr_ct / tmc_ct)::float;
 
 -- I also checked that the higher functional class road had more volume for a few cases...
--- Forest Hill and Lonsdale
+--find some studies (count_info_id)
+SELECT count_info_id AS volume_id, file_name
+FROM traffic.countinfomics
+WHERE count_date >= '2023-01-01' AND count_date < '2024-01-01';
+
+-- Royal York and Anglesey
 SELECT centreline_id, lf_name, fcode_desc, sum(volume)
 FROM teps.tmcs_to_atrs_2023
 LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
-WHERE centreline_id IN (1139211, 1139232, 1139355, 7254137)
+WHERE volume_id IN (47775)
 GROUP BY centreline_id, lf_name, fcode_desc;
 
--- Morningside and Warnsworth
+-- 206676_Bathurst_St_and_Glengrove_Ave.hex
 SELECT centreline_id, lf_name, fcode_desc, sum(volume)
 FROM teps.tmcs_to_atrs_2023
 LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
-WHERE centreline_id IN (107586, 107621, 107724)
+WHERE volume_id IN (49037)
 GROUP BY centreline_id, lf_name, fcode_desc;
 
--- St. Leonard's and Mildenhall
+-- 205760_College_St_and_Markham_St.hex
 SELECT centreline_id, lf_name, fcode_desc, sum(volume)
 FROM teps.tmcs_to_atrs_2023
 LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
-WHERE centreline_id IN (444286, 444372, 444285, 444387)
+WHERE volume_id IN (48175)
 GROUP BY centreline_id, lf_name, fcode_desc;
 
--- Kipling and St. Andrews
+-- 206511_Islington_Ave_and_Barkwin_Dr.hex
 SELECT centreline_id, lf_name, fcode_desc, sum(volume)
 FROM teps.tmcs_to_atrs_2023
 LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
-WHERE centreline_id IN (908458, 908511, 9980271)
+WHERE volume_id IN (48873)
 GROUP BY centreline_id, lf_name, fcode_desc;
 
--- Blythwood and Strathgowan
+-- 206109_Don_Mills_Rd_and_Moatfield_Dr.hex
 SELECT centreline_id, lf_name, fcode_desc, sum(volume)
 FROM teps.tmcs_to_atrs_2023
 LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
-WHERE centreline_id IN (7754013, 30057003, 1137956)
+WHERE volume_id IN (48481)
 GROUP BY centreline_id, lf_name, fcode_desc;
--- These all checked out so I stopped.
+
+-- Check if there's any cases where the more minor road has more volume than the major:
+WITH study_vols AS (
+    SELECT
+        volume_id,
+        COALESCE(SUM(volume) FILTER (WHERE fcode_desc = 'Major Arterial'), 0) AS vol_major,
+        COALESCE(SUM(volume) FILTER (WHERE fcode_desc = 'Minor Arterial'), 0) AS vol_minor,
+        COALESCE(SUM(volume) FILTER (WHERE fcode_desc = 'Collector'), 0) AS vol_coll,
+        COALESCE(SUM(volume) FILTER (WHERE fcode_desc = 'Local'), 0) AS vol_local
+    FROM teps.tmcs_to_atrs_2023
+    LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
+    GROUP BY volume_id
+),
+
+unusual_studies AS (
+    SELECT volume_id
+    FROM study_vols
+    WHERE
+        vol_major > 0 AND (
+            vol_major < vol_minor
+            OR vol_major < vol_coll
+            OR vol_major < vol_local
+        )
+        OR vol_minor > 0 AND (
+            vol_minor < vol_coll
+            vol_minor < vol_local
+        )
+)
+
+SELECT volume_id, centreline_id, lf_name, fcode_desc, sum(volume)
+FROM teps.tmcs_to_atrs_2023
+LEFT JOIN gis.centreline_20220705 ON centreline_id = geo_id
+JOIN unusual_studies USING (volume_id)
+GROUP BY volume_id, centreline_id, lf_name, fcode_desc
+ORDER BY volume_id, fcode_desc;
+
+--Reviewed results and found 3 that seem not legit. Filtered out in MATERIALIZED VIEW teps.tmcs_to_atrs_2023. 
+--volume_id: 49151 - broadview and eastern: https://move.intra.prod-toronto.ca/view/location/s1:AO_umB/POINTS/reports/TMC
+--volume_id: 48859 - parkwoods village dr and combermere: https://move.intra.prod-toronto.ca/view/location/s1:AI5mmB/POINTS/reports/TMC
+--volume_id: 100448 - Morningside and Morningview: https://move.intra.prod-toronto.ca/view/location/s1:AokjmB/POINTS/reports/TMC

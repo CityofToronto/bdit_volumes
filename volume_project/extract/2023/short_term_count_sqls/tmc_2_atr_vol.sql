@@ -24,6 +24,8 @@ CREATE MATERIALIZED VIEW teps.tmcs_to_atrs_2023 AS (
             AND mlf.traffic_column_name NOT LIKE '%other%'
             AND mlf.datetime_bin >= '2023-01-01' AND mlf.datetime_bin < '2024-01-01'
             AND mlf.volume > 0
+            --3 anomalous studies discovered in volume_project/extract/2023/short_term_count_sqls/tmc_2_atr_check.sql
+            AND mlf.count_info_id NOT IN (49151, 48859, 100448)
     )
 
     -- Format for TEPS; count entrances (the "froms") and exits (the "tos")
