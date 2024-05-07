@@ -53,7 +53,7 @@ AS
     md.volume_15min_uid AS volume_id,
     md.anomalous_range_caveats
    FROM mio_data md
-     LEFT JOIN centreline_miovision_20220705 cm ON md.intersection_uid = cm.intersection_uid AND md.leg = cm.leg
+     LEFT JOIN teps.centreline_miovision_20220705 cm ON md.intersection_uid = cm.intersection_uid AND md.leg = cm.leg
 WITH DATA;
 
 ALTER TABLE IF EXISTS teps.mio_atr_centreline_20220705

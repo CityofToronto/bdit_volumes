@@ -13,12 +13,19 @@ WHERE fcode_desc IN('Major Arterial', 'Expressway') -- these are the only types 
 
 -- get RESCU detectors that pass the "good volume" tests
 rescu_det AS (
-SELECT DISTINCT 
-    ev.detector_id, 
-    ev.direction, 
-    ev.gen_loc, 
-    ST_SetSRID(ST_MAKEPOINT(ev.longitude, ev.latitude), 4326) AS rescu_geom
-FROM teps.rescu_enuf_vol_22 AS ev
+    SELECT DISTINCT
+        ev.detector_id, 
+        ev.direction, 
+        ev.gen_loc, 
+        ST_SetSRID(ST_MAKEPOINT(ev.longitude, ev.latitude), 4326) AS rescu_geom
+    FROM teps.rescu_enuf_vol_22 AS ev
+    UNION
+    SELECT DISTINCT
+        ev.detector_id, 
+        ev.direction, 
+        ev.gen_loc, 
+        ST_SetSRID(ST_MAKEPOINT(ev.longitude, ev.latitude), 4326) AS rescu_geom
+    FROM teps.rescu_enuf_vol_23 AS ev
 ),
 
 -- spatially join buffered detectors and segments
@@ -159,3 +166,31 @@ WHERE detector_id = 'DW0060DEL';
 UPDATE teps.rescu_cent_20220705
 SET centreline_id = 30036182
 WHERE detector_id = 'DW0100DEL';
+
+UPDATE teps.rescu_cent_20220705
+SET centreline_id = 30082883
+WHERE detector_id = 'SMARTMICRO - DW0030DEL';
+
+UPDATE teps.rescu_cent_20220705
+SET centreline_id = 30018111
+WHERE detector_id = 'DW0150DEL';
+
+UPDATE teps.rescu_cent_20220705
+SET centreline_id = 30006336
+WHERE detector_id = 'DW0170DEL';
+
+UPDATE teps.rescu_cent_20220705
+SET centreline_id = 913364
+WHERE detector_id = 'DW0160DEG';
+
+--there are null geoms after manual additions above.
+SELECT * FROM teps.rescu_cent_20220705 WHERE cl_geom IS NULL;
+
+--update the missing geoms.
+UPDATE teps.rescu_cent_20220705
+    SET cl_geom = ST_SetSRID(cl.geom, 4326),
+        cent_name = cl.lf_name
+FROM gis.centreline_20220705 AS cl 
+WHERE
+    rescu_cent_20220705.centreline_id = cl.geo_id
+    AND rescu_cent_20220705.cl_geom IS NULL;
